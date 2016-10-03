@@ -13,3 +13,4 @@ hello :)
 
 ## Good reads
 * GAE + Python Docs: https://cloud.google.com/appengine/docs/python/
+* Git and GAE: https://cloud.google.com/source-repositories/
