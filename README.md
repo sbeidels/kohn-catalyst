@@ -9,3 +9,7 @@ hello :)
 * **templates:** Directory for all of your HTML templates
   * **form.html:** HTML template to display your form
   * **submitted_form.html:** HTML template to display the content of a submitted form
+
+
+## Good reads
+* GAE + Python Docs: https://cloud.google.com/appengine/docs/python/
