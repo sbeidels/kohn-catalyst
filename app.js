@@ -61,7 +61,7 @@ var MongoClient = require('mongodb').MongoClient
 
 // Connection URL
 // var url = 'mongodb://localhost:27017/myproject';
-var url = 'mongodb://54.69.62.47:27017:8000/';
+var url = 'mongodb://54.69.62.47:27017//?replicaSet=documents';
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
@@ -74,7 +74,7 @@ MongoClient.connect(url, function(err, db) {
 // insert fake documents
 var insertDocuments = function(db, callback) {
     // Get the documents collection
-    var collection = db.collection('test');
+    var collection = db.collection('documents');
     // Insert some documents
     collection.insertMany([
         {a : 1}, {a : 2}, {a : 3}
