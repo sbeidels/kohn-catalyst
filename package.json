@@ -1,0 +1,21 @@
+{
+  "name": "kohn-catalyst",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "express": "~4.13.4",
+    "hbs": "~4.0.0",
+    "serve-favicon": "~2.3.0"
+  }
+}
+
+// body-parser --- Node.js body parsing middleware - https://www.npmjs.com/package/body-parser
+// cookie-parser --- cookie parsing with signatures - https://www.npmjs.com/package/cookie-parser
+// express --- Fast, unopinionated, minimalist web framework - https://www.npmjs.com/package/express
+// hbs --- Express.js template engine plugin for Handlebars - https://www.npmjs.com/package/hbs
+// serve-favicon --- favicon serving middleware with caching - https://www.npmjs.com/package/serve-favicon
