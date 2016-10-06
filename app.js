@@ -60,7 +60,7 @@ var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
 
 // Connection URL
-var url = 'mongodb://localhost:27017/khon-catalyst';
+var url = 'mongodb://localhost:27017/kohn-catalyst';
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
