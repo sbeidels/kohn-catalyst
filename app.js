@@ -73,7 +73,7 @@ MongoClient.connect(url, function(err, db) {
 // insert fake documents
 var insertDocuments = function(db, callback) {
     // Get the documents collection
-    var collection = db.collection('documents');
+    var collection = db.collection('test');
     // Insert some documents
     collection.insertMany([
         {a : 1}, {a : 2}, {a : 3}
