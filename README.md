@@ -2,15 +2,17 @@
 hello :)
 
 ## Structure
-* **app.yaml:** Configure the settings of your App Engine application
-* **main.py:** Write the content of your application
-* **static:** Directory to store your static files
-  * **style.css:** Basic stylesheet that formats the look and feel of your template files
-* **templates:** Directory for all of your HTML templates
-  * **form.html:** HTML template to display your form
-  * **submitted_form.html:** HTML template to display the content of a submitted form
-
+* **format** 
+* **me** 
+* **pretty** 
+  * **please** 
 
 ## Good reads
-* GAE + Python Docs: https://cloud.google.com/appengine/docs/python/
-* Git and GAE: https://cloud.google.com/source-repositories/
+* Anatomy of an HTTP Transaction - https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+
+## Packages
+* body-parser --- Node.js body parsing middleware - https://www.npmjs.com/package/body-parser
+* cookie-parser --- cookie parsing with signatures - https://www.npmjs.com/package/cookie-parser
+* express --- Fast, unopinionated, minimalist web framework - https://www.npmjs.com/package/express
+* hbs --- Express.js template engine plugin for Handlebars - https://www.npmjs.com/package/hbs
+* serve-favicon --- favicon serving middleware with caching - https://www.npmjs.com/package/serve-favicon
