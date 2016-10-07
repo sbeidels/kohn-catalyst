@@ -100,7 +100,7 @@ var findBestRestaurants = function(db, callback) {
 
 // 4. Search for the best restaurants!
 MongoClient.connect(url, function (err, db) {
-    assert.each(null, err);
+    assert.equal(null, err);
     findBestRestaurants(db, function() {
         db.close();
     })
