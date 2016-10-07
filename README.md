@@ -9,6 +9,7 @@ hello :)
 
 ## Good reads
 * Anatomy of an HTTP Transaction - https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/
+* Using express, handlebars, and mongoDB - https://sites.google.com/site/redmahbub/development/hbs-mongo-with-express4
 
 ## Documentation
 * mongoDB - https://docs.mongodb.com/manual/introduction/
