@@ -82,29 +82,29 @@ MongoClient.connect(url, function (err, db) {
     });
 });
 
-// 3. Let's refine our search
-for (var i = 0; i < 10; i++) {
-    console.log("- - - - - - ");
-}
-var findBestRestaurants = function(db, callback) {
-    var cursor = db.collection('restaurants').find( { "score" : { $gt:12}, "grade" : "A"});
-    cursor.each(function (err, doc) {
-        assert.equal(err, null);
-        if (doc != null) {
-            console.log(doc);
-        } else {
-            callback;
-        }
-    });
-};
-
-// 4. Search for the best restaurants!
-MongoClient.connect(url, function (err, db) {
-    assert.each(null, err);
-    findBestRestaurants(db, function() {
-        db.close();
-    })
-});
+// // 3. Let's refine our search
+// for (var i = 0; i < 10; i++) {
+//     console.log("- - - - - - ");
+// }
+// var findBestRestaurants = function(db, callback) {
+//     var cursor = db.collection('restaurants').find( { "score" : { $gt : 12}, "grade" : "A"} );
+//     cursor.each(function (err, doc) {
+//         assert.equal(err, null);
+//         if (doc != null) {
+//             console.log(doc);
+//         } else {
+//             callback;
+//         }
+//     });
+// };
+//
+// // 4. Search for the best restaurants!
+// MongoClient.connect(url, function (err, db) {
+//     assert.each(null, err);
+//     findBestRestaurants(db, function() {
+//         db.close();
+//     })
+// });
 
 
 
