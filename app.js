@@ -61,6 +61,8 @@ var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
 
+// Uncomment this huge block to have the database return every item
+
 // // 1. Define a search function
 // var findRestaurants = function(db, callback) {
 //     var cursor = db.collection('restaurants').find();
@@ -82,6 +84,7 @@ var url = 'mongodb://localhost:27017/test';
 //     });
 // });
 
+// Use this block to find restaurants that score > 95 and have grade A
 // 3. Let's refine our search
 var findBestRestaurants = function(db, callback) {
     var cursor = db.collection('restaurants').find({
