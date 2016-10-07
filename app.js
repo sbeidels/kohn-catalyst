@@ -87,7 +87,10 @@ for (var i = 0; i < 10; i++) {
     console.log("- - - - - - ");
 }
 var findBestRestaurants = function(db, callback) {
-    var cursor = db.collection('restaurants').find( { '$text': {'$search' : 'Garden' } } );
+    var cursor = db.collection('restaurants').find({
+        "grades.score" : { $gt: 85 },
+        "grades.grade" : "A"
+    });
     cursor.each(function (err, doc) {
         assert.equal(err, null);
         if (doc != null) {
