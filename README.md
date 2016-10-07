@@ -24,5 +24,6 @@ hello :)
 * forever --- let's node script runs continuously - https://www.npmjs.com/package/forever
 * hbs --- Express.js template engine plugin for Handlebars - https://www.npmjs.com/package/hbs
 * mongodb --- official MongoDB driver for Node.js -- https://www.npmjs.com/package/mongodb
+* mongoose --- Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment - https://www.npmjs.com/package/mongoose
 * morgan --- HTTP request logger middleware for node.js - https://www.npmjs.com/package/morgan
 * serve-favicon --- favicon serving middleware with caching - https://www.npmjs.com/package/serve-favicon
