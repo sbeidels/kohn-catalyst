@@ -9,7 +9,7 @@ router.get('/search-1', function(req, res, next) {
         if (err) {
             throw err;
         }
-        res.render('/search-1', {users: docs});
+        res.render('search-1', {users: docs});
     });
 
 
