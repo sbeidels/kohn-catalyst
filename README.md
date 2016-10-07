@@ -21,6 +21,7 @@ hello :)
 * cookie-parser --- cookie parsing with signatures - https://www.npmjs.com/package/cookie-parser
 * debug --- tiny node.js debugging utility modelled after node core's debugging technique - https://www.npmjs.com/package/debug
 * express --- Fast, unopinionated, minimalist web framework - https://www.npmjs.com/package/express
+* forever --- let's node script runs continuously - https://www.npmjs.com/package/forever
 * hbs --- Express.js template engine plugin for Handlebars - https://www.npmjs.com/package/hbs
 * mongodb --- official MongoDB driver for Node.js -- https://www.npmjs.com/package/mongodb
 * morgan --- HTTP request logger middleware for node.js - https://www.npmjs.com/package/morgan
