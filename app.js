@@ -74,6 +74,7 @@ var collection = db.collection('restaurants');
 // Find some documents
 collection.find().toArray(function (err, docs) {
     test.equal(null, err);
+    console.log("hi");
     console.log(docs);
 
 });
