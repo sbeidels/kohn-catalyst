@@ -71,7 +71,7 @@ MongoClient.connect(url, function(err, db) {
 
     // Find some documents
     collection.find().toArray(function (err, docs) {
-        test.equal(null, err);
+        assert.equal(null, err);
         console.log("hi");
         console.log(docs);
 
