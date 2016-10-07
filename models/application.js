@@ -26,5 +26,6 @@ var applicationSchema = Schema({
         phone:      Number,         // TODO: Validate max length = 10 integers
     },
     language:       String,         // TODO: Make user pick from list
-    veteran:        Boolean
+    veteran:        Boolean,
+    _id:            ObjectID,
 });
