@@ -83,7 +83,7 @@ MongoClient.connect(url, function (err, db) {
 });
 
 // 3. Let's refine our search
-for (i = 0; i < 10; i++) {
+for (var i = 0; i < 10; i++) {
     console.log("- - - - - - ");
 }
 var findBestRestaurants = function(db, callback) {
@@ -97,9 +97,11 @@ var findBestRestaurants = function(db, callback) {
         }
     });
 };
+
+// 4. Search for the best restaurants!
 MongoClient.connect(url, function (err, db) {
     assert.each(null, err);
-    findRestaurants(db, function() {
+    findBestRestaurants(db, function() {
         db.close();
     })
 });
