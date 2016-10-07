@@ -74,7 +74,7 @@ var findRestaurants = function(db, callback) {
     });
 };
 
-// 2. Use the search function
+// 2. Use the search function to print everything in the collection
 MongoClient.connect(url, function (err, db) {
     assert.equal(null, err);
     findRestaurants(db, function () {
@@ -82,26 +82,26 @@ MongoClient.connect(url, function (err, db) {
     });
 });
 
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
-    console.log("Assert #1");
-    assert.equal(null, err);
-    console.log("Connected successfully to server");
-
-    // Set collection to use
-    var collection = db.collection('restaurants');
-
-    // Find some documents
-    collection.find().toArray(function (err, docs) {
-        console.log("Assert #2");
-        assert.equal(null, err);
-        docs.forEach(console.log);
-
+// 3. Let's refine our search
+for (i = 0; i < 10; i++) {
+    console.log("- - - - - - ");
+}
+var findBestRestaurants = function(db, callback) {
+    var cursor = db.collection('restaurants').find( { "score" : { $gt:12}, "grade" : "A"});
+    cursor.each(function (err, doc) {
+        assert.equal(err, null);
+        if (doc != null) {
+            console.log(doc);
+        } else {
+            callback;
+        }
     });
+};
+MongoClient.connect(url, function (err, db) {
+    assert.each(null, err);
 
+})
 
-    db.close();
-});
 
 
 /////////////////////////////
