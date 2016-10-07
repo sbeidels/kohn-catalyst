@@ -56,13 +56,15 @@ app.use(function(err, req, res, next) {
 
 /////////////////////////////
 // connect to server
-var MongoClient = require('mongodb').MongoClient, assert = require('assert');
+var MongoClient = require('mongodb').MongoClient
+    , assert = require('assert');
 
 // Connection URL
 var url = 'mongodb://localhost:27017/test';
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
+    console.log("Assert #1");
     assert.equal(null, err);
     console.log("Connected successfully to server");
 
@@ -71,8 +73,8 @@ MongoClient.connect(url, function(err, db) {
 
     // Find some documents
     collection.find().toArray(function (err, docs) {
+        console.log("Assert #2");
         assert.equal(null, err);
-        console.log("hi");
         console.log(docs);
 
     });
