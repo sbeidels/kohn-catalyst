@@ -1,8 +1,15 @@
 <div>Restaurant List</div>
 <div>
+    <h3>Static list sample:</h3>
+    <ul>
+        {{#each restname}}
+        <li>{{this}}</li>
+        {{/each}}
+    </ul>
+    <h3>Database List Sample:</h3>
     <ul>
         {{#each restList}}
-        <li>{{restname}}&nbsp;{{id}}</li>
+            <li>{{restname}}</li>
         {{/each}}
     </ul>
 </div>
