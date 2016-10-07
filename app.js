@@ -56,11 +56,31 @@ app.use(function(err, req, res, next) {
 
 /////////////////////////////
 // connect to server
-var MongoClient = require('mongodb').MongoClient
-    , assert = require('assert');
-
-// Connection URL
+var MongoClient = require('mongodb').MongoClient;
+var assert = require('assert');
+var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
+
+// 1. Define a search function
+var findRestaurants = function(db, callback) {
+    var cursor = db.collection('restaurants').find();
+    cursor.each(function (err, doc) {
+        assert.equal(err, null);
+        if (doc != null) {
+            console.log(doc);
+        } else {
+            callback;
+        }
+    });
+};
+
+// 2. Use the search function
+MongoClient.connect(url, function (err, db) {
+    assert.equal(null, err);
+    findRestaurants(db, function () {
+        db.close();
+    });
+});
 
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
@@ -74,7 +94,7 @@ MongoClient.connect(url, function(err, db) {
     // Find some documents
     collection.find().toArray(function (err, docs) {
         console.log("Assert #2");
-        // assert.equal(null, err);
+        assert.equal(null, err);
         docs.forEach(console.log);
 
     });
