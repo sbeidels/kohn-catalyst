@@ -23,5 +23,5 @@ var residenceSchema = Schema({
     friends_family_help:    String,
     property_owner:         String,
     other_notes:            String,
-    _id:                    ObjectID
+    _id:                    ObjectId
 });

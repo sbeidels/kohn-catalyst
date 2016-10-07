@@ -27,5 +27,5 @@ var applicationSchema = Schema({
     },
     language:       String,         // TODO: Make user pick from list
     veteran:        Boolean,
-    _id:            ObjectID,
+    _id:            ObjectId,
 });
