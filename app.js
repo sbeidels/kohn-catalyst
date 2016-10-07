@@ -65,18 +65,20 @@ var url = 'mongodb://localhost:27017/test';
 MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     console.log("Connected successfully to server");
+
+    // Set collection to use
+    var collection = db.collection('restaurants');
+
+    // Find some documents
+    collection.find().toArray(function (err, docs) {
+        test.equal(null, err);
+        console.log("hi");
+        console.log(docs);
+
+    });
+
+
     db.close();
-});
-
-// Set collection to use
-var collection = db.collection('restaurants');
-
-// Find some documents
-collection.find().toArray(function (err, docs) {
-    test.equal(null, err);
-    console.log("hi");
-    console.log(docs);
-
 });
 
 
