@@ -91,10 +91,10 @@ var findBestRestaurants = function(db, callback) {
     cursor.each(function (err, doc) {
         assert.equal(err, null);
         if (doc != null) {
+            console.log("\n- - - - - - - - - - - - - - - - -");
+            console.log("\n- - - - - - - - - - - - - - - - -");
+            console.log("\n- - - - - - - - - - - - - - - - -");
             console.log(doc);
-            console.log("\n- - - - - - - - - - - - - - - - -");
-            console.log("\n- - - - - - - - - - - - - - - - -");
-            console.log("\n- - - - - - - - - - - - - - - - -");
         } else {
             callback;
         }
