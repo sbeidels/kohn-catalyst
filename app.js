@@ -99,8 +99,10 @@ var findBestRestaurants = function(db, callback) {
 };
 MongoClient.connect(url, function (err, db) {
     assert.each(null, err);
-
-})
+    findRestaurants(db, function() {
+        db.close();
+    })
+});
 
 
 
