@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 var hbs = require('hbs');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var test = require('./routes/test');
 
 var app = express();
 
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/test', test); // This route handles all examples in test (restaurant) DB
 
 // ERROR HANDLERS
 // catch 404 and forward to error handler
@@ -59,6 +59,7 @@ var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://localhost:27017/test';
+var local_url = 'localhost:27017/rest';
 
 // Uncomment this huge block to have the database return every item
 
