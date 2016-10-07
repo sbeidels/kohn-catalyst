@@ -86,31 +86,31 @@ var local_url = 'localhost:27017/rest';
 
 // Use this block to find restaurants that score > 95 and have grade A
 // 3. Let's refine our search
-var findBestRestaurants = function(db, callback) {
-    var cursor = db.collection('restaurants').find({
-        "grades.score" : { $gt: 95 },
-        "grades.grade" : "A"
-    });
-    cursor.each(function (err, doc) {
-        assert.equal(err, null);
-        if (doc != null) {
-            console.log("\n- - - - - - - - - - - - - - - - -");
-            console.log("\n- - - - - - - - - - - - - - - - -");
-            console.log("\n- - - - - - - - - - - - - - - - -");
-            console.log(doc);
-        } else {
-            callback;
-        }
-    });
-};
-
-// 4. Search for the best restaurants!
-MongoClient.connect(url, function (err, db) {
-    assert.equal(null, err);
-    findBestRestaurants(db, function() {
-        db.close();
-    })
-});
+// var findBestRestaurants = function(db, callback) {
+//     var cursor = db.collection('restaurants').find({
+//         "grades.score" : { $gt: 95 },
+//         "grades.grade" : "A"
+//     });
+//     cursor.each(function (err, doc) {
+//         assert.equal(err, null);
+//         if (doc != null) {
+//             console.log("\n- - - - - - - - - - - - - - - - -");
+//             console.log("\n- - - - - - - - - - - - - - - - -");
+//             console.log("\n- - - - - - - - - - - - - - - - -");
+//             console.log(doc);
+//         } else {
+//             callback;
+//         }
+//     });
+// };
+//
+// // 4. Search for the best restaurants!
+// MongoClient.connect(url, function (err, db) {
+//     assert.equal(null, err);
+//     findBestRestaurants(db, function() {
+//         db.close();
+//     })
+// });
 
 
 
