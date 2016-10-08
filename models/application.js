@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;
 
-var applicationSchema = Schema({
+var ApplicationSchema = Schema({
     _id:            ObjectId,
     id:             Number,
     status:         String,         // TODO: determine concrete review status terms
@@ -24,8 +24,11 @@ var applicationSchema = Schema({
     driver_license: String,
     emergency_contact:  {
         name:       String,
-        phone:      Number,         // TODO: Validate max length = 10 integers
+        phone:      Number         // TODO: Validate max length = 10 integers
     },
     language:       String,         // TODO: Make user pick from list
     veteran:        Boolean
 });
+
+var Application = mongoose.model('Application', ApplicationSchema);
+module.exports = Application;
