@@ -64,7 +64,7 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
  	    └── rest-new.hbs
 ```
 
-Website live pages:
+**Website live pages:**
 * http://54.69.62.47:8000/
 * http://54.69.62.47:8000/test/show
   * Log into EC2 to see the console output when you rest this page
