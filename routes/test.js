@@ -1,18 +1,33 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('./../mongoose/index');
 
-/* READ, UPDATE, DELETE */
+// var mongoose = require('./../mongoose/index');
+var mongoose = require('mongoose');
+var Application = require('../models/application');
+
+/* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
+/* BONUS HANDLEBARS TEMPLATE EXAMPLE */
 router.get('/show', function(req, res) {
     // Static list is passed and referenced in rest-list.hbs
-    // database.on('error', console.error.bind(console, 'connection error'));
-    // database.once('open', console.log('connection successful'));
-
     var staticList = { restname: ['mcdonalds', 'burger king', 'subway'] };
 
-    var dynamicList;
+    // Load in the application model
+    var query = Application.find({}, function(err, docs) {
+        if (err) throw err;
+        console.log(docs);
+        return docs;
+    });
 
-    res.render('rest-list', staticList, dynamicList);
+    res.render('rest-list', staticList);
+});
+
+/* GET ALL DOCUMENTS AND RETURN A JSON FILE */
+router.get('/showall', function(req, res) {
+    Application.find(function(err, docs) {
+        if (err)
+            res.send(err);
+        res.json(docs);
+    });
 });
 
 /* NEW */
