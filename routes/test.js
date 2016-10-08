@@ -1,22 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('./../mongoose/index');
 
 /* READ, UPDATE, DELETE */
 router.get('/show', function(req, res) {
-    // Get the database
-    var db = req.db;
+    // Static list is passed and referenced in rest-list.hbs
+    // database.on('error', console.error.bind(console, 'connection error'));
+    // database.once('open', console.log('connection successful'));
 
-    // Fetch the collection 'restaurants'
-    var restCollection = db.get("restaurants");
+    var staticList = { restname: ['mcdonalds', 'burger king', 'subway'] };
 
-    // collection.find() returns all items in the db
-    restCollection.find({}, {}, function (err, docs) {
-        assert.equal(err, null);
-        res.render('rest-list', {
-           'restList' : docs
-       });
-    });
+    var dynamicList;
 
+    res.render('rest-list', staticList, dynamicList);
 });
 
 /* NEW */
