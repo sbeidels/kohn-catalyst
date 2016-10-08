@@ -5,6 +5,8 @@
 // Import the mongoose module
 var mongoose = require('mongoose');
 
+// Any logic can go here
+
 // Stored URLs, swap as needed before running the app
 var test_url = 'mongodb://127.0.0.1:27017/rest';
 var live_url = 'mongodb://127.0.0.1:27017/test';
