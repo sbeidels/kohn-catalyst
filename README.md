@@ -64,6 +64,16 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
  	    └── rest-new.hbs
 ```
 
+Website live pages:
+	http://54.69.62.47:8000/
+	http://54.69.62.47:8000/test/show
+		Log into EC2 to see the console output when you rest this page
+	http://54.69.62.47:8000/test/showall
+		This returns a JSON formatted text wall
+	http://54.69.62.47:8000/test/new
+		Sample form using rest-new.hbs, and partials footer.html, header.html
+		Submitting should call route '/insert_user', but we don't do restaurants so it returns 404
+
 ## Structure
 * **format** 
 * **me** 
