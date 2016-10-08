@@ -1,6 +1,67 @@
 # kohn-catalyst
 hello :)
 
+# UPDATE - **VERY IMPORTANT**
+`The file structure of our project as of 10/7/16, sans node_modules, is below. Please see after the hyphen for notes.
+ 	├── README.md - readme, shows on github
+ 	│
+ 	│
+ 	├── app.js - main app that hands requirements and errors
+ 	│
+ 	│
+ 	├── bin
+ 	│   └── www - entry point when starting the server (using 'npm start' on EC2)
+ 	│
+ 	│
+ 	├── models - models hold the 'schema' for documents
+ 	│   ├── application.js - application template according to Marco's Visio design
+ 	│   ├── index.js - used to convert the 'schema' to a 'model' so we can use it elsewhere
+ 	│   └── residence.js - residence form according to Marco's Visio design
+ 	│
+ 	│
+ 	├── mongo_shell_insert_template.json
+ 	│
+ 	│
+ 	├── mongoose
+ 	│   └── index.js
+ 	│
+ 	│
+ 	├── npm-debug.log
+ 	│
+ 	│
+ 	├── package.json - holds all the modules needed to run our app
+ 	│                - want to run the app locally? cd ..../kohn-catalyst && npm install
+ 	│
+ 	├── primer-dataset.json - ignore this, it needs to be removed from the repo
+ 	│
+ 	│
+ 	├── public
+ 	│   ├── images
+ 	│   │   └── temp.file - temp file, needs to be deleted
+ 	│   ├── javascripts
+ 	│   │   └── temp.file - temp file, needs to be deleted
+ 	│   └── stylesheets
+ 	│       └── style.css - main css entry point, front end dev owns this all day
+ 	│
+ 	│
+ 	├── routes - folder to determine routes, played around with a lot, needs cleaned
+ 	│   │      - see line 29, 30 for difference between index and test
+ 	│   │      - basically lets use use www.url.com/stuff and www.url.com/test/stuff at the current moment
+ 	│   ├── index.js - empty, controls everything after url.com/<routes>
+ 	│   └── test.js - more stuff, mainly testing DB calls, accessed at url.com/test/<routes>
+ 	│
+ 	│
+ 	└── views - used to control handlebar templating, front end gets this stuff
+ 	    ├── error.hbs
+ 	    ├── index.hbs
+ 	    ├── layout.hbs
+ 	    ├── partials
+ 	    │   ├── footer.html
+ 	    │   ├── header.html
+ 	    │   └── rests.html
+ 	    ├── rest-list.hbs
+ 	    └── rest-new.hbs`
+
 ## Structure
 * **format** 
 * **me** 
