@@ -4,10 +4,14 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
+var fs = require('fs');
+var db = require('./mongoose');
 
+// Set up routes
 var routes = require('./routes/index');
 var test = require('./routes/test');
 
+//
 var app = express();
 
 // Setup view engine
@@ -25,12 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
 
-// Connect to mongoDB server
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var ObjectId = require('mongodb').ObjectID;
-var url = 'mongodb://localhost:27017/test';
-var local_url = 'localhost:27017/rest';
 
 // ERROR HANDLERS
 // catch 404 and forward to error handler
@@ -58,61 +56,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-// Uncomment this huge block to have the database return every item
-
-// // 1. Define a search function
-// var findRestaurants = function(db, callback) {
-//     var cursor = db.collection('restaurants').find();
-//     cursor.each(function (err, doc) {
-//         assert.equal(err, null);
-//         if (doc != null) {
-//             console.log(doc);
-//         } else {
-//             callback;
-//         }
-//     });
-// };
-//
-// // 2. Use the search function to print everything in the collection
-// MongoClient.connect(url, function (err, db) {
-//     assert.equal(null, err);
-//     findRestaurants(db, function () {
-//         db.close();
-//     });
-// });
-
-// Use this block to find restaurants that score > 95 and have grade A
-// 3. Let's refine our search
-// var findBestRestaurants = function(db, callback) {
-//     var cursor = db.collection('restaurants').find({
-//         "grades.score" : { $gt: 95 },
-//         "grades.grade" : "A"
-//     });
-//     cursor.each(function (err, doc) {
-//         assert.equal(err, null);
-//         if (doc != null) {
-//             console.log("\n- - - - - - - - - - - - - - - - -");
-//             console.log("\n- - - - - - - - - - - - - - - - -");
-//             console.log("\n- - - - - - - - - - - - - - - - -");
-//             console.log(doc);
-//         } else {
-//             callback;
-//         }
-//     });
-// };
-//
-// // 4. Search for the best restaurants!
-// MongoClient.connect(url, function (err, db) {
-//     assert.equal(null, err);
-//     findBestRestaurants(db, function() {
-//         db.close();
-//     })
-// });
-
-
-
-/////////////////////////////
-
 
 module.exports = app;
