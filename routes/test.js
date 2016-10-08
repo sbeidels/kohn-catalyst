@@ -5,6 +5,9 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Application = require('../models/application');
 
+// Helper query functions
+var helpers = require('../mongoose/query-helpers');
+
 /* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
 /* BONUS HANDLEBARS TEMPLATE EXAMPLE */
 router.get('/show', function(req, res) {
@@ -28,6 +31,27 @@ router.get('/showall', function(req, res) {
             res.send(err);
         res.json(docs);
     });
+});
+
+
+/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* THIS EXAMPLE STILL ONLY FINDS ALL DOCUMENTS IN THE COLLECTION */
+router.get('/helper-all', function(req, res) {
+    Application.findAllDocuments(function(err, docs) {
+        if (err) console.error(err);
+        res.json(docs);
+    })
+});
+
+/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* THIS EXAMPLE SEARCHES BY LAST NAME */
+/* Last names in DB: fitzpatrick, washington, west */
+router.get('/helper-last-name', function(req, res) {
+    Application.findLastName("West", function(err, docs) {
+        if (err) console.error(err);
+        console.log(docs);
+        res.json(docs);
+    })
 });
 
 /* NEW */
