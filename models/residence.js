@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;
 
 var residenceSchema = Schema({
+    _id:                    ObjectId,
     // TODO: The 'id' field references the application.js model HOW?
     id:                 Number,
     // TODO: Handle 'other_residents'
@@ -22,6 +23,5 @@ var residenceSchema = Schema({
     involved_w_other_org:   String,
     friends_family_help:    String,
     property_owner:         String,
-    other_notes:            String,
-    _id:                    ObjectId
+    other_notes:            String
 });

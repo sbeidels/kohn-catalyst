@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;
 
 var applicationSchema = Schema({
+    _id:            ObjectId,
     id:             Number,
     status:         String,         // TODO: determine concrete review status terms
     first_name:     String,
@@ -26,6 +27,5 @@ var applicationSchema = Schema({
         phone:      Number,         // TODO: Validate max length = 10 integers
     },
     language:       String,         // TODO: Make user pick from list
-    veteran:        Boolean,
-    _id:            ObjectId,
+    veteran:        Boolean
 });
