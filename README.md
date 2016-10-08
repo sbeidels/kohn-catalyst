@@ -2,7 +2,8 @@
 hello :)
 
 # UPDATE - **VERY IMPORTANT**
-```The file structure of our project as of 10/7/16, sans node_modules, is below. Please see after the hyphen for notes.
+```
+The file structure of our project as of 10/7/16, sans node_modules, is below. Please see after the hyphen for notes.
  	├── README.md - readme, shows on github
  	│
  	│
