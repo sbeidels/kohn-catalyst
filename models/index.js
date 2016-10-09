@@ -8,5 +8,3 @@ Residence = require('./residence');
 // Export it so we can use it
 exports.applicationModel = Application.applicationModel;
 exports.residenceModel = Residence.residenceModel;
-
-exports.module = db;

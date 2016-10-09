@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
-var mongoose = require('./../mongoose/index.js');
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var Application = require('../models/application');
 
 // Helper query functions
