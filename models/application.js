@@ -1,3 +1,19 @@
+/*
+This is the current APPLICATION FORM.
+It is the form that a potential client would fill out when applying for aid.
+
+Items on the left of the colon are database ID values.
+Items on the right of the colon are the data types allowed.
+
+Allowable types are:
+String      Number
+Date        Buffer
+Boolean     Mixed
+ObjectId    Array
+
+ObjectId is similar to a primary key in a relationship based database.
+ */
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;

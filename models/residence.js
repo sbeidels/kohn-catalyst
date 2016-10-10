@@ -1,3 +1,18 @@
+/*
+This form holds data about the household to be worked on.
+
+Items on the left of the colon are database ID values.
+ Items on the right of the colon are the data types allowed.
+
+ Allowable types are:
+ String      Number
+ Date        Buffer
+ Boolean     Mixed
+ ObjectId    Array
+
+ ObjectId is similar to a primary key in a relationship based database.
+ */
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;
