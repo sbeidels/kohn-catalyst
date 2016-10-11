@@ -23,7 +23,7 @@ router.get('/show', function(req, res) {
 });
 
 /* GET ALL DOCUMENTS AND RETURN A JSON FILE */
-router.get('/showall', function(req, res) {
+router.get('/show-all', function(req, res) {
     Application.find(function(err, docs) {
         if (err)
             res.send(err);
@@ -46,6 +46,17 @@ router.get('/helper-all', function(req, res) {
 /* Last names in DB: fitzpatrick, washington, west */
 router.get('/helper-last-name', function(req, res) {
     Application.findLastName("West", function(err, docs) {
+        if (err) console.error(err);
+        console.log(docs);
+        res.json(docs);
+    })
+});
+
+/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* FINDS APPLICATIONS WITH DOB >= GIVEN DATE */
+router.get('/helper-dob-gte', function (req, res) {
+    var DOB = "2000, 1, 01";
+    Application.findDob(DOB, function(req, res) {
         if (err) console.error(err);
         console.log(docs);
         res.json(docs);
