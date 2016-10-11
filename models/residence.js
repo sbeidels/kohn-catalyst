@@ -20,7 +20,7 @@ ObjectId = Schema.ObjectId;
 var residenceSchema = Schema({
     _id:                    ObjectId,
     // TODO: The 'id' field references the application.js model HOW?
-    id:                 Number,
+    id:                     Number,
     // TODO: Handle 'other_residents'
     other_residents:        String,
     annual_income:          Number,

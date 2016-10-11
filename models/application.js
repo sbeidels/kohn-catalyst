@@ -40,7 +40,7 @@ var ApplicationSchema = Schema({
     driver_license: String,
     emergency_contact:  {
         name:       String,
-        phone:      Number         // TODO: Validate max length = 10 integers
+        phone:      Number          // TODO: Validate max length = 10 integers
     },
     language:       String,         // TODO: Make user pick from list
     veteran:        Boolean
