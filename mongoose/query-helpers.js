@@ -17,6 +17,23 @@ ApplicationSchema.findLastName = function(last_name, callback) {
     }, callback);
 };
 
+// Search for application for DOB after a date
+ApplicationSchema.findDob = function(DOB, callback) {
+    return this.find({
+        dob: {"$gte" : new Date (DOB) }
+    }, callback);
+};
+
+// Testing promises
+// 1. Find all names
+// 2. Find DOB after 1900
+// 3. Search for last name 'West'
+// ApplicationSchema.findDob = function(DOB, callback) {
+//     return this.find({
+//         dob: {"$gte" : new Date (2000, 1, 01) }
+//     });
+// };
+
 // TODO: Create query for applications in date range
 
 // TODO: Create query to return applications based on 'Application.status'

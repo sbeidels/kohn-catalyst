@@ -1,3 +1,4 @@
+var db = require('./mongoose/index');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var fs = require('fs');
-var db = require('./mongoose');
 
 // Set up routes
 var routes = require('./routes/index');
