@@ -20,12 +20,14 @@ ObjectId = Schema.ObjectId;
 
 var ApplicationSchema = Schema({
     _id:            ObjectId,
+    owns_home:      Boolean,
     id:             Number,
     status:         String,         // TODO: determine concrete review status terms
     first_name:     String,
     last_name:      String,
     dob:            Date,
     marital_status: String,         // TODO: Confirm options is chosen from list
+    spouse:         String,
     phone_number:   Number,         // TODO: Confirm max length = 10 integers
     address:        {
         number:     Number,
@@ -41,6 +43,10 @@ var ApplicationSchema = Schema({
     emergency_contact:  {
         name:       String,
         phone:      Number          // TODO: Validate max length = 10 integers
+    },
+    other_residents:{
+        number:      Number,
+        names:      [String],      // This is an array of strings
     },
     language:       String,         // TODO: Make user pick from list
     veteran:        Boolean
