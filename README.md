@@ -16,7 +16,7 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
  	│
  	├── models - models hold the 'schema' for documents
  	│   ├── application.js - application template according to Marco's Visio design
- 	│   ├── index.js - used to convert the 'schema' to a 'model' so we can use it elsewhere
+ 	│   ├── connection.js - used to convert the 'schema' to a 'model' so we can use it elsewhere
  	│   └── residence.js - residence form according to Marco's Visio design
  	│
  	│
@@ -24,7 +24,7 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
  	│
  	│
  	├── mongoose
- 	│   └── index.js
+ 	│   └── connection.js
  	│
  	│
  	├── npm-debug.log
