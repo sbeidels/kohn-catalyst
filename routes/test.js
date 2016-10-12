@@ -5,7 +5,7 @@ var db = require('../mongoose/index');
 var Application = require('../models/application');
 
 // Helper query functions
-var helpers = require('../mongoose/query-helpers');
+var helpers = require('../mongoose/read-helpers');
 
 /* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
 /* BONUS HANDLEBARS TEMPLATE EXAMPLE */
@@ -33,7 +33,7 @@ router.get('/show-all', function(req, res) {
 });
 
 
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* USING HELP QUERY FROM /mongoose/read-helpers.js */
 /* THIS EXAMPLE STILL ONLY FINDS ALL DOCUMENTS IN THE COLLECTION */
 router.get('/helper-all', function(req, res) {
     Application.findAllDocuments(function(err, docs) {
@@ -42,7 +42,7 @@ router.get('/helper-all', function(req, res) {
     })
 });
 
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* USING HELP QUERY FROM /mongoose/read-helpers.js */
 /* THIS EXAMPLE SEARCHES BY LAST NAME */
 /* Last names in DB: fitzpatrick, washington, west */
 router.get('/helper-last-name', function(req, res) {
@@ -53,7 +53,7 @@ router.get('/helper-last-name', function(req, res) {
     })
 });
 
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* USING HELP QUERY FROM /mongoose/read-helpers.js */
 /* FINDS APPLICATIONS WITH DOB >= GIVEN DATE */
 router.get('/helper-dob-gte', function (req, res) {
     var DOB = "2000, 1, 01";
