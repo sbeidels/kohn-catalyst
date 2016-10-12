@@ -10,6 +10,7 @@ var fs = require('fs');
 // Set up routes
 var routes = require('./routes/index');
 var test = require('./routes/test');
+var miketest = require('./routes/miketest');
 
 //
 var app = express();
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
+app.use('/mt', miketest); // SHOULD route to mike's test miketest.js
 
 
 // ERROR HANDLERS
