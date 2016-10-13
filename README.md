@@ -101,4 +101,5 @@ hbs | HTML semantic template builder | www.handlebarsjs.com
 mongodb | official MongoDB driver for Node.js, needed for mongoose | www.docs.mongodb.com/getting-started/node/client/
 mongoose | An object modeling tool used with mongoDB designed to work in an asynchronous environment | www.mongoosejs.com/docs/guide.html
 morgan | HTTP request logger middleware for node.js | www.npmjs.com/package/morgan
+request | Wrapper to use basica HTTP request functions | www.npmjs.com/package/request#http-authentication
 serve-favicon | favicon serving middleware with caching | www.npmjs.com/package/serve-favicon
