@@ -90,6 +90,10 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
 * mongoDB Node.js driver API - http://mongodb.github.io/node-mongodb-native/2.2/api/
 
 ## Packages
+*Package* | *Description* | *Website*
+--- | --- | ---
+body-parser | Parse incoming request bodies in a middleware before your handlers, availabe under the `req.body` property | npmjs.com/package/body-parser
+
 * body-parser --- Node.js body parsing middleware - https://www.npmjs.com/package/body-parser
 * cookie-parser --- cookie parsing with signatures - https://www.npmjs.com/package/cookie-parser
 * debug --- tiny node.js debugging utility modelled after node core's debugging technique - https://www.npmjs.com/package/debug
