@@ -48,8 +48,8 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
  	├── routes - folder to determine routes, played around with a lot, needs cleaned
  	│   │      - see line 29, 30 for difference between index and test
  	│   │      - basically lets use use www.url.com/stuff and www.url.com/test/stuff at the current moment
- 	│   ├── index.js - empty, controls everything after url.com/<routes>
- 	│   └── test.js - more stuff, mainly testing DB calls, accessed at url.com/test/<routes>
+ 	│   ├── index.js - empty, controls everything after url.com/www.routes
+ 	│   └── test.js - more stuff, mainly testing DB calls, accessed at url.com/test/www.routes
  	│
  	│
  	└── views - used to control handlebar templating, front end gets this stuff
@@ -92,13 +92,13 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
 ## Packages
 *Package* | *Description* | *Documentation*
 --- | --- | ---
-body-parser | Parse incoming request bodies in a middleware before your handlers, availabe under the `req.body` property | <ewiggin.gitbooks.io/expressjs-middleware/content/body-parser.html>
-cookie-parser | Parse Cookie header and populate `req.cookies` with an object keyed by the cookie names. Optionally you may enable signed cookie support by passing a `secret` string, which assigns `req.secret` so it may be used by other middleware | <github.com/expressjs/cookie-parser>
-debug | tiny node.js debugging utility modelled after node core's debugging technique | <npmjs.com/package/debug>
-express | Web framework for Node.js | <expressjs.com>
-forever | Tool used to ensure a node script runs uninterrupted | <npmjs.com/package/forever>
-hbs | HTML semantic template builder | <handlebarsjs.com>
-mongodb | official MongoDB driver for Node.js, needed for mongoose | <docs.mongodb.com/getting-started/node/client/>
-mongoose | An object modeling tool used with mongoDB designed to work in an asynchronous environment | <mongoosejs.com/docs/guide.html>
-morgan | HTTP request logger middleware for node.js | <npmjs.com/package/morgan>
-serve-favicon | favicon serving middleware with caching | <npmjs.com/package/serve-favicon>
+body-parser | Parse incoming request bodies in a middleware before your handlers, availabe under the `req.body` property | www.ewiggin.gitbooks.io/expressjs-middleware/content/body-parser.html
+cookie-parser | Parse Cookie header and populate `req.cookies` with an object keyed by the cookie names. Optionally you may enable signed cookie support by passing a `secret` string, which assigns `req.secret` so it may be used by other middleware | www.github.com/expressjs/cookie-parser
+debug | tiny node.js debugging utility modelled after node core's debugging technique | www.npmjs.com/package/debug
+express | Web framework for Node.js | www.expressjs.com
+forever | Tool used to ensure a node script runs uninterrupted | www.npmjs.com/package/forever
+hbs | HTML semantic template builder | www.handlebarsjs.com
+mongodb | official MongoDB driver for Node.js, needed for mongoose | www.docs.mongodb.com/getting-started/node/client/
+mongoose | An object modeling tool used with mongoDB designed to work in an asynchronous environment | www.mongoosejs.com/docs/guide.html
+morgan | HTTP request logger middleware for node.js | www.npmjs.com/package/morgan
+serve-favicon | favicon serving middleware with caching | www.npmjs.com/package/serve-favicon
