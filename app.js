@@ -20,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json());
@@ -31,8 +32,25 @@ app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
 
 
-// ERROR HANDLERS
-// catch 404 and forward to error handler
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Error handlers
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// 4XX Code
+// 400 - Bad request
+app.use(function(req, res, next) {
+    var err = new Error('Bad request');
+    err.status = 400;
+    next(err);
+});
+
+// 401 - Unauthorized
+app.use(function(req, res, next) {
+    var err = new Error('Unauthorized');
+    err.status = 401;
+    next(err);
+});
+
+// 404 - Not found
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
