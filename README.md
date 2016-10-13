@@ -90,17 +90,15 @@ The file structure of our project as of 10/7/16, sans node_modules, is below. Pl
 * mongoDB Node.js driver API - http://mongodb.github.io/node-mongodb-native/2.2/api/
 
 ## Packages
-*Package* | *Description* | *Website*
+*Package* | *Description* | *Documentation*
 --- | --- | ---
-body-parser | Parse incoming request bodies in a middleware before your handlers, availabe under the `req.body` property | npmjs.com/package/body-parser
-
-* body-parser --- Node.js body parsing middleware - https://www.npmjs.com/package/body-parser
-* cookie-parser --- cookie parsing with signatures - https://www.npmjs.com/package/cookie-parser
-* debug --- tiny node.js debugging utility modelled after node core's debugging technique - https://www.npmjs.com/package/debug
-* express --- Fast, unopinionated, minimalist web framework - https://www.npmjs.com/package/express
-* forever --- let's node script runs continuously - https://www.npmjs.com/package/forever
-* hbs --- Express.js template engine plugin for Handlebars - https://www.npmjs.com/package/hbs
-* mongodb --- official MongoDB driver for Node.js -- https://www.npmjs.com/package/mongodb
-* mongoose --- Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment - https://www.npmjs.com/package/mongoose
-* morgan --- HTTP request logger middleware for node.js - https://www.npmjs.com/package/morgan
-* serve-favicon --- favicon serving middleware with caching - https://www.npmjs.com/package/serve-favicon
+body-parser | Parse incoming request bodies in a middleware before your handlers, availabe under the `req.body` property | ewiggin.gitbooks.io/expressjs-middleware/content/body-parser.html
+cookie-parser | Parse Cookie header and populate `req.cookies` with an object keyed by the cookie names. Optionally you may enable signed cookie support by passing a `secret` string, which assigns `req.secret` so it may be used by other middleware | github.com/expressjs/cookie-parser
+debug | tiny node.js debugging utility modelled after node core's debugging technique | npmjs.com/package/debug
+express | Web framework for Node.js | expressjs.com
+forever | Tool used to ensure a node script runs uninterrupted | npmjs.com/package/forever
+hbs | HTML semantic template builder | handlebarsjs.com
+mongodb | official MongoDB driver for Node.js, needed for mongoose | docs.mongodb.com/getting-started/node/client/
+mongoose | An object modeling tool used with mongoDB designed to work in an asynchronous environment | mongoosejs.com/docs/guide.html
+morgan | HTTP request logger middleware for node.js | npmjs.com/package/morgan
+serve-favicon | favicon serving middleware with caching | npmjs.com/package/serve-favicon
