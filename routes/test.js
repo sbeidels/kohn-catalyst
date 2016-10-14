@@ -5,22 +5,23 @@ var db = require('../mongoose/index');
 var Application = require('../models/application');
 
 // Helper query functions
-var helpers = require('../mongoose/query-helpers');
+var helpers = require('../mongoose/read-helpers');
 
 /* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
 /* BONUS HANDLEBARS TEMPLATE EXAMPLE */
 router.get('/show', function(req, res) {
-    // Static list is passed and referenced in rest-list.hbs
-    var staticList = { restname: ['mcdonalds', 'burger king', 'subway'] };
+    // Create a static list
+    var context = {
+        static_list: {
+            state : [ "Ohio", "Montana", "Alaska" ],
+            city : [ "Austin", "San Diego", "New York" ]
+        }
+    };
 
-    // Load in the application model
-    var query = Application.find({}, function(err, docs) {
-        if (err) throw err;
-        console.log(docs);
-        return docs;
-    });
+    console.log(LOLWTF);
+    console.log(context);
 
-    res.render('rest-list', staticList);
+    res.render('application-list', context, LOLWTF);
 });
 
 /* GET ALL DOCUMENTS AND RETURN A JSON FILE */
@@ -33,7 +34,7 @@ router.get('/show-all', function(req, res) {
 });
 
 
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* USING HELP QUERY FROM /mongoose/read-helpers.js */
 /* THIS EXAMPLE STILL ONLY FINDS ALL DOCUMENTS IN THE COLLECTION */
 router.get('/helper-all', function(req, res) {
     Application.findAllDocuments(function(err, docs) {
@@ -42,7 +43,7 @@ router.get('/helper-all', function(req, res) {
     })
 });
 
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* USING HELP QUERY FROM /mongoose/read-helpers.js */
 /* THIS EXAMPLE SEARCHES BY LAST NAME */
 /* Last names in DB: fitzpatrick, washington, west */
 router.get('/helper-last-name', function(req, res) {
@@ -53,7 +54,7 @@ router.get('/helper-last-name', function(req, res) {
     })
 });
 
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
+/* USING HELP QUERY FROM /mongoose/read-helpers.js */
 /* FINDS APPLICATIONS WITH DOB >= GIVEN DATE */
 router.get('/helper-dob-gte', function (req, res) {
     var DOB = "2000, 1, 01";

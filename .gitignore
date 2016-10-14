@@ -1,7 +1,7 @@
 # Added by kohn-catalyst
 rest-data/*
 rest-logs/*
-primer-dataset.json
+config.js
 /data/*
 
 # Created by .ignore support plugin (hsz.mobi)
