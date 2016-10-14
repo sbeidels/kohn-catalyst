@@ -7,7 +7,21 @@ var Application = require('../models/application');
 // Helper query functions
 var helpers = require('../mongoose/query-helpers');
 
+/* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
+/* BONUS HANDLEBARS TEMPLATE EXAMPLE */
+router.get('/form', function(req, res) {
+    // Static list is passed and referenced in rest-list.hbs
+    var staticList = { restname: ['mcdonald', 'burger king', 'subway'] };
 
+    // Load in the application model
+    var query = Application.find({}, function(err, docs) {
+        if (err) throw err;
+        console.log(docs);
+        return docs;
+    });
+
+    res.render('form', staticList);
+});
 
 
 
