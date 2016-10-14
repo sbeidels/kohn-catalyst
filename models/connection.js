@@ -1,5 +1,5 @@
 // So for every model that you work on you create a model.js document, and
-// add it in the models/index.js
+// add it in the models/connection.js
 
 // Models
 Application = require('./application');
