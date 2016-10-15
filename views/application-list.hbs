@@ -37,9 +37,24 @@
 <div>
     <h3>Database List Sample</h3>
     <p>Database: <b>test</b> | Collection: <b>applications</b> is {{count}}</p>
-    <ul>
-        {{#each application}}
-            <li>{{this.first_name}} {{this.last_name}}</li>
-        {{/each}}
-    </ul>
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>DoB</th>
+        <th>Address</th>
+        <th>Phone</th>
+    </tr>
+    {{#each application}}
+    <tr>
+        <td>{{this.first_name}} {{this.last_name}}</td>
+        <td>{{this.status}}</td>
+        <td>{{this.dob}}</td>
+        <td>{{this.address.number}} {{this.address.street}}<br>
+            {{this.address.city}}, {{this.address.state}} {{this.address.zip}}</td>
+        <td>{{this.phone}}</td>
+    {{/each}}
+    </tr>
+    </table>
+
 </div>
