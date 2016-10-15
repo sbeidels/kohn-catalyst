@@ -36,7 +36,12 @@ ApplicationSchema.findDob = function(DOB, callback) {
 
 // TODO: Create query for applications in date range
 
-// TODO: Create query to return applications based on 'Application.status'
+// TODO: Create query to return applications based on supplied 'Application.status'
+ApplicationSchema.statusSelect = function(status, callback) {
+    return this.find({
+        status: status
+    }, callback);
+};
 
 // TODO: Create query to return approved/denied applications
 

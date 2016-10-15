@@ -10,17 +10,18 @@ var helpers = require('../mongoose/read-helpers');
 /* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
 /* BONUS HANDLEBARS TEMPLATE EXAMPLE */
 router.get('/show', function(req, res) {
-    // Static list is passed and referenced in rest-list.hbs
-    var staticList = { restname: ['mcdonalds', 'burger king', 'subway'] };
+    // Create a static list
+    var context = {
+        static_list: {
+            state : [ "Ohio", "Montana", "Alaska" ],
+            city : [ "Austin", "San Diego", "New York" ]
+        }
+    };
 
-    // Load in the application model
-    var query = Application.find({}, function(err, docs) {
-        if (err) throw err;
-        console.log(docs);
-        return docs;
-    });
+    console.log(LOLWTF);
+    console.log(context);
 
-    res.render('rest-list', staticList);
+    res.render('application-list', context, LOLWTF);
 });
 
 /* GET ALL DOCUMENTS AND RETURN A JSON FILE */
