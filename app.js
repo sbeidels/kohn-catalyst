@@ -34,14 +34,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Example that logs request IP to console
 app.use(function(req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log('Client IP:', ip);
+   console.log('Client IP:', ip);
+    next();
 });
+app.use(function(req, res, next) {
+    console.log('Request type:', req.method);
+    next();
+});
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Use routes now that app has been initiated and all middleware is defined
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Error handlers
