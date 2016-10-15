@@ -1,0 +1,187 @@
+<center><h2>Catalyst Partnerships Recipient Application</h2></center>
+<!--Begin the actual Form 
+<form action="http://localhost:8000/form" id="appForm"> -->
+	<div class="formSection"></div>
+	<div class="formSection"><h4>Personal Information</h4>
+		<div class="formLine">
+			First Name: <input type="text" name="firstName" placeholder="First Name" required="true">
+		</div>
+		
+		<div class="formLine">
+			Last Name: <input type="text" name="lastName" placeholder="Last Name" required="true">
+		</div>
+		
+		<div class="formLine">
+			Date of Birth: <input type="date" name="dob" required="true">
+		</div>
+		
+		<div class="formLine">
+			Driver's License Number: <input type="number" name="driversLicense" placeholder="Driver's License Number">
+		</div>
+		
+		<div class="formLine">
+			Marital Status:<input type="radio" name="marriedSingle" value="single">Single&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="marriedSingle" value="married">Married
+		</div>
+		
+		<div class="formLine">
+			If Married, Spouse's Name: <input type="text" name="spouse" placeholder="Spouse's name">
+		</div>
+		
+		<div class="formLine">
+			Home Phone: <input type="text" name="hPhone" placeholder="Home Number">
+		</div>
+		
+		<div class="formLine">
+			Cell Phone: <input type="text" name="cPhone" placeholder="Cell Number">
+		</div>
+		
+		<div class="formLine">
+			Email: <input class="largeField" type="email" name="email" placeholder="E-mail address">
+		</div>
+		
+		<div class="formLine">
+			Home Address 1: <input class="largeField" type="text" name="add1" placeholder="Address 1" required="true">
+		</div>
+		
+		<div class="formLine">
+			Home Address 2: <input class="largeField" type="text" name="add2" placeholder="Address 2 (optional)">
+		</div>
+		
+		<div class="formLine">
+			City: <input type="text" name="city" placeholder="City" required="true">&nbsp;&nbsp;&nbsp;&nbsp;
+			State: <input type="text" name="state" placeholder="State" size="2"required="true">
+		</div>
+		
+		<div class="formLine">
+			Zip: <input type="number" name="zip" placeholder="Zip" maxlength="5" required="true">
+		</div>
+		
+		<div class="formLine">
+			Emergency Contact: <input type="text" name="eContactName" placeholder="Emergency Contact Name" required="true">
+		</div>
+		
+		<div class="formLine">
+			Relationship: <input type="text" name="ecRelationship" placeholder="Relationship" required="true">
+		</div>
+		
+		<div class="formLine">
+			Emergency Phone: <input type="text" name="ecPhone" placeholder="Emergency Phone" required="true">
+		</div>
+		
+		<div class="formLine">If you have others residing in your home, please list them below:
+			<div class="formLine">
+				<input class="mediumField" type="text" name="additional-1" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a1age" placeholder="Age" size="3">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+			</div>
+			
+			<div class="formLine">
+				<input class="mediumField" type="text" name="additional-2" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a2age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+			</div>
+			
+			<div class="formLine">
+				<input class="mediumField" type="text" name="additional-3" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a3age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+			</div>
+			
+			<div class="formLine">
+				<input class="mediumField" type="text" name="additional-4" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a4age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+			</div>
+			
+			<div class="formLine">
+				<input class="mediumField" type="text" name="additional-5" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a5age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+			</div>
+		</div>
+		<div class="formLine">Check below if you are currently, or are a veteran of, the U.S. Military:
+			<div class="formLine">
+				<input type="checkbox" name="military">Military
+			</div>
+		</div>
+		
+		<div class="formLine">Please check any boxes that apply to your reason in applying for help, and briefly describe below:
+			<div class="formLine">
+				<input type="checkbox" name="reason-disability">I have a disability<br>
+				<input type="checkbox" name="reason-afford">I cannot afford to hire a contractor to do the work<br>
+				<input type="checkbox" name="reason-55">I am over the age of 55<br>
+				<input type="checkbox" name="reason-representNpo">I represent a non-profit organization advocating for this client<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;Name of non-profit organization: <input type="text" name="reason-npo" placeholder="Organization Name"><br>
+			</div>
+		</div>
+			
+		<div class="formLine">What language do you speak?
+			<div class="formLine">
+				<input type="radio" name="language" value="English">I speak English<br>
+				<input type="radio" name="language" value="Other">I only speak another language<br>
+				&nbsp;&nbsp;&nbsp;&nbsp; Please enter language here: <input type="text" name="language-other" placeholder="Language you speak"><br>
+			</div>
+		</div>
+		
+		<div class="formLine">How did you hear about Catalyst?
+			<div class="formLine">
+				<textarea rows="4" cols="60" name="hearAboutCatalyst" placeholder="How you heard about Catalyst" required="true"></textarea>
+			</div>
+		</div>
+	</div>
+	
+	<div class="formSection"><h4>Financial Information</h4>
+		<div class="formLine">
+			What is your monthly mortgage payment? <input type="text" name="monthlyMortgage" placeholder="Monthly Mortgage" required="true">
+		</div>
+		<div class="formLine">What is your approximate total annual household income?<br>(Please include all sources for all residents):
+			<div class="formLine">
+				<input type="number" name="annualIncome" placeholder="Approximate Annual Income" required="true">
+			</div>
+	
+	
+	
+	
+		<div class="formLine">
+			<input type="" name="" placeholder="" required="true">
+		</div>
+		
+		
+		
+		<div class="formLine">
+			<div class="formLine">
+				<input type="" name="" placeholder="" required="true">
+			</div>
+		</div>
+		
+		
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<div class="formLine">
+		<input type="" name="" placeholder="" required="true">
+	</div>
+		
+	<input type="submit" value="Submit Form">
+</form>
+
+<!--  
+
+TO DO -- 
+install jquery into routes? (or wherever this html file is being used)
+Parse Out the dashes from the phone number - turn it into integer
+
+
+<script>
+// Attach a submit handler to the form
+$( "#appForm" ).submit(function( event ) {
+ 
+  // Stop form from submitting normally
+  event.preventDefault();
+ 
+	// Get some values from elements on the page:
+	var $form = $( this ),
+		fName = $form.find( "input[name='firstName']" ).val(),
+		lName = $form.find( "input[name='lastName']" ).val(),
+		url = $form.attr( "action" );
+ 
+  // Send the data using post
+  var posting = $.post( url, { title: theTitle } );
+ 
+  // Put the results in a div
+  posting.done(function( data ) {
+    var content = $( data ).find( "#content" );
+    $( "#result" ).empty().append( content );
+  });
+});
+</script>
+ -->

@@ -5,25 +5,31 @@ var db = require('../mongoose/index');
 var Application = require('../models/application');
 
 // Helper query functions
-var helpers = require('../mongoose/query-helpers');
+var helpers = require('../mongoose/read-helpers');
 
-/* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
-/* BONUS HANDLEBARS TEMPLATE EXAMPLE */
+/* router.post('/form', function(req, res) {
+	var formFields = [];
+	for (var p in req.body){
+		formFields.push({p : req.body[p]})
+	}
+	console.log(formFields);
+	console.log(req.body);
+	var payload = {};
+	payload.dataList = formFields;
+	res.render('formPost', payload);
+});
+*/
+
 router.get('/form', function(req, res) {
-    // Static list is passed and referenced in rest-list.hbs
-    var staticList = { restname: ['mcdonald', 'burger king', 'subway'] };
-
-    // Load in the application model
-    var query = Application.find({}, function(err, docs) {
-        if (err) throw err;
-        console.log(docs);
-        return docs;
+	var payload = {};
+	var query = Application.find({}, function(err, docs) {
+		if (err) throw err;
+		console.log(docs);
+		return docs;
     });
 
-    res.render('form', staticList);
+    res.render('applicationform');
 });
-
-
 
 
 
