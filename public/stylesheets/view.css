@@ -6,6 +6,8 @@
 .contact_info div
 {
     -moz-columns: 2 8em;
+    -webkit-columns: 2 8em;
+    columns: 2 8em;
 }
 
 .contact_info div h3
