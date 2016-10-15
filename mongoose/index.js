@@ -4,8 +4,6 @@ var config = require('../config');
 // Import the mongoose module
 var mongoose = require('mongoose');
 
-// Any logic can go here
-
 /* PULL IN SENSITIVE INFORMATION FROM config.js */
 // Local URL, connects EC2 instance to local mongod
 var local_url = 'mongodb://127.0.0.1:27017/test';
@@ -25,6 +23,10 @@ var uri = 'mongodb://' + remote_url + '/' + db_name;
 
 // Connect to the URL
 mongoose.connect(uri, options);
+mongoose.connection.on('error', console.error.bind(console, 'Connection Error : '));
+mongoose.connection.once('open', function () {
+    console.log('Connection to database ok!');
+});
 
 // Nothing needs to be exported, simple use "  require('<path>/mongoose')  "
 module.exports = mongoose;
