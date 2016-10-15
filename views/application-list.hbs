@@ -9,9 +9,8 @@
                 This pulls in the 'context' object passed by the router
                 Calling 'each' in handle bars iterates over the current opject
                 Context, does not need to be referenced, only static_list inside of context-->
-        {{#each static_list}}
+        {{#each context.static_list}}
         <p>States</p>
-
         <!-- each this
                 Since we are iterating over a list, we can use 'this' to reference
                 the current item we are iterating
@@ -34,11 +33,13 @@
         {{/each}}
     </ul>
 </div>
+
 <div>
-    <h3>Database List Sample:</h3>
+    <h3>Database List Sample</h3>
+    <p>Database: <b>test</b> | Collection: <b>applications</b> is {{count}}</p>
     <ul>
-        {{#each query}}
-            <li>{{this.first_name}},{{this.last_name}}</li>
+        {{#each application}}
+            <li>{{this.first_name}} {{this.last_name}}</li>
         {{/each}}
     </ul>
 </div>
