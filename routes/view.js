@@ -1,20 +1,31 @@
 var express = require('express');
 var router = express.Router();
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var db = require('../mongoose/index');
 var Application = require('../models/application');
+
+// Import promise egnine
+var Promise = require('bluebird');
+// Tell mongoose we are using the Bluebird promise library
+mongoose.Promise = require('bluebird');
+// Convert mongoose API to always return promises using Bluebird's promisifyAll
+Promise.promisifyAll(mongoose);
 
 // Helper query functions
 var helpers = require('../mongoose/read-helpers');
 
-/* USING HELP QUERY FROM /mongoose/read-helpers.js */
-/* THIS EXAMPLE STILL ONLY FINDS ALL DOCUMENTS IN THE COLLECTION */
 router.get('/view', function(req, res) {
-    Application.find(function(err, docs) {
-        if (err)
-            res.send(err);
-        res.render('view', docs);
-    });
+
+    Promise.props({
+        count: Application.find().count().execAsync(),
+        application: Application.find().lean().execAsync()
+    })
+        .then(function(results) {
+            res.render('view', results);
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
 
 });
 
