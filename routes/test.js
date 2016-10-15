@@ -5,7 +5,7 @@ var db = require('../mongoose/index');
 var Application = require('../models/application');
 
 // Import promise egnine
-var Promise = require('Bluebird');
+var Promise = require('bluebird');
 // Tell mongoose we are using the Bluebird promise library
 mongoose.Promise = require('Bluebird');
 // Convert mongoose API to always return promises using Bluebird's promisifyAll
