@@ -14,14 +14,37 @@ Promise.promisifyAll(mongoose);
 // Helper query functions
 var helpers = require('../mongoose/read-helpers');
 
+//Need ObjectID to search by ObjectID
+var ObjectId = require('mongodb').ObjectID;
+
 router.get('/view', function(req, res) {
 
     Promise.props({
-        count: Application.find().count().execAsync(),
         application: Application.find().lean().execAsync()
     })
         .then(function(results) {
             res.render('view', results);
+        })
+        .catch(function(err) {
+            console.error(err);
+        });
+
+});
+
+/* Route to specific application */
+router.get('/view/:id', function(req, res) {
+    //Checking what's in params
+    console.log("Rendering application " + ObjectId(req.params.id));
+
+    /* search by _id. Maybe we can do regular ID but currently
+        it's not unique */
+    Promise.props({
+        application: Application.find({_id: ObjectId(req.params.id)}).lean().execAsync()
+    })
+        .then(function(result) {
+            console.log(result.application[0]);
+            //Is this how to send just the object rather than an array?
+            res.render('view', result.application[0]);
         })
         .catch(function(err) {
             console.error(err);
