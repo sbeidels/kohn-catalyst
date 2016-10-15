@@ -34,7 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Example that logs request IP to console
 app.use(function(req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-   console.log('Client IP:', ip);
+    ip.replace(/^.*:/, '')
+    console.log('Client IP:', ip);
     next();
 });
 app.use(function(req, res, next) {
