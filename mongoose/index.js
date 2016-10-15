@@ -23,6 +23,10 @@ var uri = 'mongodb://' + remote_url + '/' + db_name;
 
 // Connect to the URL
 mongoose.connect(uri, options);
+mongoose.connection.on('error', console.error.bind(console, 'Connection Error : '));
+mongoose.connection.once('open', function () {
+    console.log('Connection to database ok!');
+});
 
 // Nothing needs to be exported, simple use "  require('<path>/mongoose')  "
 module.exports = mongoose;
