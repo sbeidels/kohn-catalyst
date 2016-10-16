@@ -20,10 +20,12 @@ var ObjectId = require('mongodb').ObjectID;
 router.get('/view', function(req, res) {
 
     Promise.props({
-        application: Application.find().lean().execAsync()
+        new: Application.find({status: "New"}).lean().execAsync(),
+        pending_review: Application.find({status: "Pending Review"}).lean().execAsync(),
+        denied: Application.find({status: "Denied"}).lean().execAsync()
     })
         .then(function(results) {
-            res.render('view', results);
+            res.render('vetting', results);
         })
         .catch(function(err) {
             console.error(err);

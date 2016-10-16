@@ -1,0 +1,75 @@
+<div>
+    <div class="new-container">
+        <h1>New Applications</h1>
+        <div class="new-list">
+            <table>
+                <thead>
+                <tr>
+                    <th>Last Edit</th>
+                    <th>Status</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each new}}
+                <tr>
+                    <td>MM/dd/yyyy</td>
+                    <td>{{status}}</td>
+                    <td><a href="/applications/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="pending-review-container">
+        <h1>Applications in Process</h1>
+        <div class="pending-review-list">
+            <table>
+                <thead>
+                <tr>
+                    <th>Last Edit</th>
+                    <th>Status</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each pending_review}}
+                <tr>
+                    <td>MM/dd/yyyy</td>
+                    <td>{{status}}</td>
+                    <td><a href="/applications/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="denied-container">
+        <h1>Applications Complete - Denied</h1>
+        <div class="denied-list">
+            <table>
+                <thead>
+                <tr>
+                    <th>Last Edit</th>
+                    <th>Status</th>
+                    <th>Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each denied}}
+                <tr>
+                    <td>MM/dd/yyyy</td>
+                    <td>{{status}}</td>
+                    <td><a href="/applications/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="/stylesheets/vetting.css"/>
