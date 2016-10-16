@@ -52,5 +52,5 @@ var ApplicationSchema = Schema({
     veteran:        Boolean
 });
 
-var Application = mongoose.model('Application', ApplicationSchema);
+var Application = mongoose.model('Applications', ApplicationSchema);
 module.exports = Application;

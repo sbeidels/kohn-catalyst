@@ -1,0 +1,51 @@
+<div>
+    <h1>{{first_name}} {{last_name}}</h1>
+    <div class="contact_info">
+        <h2>Contact Information</h2>
+        <div class="phone">
+            <h3>Phone:</h3>
+            <p>{{phone_number}}</p>
+        </div>
+        <div class="address">
+            <h3>Address:</h3>
+                <p>{{address.number}} {{address.street}}
+                {{#if address.unit}}
+                    , {{address.unit}}
+                {{/if}}
+                </p>
+                <p>{{address.city}}, {{address.state}} {{address.zip}}</p>
+        </div>
+        <div class="dob">
+            <h3>Date Of Birth:</h3>
+            <p>{{dob}}</p>
+        </div>
+        <div class="marital_status">
+            <h3>Marital Status:</h3>
+            <p>{{marital_status}}</p>
+        </div>
+        <div class="email">
+            <h3>Email:</h3>
+            <p>{{email}}</p>
+        </div>
+        <div class="license">
+            <h3>Driver's License:</h3>
+            <p>{{driver_license}}</p>
+        </div>
+        <div class="emergency">
+            <h3>Emergency Contact:</h3>
+            <p>{{emergency_contact.name}}: {{emergency_contact.phone}}</p>
+        </div>
+        <div class="lang">
+            <h3>Language:</h3>
+            <p>{{language}}</p>
+        </div>
+        <div about="veteran">
+            <h3>Veteran:</h3>
+            <p>{{veteran}}</p>
+            <!--<input class="checkbox" type="checkbox" value="{{veteran}}" readonly="readonly" disabled>-->
+        </div>
+    </div>
+    <a href="/applications/view">&lt;Back</a>
+</div>
+
+<link rel="stylesheet" href="/stylesheets/view.css"/>
