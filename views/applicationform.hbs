@@ -1,8 +1,10 @@
 <center><h2>Catalyst Partnerships Recipient Application</h2></center>
 <!--Begin the actual Form 
 <form action="http://localhost:8000/form" id="appForm"> -->
+
 	<div class="formSection"></div>
 	<div class="formSection"><h4>Personal Information</h4>
+
 		<div class="formLine">
 			First Name: <input type="text" name="firstName" placeholder="First Name" required="true">
 		</div>
@@ -126,38 +128,152 @@
 		</div>
 		<div class="formLine">What is your approximate total annual household income?<br>(Please include all sources for all residents):
 			<div class="formLine">
-				<input type="number" name="annualIncome" placeholder="Approximate Annual Income" required="true">
+				<input class="largeField" type="number" name="annualIncome" placeholder="Approximate Annual Income" required="true">
 			</div>
-	
-	
-	
-	
-		<div class="formLine">
-			<input type="" name="" placeholder="" required="true">
 		</div>
-		
-		
-		
-		<div class="formLine">
+	
+		<div class="formLine">Please list any other financial assets, and their current values (e.g. savings, retirements, physical assets, etc.):
 			<div class="formLine">
-				<input type="" name="" placeholder="" required="true">
+				<input class="largeField" type="text" name="assets1" placeholder="Other assets"><br>
+				<input class="largeField" type="text" name="assets2" placeholder="Other assets"><br>
+				<input class="largeField" type="text" name="assets3" placeholder="Other assets"><br>
+				<input class="largeField" type="text" name="assets4" placeholder="Other assets"><br>
+				<input class="largeField" type="text" name="assets5" placeholder="Other assets">
+			</div>
+		</div>
+	
+		<div class="formLine"><h4>FINANCIAL NEED DOCUMENTS:</h4>
+	
+		<p>As we consider your application, it’s important for us to verify your financial information. Following are some examples of documents that will help us determine whether or not you qualify for our services. <b>Please select documents that apply to your situation, and send copies with your application to the address below:</b></p>
+		&nbsp;&nbsp;&nbsp;&nbsp;Catalyst Partnerships<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;P.O. Box 1922<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;Beaverton, OR  97075<br>
+		<p>Be sure to include information that applies for each resident of your household. (documents will be kept confidential & secure):</p>
+			<div class="formLine">
+				<input type="checkbox" name="send-income">Income: Send copies of your latest pay stub, social security check, or any other form of income.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-taxRecords">Tax Records: Send a copy of the main form for last year's taxes.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-assistance">Assistance: If you receive "food stamps," housing assistance, or any other help, please send documentation.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-proofOwnership">Proof of Ownership: Please send a copy of your latest mortgage payment, or other proof of home ownership.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-assets">Assets: Please send reports/statements from any investments, savings, and/or retirement funds, etc. (from the section above).
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-other">Please send any other documentation that may be helpful as we consider your application.
 			</div>
 		</div>
 		
+		<div class="formLine">Are you able to contribute financially to implement the project you are requesting?
+			<div class="formLine">
+				<input type="checkbox" name="contribute-yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="contribute-no">No<br>
+				If yes, please provide the approximate amount: <input class="largeField" type="number" name="contribute-amount" placeholder="Amount you can contribute">
+			</div>
+		</div>
 		
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	
-	<div class="formLine">
-		<input type="" name="" placeholder="" required="true">
+		<div class="formLine">Do you have adult children and/or other relatives who may be able to help financially?
+			<div class="formLine">
+				<input type="checkbox" name="relativeHelp-yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="relativeHelp-no">No<br>
+				If yes, please describe what help they might provide:<br>
+				<textarea rows="3" cols="60" name="relativeHelp" placeholder="Help others can provide"></textarea>
+			</div>
+		</div>
+		
+		<div class="formLine">Have you already requested help from other Non-Profits, from your City, from your County, or other Organization?
+			<div class="formLine">
+				<input type="checkbox" name="otherHelp-yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="otherHelp-no">No
+				If yes, please describe what help they might provide:<br>
+				<textarea rows="3" cols="60" name="otherHelp" placeholder="Help you have requested from other organizations"></textarea>
+			</div>
+		</div>
+		
 	</div>
+	<div class="formSection"><h4>Property Information</h4>
 		
-	<input type="submit" value="Submit Form">
+		<div class="formLine">Type of Property
+			<div class="formLine">
+				<input type="radio" name="propertyType" value="type-singleFamily"> Single Family Home<br>
+				<input type="radio" name="propertyType" value="type-mobileHome"> Mobile Home<br>
+				<input type="radio" name="propertyType" value="type-manufacturedHome"> Manufactured Home<br>
+				<input type="radio" name="propertyType" value="type-other"> Other: 
+				<input type="text" name="propertyType-other" placeholder="Other type of property">
+			</div>
+		</div>
+		
+		<div class="formLine">How long have you owned the home/property? 
+			<input type="text" name="timePropertyOwned" placeholder="Time you've owned property" required="true">
+		</div>
+		
+		<div class="formLine">In what year was this property built?
+			<input type="number" name="yearPropertyBuilt" placeholder="Year property built" required="true">
+		</div>
+		
+		<div class="formLine">What type of repairs would you like to request?  Please include as much information as you can:
+			<div class="formLine">
+				<textarea rows="5" cols="60" name="repairsNeeded" placeholder="Repairs you need"></textarea>
+			</div>
+		</div>
+		
+		<div class="formLine">What resources can you provide for this project?
+			<div class="formLine">
+				<textarea rows="2" cols="60" name="repairsResources" placeholder="Resources you can provide"></textarea>
+			</div>
+		</div>
+		
+		<div class="formLine">Can you or other friends/family help Catalyst perform the work of this project?
+			<div class="formLine">
+				<input type="checkbox" name="repairsHelp-yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="checkbox" name="repairsHelp-no">No
+				If yes, please describe:<br>
+				<textarea rows="3" cols="60" name="otherHelp" placeholder="Labor help people can provide"></textarea>
+			</div>
+		</div>
+		
+		<div class="formLine">Are there any other circumstances or information we need to know about to consider your request?
+			<div class="formLine">
+				<textarea rows="2" cols="60" name="otherCircumstances" placeholder="Other information"></textarea>
+			</div>
+		</div>
+		
+		<p>Please read and sign below:</p>
+		<p>NATURE OF NON-PROFIT CATALYST PARTNERSHIPS ACTIVITY: I understand and acknowledge that my involvement in this en- deavor with Catalyst Partnerships, its agents and contractors, and any partnering organizations, hereafter referred to as ‘Catalyst,’ is voluntary. I understand and acknowledge my willingness to allow my property to be associated with this Catalyst activity in the man- ner described in this Recipent Application, I also voluntarily submit myself to the supervision of Catalyst staff, officers, agents, employ- ees, volunteers, etc., for all activities which are part of this project. I understand that the services being provided to me may be through volunteers who freely donate their time without any compensation to themselves, and that the overall quality of service and/or craftsmanship I receive may not reflect professional standards. I also give Catalyst the irrevocable right and unrestricted permis- sion to use and/or publish photos and/or video images of/including me, for purposes of art, display, advertising, editorial use, or any other lawful purpose, and waive any right I may have to inspect and approve the finished product of any piece that may use such.</p>
+		
+		<p>RELEASE OF LIABILITY: I understand and acknowledge that this Activity and any related activities, by their very nature, pose the potential risk of damage to my property. I also realize that Catalyst and its personnel, agents, or volunteers, or any other person or entity associated with this Activity, may not be professionally trained for this Activity, and are not legally or financially responsible or liable for any claim arising from any damage done to my property during this Activity.</p>
+		
+		<p>I understand that Catalyst carries liability insurance for its service activities. In the event of liability claim, I hereby voluntarily agree, on behalf of myself and my heirs, executors, administrators and assigns, that I will not seek remuneration beyond that which is necessary and reasonable for any damage and/or loss which is incident to/associated with preparing for/while participating in any activity in any way connected with said Activity. In the same manner, I also voluntarily exempt and relieve Catalyst officers, agents, servants, employees, volunteers, or any other person or entity associated with this Activity, from any liability or responsibility, whether same shall arise by the negligence of any of said persons, or otherwise.</p>
+		
+		<p>MEDICAL TREATMENT AUTHORIZATION: In the event of accident or illness to me/my child, I do hereby consent to whatever x-ray examination, anesthetic, medical, surgical or dental diagnosis or treatment and hospital care considered necessary in the best judg- ment of the attending physician, surgeon, or dentist and performed under the supervision of a member of the medical staff of the hos- pital or facility furnishing medical or dental services. Further, I agree that Catalyst and its personnel, agents, or volunteers, or any other person or entity associated with these Activities, are not personally responsible or liable for any claim arising from any consent given in good faith in connection with diagnosis or advised treatment.</p>
+		
+		<p>I/my child understand(s) that Catalyst DOES NOT CARRY HAZARD INSURANCE TO COVER ME/MY CHILD for any accidents/injuries to me/ my child. I understand that, in the event that I/my child am/is injured in any way, any personal medical and hospitalization insurance available to me/my family will provide sole coverage. I/my child voluntarily elect(s) to participate in this Catalyst Activity. I agree to assume any and all liability and responsibility for any and all potential risks which may be associated with participation in such Activities or any activities incidental thereto.</p>
+		
+		<p>NO PLANS TO SELL: I also certify that I do not intend to sell my property within the next 12 months following the date herein; and that, in the case of sale, if I receive additional profit because of the work performed under this agreement, I agree to return funds to Catalyst equaling an appropriately prorated value of said improvements. I acknowledge that, if this case arise upon the sale of my property within the next 12 months, and I am unwilling to return said funds, Catalyst Partnerships reserves the right to place a lien on my property in order to recuperate said funds.</p>
+		
+		<p>CERTIFICATION: By signing below, I certify that all information provided in this application is true and complete. I give Catalyst the right to verify and request additional information when necessary. I also give Catalyst permission to check personal & criminal background, using the information I’ve provided in this application. I understand that the background check process, or any false or misleading information I have given, may disqualify me from involvement. I understand that information will be held confidential.
+
+		<div class="formLine">I have read and agree to the above terms and conditions:
+			<input type="checkbox" name="tac-yes" required="true">Yes
+		</div>
+		
+		
+		
+		<div class="formLine">Please type your full name in the box below.  This will be considered your digital signature.<br>
+			<input class="largeField" type="text" name="signature" placeholder="Type Name Here" required="true">
+		</div>
+		
+		<input type="submit" value="Submit Form">
+	</div>
 </form>
 
-<!--  
-
-TO DO -- 
-install jquery into routes? (or wherever this html file is being used)
+<!-- -- -- -- TO DO LIST  -- -- -- --
+install jquery head for this file? 
 Parse Out the dashes from the phone number - turn it into integer
 
 
@@ -185,3 +301,22 @@ $( "#appForm" ).submit(function( event ) {
 });
 </script>
  -->
+
+ 
+ 
+ 
+ 
+ <!--NOTES AND FORMS TO COPY PASTE 
+		<div class="formLine">
+			<div class="formLine">
+				<input type="" name="" placeholder="" required="true">
+			</div>
+		</div>
+		
+		
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	
+	<div class="formLine">
+		<input type="" name="" placeholder="" required="true">
+	</div>
+-->
