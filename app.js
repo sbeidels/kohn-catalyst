@@ -36,16 +36,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// Example that logs request IP to console
-// app.use(function(req, res, next) {
-//     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-//     ip.replace('/^(0000:)+/');
-//     console.log('[ IP ] Client IP:', ip);
-//     next();
-// });
+
 app.use(function(req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    // ip.replace('/^(0000:)+/');
     console.log('[ ' + req.method + ' ] request made from ' + 'IP: ' + ip);
     next();
 });
