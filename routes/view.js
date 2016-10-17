@@ -17,7 +17,7 @@ var helpers = require('../mongoose/read-helpers');
 //Need ObjectID to search by ObjectID
 var ObjectId = require('mongodb').ObjectID;
 
-router.get('/view', function(req, res) {
+router.get('/', function(req, res) {
 
     Promise.props({
         new: Application.find({status: "New"}).lean().execAsync(),
@@ -34,7 +34,7 @@ router.get('/view', function(req, res) {
 });
 
 /* Route to specific application */
-router.get('/view/:id', function(req, res) {
+router.get('/:id', function(req, res) {
     //Checking what's in params
     console.log("Rendering application " + ObjectId(req.params.id));
 
