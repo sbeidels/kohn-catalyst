@@ -55,7 +55,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
 app.use('/mt', miketest); // SHOULD route to mike's test miketest.js
-app.use('/applications', view);
+app.use('/view', view);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Error handlers
