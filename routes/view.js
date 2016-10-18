@@ -4,12 +4,9 @@ var mongoose = require('mongoose');
 var db = require('../mongoose/index');
 var Application = require('../models/application');
 
-// Import promise egnine
-var Promise = require('bluebird');
-// Tell mongoose we are using the Bluebird promise library
-mongoose.Promise = require('bluebird');
-// Convert mongoose API to always return promises using Bluebird's promisifyAll
-Promise.promisifyAll(mongoose);
+var Promise = require('bluebird'); // Import promise engine
+mongoose.Promise = require('bluebird'); // Tell mongoose we are using the Bluebird promise library
+Promise.promisifyAll(mongoose); // Convert mongoose API to always return promises using Bluebird's promisifyAll
 
 // Helper query functions
 var helpers = require('../mongoose/read-helpers');
