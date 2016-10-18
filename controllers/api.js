@@ -66,6 +66,8 @@ module.exports = {
     getApplicationById: function (req, res, next) {
         console.log('[ API ] getApplicationById called');
         // Get the ID from the parameter and cast it as an object ID
+        // TODO: Express issues says we cannot access req.params.id in middleware
+        // How can I get around this?
         var id = ObjectId(req.params.id);
 
         console.log('[ API ] getApplicationById - req.params.id = ' + id);
