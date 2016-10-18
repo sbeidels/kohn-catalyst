@@ -39,5 +39,18 @@ router.get('/show', function(req, res) {
         });
 });
 
+var api = require("../controllers/api");
+
+// We use the route like normal
+// router.<HTTP-VERB>(<LOCAL URI>, <API MIDDLEWARE>, <CONTINUE LIKE NORMAL>)
+router.get('/all', api.getAllApplications, function(req, res) {
+    // We receive req and res from <api.getAllApplications>
+    // Local variables are stored in res.locals
+    var context = res.locals.results; // Keep our sanity
+    console.log('[ TEST / ALL ] context.count:', context.count);
+    // Just like normal, 'context' provided by the API <3
+    res.render('application-list', context);
+});
+
 
 module.exports = router;
