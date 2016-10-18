@@ -37,6 +37,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// a middleware function with no mount path
+// this code is executed for every request to the router
 app.use(function(req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     console.log('[ ' + req.method + ' ] request made from ' + 'IP: ' + ip);
@@ -50,7 +52,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
 app.use('/mt', miketest); // SHOULD route to mike's test miketest.js
-app.use('/applications', view);
+app.use('/view', view);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Error handlers
