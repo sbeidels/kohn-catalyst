@@ -23,7 +23,7 @@
                     <tr>
                         <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
                         <td>MM/dd/yyyy</td>
-                        <td>{{status}}</td>
+                        <td class="new">{{status}}</td>
                     </tr>
                     {{/each}}
                     </tbody>
@@ -55,7 +55,7 @@
                     <tr>
                         <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
                         <td>MM/dd/yyyy</td>
-                        <td>{{status}}</td>
+                        <td class="processing">{{status}}</td>
                     </tr>
                     {{/each}}
                     </tbody>
@@ -83,11 +83,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each denied}}
+                    {{#each declined}}
                     <tr>
                         <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
                         <td>MM/dd/yyyy</td>
-                        <td>{{status}}</td>
+                        <td class="declined">{{status}}</td>
                     </tr>
                     {{/each}}
                     </tbody>
