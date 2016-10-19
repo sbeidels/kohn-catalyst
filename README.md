@@ -3,12 +3,16 @@ hello :)
 
 # UPDATE - **VERY IMPORTANT**
 ```
-The file structure of our project as of 10/15/16, sans node_modules, is below. Please see after the hyphen for notes.
+The file structure of our project as of 10/19/16, sans node_modules, is below. Please see after the hyphen for notes.
+.
 ├── README.md
 ├── app.js
+├── aws-ec2.sh
 ├── bin
 │   └── www
 ├── config.js
+├── controllers
+│   └── api.js
 ├── models
 │   ├── application.js
 │   ├── connection.js
@@ -17,29 +21,41 @@ The file structure of our project as of 10/15/16, sans node_modules, is below. P
 ├── mongoose
 │   ├── index.js
 │   └── read-helpers.js
-├── npm-debug.log
 ├── package.json
 ├── public
 │   ├── images
-│   │   └── favicon.ico
+│   │   ├── cBlock.png
+│   │   ├── cPart.png
+│   │   ├── clear.png
+│   │   └── toolbox.jpg
 │   ├── javascripts
 │   │   └── temp.file
 │   └── stylesheets
-│       └── style.css
+│       ├── style.css
+│       ├── vetting.css
+│       └── view.css
 ├── routes
+│   ├── formStyle.css
 │   ├── index.js
-│   └── test.js
+│   ├── miketest.js
+│   ├── test.js
+│   └── view.js
 └── views
     ├── application-list.hbs
+    ├── application.html
+    ├── applicationform.hbs
     ├── error.hbs
+    ├── formPost.hbs
     ├── index.hbs
     ├── layout.hbs
+    ├── old-app-verbiage.txt
     ├── partials
     │   ├── footer.html
     │   ├── header.html
     │   └── rests.html
-    ├── rest-list.hbs
-    └── rest-new.hbs
+    ├── preapplication.hbs
+    ├── vetting.hbs
+    └── view.hbs
 ```
 
 **Website live pages:**
