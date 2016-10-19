@@ -47,7 +47,7 @@ module.exports = {
             count: ApplicationSchema.find().count().execAsync()
         })
             .then(function (results) {
-                console.log('[ API ] getAllApplications - Application documents:', results.applications);
+                console.log('[ API ] getAllApplications - Application documents:', results.application);
                 console.log('[ API ] getAllApplications - Application document count:', results.count);
                 // Save the results into res.local
                 // I used res.local.results to keep the name the same

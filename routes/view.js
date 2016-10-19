@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var db = require('../mongoose/index');
+// var db = require('../mongoose/index');
 var Application = require('../models/application');
 
 var Promise = require('bluebird'); // Import promise engine
@@ -18,8 +18,8 @@ router.get('/', function(req, res) {
 
     Promise.props({
         new: Application.find({status: "New"}).lean().execAsync(),
-        pending_review: Application.find({status: "Pending Review"}).lean().execAsync(),
-        denied: Application.find({status: "Denied"}).lean().execAsync()
+        processing: Application.find({$nor:[{ status: "New"}, {status: "Declined"}] }).lean().execAsync(),
+        denied: Application.find({status: "Declined"}).lean().execAsync()
     })
         .then(function(results) {
             res.render('vetting', results);

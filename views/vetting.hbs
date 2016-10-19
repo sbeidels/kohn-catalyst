@@ -1,75 +1,101 @@
 <div>
-    <div class="new-container">
-        <h1>New Applications</h1>
-        <div class="new-list">
-            <table>
-                <thead>
-                <tr>
-                    <th>Last Edit</th>
-                    <th>Status</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each new}}
-                <tr>
-                    <td>MM/dd/yyyy</td>
-                    <td>{{status}}</td>
-                    <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
-                </tr>
-                {{/each}}
-                </tbody>
-            </table>
+    <h1>Applications</h1>
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#new" aria-expanded="true" aria-controls="new">
+                    New Applications
+                    </a>
+                </h2>
+            </div>
+            <div id="new" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Last Edit</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each new}}
+                    <tr>
+                        <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                        <td>MM/dd/yyyy</td>
+                        <td>{{status}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="pending-review-container">
-        <h1>Applications in Process</h1>
-        <div class="pending-review-list">
-            <table>
-                <thead>
-                <tr>
-                    <th>Last Edit</th>
-                    <th>Status</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each pending_review}}
-                <tr>
-                    <td>MM/dd/yyyy</td>
-                    <td>{{status}}</td>
-                    <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
-                </tr>
-                {{/each}}
-                </tbody>
-            </table>
+    <div id="accordion2" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingTwo">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion2" href="#processing" aria-expanded="true" aria-controls="processing">
+                    Applications in Process
+                    </a>
+                </h2>
+            </div>
+            <div id="processing" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Last Edit</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each processing}}
+                    <tr>
+                        <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                        <td>MM/dd/yyyy</td>
+                        <td>{{status}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="denied-container">
-        <h1>Applications Complete - Denied</h1>
-        <div class="denied-list">
-            <table>
-                <thead>
-                <tr>
-                    <th>Last Edit</th>
-                    <th>Status</th>
-                    <th>Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#each denied}}
-                <tr>
-                    <td>MM/dd/yyyy</td>
-                    <td>{{status}}</td>
-                    <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
-                </tr>
-                {{/each}}
-                </tbody>
-            </table>
+    <div id="accordion3" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingThree">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion3" href="#declined" aria-expanded="true" aria-controls="declined">
+                    Applications Complete - Declined
+                    </a>
+                </h2>
+            </div>
+            <div id="declined" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Last Edit</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each denied}}
+                    <tr>
+                        <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                        <td>MM/dd/yyyy</td>
+                        <td>{{status}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
 
 <link rel="stylesheet" href="/stylesheets/vetting.css"/>
