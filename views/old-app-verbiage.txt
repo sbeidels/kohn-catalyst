@@ -1,0 +1,26 @@
+<div class="formLine"><h4>FINANCIAL NEED DOCUMENTS:</h4>
+	
+		<p>As we consider your application, it’s important for us to verify your financial information. Following are some examples of documents that will help us determine whether or not you qualify for our services. <b>Please select documents that apply to your situation, and send copies with your application to the address below:</b></p>
+		&nbsp;&nbsp;&nbsp;&nbsp;Catalyst Partnerships<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;P.O. Box 1922<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;Beaverton, OR  97075<br>
+		<p>Be sure to include information that applies for each resident of your household. (documents will be kept confidential & secure):</p>
+			<div class="formLine">
+				<input type="checkbox" name="send-income">Income: Send copies of your latest pay stub, social security check, or any other form of income.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-taxRecords">Tax Records: Send a copy of the main form for last year's taxes.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-assistance">Assistance: If you receive "food stamps," housing assistance, or any other help, please send documentation.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-proofOwnership">Proof of Ownership: Please send a copy of your latest mortgage payment, or other proof of home ownership.
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-assets">Assets: Please send reports/statements from any investments, savings, and/or retirement funds, etc. (from the section above).
+			</div>
+			<div class="formLine">
+				<input type="checkbox" name="send-other">Please send any other documentation that may be helpful as we consider your application.
+			</div>
+		</div>
