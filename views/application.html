@@ -3,24 +3,13 @@
 <form action="http://localhost:8000/form" id="appForm"> -->
 
 	<div class="formSection"></div>
-	<div class="formSection"><h4>Before we Begin...</h4>
-		<div class="formLine">
-			Please check the box below if you represent a non-profit organization advocating for someone else.
-		</div>
-		<div class="formLine">
-			<input type="checkbox" name="advocate" value="true">I represent a non-profit organization advocating for this client
-		</div>
-		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Relationship to client: <input type="text" name="advocate-relationship" placeholder="Relationship">
-		</div>
-		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate-npoPhone" placeholder="Phone">
-		</div>
-		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Non-Profit Organization: <input type="text" name="advocate-npo" placeholder="Organization Name">
-		</div>
-	</div>
 	<div class="formSection"><h4>Personal Information</h4>
+		<div class="formLine">
+			<input type="checkbox" name="advocate" value="true">I represent a non-profit organization advocating for this client<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Non-Profit Organization: <input type="text" name="advocate-npo" placeholder="Organization Name"><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Non-Profit Organization Phone: <input type="text" name="advocate-npoPhone" placeholder="Phone"><br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Advocate's Relationship to client: <input type="text" name="advocate-relationship" placeholder="Relationship">
+		</div>
 		<div class="formLine">
 			First Name: <input type="text" name="firstName" placeholder="First Name" required="true">
 		</div>
@@ -213,7 +202,7 @@
 		<div class="formLine">Are you able to provide any help (labor/materials) for these repairs?
 			<div class="formLine">
 				<input type="radio" name="help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="help" value="false">No<br>
+				<input type="radio" name="help" value="false">No
 				If yes, please describe:<br>
 				<textarea rows="3" cols="60" name="help-personal" placeholder="Help you can provide"></textarea>
 			</div>
@@ -222,7 +211,7 @@
 		<div class="formLine">Do you have friends or family who may be able to help Catalyst perform the work of this project?
 			<div class="formLine">
 				<input type="radio" name="othersHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="othersHelp" value="false">No<br>
+				<input type="radio" name="othersHelp" value="false">No
 				If yes, please describe:<br>
 				<textarea rows="3" cols="60" name="others-help" placeholder="Help other people could provide"></textarea>
 			</div>
@@ -233,7 +222,7 @@
 		<div class="formLine">Are you an active part of a faith-based community?
 			<div class="formLine">
 				<input type="radio" name="faith" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="faith" value="false">No<br>
+				<input type="radio" name="faith" value="false">No
 				If yes, please tell us about it:<br>
 				<textarea rows="3" cols="60" name="faith-description" placeholder="Faith-Based Community Information"></textarea>
 			</div>
@@ -250,7 +239,7 @@
 		<p>After we receive your completed application, we will contact you by phone within 1-week of receipt. Small projects may be approved & scheduled immediately, while larger projects will take longer and require you to submit additional documentation (such as pay stub, social security benefits, housing assistance, proof of ownership, documentation of assets, previous year taxes, etc.). We will be in touch with you soon!</p>
 	</div>
 	
-	<div class="formSection"><h4>Please read and sign below:</h4>
+	<div class="formSection"><h4>Please read and sign below:</div>
 		<p>NATURE OF NON-PROFIT CATALYST PARTNERSHIPS ACTIVITY: I understand and acknowledge that my involvement in this en- deavor with Catalyst Partnerships, its agents and contractors, and any partnering organizations, hereafter referred to as ‘Catalyst,’ is voluntary. I understand and acknowledge my willingness to allow my property to be associated with this Catalyst activity in the man- ner described in this Recipent Application, I also voluntarily submit myself to the supervision of Catalyst staff, officers, agents, employ- ees, volunteers, etc., for all activities which are part of this project. I understand that the services being provided to me may be through volunteers who freely donate their time without any compensation to themselves, and that the overall quality of service and/or craftsmanship I receive may not reflect professional standards. I also give Catalyst the irrevocable right and unrestricted permis- sion to use and/or publish photos and/or video images of/including me, for purposes of art, display, advertising, editorial use, or any other lawful purpose, and waive any right I may have to inspect and approve the finished product of any piece that may use such.</p>
 		
 		<p>RELEASE OF LIABILITY: I understand and acknowledge that this Activity and any related activities, by their very nature, pose the potential risk of damage to my property. I also realize that Catalyst and its personnel, agents, or volunteers, or any other person or entity associated with this Activity, may not be professionally trained for this Activity, and are not legally or financially responsible or liable for any claim arising from any damage done to my property during this Activity.</p>
@@ -265,15 +254,11 @@
 		
 		<p>CERTIFICATION: By signing below, I certify that all information provided in this application is true and complete. I give Catalyst the right to verify and request additional information when necessary. I also give Catalyst permission to check personal & criminal background, using the information I’ve provided in this application. I understand that the background check process, or any false or misleading information I have given, may disqualify me from involvement. I understand that information will be held confidential.
 
-	</div>
-	<div class="formSection"><h4>Digital Signature</h4>
-	
 		<div class="formLine">I have read and agree to the above terms and conditions:
 			<input type="checkbox" name="tac-yes" required="true">Yes
 		</div>
 		
-		<div class="formLine">
-			Please type your full name in the box below.  This will be considered your digital signature.<br>
+		<div class="formLine">Please type your full name in the box below.  This will be considered your digital signature.<br>
 			<input class="largeField" type="text" name="signature" placeholder="Type Name Here" required="true">
 		</div>
 		
