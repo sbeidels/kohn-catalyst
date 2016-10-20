@@ -21,7 +21,6 @@ ObjectId = Schema.ObjectId;
 var ApplicationSchema = Schema({
     _id:            ObjectId,
     owns_home:      Boolean,
-    id:             Number,
     status:         String,         // TODO: determine concrete review status terms
     first_name:     String,
     last_name:      String,
