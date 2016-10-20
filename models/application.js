@@ -36,7 +36,7 @@ var ApplicationSchema = Schema({
         city:       String,
         state:      String,         // TODO: Validate it is a state or it in Oregon
         zip:        Number,         // TODO: Confirm max length = 5 integers
-        country:    String          // TODO: Is country needed??
+        country:    String          // TODO: Is country needed??    Please, no.  - Mike :)
     },
     email:          String,         // TODO: Validate in form user@host.host
     driver_license: String,

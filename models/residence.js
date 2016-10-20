@@ -29,7 +29,7 @@ var residenceSchema = Schema({
     family_financial_help:  Number,
     financial_assistance:   Number,
     type:                   String,
-    ownership_length:       Number,
+    ownership_length:       Number,  //could be string, for answers like 12 years, or 9 months (the question isn't asked in specific format years or months....)
     year_built:             Number,
     // TODO: Handle requested repairs
     requested_repairs:      String,

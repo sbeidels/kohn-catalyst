@@ -2,22 +2,27 @@
 <!--Begin the actual Form 
 <form action="http://localhost:8000/form" id="appForm"> -->
 
+	<input type="hidden" name="ownsHome" value="true">
+	<input type="hidden" name="status" value="new">
 	<div class="formSection"></div>
 	<div class="formSection"><h4>Before we Begin...</h4>
 		<div class="formLine">
-			Please check the box below if you represent a non-profit organization advocating for someone else.
+			Please check the box below and fill in the details if you represent a non-profit organization advocating for someone else.
 		</div>
 		<div class="formLine">
 			<input type="checkbox" name="advocate" value="true">I represent a non-profit organization advocating for this client
 		</div>
 		<div class="formLine">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate-name" placeholder="Name">
+		</div>
+		<div class="formLine">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Relationship to client: <input type="text" name="advocate-relationship" placeholder="Relationship">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate-npoPhone" placeholder="Phone">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate-phone" placeholder="Phone">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Non-Profit Organization: <input type="text" name="advocate-npo" placeholder="Organization Name">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Non-Profit Organization: <input class="largeField" type="text" name="advocate-npo" placeholder="Organization Name">
 		</div>
 	</div>
 	<div class="formSection"><h4>Personal Information</h4>
@@ -34,7 +39,7 @@
 		</div>
 		
 		<div class="formLine">
-			Driver's License Number: <input type="number" name="driversLicense" placeholder="Driver's License Number">
+			Driver's License Number: <input type="text" name="driversLicense" placeholder="Driver's License Number">
 		</div>
 		
 		<div class="formLine">
@@ -54,7 +59,7 @@
 		</div>
 		
 		<div class="formLine">
-			Email: <input class="largeField" type="email" name="email" placeholder="E-mail address">
+			Email: <input class="largeField" type="email" name="emailaddy" placeholder="E-mail address">
 		</div>
 		
 		<div class="formLine">
@@ -92,25 +97,26 @@
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-2" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a2age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional-2" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a2age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a2relationship" placeholder="Relationship">
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-3" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a3age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional-3" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a3age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a3relationship" placeholder="Relationship">
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-4" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a4age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional-4" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a4age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a4relationship" placeholder="Relationship">
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-5" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a5age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional-5" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a5age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a5relationship" placeholder="Relationship">
 			</div>
 		</div>
 		
-		<div class="formLine">Check below if you are currently, or are a veteran of, the U.S. Military:
+		<div class="formLine">Are you currently, or a veteran of, the U.S. Military:
 			<div class="formLine">
-				<input type="checkbox" name="military" value="true">Military
+				<input type="radio" name="military" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="military" value="false">No
 			</div>
 		</div>
 		
@@ -131,17 +137,17 @@
 	
 	<div class="formSection"><h4>Financial Information</h4>
 		<div class="formLine">
-			What is your monthly mortgage payment? <input type="text" name="monthlyMortgage" placeholder="Monthly Mortgage" required="true">
+			What is your monthly mortgage payment (in dollars)? <input type="number" name="monthlyMortgage" placeholder="Monthly Mortgage" required="true">
 		</div>
 		
 		<div class="formLine">Are you up to date on your mortgage payments?
 			<div class="formLine">
-				<input type="checkbox" name="currentMortgage-yes" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="checkbox" name="currentMortgage-no" value="false">No<br>
+				<input type="radio" name="currentOnMortgage" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="currentOnMortgage" value="false">No<br>
 			</div>
 		</div>
 		
-		<div class="formLine">What is your approximate total annual household income?<br>(Please include all sources for all residents):
+		<div class="formLine">What is your approximate total annual household income (in dollars)?<br>(Please include all sources for all residents):
 			<div class="formLine">
 				<input class="largeField" type="number" name="annualIncome" placeholder="Approximate Annual Income" required="true">
 			</div>
@@ -149,37 +155,50 @@
 	
 		<div class="formLine">Please list any other financial assets, and their current values (e.g. savings, retirements, physical assets, etc.):
 			<div class="formLine">
-				<input class="largeField" type="text" name="assets1" placeholder="Other assets"><br>
-				<input class="largeField" type="text" name="assets2" placeholder="Other assets"><br>
-				<input class="largeField" type="text" name="assets3" placeholder="Other assets"><br>
-				<input class="largeField" type="text" name="assets4" placeholder="Other assets"><br>
+				<input class="largeField" type="text" name="assets1" placeholder="Other assets">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets1-value" placeholder="Value">
+			</div>
+			<div class="formLine">
+				<input class="largeField" type="text" name="assets2" placeholder="Other assets">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets2-value" placeholder="Value">
+			</div>
+			<div class="formLine">
+				<input class="largeField" type="text" name="assets3" placeholder="Other assets">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets3-value" placeholder="Value">
+			</div>
+			<div class="formLine">
+				<input class="largeField" type="text" name="assets4" placeholder="Other assets">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets4-value" placeholder="Value">
+			</div>
+			<div class="formLine">
 				<input class="largeField" type="text" name="assets5" placeholder="Other assets">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets5-value" placeholder="Value">
 			</div>
 		</div>
 		
 		<div class="formLine">Are you able to contribute financially to implement the project you are requesting?
 			<div class="formLine">
-				<input type="checkbox" name="contribute-yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="checkbox" name="contribute-no">No<br>
+				<input type="radio" name="contribute" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="contribute" value="false">No<br>
 				If yes, please provide the approximate amount: <input class="largeField" type="number" name="contribute-amount" placeholder="Amount you can contribute">
 			</div>
 		</div>
 		
 		<div class="formLine">Do you have adult children and/or other relatives who may be able to help financially?
 			<div class="formLine">
-				<input type="checkbox" name="relativeHelp-yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="checkbox" name="relativeHelp-no">No<br>
+				<input type="radio" name="relativeHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="relativeHelp" value="false">No<br>
 				If yes, please describe what help they might provide:<br>
-				<textarea rows="3" cols="60" name="relativeHelp" placeholder="Help others can provide"></textarea>
+				<textarea rows="3" cols="60" name="relativeHelp-provide" placeholder="Help others can provide"></textarea>
 			</div>
 		</div>
 		
 		<div class="formLine">Have you already requested help from other Non-Profits, from your City, from your County, or other Organization?
 			<div class="formLine">
-				<input type="checkbox" name="otherHelp-yes">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="checkbox" name="otherHelp-no">No
+				<input type="radio" name="otherHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="otherHelp" value="false">No
 				If yes, please describe what help they might provide:<br>
-				<textarea rows="3" cols="60" name="otherHelp" placeholder="Help you have requested from other organizations"></textarea>
+				<textarea rows="3" cols="60" name="otherHelp-provide" placeholder="Help you have requested from other organizations"></textarea>
 			</div>
 		</div>
 		
@@ -188,16 +207,16 @@
 		
 		<div class="formLine">Type of Property
 			<div class="formLine">
-				<input type="radio" name="propertyType" value="type-singleFamily"> Single Family Home<br>
-				<input type="radio" name="propertyType" value="type-mobileHome"> Mobile Home<br>
-				<input type="radio" name="propertyType" value="type-manufacturedHome"> Manufactured Home<br>
-				<input type="radio" name="propertyType" value="type-other"> Other: 
+				<input type="radio" name="propertyType" value="Single Family Home"> Single Family Home<br>
+				<input type="radio" name="propertyType" value="Mobile Home"> Mobile Home<br>
+				<input type="radio" name="propertyType" value="Manufactured Home"> Manufactured Home<br>
+				<input type="radio" name="propertyType" value="Other"> Other: 
 				<input type="text" name="propertyType-other" placeholder="Other type of property">
 			</div>
 		</div>
 		
 		<div class="formLine">How long have you owned the home/property? 
-			<input type="text" name="timePropertyOwned" placeholder="Time you've owned property" required="true">
+			<input class="largeField" type="text" name="timePropertyOwned" placeholder="Time you've owned property" required="true">
 		</div>
 		
 		<div class="formLine">In what year was this property built?
@@ -212,19 +231,19 @@
 		
 		<div class="formLine">Are you able to provide any help (labor/materials) for these repairs?
 			<div class="formLine">
-				<input type="radio" name="help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="help" value="false">No<br>
+				<input type="radio" name="laborhelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="laborhelp" value="false">No<br>
 				If yes, please describe:<br>
-				<textarea rows="3" cols="60" name="help-personal" placeholder="Help you can provide"></textarea>
+				<textarea rows="3" cols="60" name="laborhelp-personal" placeholder="Help you can provide"></textarea>
 			</div>
 		</div>
 		
 		<div class="formLine">Do you have friends or family who may be able to help Catalyst perform the work of this project?
 			<div class="formLine">
-				<input type="radio" name="othersHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="othersHelp" value="false">No<br>
+				<input type="radio" name="otherslaborHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="otherslaborHelp" value="false">No<br>
 				If yes, please describe:<br>
-				<textarea rows="3" cols="60" name="others-help" placeholder="Help other people could provide"></textarea>
+				<textarea rows="3" cols="60" name="others-laborhelp" placeholder="Help other people could provide"></textarea>
 			</div>
 		</div>
 		<br><br>
@@ -232,10 +251,18 @@
 		<br><br>
 		<div class="formLine">Are you an active part of a faith-based community?
 			<div class="formLine">
-				<input type="radio" name="faith" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="faith" value="false">No<br>
-				If yes, please tell us about it:<br>
-				<textarea rows="3" cols="60" name="faith-description" placeholder="Faith-Based Community Information"></textarea>
+				<input type="radio" name="fbo" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="fbo" value="false">No<br>
+				If yes, please give details below:
+				<div class="formLine">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input type="text" name="fbo-name" placeholder="Name">
+				</div>
+				<div class="formLine">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact (Pastor/Elder/Priest): <input type="text" name="fbo-contact" placeholder="Contact">
+				</div>
+				<div class="formLine">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Phone Number: <input type="text" name="fbo-Phone" placeholder="Phone">
+				</div>
 			</div>
 		</div>
 		
@@ -269,7 +296,7 @@
 	<div class="formSection"><h4>Digital Signature</h4>
 	
 		<div class="formLine">I have read and agree to the above terms and conditions:
-			<input type="checkbox" name="tac-yes" required="true">Yes
+			<input type="checkbox" name="tac-yes" value="true" required="true">Yes
 		</div>
 		
 		<div class="formLine">
@@ -280,6 +307,13 @@
 		<input type="submit" value="Submit Form">
 	</div>
 </form>
+
+
+
+<script src="appAdd.js"></script>
+
+
+
 
 <!-- -- -- -- TO DO LIST  -- -- -- --
 install jquery head for this file? 
