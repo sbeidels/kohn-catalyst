@@ -13,7 +13,7 @@ var remote_url = config.ec2.public_ip;
 var username = config.mongo.username;
 var password = config.mongo.password;
 // Name of the database to use
-var db_name = config.mongo.db.test;
+var db_name = config.mongo.db;
 
 var options = {
     user: username,
