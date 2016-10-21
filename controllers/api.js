@@ -2,7 +2,7 @@
 // Import any required modules
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var mongoose = require('mongoose');
-var db = require('../mongoose/index');
+var db = require('../mongoose/connection');
 var ApplicationSchema = require('../models/application');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
@@ -40,15 +40,15 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bleu
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
     getAllDocuments: function (req, res, next) {
-        console.log('[ API ] getAllDocuments - called');
+        console.log('[ API ] getAllDocuments :: call invoked');
 
         Promise.props({
             application: ApplicationSchema.find().lean().execAsync(),
             count: ApplicationSchema.find().count().execAsync()
         })
             .then(function (results) {
-                console.log('[ API ] getAllDocuments - Application documents: < application list >');
-                console.log('[ API ] getAllDocuments - Application document count:', results.count);
+                console.log('[ API ] getAllDocuments :: All documents packages found: < document list >');
+                console.log('[ API ] getAllDocuments :: Document package count:', results.count);
                 // Save the results into res.local
                 // I used res.local.results to keep the name the same
                 res.locals.results = results;
