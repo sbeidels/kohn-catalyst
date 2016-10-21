@@ -34,21 +34,21 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bleu
 // Basically, these function take this:
 //      router.get('/all', function(req, res) { .. }
 // And transform it into:
-//      router.get('/all', api.getAllApplications, function(req, res) { .. }
+//      router.get('/all', api.getAllDocuments, function(req, res) { .. }
 //
 // They keep req, res, err, and next inact as they are passed around
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
-    getAllApplications: function (req, res, next) {
-        console.log('[ API ] getAllApplications - called');
+    getAllDocuments: function (req, res, next) {
+        console.log('[ API ] getAllDocuments - called');
 
         Promise.props({
             application: ApplicationSchema.find().lean().execAsync(),
             count: ApplicationSchema.find().count().execAsync()
         })
             .then(function (results) {
-                console.log('[ API ] getAllApplications - Application documents:', results.application);
-                console.log('[ API ] getAllApplications - Application document count:', results.count);
+                console.log('[ API ] getAllDocuments - Application documents: < application list >');
+                console.log('[ API ] getAllDocuments - Application document count:', results.count);
                 // Save the results into res.local
                 // I used res.local.results to keep the name the same
                 res.locals.results = results;
@@ -56,10 +56,10 @@ module.exports = {
                 // Call next() to pass all of this glorious data to the next express router
                 next();
             })
+            .catch(function (err) {
+                console.error(err);
+            })
             .catch(next);
-            // .catch(function (err) {
-            //     console.error(err);
-            // });
     },
 
     // Currently unused
