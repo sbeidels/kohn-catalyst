@@ -25,6 +25,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;
 
+// TODO: Research 'index'ing a value in mongoose
+// TODO: Research 'trim'ing a value in mongoose
 // TODO: Add access tags as needed - docs = https://docs.mongodb.com/manual/reference/operator/aggregation/redact/
 var DocumentPackageSchema = new Schema({
     _id:            ObjectId,
@@ -64,25 +66,70 @@ var DocumentPackageSchema = new Schema({
             phone:          Number      // TODO: Validate max length = 10 integers
         },
         other_residents:{
-            number:      Number,        // other_residents.names[index], other_residents.ages[index] where index < other_residents.number
-            names:      [String],       // This is an array of strings
-            ages:       [Number]        // This is an array of strings
+            count:      Number,        // other_residents.names[index], other_residents.ages[index] where index < other_residents.count
+            name:      [String],       // This is an array of strings
+            age:       [Number]        // This is an array of strings
         },
         veteran:        Boolean,
         language:       String,
-        heard_about:    String
+        heard_about:    String,
+        special_circumstances:  String
     },
 
     finance:    {
-
+        mortgage_payment:       Number,
+        mortgage_up_to_date:    Boolean,
+        income:                 Number,
+        assets:                 {
+            count:              Number,
+            name:               String,
+            value:              Number
+        },
+        // TODO: could combine with other client_can_contribute
+        client_can_contribute:  {
+            value:              Boolean,
+            amount:             Number,
+        },
+        // TODO: could combine with other associates_can_contribute
+        associates_can_contribute:  {
+            value:              Boolean,
+            description:        String
+        },
+        requested_other_help:   {
+            value:              Boolean,
+            description:        String
+        }
     },
 
     property:   {
+        type:                   String,
+        ownership_length:       Number,
+        year_constructed:       Number,     // TODO: Validate as exact length = 4
+        requested_repairs:      String,
+        // TODO: could combine with other client_can_contribute
+        client_can_contribute:  {
+            value:              Boolean,
+            description:        String
+        },
+        // TODO: could combine with other associates_can_contribute
+        associates_can_contribute:  {
+            value:              Boolean,
+            description:        String
+        },
+    },
+
+    recruitment:    {
+        active_in_faith_group:  Boolean,
+        organization:   {
+            name:      String,
+            contact:   String,
+            phone:      Number              // TODO: Validate max length = 10 integers
+        },
 
     },
 
     project:    {
-
+        // TODO: Complete after application, status, etc -- THIS IS LAST
     }
 });
 
