@@ -24,7 +24,7 @@ var residenceSchema = Schema({
     // TODO: Handle 'other_residents'
     other_residents:        String,
     annual_income:          Number,
-    other_assests:          Number,
+    other_assets:           Number,
     contribute_funds:       Number,
     family_financial_help:  Number,
     financial_assistance:   Number,

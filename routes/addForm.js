@@ -337,5 +337,5 @@ signature
         console.log(stringToReturn);
         $("#songBack").empty().append(stringToReturn);
     });
-    
-}); */
+    */
+});
