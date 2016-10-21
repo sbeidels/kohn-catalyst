@@ -44,8 +44,14 @@ var DocumentPackageSchema = new Schema({
         owns_home:      Boolean,        // TODO: is this still asked/on the form?
         first_name:     String,
         last_name:      String,
-        dob:            Date,           // TODO: split into subdocument and add security tags
-        driver_license: String,         // TODO: split into subdocument and add security tags
+        dob:            {
+            tags:       ["VA", "EX"],
+            date:       Date
+        },
+        driver_license: {
+            tags:       ["VA", "EX"],
+            number:     String
+        },
         is_married:     Boolean,
         spouse:         String,
         phone:          {
@@ -73,14 +79,24 @@ var DocumentPackageSchema = new Schema({
         veteran:        Boolean,
         language:       String,
         heard_about:    String,
-        special_circumstances:  String
+        special_circumstances:  {
+            tags:       ["VA", "EX"],
+            note:       String
+        }
     },
 
     finance:    {
-        mortgage_payment:       Number,
-        mortgage_up_to_date:    Boolean,
-        income:                 Number,
+        mortgage:               {
+            tags:               ["VA", "EX"],
+            payment:            Number,
+            up_to_date:         Boolean
+        },
+        income:                 {
+            tags:               ["VA", "EX"],
+            amount:             Number
+        },
         assets:                 {
+            tags:               ["VA", "EX"],
             count:              Number,
             name:               String,
             value:              Number
