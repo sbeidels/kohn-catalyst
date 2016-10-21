@@ -91,10 +91,10 @@ signature
 	theownsHome = $form.find("input[name='ownsHome']").val(),
 	thestatus = $form.find("input[name='status']").val(),
 	theadvocate = $form.find("input[name='advocate']").val(),
-	theadvocate-name = $form.find("input[name='advocate-name']").val(),
-	theadvocate-relationship = $form.find("input[name='advocate-relationship']").val(),
-	theadvocate-phone = $form.find("input[name='advocate-phone']").val(),
-	theadvocate-npo = $form.find("input[name='advocate-npo']").val(),
+	theadvocate_name = $form.find("input[name='advocate-name']").val(),
+	theadvocate_relationship = $form.find("input[name='advocate-relationship']").val(),
+	theadvocate_phone = $form.find("input[name='advocate-phone']").val(),
+	theadvocate_npo = $form.find("input[name='advocate-npo']").val(),
 	thefirstName = $form.find("input[name='firstName']").val(),
 	thelastName = $form.find("input[name='lastName']").val(),
 	thedob = $form.find("input[name='dob']").val(),  //date
@@ -129,42 +129,42 @@ signature
 	thea5relationship = $form.find("input[name='a5relationship']").val(),
 	themilitary = $form.find("input[name='military']").val(), //bool
 	thelanguage = $form.find("input[name='language']").val(), //(text from radio - English or Other)
-	thelanguage-other = $form.find("input[name='language-other']").val(),
+	thelanguage_other = $form.find("input[name='language-other']").val(),
 	thehearAboutCatalyst = $form.find("input[name='hearAboutCatalyst']").val(),
 	themonthlyMortgage = $form.find("input[name='monthlyMortgage']").val(), //(number) 
 	thecurrentOnMortgage = $form.find("input[name='currentOnMortgage']").val(),  //(bool)
 	theannualIncome = $form.find("input[name='annualIncome']").val(), //number)
 	theassets1 = $form.find("input[name='assets1']").val(),
-	theassets1-value = $form.find("input[name='assets1-value']").val(),  //(number)
+	theassets1_value = $form.find("input[name='assets1-value']").val(),  //(number)
 	theassets2 = $form.find("input[name='assets2']").val(),
-	theassets2-value = $form.find("input[name='assets2-value']").val(), //(number)
+	theassets2_value = $form.find("input[name='assets2-value']").val(), //(number)
 	theassets3 = $form.find("input[name='assets3']").val(),
-	theassets3-value = $form.find("input[name='assets3-value']").val(),  //(number)
+	theassets3_value = $form.find("input[name='assets3-value']").val(),  //(number)
 	theassets4 = $form.find("input[name='assets4']").val(),
-	theassets4-value = $form.find("input[name='assets4-value']").val(), //(number)
+	theassets4_value = $form.find("input[name='assets4-value']").val(), //(number)
 	theassets5 = $form.find("input[name='assets5']").val(),
-	theassets5-value = $form.find("input[name='assets5-value']").val(), //(number)
+	theassets5_value = $form.find("input[name='assets5-value']").val(), //(number)
 	thecontribute = $form.find("input[name='contribute']").val(),  //(bool)
-	thecontribute-amount = $form.find("input[name='contribute-amount']").val(),  //(number)
+	thecontribute_amount = $form.find("input[name='contribute-amount']").val(),  //(number)
 	therelativeHelp = $form.find("input[name='relativeHelp']").val(),  //(bool)
-	therelativeHelp-provide = $form.find("input[name='relativeHelp-provide']").val(),
+	therelativeHelp_provide = $form.find("input[name='relativeHelp-provide']").val(),
 	theotherHelp = $form.find("input[name='otherHelp']").val(), //(bool)
-	theotherHelp-provide = $form.find("input[name='otherHelp-provide']").val(),
+	theotherHelp_provide = $form.find("input[name='otherHelp-provide']").val(),
 	thepropertyType = $form.find("input[name='propertyType']").val(), //(text from radio)
-	thepropertyType-other = $form.find("input[name='propertyType-other']").val(),
+	thepropertyType_other = $form.find("input[name='propertyType-other']").val(),
 	thetimePropertyOwned = $form.find("input[name='timePropertyOwned']").val(),
 	theyearPropertyBuilt = $form.find("input[name='yearPropertyBuilt']").val(), //(number)
 	therepairsNeeded = $form.find("input[name='repairsNeeded']").val(),
 	thelaborhelp = $form.find("input[name='laborhelp']").val(), //(bool)
-	thelaborhelp-personal = $form.find("input[name='laborhelp-personal']").val(),
+	thelaborhelp_personal = $form.find("input[name='laborhelp-personal']").val(),
 	theotherslaborHelp = $form.find("input[name='otherslaborHelp']").val(), //(bool)
-	theothers-laborhelp = $form.find("input[name='others-laborhelp']").val(),
+	theothers_laborhelp = $form.find("input[name='others-laborhelp']").val(),
 	thefbo = $form.find("input[name='fbo']").val(),  //(bool)
-	thefbo-name = $form.find("input[name='fbo-name']").val(),
-	thefbo-contact = $form.find("input[name='fbo-contact']").val(),
-	thefbo-phone = $form.find("input[name='fbo-phone']").val(),
+	thefbo_name = $form.find("input[name='fbo-name']").val(),
+	thefbo_contact = $form.find("input[name='fbo-contact']").val(),
+	thefbo_phone = $form.find("input[name='fbo-phone']").val(),
 	theotherCircumstances = $form.find("input[name='otherCircumstances']").val(),
-	thetac-yes = $form.find("input[name='tac-yes']").val(), //(bool)
+	thetac_yes = $form.find("input[name='tac-yes']").val(), //(bool)
 	thesignature = $form.find("input[name='signature']").val(),
 	url = $form.attr("action");
 	
@@ -221,10 +221,10 @@ signature
 	
 	//create the JSON block into a variable
 	var jsonToPost = '[{"advocate":"' + theadvocate + 
-		'","advocate_name":"' + theadvocate-name + 
-		'","advocate_relationship":"' + theadvocate-relationship + 
-		'","advocate_phone":"' + theadvocate-phone + 
-		'","advocate_npo":"' + theadvocate-npo + 
+		'","advocate_name":"' + theadvocate_name + 
+		'","advocate_relationship":"' + theadvocate_relationship + 
+		'","advocate_phone":"' + theadvocate_phone + 
+		'","advocate_npo":"' + theadvocate_npo + 
 		'","first_name":"' + thefirstName + 
 		'","last_name":"' + thelastName + 
 		'","dob":"' + thedob + 
@@ -259,41 +259,41 @@ signature
 		'","??":"' + thea5relationship + 
 		'","veteran":"' + themilitary + 
 		'","language":"' + thelanguage + 
-		'","other_language":"' + thelanguage-other + 
+		'","other_language":"' + thelanguage_other + 
 		'","heard_about_catalyst":"' + thehearAboutCatalyst + 
 		'","monthly_mortgage":"' + themonthlyMortgage + 
 		'","current_on_mortgage":"' + thecurrentOnMortgage + 
 		'","annual_income":"' + theannualIncome + 
 		'","??":"' + theassets1 + 
-		'","??":"' + theassets1-value + 
+		'","??":"' + theassets1_value + 
 		'","??":"' + theassets2 + 
-		'","??":"' + theassets2-value + 
+		'","??":"' + theassets2_value + 
 		'","??":"' + theassets3 + 
-		'","??":"' + theassets3-value + 
+		'","??":"' + theassets3_value + 
 		'","??":"' + theassets4 + 
-		'","??":"' + theassets4-value + 
+		'","??":"' + theassets4_value + 
 		'","??":"' + theassets5 + 
-		'","??":"' + theassets5-value + 
+		'","??":"' + theassets5_value + 
 		'","??":"' + thecontribute + 
-		'","contribute_funds":"' + thecontribute-amount + 
+		'","contribute_funds":"' + thecontribute_amount + 
 		'","??":"' + therelativeHelp + 
-		'","family_financial_help":"' + therelativeHelp-provide + 
+		'","family_financial_help":"' + therelativeHelp_provide + 
 		'","??":"' + theotherHelp + 
-		'","other_non_profits":"' + theotherHelp-provide + 
+		'","other_non_profits":"' + theotherHelp_provide + 
 		'","type":"' + thepropertyType + 
 		'","ownership_length":"' + thetimePropertyOwned + 
 		'","year_built":"' + theyearPropertyBuilt + 
 		'","requested_repairs":"' + therepairsNeeded + 
 		'","??":"' + thelaborhelp + 
-		'","??":"' + thelaborhelp-personal + 
+		'","??":"' + thelaborhelp_personal + 
 		'","??":"' + theotherslaborHelp + 
-		'","??":"' + theothers-laborhelp + 
+		'","??":"' + theothers_laborhelp + 
 		'","??":"' + thefbo + 
-		'","??":"' + thefbo-name + 
-		'","??":"' + thefbo-contact + 
-		'","??":"' + thefbo-phone + 
+		'","??":"' + thefbo_name + 
+		'","??":"' + thefbo_contact + 
+		'","??":"' + thefbo_phone + 
 		'","other_notes":"' + theotherCircumstances + 
-		'","??":"' + thetac-yes + 
+		'","??":"' + thetac_yes + 
 		'","??":"' + thesignature + '"}]'
 	
 	
