@@ -14,7 +14,7 @@ var uri = 'mongodb://' + remote_url + '/' + config.mongo.db;
 
 // Connect to the URL
 mongoose.connect(uri, options);
-mongoose.connection.on('error', console.error.bind(console, 'Connection Error : '));
+mongoose.connection.on('error', console.error.bind(console, '[ DATABASE ] Connection :: Connection response: '));
 mongoose.connection.once('open', function () {
     console.log('[ DATABASE ] Connection :: Successfully connected to the database ' + config.mongo.db);
 });
