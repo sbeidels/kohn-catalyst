@@ -1,23 +1,15 @@
-// Load config file to get URL, username, password, etc
-var config = require('../config');
+var config = require('../config');      // Load config file to get URL, username, password, etc
 
-// Import the mongoose module
-var mongoose = require('mongoose');
+var mongoose = require('mongoose');     // Import the mongoose module
 
 /* PULL IN SENSITIVE INFORMATION FROM config.js */
-// Local URL, connects EC2 instance to local mongod
-var local_url = 'mongodb://127.0.0.1:27017/test';
-// Connects to the public IP of the server hosting the database
-var remote_url = config.ec2.public_ip;
-// Username and password of a user that has read and write permissions
-var username = config.mongo.username;
-var password = config.mongo.password;
-// Name of the database to use
-var db_name = config.mongo.db;
+var local_url = 'mongodb://127.0.0.1:27017/test';   // Local URL, connects EC2 instance to local mongod
+var remote_url = config.ec2.public_ip;              // Connects to the public IP of the server hosting the database
 
 var options = {
-    user: username,
-    pass: password
+    db:     config.mongo.db,            // Name of the database to use
+    user:   config.mongo.username,      // Username and password of a user that has read and write permissions
+    pass:   config.mongo.password
 };
 var uri = 'mongodb://' + remote_url + '/' + db_name;
 
@@ -28,5 +20,5 @@ mongoose.connection.once('open', function () {
     console.log('[ DATABASE ] Connection to database ok!');
 });
 
-// Nothing needs to be exported, simple use "  require('<path>/mongoose')  "
+// Nothing needs to be exported, simply use:   require('<path>/mongoose')
 module.exports = mongoose;
