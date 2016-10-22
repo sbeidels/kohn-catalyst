@@ -27,6 +27,10 @@ router.get('/show', api.getAllDocuments, function(req, res) {
     res.render('application-list', res.locals.results);
 });
 
+router.get('/:id', api.getDocumentById, function(req, res) {
+    res.json(res.locals.results);
+});
+
 // We use the route like normal
 // router.<HTTP-VERB>(<LOCAL URI>, <API MIDDLEWARE>, <CONTINUE LIKE NORMAL>)
 router.get('/all', api.getAllDocuments, function(req, res) {
