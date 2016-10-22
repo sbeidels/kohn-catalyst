@@ -94,6 +94,6 @@ module.exports = {
     },
 
     getDocumentByStatus: function(req, res, next) {
-        
+
     }
 };
