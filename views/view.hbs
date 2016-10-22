@@ -60,20 +60,27 @@
                     </tr>
                     <tr>
                         <td>Marital Status</td>
-                        <td>{{marital_status}}</td>
+                        <!--<td>{{marital_status}}</td>-->
+                        <td>
+                            <a href="#" id="marital_status" data-type="select" data-pk="1" data-url="" data-title="Select Marital Status"></a>
+                        </td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td>{{email}}</td>
+                        <!--<td>{{email}}</td>-->
+                        <td><a href="#" id="email" data-type="text" data-pk="1" data-url="" data-title="Enter Email">{{email}}</a></td>
                     </tr>
                     <tr>
                         <td>Driver's License</td>
-                        <td>{{driver_license}}</td>
+                        <!--<td>{{driver_license}}</td>-->
+                        <td><a href="#" id="driver_license" data-type="text" data-pk="1" data-url="" data-title="Enter Driver's License Number">{{driver_license}}</a></td>
                     </tr>
                     <tr>
                         <td>Emergency Contact</td>
-                        <td>{{emergency_contact.name}}<br>
-                            {{emergency_contact.phone}}
+                        <td>Name: {{emergency_contact.name}}
+                            <br>
+                            <!--TODO Relationship-->
+                            Phone: {{emergency_contact.phone}}
                         </td>
                     </tr>
                     <tr>
@@ -82,7 +89,10 @@
                     </tr>
                     <tr>
                         <td>Veteran</td>
-                        <td>{{veteran}}</td>
+                        <!--<td>{{veteran}}</td>-->
+                        <td>
+                            <a href="#" id="veteran" data-type="select" data-pk="1" data-url="" data-title="Select Veteran Status"></a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -129,8 +139,8 @@
 <script src="/javascript/xedit.js" type="text/javascript"></script>
 
 <script>
-    <!--FILLS IN EDITABLE DATA FOR ADDRESS-->
     $(document).ready(function() {
+        //FILLS IN EDITABLE DATA FOR ADDRESS
         $('#address').editable({
             value: {
                 number: '{{address.number}}',
@@ -140,6 +150,26 @@
                 state: '{{address.state}}',
                 zip: '{{address.zip}}'
             }
+        });
+
+        //FILLS IN EDITABLE DATA FOR marital status
+        $('#marital_status').editable({
+            value: '{{marital_status}}',
+            source:
+            [
+                {value: 'married', text: 'married'},
+                {value: 'single', text: 'single'}
+            ]
+        });
+
+        //FILLS IN EDITABLE DATA FOR veteran status
+        $('#veteran').editable({
+            value: {{veteran}},
+            source:
+                    [
+                        {value: 1, text: 'true'},
+                        {value: 0, text: 'false'}
+                    ]
         });
     });
 </script>

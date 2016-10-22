@@ -14,6 +14,8 @@ $(document).ready(function() {
         this.init('address', options, Address.defaults);
     };
 
+    //createAddressXedit();
+
     //inherit from Abstract input
     $.fn.editableutils.inherit(Address, $.fn.editabletypes.abstractinput);
 
@@ -167,6 +169,8 @@ $(document).ready(function() {
      * SET ELEMENTS TO EDITABLE
      **/
     $('#phone_number').editable();
+    $('#email').editable();
+    $('#driver_license').editable();
 
     // $('#dob').editable({
     //     format: 'mm/dd/yyyy',
