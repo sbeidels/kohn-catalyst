@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var ApplicationSchema = require('../models/application');
+var DocumentPackageSchema = require('../models/documentPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
@@ -39,19 +40,23 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bleu
 // They keep req, res, err, and next inact as they are passed around
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
+    // TODO: move this function from application collection to document_package collection
     getAllDocuments: function (req, res, next) {
-        console.log('[ API ] getAllDocuments :: call invoked');
+        console.log('[ API ] getAllDocuments :: Call invoked');
 
         Promise.props({
-            application: ApplicationSchema.find().lean().execAsync(),
+            application: ApplicationSchema.find().lean().execAsync(), // TODO: move to document package schema
             count: ApplicationSchema.find().count().execAsync()
         })
             .then(function (results) {
-                console.log('[ API ] getAllDocuments :: All documents packages found: < document list >');
-                console.log('[ API ] getAllDocuments :: Document package count:', results.count);
-                // Save the results into res.local
-                // I used res.local.results to keep the name the same
+                // Save the results into res.locals
                 res.locals.results = results;
+
+                for (var i = 0, len = results.count; i < len; i++) {
+                    console.log('[ API ] getAllDocuments :: Found document package with _id: ' + results.application[i]._id);
+                }
+                console.log('[ API ] getAllDocuments :: Document package count:', results.count);
+
                 // If we are at this line all promises have executed and returned
                 // Call next() to pass all of this glorious data to the next express router
                 next();
@@ -62,27 +67,33 @@ module.exports = {
             .catch(next);
     },
 
-    // Currently unused
-    getApplicationById: function (req, res, next) {
-        console.log('[ API ] getApplicationById called');
-        // Get the ID from the parameter and cast it as an object ID
-        // TODO: Express issues says we cannot access req.params.id in middleware
-        // How can I get around this?
-        var id = ObjectId(req.params.id);
-
-        console.log('[ API ] getApplicationById - req.params.id = ' + id);
+    getDocumentById: function (req, res, next) {
+        console.log('[ API ] getDocumentById :: Call invoked with id: ' + req.params.id);
 
         Promise.props({
-            application: ApplicationSchema.find({_id: id}).lean().execAsync()
+            // TODO: convert to DocumentPackageSchema.findById(req.params.id).lean().execAsync()
+            document: ApplicationSchema.findById(req.params.id).lean().execAsync()
         })
-            .then(function (results) {
-                console.log('[ API ] getApplicationById returning:');
-                console.log(results.application);
-                res.results = results;
+            .then(function(results) {
+                // TODO: convert results.application to results.DocumentPackage
+                if (results.application) {
+                    console.log('[ API ] getDocumentById :: Documents package found: FALSE');
+                }
+                else {
+                    console.log('[ API ] getDocumentById :: Documents package found: TRUE');
+                }
+
+                res.locals.results = results;
+
+                next();
             })
-            .then(next())
-            .catch(function (err) {
+            .catch(function(err) {
                 console.error(err);
-            });
+            })
+            .catch(next);
+    },
+
+    getDocumentByStatus: function(req, res, next) {
+        
     }
 };
