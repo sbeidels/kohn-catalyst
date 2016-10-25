@@ -3,7 +3,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
-var ApplicationSchema = require('../models/application');
+var Application = require('../models/application');
 var DocumentPackageSchema = require('../models/documentPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
@@ -45,8 +45,8 @@ module.exports = {
         console.log('[ API ] getAllDocuments :: Call invoked');
 
         Promise.props({
-            application: ApplicationSchema.find().lean().execAsync(), // TODO: move to document package schema
-            count: ApplicationSchema.find().count().execAsync()
+            application: Application.find().lean().execAsync(), // TODO: move to document package schema
+            count: Application.find().count().execAsync()
         })
             .then(function (results) {
                 // Save the results into res.locals
@@ -72,7 +72,7 @@ module.exports = {
 
         Promise.props({
             // TODO: convert to DocumentPackageSchema.findById(req.params.id).lean().execAsync()
-            document: ApplicationSchema.findById(req.params.id).lean().execAsync()
+            document: Application.findById(req.params.id).lean().execAsync()
         })
             .then(function(results) {
                 // TODO: convert results.application to results.DocumentPackage
@@ -94,6 +94,26 @@ module.exports = {
     },
 
     getDocumentByStatus: function(req, res, next) {
+        console.log('[ API ] getDocumentByStatus :: Call invoked');
 
+        Promise.props({
+            new: Application.find({status: "New"}).lean().execAsync(),
+            processing: Application.find({$nor:[{ status: "New"}, {status: "Declined"}] }).lean().execAsync(),
+            declined: Application.find({status: "Declined"}).lean().execAsync()
+        })
+            .then(function (results) {
+                if (results.application) {
+                    console.log('[ API ] getDocumentByStatus :: Documents package found: FALSE');
+                }
+                else {
+                    console.log('[ API ] getDocumentByStatus :: Documents package found: TRUE');
+                }
+                res.locals.results = results;
+                next();
+            })
+            .catch(function(err) {
+                console.error(err);
+            })
+            .catch(next);
     }
 };
