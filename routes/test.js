@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var Application = require('../models/application');
 
-// Import promise egnine
+// Import promise engine
 var Promise = require('bluebird');
 // Tell mongoose we are using the Bluebird promise library
 mongoose.Promise = require('bluebird');
