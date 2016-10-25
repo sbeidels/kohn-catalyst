@@ -27,6 +27,10 @@ router.get('/show', api.getAllDocuments, function(req, res) {
     res.render('application-list', res.locals.results);
 });
 
+router.get('/status', api.getDocumentByStatus, function(req, res) {
+    res.json(res.locals.results);
+});
+
 router.get('/:id', api.getDocumentById, function(req, res) {
     res.json(res.locals.results);
 });
