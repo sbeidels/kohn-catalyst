@@ -31,7 +31,15 @@
 		</div>
 		
 		<div class="formLine">
+			Middle Name/Initial: <input type="text" name="middleName" placeholder="Middle Name">
+		</div>
+		
+		<div class="formLine">
 			Last Name: <input type="text" name="lastName" placeholder="Last Name" required="true">
+		</div>
+		
+		<div class="formLine">
+			Preferred Name (if different from above): <input type="text" name="preferredName" placeholder="Nickname" required="true">
 		</div>
 		
 		<div class="formLine">
@@ -246,22 +254,19 @@
 				<textarea rows="3" cols="60" name="others-laborhelp" placeholder="Help other people could provide"></textarea>
 			</div>
 		</div>
-		<br><br>
-		THIS FAITH-BASED PART IS STILL UNDER CONSTRUCTION.  EXPECT THE FIELDSET TO CHANGE
-		<br><br>
-		<div class="formLine">Are you an active part of a faith-based community?
+		
+		<div class="formLine">Do you belong to a faith-based community?
 			<div class="formLine">
 				<input type="radio" name="fbo" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="fbo" value="false">No<br>
 				If yes, please give details below:
 				<div class="formLine">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input type="text" name="fbo-name" placeholder="Name">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input class="largeField" type="text" name="fbo-name" placeholder="Name">
 				</div>
 				<div class="formLine">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact (Pastor/Elder/Priest): <input type="text" name="fbo-contact" placeholder="Contact">
-				</div>
-				<div class="formLine">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact Phone Number: <input type="text" name="fbo-Phone" placeholder="Phone">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Would they be willing to provide help with implementing your requested project?
+					<input type="radio" name="fbo-help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="fbo-help" value="false">No<br>
 				</div>
 			</div>
 		</div>

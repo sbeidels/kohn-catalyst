@@ -42,8 +42,12 @@ var DocumentPackageSchema = new Schema({
 
     application:    {
         owns_home:      Boolean,        // TODO: is this still asked/on the form?
-        first_name:     String,
-        last_name:      String,
+        name:       {
+            first:     String,
+            middle:    String,
+            last:      String,
+            preferred: String
+		},
         dob:            {
             tags:       ["VA", "EX"],
             date:       Date
@@ -135,11 +139,10 @@ var DocumentPackageSchema = new Schema({
     },
 
     recruitment:    {
-        active_in_faith_group:  Boolean,
+        belong_in_faith_group:  Boolean,
         organization:   {
-            name:      String,
-            contact:   String,
-            phone:      Number              // TODO: Validate max length = 10 integers
+            name:               String,
+            willing_to_help:    Boolean
         },
 
     },
