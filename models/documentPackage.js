@@ -122,7 +122,7 @@ var DocumentPackageSchema = new Schema({
         // TODO: could combine with other client_can_contribute
         client_can_contribute:  {
             value:              Boolean,
-            amount:             Number,
+            amount:             Number
         },
         // TODO: could combine with other associates_can_contribute
         associates_can_contribute:  {
@@ -136,7 +136,7 @@ var DocumentPackageSchema = new Schema({
     },
 
     property:   {
-        type:                   String,
+        home_type:                   String,
         ownership_length:       Number,
         year_constructed:       Number,     // TODO: Validate as exact length = 4
         requested_repairs:      String,
