@@ -152,6 +152,9 @@ var DocumentPackageSchema = new Schema({
 
     project:    {
         // TODO: Complete after application, status, etc -- THIS IS LAST
+    },
+    status:     {
+        code:       String
     }
 });
 
