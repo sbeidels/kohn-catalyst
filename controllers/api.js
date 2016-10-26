@@ -2,8 +2,9 @@
 // Import any required modules
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var mongoose = require('mongoose');
-var db = require('../mongoose/index');
-var ApplicationSchema = require('../models/application');
+var db = require('../mongoose/connection');
+// var Application = require('../models/application');
+var DocumentPackage = require('../models/documentPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
@@ -34,55 +35,89 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bleu
 // Basically, these function take this:
 //      router.get('/all', function(req, res) { .. }
 // And transform it into:
-//      router.get('/all', api.getAllApplications, function(req, res) { .. }
+//      router.get('/all', api.getAllDocuments, function(req, res) { .. }
 //
 // They keep req, res, err, and next inact as they are passed around
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
-    getAllApplications: function (req, res, next) {
-        console.log('[ API ] getAllApplications - called');
+    getAllDocuments: function (req, res, next) {
+        console.log('[ API ] getAllDocuments :: Call invoked');
 
         Promise.props({
-            application: ApplicationSchema.find().lean().execAsync(),
-            count: ApplicationSchema.find().count().execAsync()
+            application: DocumentPackage.find().lean().execAsync(),
+            count: DocumentPackage.find().count().execAsync()
         })
             .then(function (results) {
-                console.log('[ API ] getAllApplications - Application documents:', results.application);
-                console.log('[ API ] getAllApplications - Application document count:', results.count);
-                // Save the results into res.local
-                // I used res.local.results to keep the name the same
+                // Save the results into res.locals
                 res.locals.results = results;
+
+                for (var i = 0, len = results.count; i < len; i++) {
+                    console.log('[ API ] getAllDocuments :: Found document package with _id: ' + results.application[i]._id);
+                }
+                console.log('[ API ] getAllDocuments :: Document package count:', results.count);
+
                 // If we are at this line all promises have executed and returned
                 // Call next() to pass all of this glorious data to the next express router
                 next();
             })
-            .catch(next);
-            // .catch(function (err) {
-            //     console.error(err);
-            // });
-    },
-
-    // Currently unused
-    getApplicationById: function (req, res, next) {
-        console.log('[ API ] getApplicationById called');
-        // Get the ID from the parameter and cast it as an object ID
-        // TODO: Express issues says we cannot access req.params.id in middleware
-        // How can I get around this?
-        var id = ObjectId(req.params.id);
-
-        console.log('[ API ] getApplicationById - req.params.id = ' + id);
-
-        Promise.props({
-            application: ApplicationSchema.find({_id: id}).lean().execAsync()
-        })
-            .then(function (results) {
-                console.log('[ API ] getApplicationById returning:');
-                console.log(results.application);
-                res.results = results;
-            })
-            .then(next())
             .catch(function (err) {
                 console.error(err);
-            });
+            })
+            .catch(next);
+    },
+
+    getDocumentById: function (req, res, next) {
+        console.log('[ API ] getDocumentById :: Call invoked with id: ' + req.params.id);
+
+        Promise.props({
+            document: DocumentPackage.findById(req.params.id).lean().execAsync()
+        })
+            .then(function(results) {
+                // TODO: Confirm true/false is correct
+                if (results) {
+                    console.log('[ API ] getDocumentById :: Documents package found: FALSE');
+                }
+                else {
+                    console.log('[ API ] getDocumentById :: Documents package found: TRUE');
+                }
+
+                res.locals.results = results;
+
+                next();
+            })
+            .catch(function(err) {
+                console.error(err);
+            })
+            .catch(next);
+    },
+
+    getDocumentByStatus: function(req, res, next) {
+        console.log('[ API ] getDocumentByStatus :: Call invoked');
+
+        Promise.props({
+            new: DocumentPackage.find({status: "new"}).lean().execAsync(),
+            phone: DocumentPackage.find({status: "phone"}).lean().execAsync(),
+            documents: DocumentPackage.find({status: "documents"}).lean().execAsync(),
+            discuss: DocumentPackage.find({status: "discuss"}).lean().execAsync(),
+            visit: DocumentPackage.find({status: "visit"}).lean().execAsync(),
+            handle: DocumentPackage.find({status: "handle"}).lean().execAsync(),
+            declined: DocumentPackage.find({status: "declined"}).lean().execAsync(),
+            project: DocumentPackage.find({status: "project"}).lean().execAsync()
+        })
+            .then(function (results) {
+                // TODO: Confirm true/false is correct
+                if (results) {
+                    console.log('[ API ] getDocumentByStatus :: Documents package found: FALSE');
+                }
+                else {
+                    console.log('[ API ] getDocumentByStatus :: Documents package found: TRUE');
+                }
+                res.locals.results = results;
+                next();
+            })
+            .catch(function(err) {
+                console.error(err);
+            })
+            .catch(next);
     }
 };

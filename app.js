@@ -1,6 +1,6 @@
 var express = require('express');
 var favicon = require('serve-favicon');
-var db = require('./mongoose/index');
+var db = require('./mongoose/connection');
 var request = require('request');
 var path = require('path');
 var cookieParser = require('cookie-parser');

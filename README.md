@@ -19,7 +19,7 @@ The file structure of our project as of 10/19/16, sans node_modules, is below. P
 │   └── residence.js
 ├── mongo_shell_insert_template.json
 ├── mongoose
-│   ├── index.js
+│   ├── connection.js
 │   └── read-helpers.js
 ├── package.json
 ├── public
@@ -36,7 +36,7 @@ The file structure of our project as of 10/19/16, sans node_modules, is below. P
 │       └── view.css
 ├── routes
 │   ├── formStyle.css
-│   ├── index.js
+│   ├── connection.js
 │   ├── miketest.js
 │   ├── test.js
 │   └── view.js

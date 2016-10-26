@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var db = require('../mongoose/index');
+var db = require('../mongoose/connection');
 var Application = require('../models/application');
 
-// Import promise egnine
+// Import promise engine
 var Promise = require('bluebird');
 // Tell mongoose we are using the Bluebird promise library
 mongoose.Promise = require('bluebird');
@@ -13,8 +13,9 @@ Promise.promisifyAll(mongoose);
 
 // Helper query functions
 var helpers = require('../mongoose/read-helpers');
+var api = require("../controllers/api");
 
-router.get('/show', function(req, res) {
+router.get('/show', api.getAllDocuments, function(req, res) {
     // Create a static list
     var context = {
         static_list: {
@@ -23,28 +24,21 @@ router.get('/show', function(req, res) {
         }
     };
 
-    // Ref: http://stackoverflow.com/questions/6180896/how-to-return-mongoose-results-from-the-find-method
-    var count, application;
-
-    Promise.props({
-        count: Application.find().count().execAsync(),
-        application: Application.find().lean().execAsync()
-    })
-        .then(function(results) {
-            results.context = context;
-            res.render('application-list', results);
-        })
-        .catch(function(err) {
-            console.error(err);
-        });
+    res.render('application-list', res.locals.results);
 });
 
-var api = require("../controllers/api");
+router.get('/status', api.getDocumentByStatus, function(req, res) {
+    res.json(res.locals.results);
+});
+
+router.get('/:id', api.getDocumentById, function(req, res) {
+    res.json(res.locals.results);
+});
 
 // We use the route like normal
 // router.<HTTP-VERB>(<LOCAL URI>, <API MIDDLEWARE>, <CONTINUE LIKE NORMAL>)
-router.get('/all', api.getAllApplications, function(req, res) {
-    // We receive req and res from <api.getAllApplications>
+router.get('/all', api.getAllDocuments, function(req, res) {
+    // We receive req and res from <api.getAllDocuments>
     // Local variables are stored in res.locals
     var context = res.locals.results; // Keep our sanity
     console.log('[ TEST / ALL ] context.count:', context.count);
