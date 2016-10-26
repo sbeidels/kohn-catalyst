@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-// var db = require('../mongoose/index');
+var db = require('../mongoose/connection');
 var Application = require('../models/application');
 var DocumentPackage = require('../models/documentPackage');
 var api = require('../controllers/api');
