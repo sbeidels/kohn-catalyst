@@ -116,8 +116,8 @@ var DocumentPackageSchema = new Schema({
         assets:                 {
             tags:               ["VA", "EX"],
             count:              Number,
-            name:               String,
-            value:              Number
+            name:               [String],
+            value:              [Number]
         },
         // TODO: could combine with other client_can_contribute
         client_can_contribute:  {
