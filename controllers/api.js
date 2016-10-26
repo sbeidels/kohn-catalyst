@@ -3,8 +3,8 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
-var Application = require('../models/application');
-var DocumentPackageSchema = require('../models/documentPackage');
+// var Application = require('../models/application');
+var DocumentPackage = require('../models/documentPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
@@ -40,13 +40,12 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bleu
 // They keep req, res, err, and next inact as they are passed around
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
-    // TODO: move this function from application collection to document_package collection
     getAllDocuments: function (req, res, next) {
         console.log('[ API ] getAllDocuments :: Call invoked');
 
         Promise.props({
-            application: Application.find().lean().execAsync(), // TODO: move to document package schema
-            count: Application.find().count().execAsync()
+            application: DocumentPackage.find().lean().execAsync(),
+            count: DocumentPackage.find().count().execAsync()
         })
             .then(function (results) {
                 // Save the results into res.locals
@@ -71,12 +70,11 @@ module.exports = {
         console.log('[ API ] getDocumentById :: Call invoked with id: ' + req.params.id);
 
         Promise.props({
-            // TODO: convert to DocumentPackageSchema.findById(req.params.id).lean().execAsync()
-            document: Application.findById(req.params.id).lean().execAsync()
+            document: DocumentPackage.findById(req.params.id).lean().execAsync()
         })
             .then(function(results) {
-                // TODO: convert results.application to results.DocumentPackage
-                if (results.application) {
+                // TODO: Confirm true/false is correct
+                if (results) {
                     console.log('[ API ] getDocumentById :: Documents package found: FALSE');
                 }
                 else {
@@ -97,12 +95,18 @@ module.exports = {
         console.log('[ API ] getDocumentByStatus :: Call invoked');
 
         Promise.props({
-            new: Application.find({status: "New"}).lean().execAsync(),
-            processing: Application.find({$nor:[{ status: "New"}, {status: "Declined"}] }).lean().execAsync(),
-            declined: Application.find({status: "Declined"}).lean().execAsync()
+            new: DocumentPackage.find({status: "new"}).lean().execAsync(),
+            phone: DocumentPackage.find({status: "phone"}).lean().execAsync(),
+            documents: DocumentPackage.find({status: "documents"}).lean().execAsync(),
+            discuss: DocumentPackage.find({status: "discuss"}).lean().execAsync(),
+            visit: DocumentPackage.find({status: "visit"}).lean().execAsync(),
+            handle: DocumentPackage.find({status: "handle"}).lean().execAsync(),
+            declined: DocumentPackage.find({status: "declined"}).lean().execAsync(),
+            project: DocumentPackage.find({status: "project"}).lean().execAsync()
         })
             .then(function (results) {
-                if (results.application) {
+                // TODO: Confirm true/false is correct
+                if (results) {
                     console.log('[ API ] getDocumentByStatus :: Documents package found: FALSE');
                 }
                 else {
