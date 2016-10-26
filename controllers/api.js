@@ -119,5 +119,22 @@ module.exports = {
                 console.error(err);
             })
             .catch(next);
+    },
+
+    postDocument: function(req, res, next) {
+        console.log('[ API ] postDocument :: Call invoked');
+        var doc = new DocumentPackage();
+        console.log(doc);
+        doc.advocate.
+        doc.application.name.first = 'John';
+        doc.application.name.last = 'Fitzpatrick';
+        doc.application.status = 'fucked';
+        doc.save(function(err) {
+            if (err) console.error(err);
+            else {
+                console.log('[ API ] postDocument :: Document created with _id: ');
+                console.log(doc);
+            }
+        });
     }
 };

@@ -29,9 +29,8 @@ ObjectId = Schema.ObjectId;
 // TODO: Research 'trim'ing a value in mongoose
 // TODO: Add access tags as needed - docs = https://docs.mongodb.com/manual/reference/operator/aggregation/redact/
 var DocumentPackageSchema = new Schema({
-    _id:            ObjectId,
     status:         String,
-    created:        Date.now,
+    created:        Date,
     updated:        { type: Date, default: Date.now},
     // Codes needed are:
     // Code - description

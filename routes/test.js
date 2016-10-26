@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var Application = require('../models/application');
+var DocumentPackage = require('./../models/documentPackage');
 
 // Import promise engine
 var Promise = require('bluebird');
@@ -14,6 +15,10 @@ Promise.promisifyAll(mongoose);
 // Helper query functions
 var helpers = require('../mongoose/read-helpers');
 var api = require("../controllers/api");
+
+router.post('/add', api.postDocument, function(req, res) {
+    res.end();
+});
 
 router.get('/show', api.getAllDocuments, function(req, res) {
     // Create a static list
