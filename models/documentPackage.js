@@ -34,10 +34,13 @@ var DocumentPackageSchema = new Schema({
 
     advocate:       {
         is_advocate:    Boolean,
+        individual:     Boolean,
+        npo:            Boolean,
+        gov:            Boolean,
         name:           String,
+        organization_name:  String,
         relationship:   String,
-        phone:          Number,
-        non_profit_name:String
+        phone:          Number
     },
 
     application:    {
