@@ -31,6 +31,8 @@ ObjectId = Schema.ObjectId;
 var DocumentPackageSchema = new Schema({
     _id:            ObjectId,
     status:         String,
+    created:        Date.now,
+    updated:        { type: Date, default: Date.now},
     // Codes needed are:
     // Code - description
     // new - new document package, has yet to be reviewed
