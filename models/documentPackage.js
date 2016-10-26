@@ -30,7 +30,17 @@ ObjectId = Schema.ObjectId;
 // TODO: Add access tags as needed - docs = https://docs.mongodb.com/manual/reference/operator/aggregation/redact/
 var DocumentPackageSchema = new Schema({
     _id:            ObjectId,
-    status:         String,             // TODO: determine concrete review status terms
+    status:         String,
+    // Codes needed are:
+    // Code - description
+    // new - new document package, has yet to be reviewed
+    // phone - document package has been seen, internal agent needs to contact client and verify document package information
+    // documents - additional documents are needed from the client before document package can proceed
+    // discuss - internal discussion needs to take place to determine if the document package is approved, denied, handle-it, or other
+    // visit - a member of catalyst must visit the property to determine the extent of repairs needed
+    // handle - the document package is forwarded to the handle-it team to be completed
+    // declined - the document package was declined for various reasons
+    // project - the project has been approved and the document package will be converted to a project package
 
     advocate:       {
         is_advocate:    Boolean,
