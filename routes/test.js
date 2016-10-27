@@ -17,7 +17,7 @@ var helpers = require('../mongoose/read-helpers');
 var api = require("../controllers/api");
 
 router.post('/add', api.postDocument, function(req, res) {
-    res.end();
+    res.json(res.locals.doc);
 });
 
 router.get('/show', api.getAllDocuments, function(req, res) {
