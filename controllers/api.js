@@ -123,17 +123,39 @@ module.exports = {
 
     postDocument: function(req, res, next) {
         console.log('[ API ] postDocument :: Call invoked');
+
         var doc = new DocumentPackage();
-        console.log(doc);
-        doc.advocate.
-        doc.application.name.first = 'John';
-        doc.application.name.last = 'Fitzpatrick';
-        doc.application.status = 'fucked';
-        doc.save(function(err) {
+
+        // Add items here
+        // Example:
+        doc.status = 'project';
+        doc.created = Date.now();
+        doc.updated = Date.now();
+
+        doc.property = {
+            home_type: '', // String
+            ownership_length: 0, // Number
+            year_constructed: 0,
+            requested_repairs: '',
+            client_can_contribute:  {
+                value: null, // Boolean
+                description: ''
+            },
+            associates_can_contribute: {
+                value: null, // Boolean
+                description: ''
+            }
+        };
+
+        var do_not_save = 1;
+        if (do_not_save == 1) next();
+
+        doc.save(function (err) {
             if (err) console.error(err);
             else {
-                console.log('[ API ] postDocument :: Document created with _id: ');
                 console.log(doc);
+                console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
+                res.locals.doc = doc;
             }
         });
     }
