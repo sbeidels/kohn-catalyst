@@ -122,41 +122,29 @@ module.exports = {
     },
 
     postDocument: function(req, res, next) {
+        // Data will be submitted using req.body
         console.log('[ API ] postDocument :: Call invoked');
 
-        var doc = new DocumentPackage();
+        // For debugging
+        var debug = 1;
+        if (debug == 1) {
+            console.log(req.body);
+        }
 
-        // Add items here
-        // Example:
-        doc.status = 'project';
-        doc.created = Date.now();
-        doc.updated = Date.now();
+        // Normally we would create a new mongoose object to be instantiated
+        // var doc = new DocumentPackage();
+        // And then add data to it
+        // doc.status = 'a string here';
+        // doc.application.name.first = 'name here'
 
-        doc.property = {
-            home_type: '', // String
-            ownership_length: 0, // Number
-            year_constructed: 0,
-            requested_repairs: '',
-            client_can_contribute:  {
-                value: null, // Boolean
-                description: ''
-            },
-            associates_can_contribute: {
-                value: null, // Boolean
-                description: ''
-            }
-        };
+        // Instead we will do it in one line
+        var doc = new DocumentPackage(req.body);
+        console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
 
-        var do_not_save = 1;
-        if (do_not_save == 1) next();
+        // TODO: Call .save() as a promise and resolve flow control
+    },
 
-        doc.save(function (err) {
-            if (err) console.error(err);
-            else {
-                console.log(doc);
-                console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
-                res.locals.doc = doc;
-            }
-        });
+    putUpdateDocument: function(req, res, next) {
+        // TODO: Complete using method findByIdandUpdate
     }
 };
