@@ -119,5 +119,37 @@ module.exports = {
                 console.error(err);
             })
             .catch(next);
+    },
+
+    postDocument: function(req, res, next) {
+        // Data will be submitted using req.body
+        console.log('[ API ] postDocument :: Call invoked');
+
+        // For debugging
+        var debug = 1;
+        if (debug == 1) {
+            console.log(req.body);
+        }
+
+        // Normally we would create a new mongoose object to be instantiated
+        // var doc = new DocumentPackage();
+        // And then add data to it
+        // doc.status = 'a string here';
+        // doc.application.name.first = 'name here'
+
+        // Instead we will do it in one line
+        var doc = new DocumentPackage(req.body);
+        console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
+
+        // Save it to the database with a callback to handle flow control
+        doc.save(function (err) {
+            if (err) {
+                console.error(err);
+            }
+        });
+    },
+
+    putUpdateDocument: function(req, res, next) {
+        // TODO: Complete using method findByIdandUpdate
     }
 };

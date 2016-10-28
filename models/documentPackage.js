@@ -29,8 +29,9 @@ ObjectId = Schema.ObjectId;
 // TODO: Research 'trim'ing a value in mongoose
 // TODO: Add access tags as needed - docs = https://docs.mongodb.com/manual/reference/operator/aggregation/redact/
 var DocumentPackageSchema = new Schema({
-    _id:            ObjectId,
     status:         String,
+    created:        Date,
+    updated:        { type: Date, default: Date.now},
     // Codes needed are:
     // Code - description
     // new - new document package, has yet to be reviewed
@@ -115,13 +116,13 @@ var DocumentPackageSchema = new Schema({
         assets:                 {
             tags:               ["VA", "EX"],
             count:              Number,
-            name:               String,
-            value:              Number
+            name:               [String],
+            value:              [Number]
         },
         // TODO: could combine with other client_can_contribute
         client_can_contribute:  {
             value:              Boolean,
-            amount:             Number,
+            amount:             Number
         },
         // TODO: could combine with other associates_can_contribute
         associates_can_contribute:  {
@@ -135,7 +136,7 @@ var DocumentPackageSchema = new Schema({
     },
 
     property:   {
-        type:                   String,
+        home_type:                   String,
         ownership_length:       Number,
         year_constructed:       Number,     // TODO: Validate as exact length = 4
         requested_repairs:      String,
