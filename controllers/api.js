@@ -141,7 +141,12 @@ module.exports = {
         var doc = new DocumentPackage(req.body);
         console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
 
-        // TODO: Call .save() as a promise and resolve flow control
+        // Save it to the database with a callback to handle flow control
+        doc.save(function (err) {
+            if (err) {
+                console.error(err);
+            }
+        });
     },
 
     putUpdateDocument: function(req, res, next) {
