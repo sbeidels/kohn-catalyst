@@ -28,9 +28,17 @@ router.get('/status', api.getDocumentByStatus, function(req, res) {
     res.json(res.locals.results);
 });
 
-router.get('/:id', api.getDocumentById, function(req, res) {
-    res.json(res.locals.results);
-});
+router.route('/:id')
+    .get(api.getDocumentById, function(req, res) {
+        res.json(res.locals.results);
+    })
+    .put(api.putUpdateDocument, function(req, res) {
+        res.json(res.locals);
+    })
+
+router.put('update-:id', api.putUpdateDocument, function(req, res) {
+
+})
 
 // We use the route like normal
 // router.<HTTP-VERB>(<LOCAL URI>, <API MIDDLEWARE>, <CONTINUE LIKE NORMAL>)
