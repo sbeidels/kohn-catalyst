@@ -41,8 +41,13 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with blue
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
     getAllDocuments: function (req, res, next) {
+        // Log what we are calling to the console
         console.log('[ API ] getAllDocuments :: Call invoked');
 
+        // Create an object to be filled with promises. The object will look like:
+        // .then(function (<name of object here>) {...})
+        // If the name is results, use results.DocumentPackage[index].<what you need>
+        // Obviously it will be an array of DocumentPackages in this example
         Promise.props({
             application: DocumentPackage.find().lean().execAsync(),
             count: DocumentPackage.find().count().execAsync()
@@ -67,8 +72,10 @@ module.exports = {
     },
 
     getDocumentById: function (req, res, next) {
+        // Log the api call we make along with the _id used by it
         console.log('[ API ] getDocumentById :: Call invoked with id: ' + req.params.id);
 
+        // Use results.DocumentPackage.<whatever you need> to access the information
         Promise.props({
             document: DocumentPackage.findById(req.params.id).lean().execAsync()
         })
@@ -83,6 +90,8 @@ module.exports = {
 
                 res.locals.results = results;
 
+                // If we are at this line all promises have executed and returned
+                // Call next() to pass all of this glorious data to the next express router
                 next();
             })
             .catch(function(err) {
@@ -92,8 +101,11 @@ module.exports = {
     },
 
     getDocumentByStatus: function(req, res, next) {
+        // Log the api call made to the console
         console.log('[ API ] getDocumentByStatus :: Call invoked');
 
+        // Access the returned items as results.<status code>[array index].<what you need>
+        // Example: results.visit[3].address.line_1 = a string
         Promise.props({
             new: DocumentPackage.find({status: "new"}).lean().execAsync(),
             phone: DocumentPackage.find({status: "phone"}).lean().execAsync(),
@@ -113,6 +125,9 @@ module.exports = {
                     console.log('[ API ] getDocumentByStatus :: Documents package found: TRUE');
                 }
                 res.locals.results = results;
+
+                // If we are at this line all promises have executed and returned
+                // Call next() to pass all of this glorious data to the next express router
                 next();
             })
             .catch(function(err) {
@@ -151,5 +166,9 @@ module.exports = {
 
     putUpdateDocument: function(req, res, next) {
         // TODO: Complete using method findByIdandUpdate
+        // Log the _id, key, and value that are passed to the function
+        console.log('[ API ] putUpdateDocument :: Call invoked with _id: ' + req.params._id
+            + ', key: ' + req.params.key + ', and value: ' + req.params.value);
+
     }
 };
