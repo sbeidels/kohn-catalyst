@@ -1,28 +1,52 @@
 <center><h2>Catalyst Partnerships Recipient Application</h2></center>
-<!--Begin the actual Form 
-<form action="http://localhost:8000/form" id="appForm"> -->
+<!--Begin the actual Form -->
+<form id="appForm">
 
-	<input type="hidden" name="ownsHome" value="true">
+	<button type="button" id="testButton">Trace form data as JSON (check console)</button>
+	
 	<input type="hidden" name="status" value="new">
+	
+	
 	<div class="formSection"></div>
+	<div class="formSection"><h4>Welcome!</h4>
+		<p>Dear Applicant:</p>
+		<p>Catalyst Partnerships provides construction repairs, remodeling, and other services to homeowners who are elderly, disabled, and/or low-income. We also do projects for other like minded non-profit organizations. Our mission is to bring together useful resources and caring volunteers to meet the needs of under-resourced people in our community. Work is performed by skilled and unskilled volunteers, and overseen by licensed contractors. Funds and materials are provided through donations from generous individuals, businesses, and organizations in the community. Recipients are not required to pay for help, but are encouraged to contribute whatever labor and/or funds they are able to. Please complete the following application and click Submit. Please call with any questions (971) 245-6555.</p>
+		<p>Please note that Catalyst does not provide services for rental properties. Check below to indicate that you are the owner, and up to date on your mortgage payments.</p>
+
+		<div class="formLine">
+			<input type="checkbox" name="owns_home" value="true">I own the home for which I am requesting work.
+		</div>
+		<div class="formLine">
+			<input type="checkbox" name="mortgage_up_to_date" value="true">I am up to date on my mortgage payments. 
+		</div>
+	</div>
 	<div class="formSection"><h4>Before we Begin...</h4>
 		<div class="formLine">
-			Please check the box below and fill in the details if you represent a non-profit organization advocating for someone else.
+			If you are filling out this form advocating for someone else, please check the appropriate box below and fill in the details.
 		</div>
 		<div class="formLine">
-			<input type="checkbox" name="advocate" value="true">I represent a non-profit organization advocating for this client
+			<input type="checkbox" name="advocate_individual" value="true">I am a private individual advocating for this applicant.
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate-name" placeholder="Name">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_individual_name" placeholder="Name">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Relationship to client: <input type="text" name="advocate-relationship" placeholder="Relationship">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_individual_phone" placeholder="Phone">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate-phone" placeholder="Phone">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Relationship to client: <input type="text" name="advocate_individual_relationship" placeholder="Relationship">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Non-Profit Organization: <input class="largeField" type="text" name="advocate-npo" placeholder="Organization Name">
+			<input type="checkbox" name="advocate_npogov" value="true">I represent a non-profit organization/governmental agency advocating for this applicant.
+		</div>
+		<div class="formLine">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_npogov_name" placeholder="Name">
+		</div>
+		<div class="formLine">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_npogov_phone" placeholder="Phone">
+		</div>
+		<div class="formLine">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Organization/Agency: <input class="largeField" type="text" name="advocate_npo_organization" placeholder="Organization Name">
 		</div>
 	</div>
 	<div class="formSection"><h4>Personal Information</h4>
@@ -315,7 +339,7 @@
 
 
 
-<script src="appAdd.js"></script>
+<script src="addForm.js"></script>
 
 
 
