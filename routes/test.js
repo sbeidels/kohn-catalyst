@@ -21,15 +21,7 @@ router.post('/add', api.postDocument, function(req, res) {
 });
 
 router.get('/show', api.getAllDocuments, function(req, res) {
-    // Create a static list
-    var context = {
-        static_list: {
-            state : [ "Ohio", "Montana", "Alaska" ],
-            city : [ "Austin", "San Diego", "New York" ]
-        }
-    };
-
-    res.render('application-list', res.locals.results);
+    res.json(res.locals.results);
 });
 
 router.get('/status', api.getDocumentByStatus, function(req, res) {
