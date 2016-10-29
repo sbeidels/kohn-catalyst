@@ -165,10 +165,57 @@ module.exports = {
     },
 
     putUpdateDocument: function(req, res, next) {
-        // TODO: Complete using method findByIdandUpdate
-        // Log the _id, key, and value that are passed to the function
-        console.log('[ API ] putUpdateDocument :: Call invoked with _id: ' + req.params._id
-            + ', key: ' + req.params.key + ', and value: ' + req.params.value);
+        // When executed this will apply updates to a doc and return the MODIFIED doc
 
+        // Log the _id, key, and value that are passed to the function
+        console.log('[ API ] putUpdateDocument :: Call invoked with _id: ' + req.params.id
+            + ' | key: ' + req.body.key + ' | value: ' + req.body.value);
+        console.log(req.body.key + ' + ' + req.body.value);
+
+        // Build the key:value pairs to be updated
+        // Since there is only one key and one value, we can use the method below
+        var updates = {};
+        updates[req.body.key] = req.body.value;
+        console.log(updates);
+
+        // TODO: Debug why the document is not updating
+        Promise.props({
+            doc: DocumentPackage.findOneAndUpdate(
+                // Condition
+                {_id: req.params.id},
+                // Updates
+                {
+                    // $set: {key: value}
+                    $set: updates
+                },
+                // Options
+                {
+                    // new - defaults to false, returns the modified document when true, or the original when false
+                    new: true,
+                    // runValidators - defaults to false, make sure the data fits the model before applying the update
+                    runValidators: true
+                }
+                // Callback if needed
+                // { }
+            ).execAsync()
+        })
+            .then(function (results) {
+                // TODO: Confirm true/false is correct
+                if (results) {
+                    console.log('[ API ] putUpdateDocument :: Documents package found: FALSE');
+                }
+                else {
+                    console.log('[ API ] putUpdateDocument :: Documents package found: TRUE');
+                }
+                res.locals.results = results;
+
+                // If we are at this line all promises have executed and returned
+                // Call next() to pass all of this glorious data to the next express router
+                next();
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+            .catch(next);
     }
 };
