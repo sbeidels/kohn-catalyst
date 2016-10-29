@@ -8,7 +8,7 @@ var DocumentPackage = require('../models/documentPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
-Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bleubird
+Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bluebird
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Global database value

@@ -17,19 +17,55 @@ var helpers = require('../mongoose/read-helpers');
 //Need ObjectID to search by ObjectID
 var ObjectId = require('mongodb').ObjectID;
 
-router.get('/', function(req, res) {
+router.get('/', api.getDocumentByStatus, function(req, res, next) {
 
-    Promise.props({
-        new: Application.find({status: "New"}).lean().execAsync(),
-        processing: Application.find({$nor:[{ status: "New"}, {status: "Declined"}] }).lean().execAsync(),
-        declined: Application.find({status: "Declined"}).lean().execAsync()
-    })
-        .then(function(results) {
-            res.render('vetting', results);
-        })
-        .catch(function(err) {
-            console.error(err);
+    var payload = {};
+
+    payload.new = res.locals.results.new;
+    payload.declined = res.locals.results.declined;
+
+    // TODO: ADD OTHER STATUSES LIKE SITE VISIT, ETC
+
+    payload.processing = [];
+
+    if (res.locals.results.phone[0] == null) {
+        console.log('[ ROUTER ] /view/status :: res.locals.results.phone array is empty');
+    } else {
+        res.locals.results.phone.forEach(function (element) {
+            payload.processing.push(element);
         });
+    }
+
+    if (res.locals.results.documents[0] == null) {
+        console.log('[ ROUTER ] /view/status :: res.locals.results.documents array is empty');
+    } else {
+        res.locals.results.documents.forEach(function (element) {
+            payload.processing.push(element);
+        });
+    }
+
+    if (res.locals.results.discuss[0] == null) {
+        console.log('[ ROUTER ] /view/status :: res.locals.results.discuss array is empty');
+    } else {
+        res.locals.results.discuss.forEach(function (element) {
+            payload.processing.push(element);
+        });
+    }
+
+
+    res.render('vetting', payload);
+
+    // Promise.props({
+    //     new: Application.find({status: "New"}).lean().execAsync(),
+    //     processing: Application.find({$nor:[{ status: "New"}, {status: "Declined"}] }).lean().execAsync(),
+    //     declined: Application.find({status: "Declined"}).lean().execAsync()
+    // })
+    //     .then(function(results) {
+    //         res.render('vetting', results);
+    //     })
+    //     .catch(function(err) {
+    //         console.error(err);
+    //     });
 
 });
 
@@ -98,7 +134,7 @@ router.get('/:id', function(req, res) {
     /* search by _id. Maybe we can do regular ID but currently
         it's not unique */
     Promise.props({
-        application: Application.find({_id: ObjectId(req.params.id)}).lean().execAsync()
+        application: DocumentPackage.find({_id: ObjectId(req.params.id)}).lean().execAsync()
     })
         .then(function(result) {
             console.log(result.application[0]);

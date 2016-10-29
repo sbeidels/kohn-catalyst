@@ -11,7 +11,7 @@
 </nav>
 
 <div>
-    <h1>{{first_name}} {{last_name}}</h1>
+    <h1>{{application.name.first}} {{application.name.last}}</h1>
 
     <!--VETTING NOTES-->
     <div id="vetAccordion" role="tablist" aria-multiselectable="true">
@@ -43,8 +43,20 @@
                 <table class="table table-striped">
                     <tbody>
                     <tr>
-                        <td>Phone</td>
-                        <td><a href="#" id="phone_number" data-type="text" data-pk="1" data-url="" data-title="Enter Phone Number">{{phone_number}}</a></td>
+                        <td>Name</td>
+                        <td>{{application.name.first}} {{application.name.middle}} {{application.name.last}}</td>
+                    </tr>
+                    <tr>
+                        <td>Preferred Name</td>
+                        <td>{{application.name.preferred}}</td>
+                    </tr>
+                    <tr>
+                        <td>Home Phone</td>
+                        <td><a href="#" id="phone_number" data-type="text" data-pk="1" data-url="/edit/phone/home/{{_id}}" data-title="Enter Home Phone Number">{{application.phone.home}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Phone</td>
+                        <td><a href="#" id="cell_phone" data-type="text" data-pk="1" data-url="/edit/phone/cell/{{_id}}" data-title="Enter Cell Phone Number">{{application.phone.cell}}</a></td>
                     </tr>
                     <tr>
                         <td>Address</td>
@@ -55,37 +67,38 @@
                     </tr>
                     <tr>
                         <td>Date Of Birth</td>
-                        <td>{{dob}}</td>
+                        <td>{{application.dob.date}}</td>
                         <!--<td><a href="#" id="dob" data-type="date" data-pk="1" data-url="" data-title="Select date">{{dob}}</a></td>-->
                     </tr>
                     <tr>
                         <td>Marital Status</td>
-                        <!--<td>{{marital_status}}</td>-->
-                        <td>
-                            <a href="#" id="marital_status" data-type="select" data-pk="1" data-url="" data-title="Select Marital Status"></a>
-                        </td>
+                        <td>{{application.is_married}}</td>
+                        <!--<td>-->
+                            <!--<a href="#" id="marital_status" data-type="select" data-pk="1" data-url="" data-title="Select Marital Status"></a>-->
+                        <!--</td>-->
                     </tr>
                     <tr>
                         <td>Email</td>
                         <!--<td>{{email}}</td>-->
-                        <td><a href="#" id="email" data-type="text" data-pk="1" data-url="" data-title="Enter Email">{{email}}</a></td>
+                        <td><a href="#" id="email" data-type="text" data-pk="1" data-url="" data-title="Enter Email">{{application.email}}</a></td>
                     </tr>
                     <tr>
                         <td>Driver's License</td>
                         <!--<td>{{driver_license}}</td>-->
-                        <td><a href="#" id="driver_license" data-type="text" data-pk="1" data-url="" data-title="Enter Driver's License Number">{{driver_license}}</a></td>
+                        <td><a href="#" id="driver_license" data-type="text" data-pk="1" data-url="" data-title="Enter Driver's License Number">{{application.driver_license.number}}</a></td>
                     </tr>
                     <tr>
                         <td>Emergency Contact</td>
                         <td>Name: {{emergency_contact.name}}
                             <br>
-                            <!--TODO Relationship-->
+                            Relationship: {{emergency_contact.relationship}}
+                            <br>
                             Phone: {{emergency_contact.phone}}
                         </td>
                     </tr>
                     <tr>
                         <td>Language</td>
-                        <td>{{language}}</td>
+                        <td>{{application.language}}</td>
                     </tr>
                     <tr>
                         <td>Veteran</td>
@@ -122,7 +135,7 @@
             <div class="panel-heading" role="tab" id="financeHeader">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#financeAccordion" href="#finance" aria-expanded="true" aria-controls="finance">
-                        Vetting Notes
+                        Financial Requirements
                     </a>
                 </h2>
             </div>
@@ -143,28 +156,27 @@
         //FILLS IN EDITABLE DATA FOR ADDRESS
         $('#address').editable({
             value: {
-                number: '{{address.number}}',
-                street: '{{address.street}}',
-                unit: '{{address.unit}}',
-                city: '{{address.city}}',
-                state: '{{address.state}}',
-                zip: '{{address.zip}}'
+                line_1: '{{application.address.line_1}}',
+                line_2: '{{application.address.line_2}}',
+                city: '{{application.address.city}}',
+                state: '{{application.address.state}}',
+                zip: '{{application.address.zip}}'
             }
         });
 
         //FILLS IN EDITABLE DATA FOR marital status
-        $('#marital_status').editable({
-            value: '{{marital_status}}',
-            source:
-            [
-                {value: 'married', text: 'married'},
-                {value: 'single', text: 'single'}
-            ]
-        });
+        <!--$('#marital_status').editable({-->
+            <!--value: '{{marital_status}}',-->
+            <!--source:-->
+            <!--[-->
+                <!--{value: 'married', text: 'married'},-->
+                <!--{value: 'single', text: 'single'}-->
+            <!--]-->
+        <!--});-->
 
         //FILLS IN EDITABLE DATA FOR veteran status
         $('#veteran').editable({
-            value: {{veteran}},
+            value: {{application.veteran}},
             source:
                     [
                         {value: 1, text: 'true'},
@@ -172,4 +184,5 @@
                     ]
         });
     });
+
 </script>

@@ -38,7 +38,7 @@ $(document).ready(function() {
                 $(element).empty();
                 return;
             }
-            var html = $('<div>').text(value.number).html() + ', ' + $('<div>').text(value.street).html() + ', ' + $('<div>').text(value.unit).html() + ' ' + $('<div>').text(value.city).html() + ', ' + $('<div>').text(value.state).html() + ', ' +  $('<div>').text(value.zip).html();
+            var html = $('<div>').text(value.line_1).html() + ', ' + $('<div>').text(value.line_2).html() + ', ' + $('<div>').text(value.city).html() + ', ' + $('<div>').text(value.state).html() + ', ' +  $('<div>').text(value.zip).html();
             $(element).html(html);
         },
 
@@ -104,9 +104,8 @@ $(document).ready(function() {
             if(!value) {
                 return;
             }
-            this.$input.filter('[name="number"]').val(value.number);
-            this.$input.filter('[name="street"]').val(value.street);
-            this.$input.filter('[name="unit"]').val(value.unit);
+            this.$input.filter('[name="number"]').val(value.line_1);
+            this.$input.filter('[name="street"]').val(value.line_2);
             this.$input.filter('[name="city"]').val(value.city);
             this.$input.filter('[name="state"]').val(value.state);
             this.$input.filter('[name="zip"]').val(value.zip);
@@ -119,9 +118,8 @@ $(document).ready(function() {
          **/
         input2value: function() {
             return {
-                number: this.$input.filter('[name="number"]').val(),
-                street: this.$input.filter('[name="street"]').val(),
-                unit: this.$input.filter('[name="unit"]').val(),
+                number: this.$input.filter('[name="line_1"]').val(),
+                street: this.$input.filter('[name="line_2"]').val(),
                 city: this.$input.filter('[name="city"]').val(),
                 state: this.$input.filter('[name="state"]').val(),
                 zip: this.$input.filter('[name="zip"]').val()
@@ -153,9 +151,8 @@ $(document).ready(function() {
 
     Address.defaults = $.extend({}, $.fn.editabletypes.abstractinput.defaults, {
         tpl:
-        '<div class="editable-address"><label><span>Number: </span><input type="text" name="number" class="input-small"></label></div>'+
-        '<div class="editable-address"><label><span>Street: </span><input type="text" name="street" class="input-small"></label></div>'+
-        '<div class="editable-address"><label><span>Unit: </span><input type="text" name="unit" class="input-small"></label></div>'+
+        '<div class="editable-address"><label><span>Line 1: </span><input type="text" name="line_1" class="input-small"></label></div>'+
+        '<div class="editable-address"><label><span>Line 2: </span><input type="text" name="line_2" class="input-small"></label></div>'+
         '<div class="editable-address"><label><span>City: </span><input type="text" name="city" class="input-small"></label></div>'+
         '<div class="editable-address"><label><span>State: </span><input type="text" name="state" class="input-mini"></label></div>'+
         '<div class="editable-address"><label><span>Zip: </span><input type="text" name="zip" class="input-mini"></label></div>',
@@ -168,7 +165,12 @@ $(document).ready(function() {
     /**
      * SET ELEMENTS TO EDITABLE
      **/
-    $('#phone_number').editable();
+    $('#phone_number').editable({
+            success: function(response, newValue) {
+                if(response.status == 'error') return response.msg; //msg will be shown in editable form
+            }
+        }
+    );
     $('#email').editable();
     $('#driver_license').editable();
 
