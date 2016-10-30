@@ -39,8 +39,16 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
 
     payload.processing = [];
 
+    if (res.locals.results.new[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'new\'');
+    } else {
+        res.locals.results.new.forEach(function (element) {
+            payload.processing.push(element);
+        });
+    }
+
     if (res.locals.results.phone[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.phone array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'phone\'');
     } else {
         res.locals.results.phone.forEach(function (element) {
             payload.processing.push(element);
@@ -48,7 +56,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
 
     if (res.locals.results.documents[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.documents array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'documents\'');
     } else {
         res.locals.results.documents.forEach(function (element) {
             payload.processing.push(element);
@@ -56,16 +64,46 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
 
     if (res.locals.results.discuss[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.discuss array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'discuss\'');
     } else {
         res.locals.results.discuss.forEach(function (element) {
             payload.processing.push(element);
         });
     }
 
+    if (res.locals.results.visit[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'visit\'');
+    } else {
+        res.locals.results.visit.forEach(function (element) {
+            payload.processing.push(element);
+        });
+    }
+
+    if (res.locals.results.handle[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'handle\'');
+    } else {
+        res.locals.results.handle.forEach(function (element) {
+            payload.processing.push(element);
+        });
+    }
+
+    if (res.locals.results.declined[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'declined\'');
+    } else {
+        res.locals.results.declined.forEach(function (element) {
+            payload.processing.push(element);
+        });
+    }
+
+    if (res.locals.results.project[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'project\'');
+    } else {
+        res.locals.results.project.forEach(function (element) {
+            payload.processing.push(element);
+        });
+    }
 
     res.render('vetting', payload);
-
 });
 
 /** This is the beginning of an example to use
@@ -73,49 +111,49 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
  */
 router.get('/status', api.getDocumentByStatus, function(req, res, next) {
     if (res.locals.results.new[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.new array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'new\'');
     } else {
         // Do something with the documents you found
     }
 
     if (res.locals.results.phone[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.phone array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'phone\'');
     } else {
         // Do something with the documents you found
     }
 
     if (res.locals.results.documents[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.documents array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'documents\'');
     } else {
         // Do something with the documents you found
     }
 
     if (res.locals.results.discuss[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.discuss array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'discuss\'');
     } else {
         // Do something with the documents you found
     }
 
     if (res.locals.results.visit[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.visit array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'visit\'');
     } else {
         // Do something with the documents you found
     }
 
     if (res.locals.results.handle[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.handle array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'handle\'');
     } else {
         // Do something with the documents you found
     }
 
     if (res.locals.results.declined[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.declined array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'declined\'');
     } else {
         // Do something with the documents you found
     }
 
     if (res.locals.results.project[0] == null) {
-        console.log('[ ROUTER ] /view/status :: res.locals.results.project array is empty');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'project\'');
     } else {
 
     }
