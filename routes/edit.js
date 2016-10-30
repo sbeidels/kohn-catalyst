@@ -19,9 +19,9 @@ router.post('/', function(req, res) {
     console.log("POST to page without ID parameter");
 });
 
-/*
- Attempting to get Update Data
- */
+/**
+ * Attempting to get Update Data
+ **/
 router.post('/:id', function(req, res) {
     //Checking what's in params
     console.log("Request to update _ID " + ObjectId(req.params.id));
@@ -30,25 +30,46 @@ router.post('/:id', function(req, res) {
 
     var updateValue = { $set : {} };
     updateValue.$set[req.body.name] = req.body.value;
+    console.log(updateValue);
 
-    // var updateStatus = DocumentPackage.update(
-    //     {_id: ObjectId(req.params.id)},
-    //     updateValue
-    // )
-    //  console.log(updateValue);
+    var updateStatus = DocumentPackage.update(
+        {_id: ObjectId(req.params.id)},
+        updateValue,
+        function(err){
+            if(err)
+            {   res.status(500).send({ status: 'error' });}
+            else
+            {   res.status(200).send({ status: 'success' });}
+        }
+    );
 
 
 });
 
-router.post('/phone/home/:id', function(req, res) {
+
+/**
+ * EDIT ADDRESS
+ **/
+router.post('/address/:id', function(req, res) {
     //Checking what's in params
-    console.log("Request to update _ID " + ObjectId(req.params.id));
-    console.log("Value received: " + req.body.value);
-    console.log("Name received: " + req.body.name);
+    console.log("Updating: ");
+    console.log("Line 1: " + req.body["value[line_1]"]);
+    console.log("Line 2: " + req.body["value[line_2]"]);
+    console.log("City: " + req.body["value[city]"]);
+    console.log("State: " + req.body["value[state]"]);
+    console.log("Zip: " + req.body["value[zip]"]);
 
     DocumentPackage.update(
         {_id: ObjectId(req.params.id)},
-        { $set: {"application.phone.home": req.body.value}},
+        { $set:
+            {
+                "application.address.line_1": req.body["value[line_1]"],
+                "application.address.line_2": req.body["value[line_2]"],
+                "application.address.city": req.body["value[city]"],
+                "application.address.state": req.body["value[state]"],
+                "application.address.zip": req.body["value[zip]"]
+            }
+        },
         function(err)
         {
             if(err)
@@ -58,6 +79,4 @@ router.post('/phone/home/:id', function(req, res) {
         }
     );
 });
-
-
 module.exports = router;

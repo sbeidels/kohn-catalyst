@@ -66,18 +66,6 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
 
     res.render('vetting', payload);
 
-    // Promise.props({
-    //     new: Application.find({status: "New"}).lean().execAsync(),
-    //     processing: Application.find({$nor:[{ status: "New"}, {status: "Declined"}] }).lean().execAsync(),
-    //     declined: Application.find({status: "Declined"}).lean().execAsync()
-    // })
-    //     .then(function(results) {
-    //         res.render('vetting', results);
-    //     })
-    //     .catch(function(err) {
-    //         console.error(err);
-    //     });
-
 });
 
 /** This is the beginning of an example to use

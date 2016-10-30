@@ -14,8 +14,6 @@ $(document).ready(function() {
         this.init('address', options, Address.defaults);
     };
 
-    //createAddressXedit();
-
     //inherit from Abstract input
     $.fn.editableutils.inherit(Address, $.fn.editabletypes.abstractinput);
 
@@ -104,8 +102,8 @@ $(document).ready(function() {
             if(!value) {
                 return;
             }
-            this.$input.filter('[name="number"]').val(value.line_1);
-            this.$input.filter('[name="street"]').val(value.line_2);
+            this.$input.filter('[name="line_1"]').val(value.line_1);
+            this.$input.filter('[name="line_2"]').val(value.line_2);
             this.$input.filter('[name="city"]').val(value.city);
             this.$input.filter('[name="state"]').val(value.state);
             this.$input.filter('[name="zip"]').val(value.zip);
@@ -118,8 +116,8 @@ $(document).ready(function() {
          **/
         input2value: function() {
             return {
-                number: this.$input.filter('[name="line_1"]').val(),
-                street: this.$input.filter('[name="line_2"]').val(),
+                line_1: this.$input.filter('[name="line_1"]').val(),
+                line_2: this.$input.filter('[name="line_2"]').val(),
                 city: this.$input.filter('[name="city"]').val(),
                 state: this.$input.filter('[name="state"]').val(),
                 zip: this.$input.filter('[name="zip"]').val()
@@ -132,7 +130,7 @@ $(document).ready(function() {
          @method activate()
          **/
         activate: function() {
-            this.$input.filter('[name="number"]').focus();
+            this.$input.filter('[name="line_1"]').focus();
         },
 
         /**
@@ -164,15 +162,52 @@ $(document).ready(function() {
 
     /**
      * SET ELEMENTS TO EDITABLE
+     * W/ success callback function
      **/
     $('#phone_number').editable({
             success: function(response, newValue) {
-                if(response.status == 'error') return response.msg; //msg will be shown in editable form
+                if(response.status == 'error') return response.msg;
             }
         }
     );
-    $('#email').editable();
-    $('#driver_license').editable();
+
+    $('#cell_phone').editable({
+            success: function(response, newValue) {
+                if(response.status == 'error') return response.msg;
+            }
+        }
+    );
+
+    $('#pref_name').editable({
+            success: function(response, newValue) {
+                if(response.status == 'error') return response.msg;
+            }
+        }
+    );
+
+    $('#spouse').editable({
+        success: function(response, newValue) {
+            if(response.status == 'error') return response.msg;
+        }
+    });
+
+    $('#email').editable({
+        success: function(response, newValue) {
+            if(response.status == 'error') return response.msg;
+        }
+    });
+
+    $('#driver_license').editable({
+        success: function(response, newValue) {
+            if(response.status == 'error') return response.msg;
+        }
+    });
+
+    $('#special_circumstances').editable({
+        success: function(response, newValue) {
+            if(response.status == 'error') return response.msg;
+        }
+    });
 
     // $('#dob').editable({
     //     format: 'mm/dd/yyyy',
