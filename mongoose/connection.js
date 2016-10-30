@@ -10,13 +10,13 @@ var options = {
     user:   config.mongo.username,      // Username and password of a user that has read and write permissions
     pass:   config.mongo.password
 };
-var uri = 'mongodb://' + remote_url + '/' + config.mongo.db.test;
+var uri = 'mongodb://' + remote_url + '/' + config.mongo.db;
 
 // Connect to the URL
 mongoose.connect(uri, options);
 mongoose.connection.on('error', console.error.bind(console, '[ DATABASE ] Connection :: Connection response: '));
 mongoose.connection.once('open', function () {
-    console.log('[ DATABASE ] Connection :: Successfully connected to the database ' + config.mongo.db);
+    console.log('[ DATABASE ] Connection :: Successfully connected to the database: ' + config.mongo.db);
 });
 
 // Nothing needs to be exported, simply use:   require('<path>/mongoose')
