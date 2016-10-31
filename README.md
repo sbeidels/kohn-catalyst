@@ -39,6 +39,7 @@ The file structure of our project as of 10/19/16, sans node_modules, is below. P
 │   ├── connection.js
 │   ├── miketest.js
 │   ├── test.js
+│   ├── edit.js
 │   └── view.js
 └── views
     ├── application-list.hbs
