@@ -168,14 +168,22 @@ router.get('/:id', function(req, res) {
     //Checking what's in params
     console.log("Rendering application " + ObjectId(req.params.id));
 
-    /* search by _id. Maybe we can do regular ID but currently
-        it's not unique */
+    /* search by _id. */
     Promise.props({
         application: DocumentPackage.find({_id: ObjectId(req.params.id)}).lean().execAsync()
     })
         .then(function(result) {
-            console.log(result.application[0]);
-            //Is this how to send just the object rather than an array?
+            console.log("Before: " + result.application[0].application.dob.date);
+            //format birth date
+            if(result.application[0].application.dob.date != null) {
+                var dobYear = result.application[0].application.dob.date.getFullYear();
+                //get month and day with padding
+                var dobDay = ( "00" + result.application[0].application.dob.date.getDate()).slice(-2);
+                var dobMon = ("00" + (result.application[0].application.dob.date.getMonth()+1)).slice(-2);
+
+                result.application[0].application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
+                console.log("After: " + dobYear + "-" + dobMon + "-" + dobDay);
+            }
             res.render('view', result.application[0]);
         })
         .catch(function(err) {

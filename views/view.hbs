@@ -46,7 +46,10 @@
                     <tbody>
                     <tr>
                         <td>Name</td>
-                        <td>{{application.name.first}} {{application.name.middle}} {{application.name.last}}</td>
+                        <!--<td>{{application.name.first}} {{application.name.middle}} {{application.name.last}}</td>-->
+                        <td>
+                            <a id="name" href="#" data-type="name" data-pk="1" data-url="/edit/name/{{_id}}" data-title="Enter Name"></a>
+                        </td>
                     </tr>
                     <tr>
                         <td>Preferred Name</td>
@@ -68,8 +71,7 @@
                     </tr>
                     <tr>
                         <td>Date Of Birth</td>
-                        <td>{{application.dob.date}}</td>
-                        <!--<td><a href="#" id="dob" data-type="date" data-pk="1" data-url="" data-title="Select date">{{dob}}</a></td>-->
+                        <td><a href="#" id="dob" data-type="date" data-pk="1" data-url="/edit/{{_id}}" data-name="application.dob.date" data-title="Select date">{{application.dob.date}}</a></td>
                     </tr>
                     <tr>
                         <td>Married</td>
@@ -176,6 +178,15 @@
                 city: '{{application.address.city}}',
                 state: '{{application.address.state}}',
                 zip: '{{application.address.zip}}'
+            }
+        });
+
+        //FILLS IN EDITABLE DATA FOR FULL NAME
+        $('#name').editable({
+            value: {
+                first: '{{application.name.first}}',
+                middle: '{{application.name.middle}}',
+                last: '{{application.name.last}}'
             }
         });
 

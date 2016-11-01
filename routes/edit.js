@@ -46,7 +46,6 @@ router.post('/:id', function(req, res) {
 
 });
 
-
 /**
  * EDIT ADDRESS
  **/
@@ -69,6 +68,35 @@ router.post('/address/:id', function(req, res) {
                 "application.address.state": req.body["value[state]"],
                 "application.address.zip": req.body["value[zip]"]
             }
+        },
+        function(err)
+        {
+            if(err)
+            {   res.status(500).send({ status: 'error' });}
+            else
+            {   res.status(200).send({ status: 'success' });}
+        }
+    );
+});
+
+/**
+ * EDIT FULL NAME
+ **/
+router.post('/name/:id', function(req, res) {
+    //Checking what's in params
+    console.log("Updating: ");
+    console.log("First Name: " + req.body["value[first]"]);
+    console.log("Middle Name: " + req.body["value[middle]"]);
+    console.log("Last Name: " + req.body["value[last]"]);
+
+    DocumentPackage.update(
+        {_id: ObjectId(req.params.id)},
+        { $set:
+        {
+            "application.name.first": req.body["value[first]"],
+            "application.name.middle": req.body["value[middle]"],
+            "application.name.last": req.body["value[last]"]
+        }
         },
         function(err)
         {
