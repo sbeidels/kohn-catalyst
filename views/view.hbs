@@ -11,7 +11,9 @@
 </nav>
 
 <div>
-    <h1>{{first_name}} {{last_name}}</h1>
+    <h1>{{application.name.first}} {{application.name.last}}</h1>
+
+    <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h3>
 
     <!--VETTING NOTES-->
     <div id="vetAccordion" role="tablist" aria-multiselectable="true">
@@ -43,55 +45,83 @@
                 <table class="table table-striped">
                     <tbody>
                     <tr>
-                        <td>Phone</td>
-                        <td><a href="#" id="phone_number" data-type="text" data-pk="1" data-url="" data-title="Enter Phone Number">{{phone_number}}</a></td>
+                        <td>Name</td>
+                        <!--<td>{{application.name.first}} {{application.name.middle}} {{application.name.last}}</td>-->
+                        <td>
+                            <a id="name" href="#" data-type="name" data-pk="1" data-url="/edit/name/{{_id}}" data-title="Enter Name"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Preferred Name</td>
+                        <td><a href="#" id="pref_name" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.name.preferred" data-title="Enter Preferred Name">{{application.name.preferred}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Home Phone</td>
+                        <td><a href="#" id="phone_number" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.phone.home" data-title="Enter Home Phone Number">{{application.phone.home}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Cell Phone</td>
+                        <td><a href="#" id="cell_phone" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.phone.cell" data-title="Enter Cell Phone Number">{{application.phone.cell}}</a></td>
                     </tr>
                     <tr>
                         <td>Address</td>
                         <td>
-                            <a id="address" href="#" data-type="address" data-pk="1" data-url="" data-title="Enter Address">
-                            </a>
+                            <a id="address" href="#" data-type="address" data-pk="1" data-url="/edit/address/{{_id}}" data-title="Enter Address"></a>
                         </td>
                     </tr>
                     <tr>
                         <td>Date Of Birth</td>
-                        <td>{{dob}}</td>
-                        <!--<td><a href="#" id="dob" data-type="date" data-pk="1" data-url="" data-title="Select date">{{dob}}</a></td>-->
+                        <td><a href="#" id="dob" data-type="date" data-pk="1" data-url="/edit/{{_id}}" data-name="application.dob.date" data-title="Select date">{{application.dob.date}}</a></td>
                     </tr>
                     <tr>
-                        <td>Marital Status</td>
-                        <!--<td>{{marital_status}}</td>-->
+                        <td>Married</td>
                         <td>
-                            <a href="#" id="marital_status" data-type="select" data-pk="1" data-url="" data-title="Select Marital Status"></a>
+                            <a href="#" id="marital_status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="application.is_married" data-title="Select Marital Status"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Spouse</td>
+                        <td>
+                            <a href="#" id="spouse" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.spouse" data-title="Enter Spouse Name">{{application.spouse}}</a>
                         </td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <!--<td>{{email}}</td>-->
-                        <td><a href="#" id="email" data-type="text" data-pk="1" data-url="" data-title="Enter Email">{{email}}</a></td>
+                        <td><a href="#" id="email" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.email" data-title="Enter Email">{{application.email}}</a></td>
                     </tr>
                     <tr>
                         <td>Driver's License</td>
-                        <!--<td>{{driver_license}}</td>-->
-                        <td><a href="#" id="driver_license" data-type="text" data-pk="1" data-url="" data-title="Enter Driver's License Number">{{driver_license}}</a></td>
+                        <td><a href="#" id="driver_license" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.driver_license.number" data-title="Enter Driver's License Number">{{application.driver_license.number}}</a></td>
                     </tr>
                     <tr>
                         <td>Emergency Contact</td>
-                        <td>Name: {{emergency_contact.name}}
+                        <td>Name: {{application.emergency_contact.name}}
                             <br>
-                            <!--TODO Relationship-->
-                            Phone: {{emergency_contact.phone}}
+                            Relationship: {{application.emergency_contact.relationship}}
+                            <br>
+                            Phone: {{application.emergency_contact.phone}}
                         </td>
                     </tr>
                     <tr>
                         <td>Language</td>
-                        <td>{{language}}</td>
+                        <td>{{application.language}}</td>
                     </tr>
                     <tr>
                         <td>Veteran</td>
-                        <!--<td>{{veteran}}</td>-->
                         <td>
-                            <a href="#" id="veteran" data-type="select" data-pk="1" data-url="" data-title="Select Veteran Status"></a>
+                            <a href="#" id="veteran" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="application.veteran" data-title="Select Veteran Status"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Owns Home</td>
+                        <td>
+                            <a href="#" id="owns_home" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="application.owns_home" data-title="Select Home Ownership Status"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Special Circumstances</td>
+                        <td>
+                            <a href="#" id="special_circumstances" data-type="textarea" data-pk="1" data-url="/edit/{{_id}}" data-name="application.special_circumstances.note" data-title="Enter Special Circumstances">{{application.special_circumstances.note}}</a>
                         </td>
                     </tr>
                     </tbody>
@@ -122,7 +152,7 @@
             <div class="panel-heading" role="tab" id="financeHeader">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#financeAccordion" href="#finance" aria-expanded="true" aria-controls="finance">
-                        Vetting Notes
+                        Financial Requirements
                     </a>
                 </h2>
             </div>
@@ -143,33 +173,66 @@
         //FILLS IN EDITABLE DATA FOR ADDRESS
         $('#address').editable({
             value: {
-                number: '{{address.number}}',
-                street: '{{address.street}}',
-                unit: '{{address.unit}}',
-                city: '{{address.city}}',
-                state: '{{address.state}}',
-                zip: '{{address.zip}}'
+                line_1: '{{application.address.line_1}}',
+                line_2: '{{application.address.line_2}}',
+                city: '{{application.address.city}}',
+                state: '{{application.address.state}}',
+                zip: '{{application.address.zip}}'
+            }
+        });
+
+        //FILLS IN EDITABLE DATA FOR FULL NAME
+        $('#name').editable({
+            value: {
+                first: '{{application.name.first}}',
+                middle: '{{application.name.middle}}',
+                last: '{{application.name.last}}'
             }
         });
 
         //FILLS IN EDITABLE DATA FOR marital status
         $('#marital_status').editable({
-            value: '{{marital_status}}',
+            value: '{{application.is_married}}',
             source:
-            [
-                {value: 'married', text: 'married'},
-                {value: 'single', text: 'single'}
-            ]
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
         });
 
         //FILLS IN EDITABLE DATA FOR veteran status
         $('#veteran').editable({
-            value: {{veteran}},
+            value: '{{application.veteran}}',
             source:
-                    [
-                        {value: 1, text: 'true'},
-                        {value: 0, text: 'false'}
-                    ]
+            [
+                {value: 'true', text: 'true'},
+                {value: 'false', text: 'false'}
+            ]
+        });
+
+        $('#status').editable({
+            value: '{{status}}',
+            source:
+            [
+                {value: 'new', text: 'new'},
+                {value: 'phone', text: 'phone'},
+                {value: 'documents', text: 'documents'},
+                {value: 'discuss', text: 'discuss'},
+                {value: 'visit', text: 'visit'},
+                {value: 'handle', text: 'handle'},
+                {value: 'declined', text: 'declined'},
+                {value: 'project', text: 'project'}
+            ]
+        });
+
+        $('#owns_home').editable({
+            value: '{{application.owns_home}}',
+            source:
+            [
+                {value: 'true', text: 'true'},
+                {value: 'false', text: 'false'}
+            ]
         });
     });
+
 </script>

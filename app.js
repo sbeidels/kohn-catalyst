@@ -13,7 +13,8 @@ var fs = require('fs');
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var routes = require('./routes/index');
 var test = require('./routes/test');
-var view = require('./routes/view')
+var view = require('./routes/view');
+var edit = require('./routes/edit');
 var miketest = require('./routes/miketest');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -53,6 +54,7 @@ app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
 app.use('/mt', miketest); // SHOULD route to mike's test miketest.js
 app.use('/view', view);
+app.use('/edit', edit);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Links to jQuery and Boots strap files

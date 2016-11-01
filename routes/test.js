@@ -21,24 +21,24 @@ router.post('/add', api.postDocument, function(req, res) {
 });
 
 router.get('/show', api.getAllDocuments, function(req, res) {
-    // Create a static list
-    var context = {
-        static_list: {
-            state : [ "Ohio", "Montana", "Alaska" ],
-            city : [ "Austin", "San Diego", "New York" ]
-        }
-    };
-
-    res.render('application-list', res.locals.results);
+    res.json(res.locals.results);
 });
 
 router.get('/status', api.getDocumentByStatus, function(req, res) {
     res.json(res.locals.results);
 });
 
-router.get('/:id', api.getDocumentById, function(req, res) {
-    res.json(res.locals.results);
-});
+router.route('/:id')
+    .get(api.getDocumentById, function(req, res) {
+        res.json(res.locals.results);
+    })
+    .put(api.putUpdateDocument, function(req, res) {
+        res.json(res.locals);
+    })
+
+router.put('update-:id', api.putUpdateDocument, function(req, res) {
+
+})
 
 // We use the route like normal
 // router.<HTTP-VERB>(<LOCAL URI>, <API MIDDLEWARE>, <CONTINUE LIKE NORMAL>)

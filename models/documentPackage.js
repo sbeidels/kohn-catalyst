@@ -72,7 +72,7 @@ var DocumentPackageSchema = new Schema({
         spouse:         String,
         phone:          {
             home:       Number,         // TODO: Validate max length = 10 integers
-            cell:       Number,         // TODO: Validate max length = 10 integers
+            cell:       Number          // TODO: Validate max length = 10 integers
         },
         email:          String,         // TODO: Validate in form user@host.host
         address:        {
@@ -80,7 +80,7 @@ var DocumentPackageSchema = new Schema({
             line_2:     String,
             city:       String,
             state:      String,         // TODO: Validate it is a state or it is in Oregon
-            zip:        Number,         // TODO: Confirm max length = 5 integers
+            zip:        Number          // TODO: Confirm max length = 5 integers
         },
         emergency_contact:  {
             name:           String,
@@ -147,7 +147,7 @@ var DocumentPackageSchema = new Schema({
         associates_can_contribute:  {
             value:              Boolean,
             description:        String
-        },
+        }
     },
 
     recruitment:    {
@@ -155,7 +155,7 @@ var DocumentPackageSchema = new Schema({
         organization:   {
             name:               String,
             willing_to_help:    Boolean
-        },
+        }
 
     },
 

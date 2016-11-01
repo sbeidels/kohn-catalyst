@@ -33,7 +33,7 @@
                     <tbody>
                     {{#each new}}
                     <tr>
-                        <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                        <td><a href="/view/{{_id}}">{{application.name.first}} {{application.name.last}}</a></td>
                         <td>MM/dd/yyyy</td>
                         <td class="new">{{status}}</td>
                     </tr>
@@ -65,7 +65,7 @@
                     <tbody>
                     {{#each processing}}
                     <tr>
-                        <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                        <td><a href="/view/{{_id}}">{{application.name.first}} {{application.name.last}}</a></td>
                         <td>MM/dd/yyyy</td>
                         <td class="processing">{{status}}</td>
                     </tr>
@@ -97,7 +97,7 @@
                     <tbody>
                     {{#each declined}}
                     <tr>
-                        <td><a href="/view/{{_id}}">{{first_name}} {{last_name}}</a></td>
+                        <td><a href="/view/{{_id}}">{{application.name.first}} {{application.name.last}}</a></td>
                         <td>MM/dd/yyyy</td>
                         <td class="declined">{{status}}</td>
                     </tr>
