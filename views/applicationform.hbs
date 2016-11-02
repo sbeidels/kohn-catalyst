@@ -21,33 +21,31 @@
 	<div class="formSection"><h4>Welcome!</h4>
 		<p>Dear Applicant:</p>
 		<p>Catalyst Partnerships provides construction repairs, remodeling, and other services to homeowners who are elderly, disabled, and/or low-income. We also do projects for other like minded non-profit organizations. Our mission is to bring together useful resources and caring volunteers to meet the needs of under-resourced people in our community. Work is performed by skilled and unskilled volunteers, and overseen by licensed contractors. Funds and materials are provided through donations from generous individuals, businesses, and organizations in the community. Recipients are not required to pay for help, but are encouraged to contribute whatever labor and/or funds they are able to. Please complete the following application and click Submit. Please call with any questions (971) 245-6555.</p>
-		<p>Please note that Catalyst does not provide services for rental properties. Check below to indicate that you are the owner, and up to date on your mortgage payments.</p>
+		<p>Please note that Catalyst does not provide services for rental properties. Check the appropriate buttons below to indicate that you are the owner, and up to date on your mortgage payments.</p>
 
 		<div class="formLine">
-			<input type="checkbox" name="owns_home" value="true">I own the home for which I am requesting work.
+			I own the home for which I am requesting work.
+			<input type="radio" name="owns_home" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="owns_home" value="false">No
 		</div>
 		<div class="formLine">
-			<input type="checkbox" name="mortgage_up_to_date" value="true">I am up to date on my mortgage payments. 
+			I am up to date on my mortgage payments.
+			<input type="radio" name="mortgage_up_to_date" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="mortgage_up_to_date" value="false">No
 		</div>
 	</div>
-	<div class="formSection"><h4>Before we Begin...</h4>
+	<div class="formSection"><h4>Are you Advocating for Someone Else?</h4>
 		<div class="formLine">
-			If you are filling out this form advocating for someone else, please check the appropriate box below and fill in the details.
+			If so, please select the type of advocate you are, and fill in the appropriate information below.
 		</div>
 		<div class="formLine">
-			<input type="checkbox" name="advocate_individual" value="true">I am a private individual advocating for this applicant.
+			<input type="radio" name="advocate" value="adv_individual">I am a private individual advocating for this applicant.
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_name" placeholder="Name">
+			<input type="radio" name="advocate" value="adv_npo">I represent a non-profit organization advocating for this applicant.
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_phone" placeholder="Phone">
-		</div>
-		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Relationship to client: <input type="text" name="advocate_individual_relationship" placeholder="Relationship">
-		</div>
-		<div class="formLine">
-			<input type="checkbox" name="advocate_npogov" value="true">I represent a non-profit organization/governmental agency advocating for this applicant.
+			<input type="radio" name="advocate" value="adv_gov">I represent a governmental agency advocating for this applicant.
 		</div>
 		<div class="formLine">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_name" placeholder="Name">
@@ -56,7 +54,10 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_phone" placeholder="Phone">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Organization/Agency: <input class="largeField" type="text" name="advocate_npo_organization" placeholder="Organization Name">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Relationship to client (if individual): <input type="text" name="advocate_individual_relationship" placeholder="Relationship">
+		</div>
+		<div class="formLine">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Organization/Agency (if applicable): <input class="largeField" type="text" name="advocate_npo_organization" placeholder="Organization Name">
 		</div>
 	</div>
 	<div class="formSection"><h4>Personal Information</h4>
@@ -85,7 +86,7 @@
 		</div>
 		
 		<div class="formLine">
-			Marital Status:<input type="radio" name="marriedSingle" value="single">Single&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="marriedSingle" value="married">Married
+			Marital Status:<input type="radio" name="isMarried" value="false">Single&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isMarried" value="true">Married
 		</div>
 		
 		<div class="formLine">
@@ -165,14 +166,14 @@
 		<div class="formLine">What language do you speak?
 			<div class="formLine">
 				<input type="radio" name="language" value="English">I speak English<br>
-				<input type="radio" name="language" value="Other">I only speak another language<br>
-				&nbsp;&nbsp;&nbsp;&nbsp; Please enter language here: <input type="text" name="language-other" placeholder="Language you speak"><br>
+				<input type="radio" name="language">I only speak another language<br>
+				&nbsp;&nbsp;&nbsp;&nbsp; Please enter language here: <input type="text" name="language" placeholder="Language you speak"><br>
 			</div>
 		</div>
 		
 		<div class="formLine">How did you hear about Catalyst?
 			<div class="formLine">
-				<textarea rows="4" cols="60" name="hearAboutCatalyst" placeholder="How you heard about Catalyst" required="true"></textarea>
+				<textarea rows="4" cols="60" id="hearAboutCatalyst" placeholder="How you heard about Catalyst" required="true"></textarea>
 			</div>
 		</div>
 	</div>
@@ -180,13 +181,6 @@
 	<div class="formSection"><h4>Financial Information</h4>
 		<div class="formLine">
 			What is your monthly mortgage payment (in dollars)? <input type="number" name="monthlyMortgage" placeholder="Monthly Mortgage" required="true">
-		</div>
-		
-		<div class="formLine">Are you up to date on your mortgage payments?
-			<div class="formLine">
-				<input type="radio" name="currentOnMortgage" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="currentOnMortgage" value="false">No<br>
-			</div>
 		</div>
 		
 		<div class="formLine">What is your approximate total annual household income (in dollars)?<br>(Please include all sources for all residents):
@@ -198,23 +192,23 @@
 		<div class="formLine">Please list any other financial assets, and their current values (e.g. savings, retirements, physical assets, etc.):
 			<div class="formLine">
 				<input class="largeField" type="text" name="assets1" placeholder="Other assets">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets1-value" placeholder="Value">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets1_value" placeholder="Value">
 			</div>
 			<div class="formLine">
 				<input class="largeField" type="text" name="assets2" placeholder="Other assets">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets2-value" placeholder="Value">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets2_value" placeholder="Value">
 			</div>
 			<div class="formLine">
 				<input class="largeField" type="text" name="assets3" placeholder="Other assets">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets3-value" placeholder="Value">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets3_value" placeholder="Value">
 			</div>
 			<div class="formLine">
 				<input class="largeField" type="text" name="assets4" placeholder="Other assets">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets4-value" placeholder="Value">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets4_value" placeholder="Value">
 			</div>
 			<div class="formLine">
 				<input class="largeField" type="text" name="assets5" placeholder="Other assets">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets5-value" placeholder="Value">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Value (in dollars): <input class="mediumField" type="number" name="assets5_value" placeholder="Value">
 			</div>
 		</div>
 		
@@ -222,16 +216,16 @@
 			<div class="formLine">
 				<input type="radio" name="contribute" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="contribute" value="false">No<br>
-				If yes, please provide the approximate amount: <input class="largeField" type="number" name="contribute-amount" placeholder="Amount you can contribute">
+				If yes, please provide the approximate amount: <input class="largeField" type="number" name="contribute_amount" placeholder="Amount you can contribute">
 			</div>
 		</div>
 		
 		<div class="formLine">Do you have adult children and/or other relatives who may be able to help financially?
 			<div class="formLine">
-				<input type="radio" name="relativeHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="relativeHelp" value="false">No<br>
-				If yes, please describe what help they might provide:<br>
-				<textarea rows="3" cols="60" name="relativeHelp-provide" placeholder="Help others can provide"></textarea>
+				<input type="radio" name="relativeContribute" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="relativeContribute" value="false">No<br>
+				If yes, please describe what financial help they might provide:<br>
+				<textarea rows="3" cols="60" id="relativeContribute_provide" placeholder="Help others can provide"></textarea>
 			</div>
 		</div>
 		
@@ -240,7 +234,7 @@
 				<input type="radio" name="otherHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="otherHelp" value="false">No
 				If yes, please describe what help they might provide:<br>
-				<textarea rows="3" cols="60" name="otherHelp-provide" placeholder="Help you have requested from other organizations"></textarea>
+				<textarea rows="3" cols="60" id="otherHelp_provide" placeholder="Help you have requested from other organizations"></textarea>
 			</div>
 		</div>
 		
@@ -252,8 +246,8 @@
 				<input type="radio" name="propertyType" value="Single Family Home"> Single Family Home<br>
 				<input type="radio" name="propertyType" value="Mobile Home"> Mobile Home<br>
 				<input type="radio" name="propertyType" value="Manufactured Home"> Manufactured Home<br>
-				<input type="radio" name="propertyType" value="Other"> Other: 
-				<input type="text" name="propertyType-other" placeholder="Other type of property">
+				<input type="radio" name="propertyType"> Other: 
+				<input type="text" name="propertyType" placeholder="Other type of property">
 			</div>
 		</div>
 		
@@ -267,25 +261,25 @@
 		
 		<div class="formLine">What type of repairs would you like to request?  Please include as much information as you can:
 			<div class="formLine">
-				<textarea rows="5" cols="60" name="repairsNeeded" placeholder="Repairs you need"></textarea>
+				<textarea rows="5" cols="60" id="repairsNeeded" placeholder="Repairs you need"></textarea>
 			</div>
 		</div>
 		
 		<div class="formLine">Are you able to provide any help (labor/materials) for these repairs?
 			<div class="formLine">
-				<input type="radio" name="laborhelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="laborhelp" value="false">No<br>
+				<input type="radio" name="laborHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="laborHelp" value="false">No<br>
 				If yes, please describe:<br>
-				<textarea rows="3" cols="60" name="laborhelp-personal" placeholder="Help you can provide"></textarea>
+				<textarea rows="3" cols="60" id="laborHelp_personal" placeholder="Help you can provide"></textarea>
 			</div>
 		</div>
 		
 		<div class="formLine">Do you have friends or family who may be able to help Catalyst perform the work of this project?
 			<div class="formLine">
-				<input type="radio" name="otherslaborHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="otherslaborHelp" value="false">No<br>
+				<input type="radio" name="othersLaborHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="othersLaborHelp" value="false">No<br>
 				If yes, please describe:<br>
-				<textarea rows="3" cols="60" name="others-laborhelp" placeholder="Help other people could provide"></textarea>
+				<textarea rows="3" cols="60" id="others_laborHelp" placeholder="Help other people could provide"></textarea>
 			</div>
 		</div>
 		
@@ -295,12 +289,12 @@
 				<input type="radio" name="fbo" value="false">No<br>
 				If yes, please give details below:
 				<div class="formLine">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input class="largeField" type="text" name="fbo-name" placeholder="Name">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input class="largeField" type="text" name="fbo_name" placeholder="Name">
 				</div>
 				<div class="formLine">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Would they be willing to provide help with implementing your requested project?
-					<input type="radio" name="fbo-help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="fbo-help" value="false">No<br>
+					<input type="radio" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="fbo_help" value="false">No<br>
 				</div>
 			</div>
 		</div>
@@ -308,7 +302,7 @@
 		
 		<div class="formLine">Are there any other circumstances or information we need to know about to consider your request?
 			<div class="formLine">
-				<textarea rows="2" cols="60" name="otherCircumstances" placeholder="Other information"></textarea>
+				<textarea rows="2" cols="60" id="otherCircumstances" placeholder="Other information"></textarea>
 			</div>
 		</div>
 	

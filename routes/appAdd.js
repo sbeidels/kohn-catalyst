@@ -37,7 +37,9 @@ function init() {
         console.log('-------------------------------------');
 
 		var objects = getApplicationFormJSON();
-		console.log('objects: ', objects);
+		console.log('objects as JSON: ', objects);
+		var jobjects = JSON.parse(objects);
+		console.log('objects as JSON objects', jobjects)
         return json;
     } 
 
@@ -57,73 +59,203 @@ function init() {
     */
 
     function getApplicationFormJSON() {
-        var data = {};
 
-        $.extend(data, getPersonalInfoData());
-        $.extend(data, getFinancialInfoData());
-        $.extend(data, getPropertyInfoData());
+		var data = {};
 
+		$.extend(data, getAdvocateData());
+		$.extend(data, getApplicationData());
+		$.extend(data, getFinanceData());
+        $.extend(data, getPropertyData());
+		$.extend(data, getRecruitmentData());
+		//$.extend(data, getOtherResidents());
+		//$.extend(data, getLanguage());
         return JSON.stringify(data);
     }
 
-    function getPersonalInfoData() {
-        var data = {};
-
-		data.status = getVal('input[name=""]');
-        // This is where you'd tack the form values in the Personal Info section onto `data`
+	function getAdvocateData() {
+		var data = {};
+		
+		var ind_bool = false;
+		var npo_bool = false;
+		var gov_bool = false;
+		
+			//$("input[name=q12_3]:checked").val()
+		if (getVal('input[name="advocate"]:checked') == "adv_npo") {
+			npo_bool = true;
+		}
+			
+		if (getVal('input[name="advocate"]:checked') == "adv_gov") {
+			gov_bool = true;
+		}
+		if (getVal('input[name="advocate"]:checked') == "adv_individual") {
+			ind_bool = true;
+		}
+			
+		
         data.advocate = {
-			individual: getVal('input[name="advocate_individual"]'),
-			npogov: getVal('input[name="advocate_npogov"]'),
+			individual: ind_bool,
+			npo: npo_bool,
+			gov: gov_bool,
 			name: getVal('input[name="advocate_name"]'),
 			organization_name: getVal('input[name="advocate_npo_organization"]'),
 			relationship: getVal('input[name="advocate_individual_relationship"]'),
-			phone: getVal('input[name="advocate_phone"]'),
+			phone: getVal('input[name="advocate_phone"]')
 		}
-		
+		return data;
+	}
+	
+	
+	//This function handles MOST of the data that goes into "application:"
+	//section of the documentPackage.js (as well as status, which will send "new")
+    function getApplicationData() {
+        var data = {};
+
+		data.status = getVal('input[name="status"]');
+		//data.created is created on the back end
+		//data.updated is created on the back end
+
+        // Non-grouped application data
 		data.application = {
-			owns_home: getVal('input[name=""]'),
-			: getVal('input[name=""]'),
-			: getVal('input[name=""]'),
-			: getVal('input[name=""]'),
-			: getVal('input[name=""]'),
-			: getVal('input[name=""]'),
-			: getVal('input[name=""]'),
+			owns_home: getVal('input[name="owns_home"]:checked'),
+			is_married: getVal('input[name="isMarried"]:checked'),
+			spouse: getVal('input[name="spouse"]'),
+			email: getVal('input[name="emailaddy"]'),
+			veteran: getVal('input[name="military"]:checked'),
+			heard_about: jQuery("textarea#hearAboutCatalyst").val(),
+			name: {
+				first: getVal('input[name="firstName"]'),
+				middle: getVal('input[name="middleName"]'),
+				last: getVal('input[name="lastName"]'),
+				preferred: getVal('input[name="preferredName"]')
+			},
+			phone: {
+				home: getVal('input[name="hPhone"]'),
+				cell: getVal('input[name="cPhone"]')
+			},
+			address: {
+				line_1: getVal('input[name="add1"]'),
+				line_2: getVal('input[name="add2"]'),
+				city: getVal('input[name="city"]'),
+				state: getVal('input[name="state"]'),
+				zip: getVal('input[name="zip"]')
+			},
+			emergency_contact: {
+				name: getVal('input[name="eContactName"]'),
+				relationship: getVal('input[name="ecRelationship"]'),
+				phone: getVal('input[name="ecPhone"]')
+			},
+			dob: {
+				date: getVal('input[name="dob"]')
+			},
+			driver_license: {
+				number: getVal('input[name="driversLicense"]')
+			},
+			special_circumstances: {
+				note: jQuery("textarea#otherCircumstances").val()
+			}
 		}
-		
-		
-		
-		//: getVal('input[name=""]'),
-		data.firstName = getVal('input[name="firstName"]');
-        data.lastName = getVal('input[name="lastName"]');
-        data.address = {
-            line1: getVal('input[name="add1"]'),
-            line2: getVal('input[name="add2"]'),
-            city: getVal('input[name="city"]'),
-            state: getVal('input[name="state"]'),
-            zip: getVal('input[name="zip"]')
-        };
-
+		return data;
+	}
+	
+	
+	//This function handles MOST of the data that goes into "finance:"
+	//section of the documentPackage.js
+    function getFinanceData() {
+        var data = {};
+		data.finance = {
+			mortgage: {
+				payment: getVal('input[name="monthlyMortgage"]'),
+				up_to_date: getVal('input[name="mortgage_up_to_date"]:checked')
+			},
+			income: {
+				amount: getVal('input[name="annualIncome"]')
+			},
+			client_can_contribute: {
+				value: getVal('input[name="contribute"]:checked'),
+				amount: getVal('input[name="contribute_amount"]')
+			},
+			associates_can_contribute: {
+				value: getVal('input[name="relativeContribute"]:checked'),
+				description: jQuery("textarea#relativeContribute_provide").val()
+			},
+			requested_other_help: {
+				value: getVal('input[name="otherHelp"]:checked'),
+				description: jQuery("textarea#otherHelp_provide").val()
+			}
+		}
         return data;
     }
-
-    function getFinancialInfoData() {
+	
+	
+	//This function handles MOST of the data that goes into "property:"
+	//section of the documentPackage.js
+    function getPropertyData() {
         var data = {};
 
-        // This is where you'd tack the form values in the Personal Info section onto `data`
-
+		data.property = {
+			
+			ownership_length: getVal('input[name="timePropertyOwned"]'),
+			year_constructed: getVal('input[name="yearPropertyBuilt"]'),
+			requested_repairs: jQuery("textarea#repairsNeeded").val(),
+			client_can_contribute: {
+				value: getVal('input[name="laborHelp"]:checked'),
+				description: jQuery("textarea#laborHelp_personal").val()
+			},
+			associates_can_contribute: {
+				value: getVal('input[name="othersLaborHelp"]:checked'),
+				description: jQuery("textarea#others_laborHelp").val()
+			}
+		}
         return data;
     }
-
-    function getPropertyInfoData() {
+	
+	
+	//This function handles MOST of the data that goes into "recruitment:"
+	//section of the documentPackage.js
+	function getRecruitmentData() {
         var data = {};
 
-        // This is where you'd tack the form values in the Personal Info section onto `data`
-
-        return data;
-    }
+		data.recruitment = {
+			belong_in_faith_group: getVal('input[name="fbo"]:checked'),
+			organization: {
+				name: getVal('input[name="fbo_name"]'),
+				willing_to_help: getVal('input[name="fbo_help"]:checked')
+			}
+		}
+		return data;
+	}
+       
 
     function getVal(selector) {
         return $(selector).val();
     }
 
+	
+			//: getVal('input[name=""]'),
+		//jQuery("textarea#otherCircumstances").val()
+	
+		//TODO
+	
+	/* new function for other residents array
+	function getOtherResidents() {
+		var data = {};
+		
+		return data;
+	} */
+	
+	
+	/* New function for assets array 
+					assets: {
+				name: getVal('input[name=""]'),
+				value: getVal('input[name=""]') //count set on back end?
+			},*/
+			
+
+		
+
+		//figure out how/why unselected radio buttons return first object as true (and how to fix) DONE
+		//language: getVal('input[name="language"]'), OTHER function - fix this
+		//home_type: getVal('input[name="propertyType"]'),   OTHER function - fix this
+	
+	
 }
