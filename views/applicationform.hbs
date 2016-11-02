@@ -1,8 +1,18 @@
-<center><h2>Catalyst Partnerships Recipient Application</h2></center>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Catalyst Form Example</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+	<center><h2>Catalyst Partnerships Recipient Application</h2></center>
 <!--Begin the actual Form -->
 <form id="appForm">
 
-	<button type="button" id="testButton">Trace form data as JSON (check console)</button>
+	<div>
+		<button type="button" id="testButton">Trace form data as JSON (check console)</button>
+    </div>
 	
 	<input type="hidden" name="status" value="new">
 	
@@ -28,10 +38,10 @@
 			<input type="checkbox" name="advocate_individual" value="true">I am a private individual advocating for this applicant.
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_individual_name" placeholder="Name">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_name" placeholder="Name">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_individual_phone" placeholder="Phone">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_phone" placeholder="Phone">
 		</div>
 		<div class="formLine">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Relationship to client: <input type="text" name="advocate_individual_relationship" placeholder="Relationship">
@@ -40,10 +50,10 @@
 			<input type="checkbox" name="advocate_npogov" value="true">I represent a non-profit organization/governmental agency advocating for this applicant.
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_npogov_name" placeholder="Name">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Name: <input type="text" name="advocate_name" placeholder="Name">
 		</div>
 		<div class="formLine">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_npogov_phone" placeholder="Phone">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Phone Number: <input type="text" name="advocate_phone" placeholder="Phone">
 		</div>
 		<div class="formLine">
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Organization/Agency: <input class="largeField" type="text" name="advocate_npo_organization" placeholder="Organization Name">
@@ -339,56 +349,13 @@
 
 
 
-<script src="addForm.js"></script>
+<!--<script src="addForm.js"></script>-->
 
 
+<script  src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="appAdd.js"></script>
+    </body>
+
+</html>
 
 
-<!-- -- -- -- TO DO LIST  -- -- -- --
-install jquery head for this file? 
-Parse Out the dashes from the phone number - turn it into integer
-
-
-<script>
-// Attach a submit handler to the form
-$( "#appForm" ).submit(function( event ) {
- 
-  // Stop form from submitting normally
-  event.preventDefault();
- 
-	// Get some values from elements on the page:
-	var $form = $( this ),
-		fName = $form.find( "input[name='firstName']" ).val(),
-		lName = $form.find( "input[name='lastName']" ).val(),
-		url = $form.attr( "action" );
- 
-  // Send the data using post
-  var posting = $.post( url, { title: theTitle } );
- 
-  // Put the results in a div
-  posting.done(function( data ) {
-    var content = $( data ).find( "#content" );
-    $( "#result" ).empty().append( content );
-  });
-});
-</script>
- -->
-
- 
- 
- 
- 
- <!--NOTES AND FORMS TO COPY PASTE 
-		<div class="formLine">
-			<div class="formLine">
-				<input type="" name="" placeholder="" required="true">
-			</div>
-		</div>
-		
-		
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	
-	<div class="formLine">
-		<input type="" name="" placeholder="" required="true">
-	</div>
--->
