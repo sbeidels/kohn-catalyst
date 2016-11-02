@@ -101,3 +101,4 @@ mongoose | An object modeling tool used with mongoDB designed to work in an asyn
 morgan | HTTP request logger middleware for node.js | www.npmjs.com/package/morgan
 request | Wrapper to use basica HTTP request functions | www.npmjs.com/package/request#http-authentication
 serve-favicon | favicon serving middleware with caching | www.npmjs.com/package/serve-favicon
+X-editable | Libray for inline editing | https://vitalets.github.io/x-editable/
