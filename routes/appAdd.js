@@ -17,10 +17,11 @@ function init() {
 
     */
     function getFormDataJson() {
-        var serialized = $('#appForm').serializeArray();
+        //var serialized = $('#appForm').serializeArray();
         var data = {};
 
-        console.log('-------------------------------------');
+        /*
+		console.log('-------------------------------------');
         console.debug('Serializing form data as JSON... found %s fields in form.', serialized.length);
 
         serialized.forEach( function(inputData) {
@@ -34,7 +35,7 @@ function init() {
         console.log('-------------------------------------');
         console.log('data: ', data);
         console.log('data as json: ', json);
-        console.log('-------------------------------------');
+        console.log('-------------------------------------'); */
 
 		var objects = getApplicationFormJSON();
 		console.log('objects as JSON: ', objects);
@@ -43,20 +44,6 @@ function init() {
         return json;
     } 
 
-
-    /*
-
-    Alternate approach below, where you could start with a blank object `data`, and by
-    using jQuery's `extend` method, append/add all the indvidual form sections to one master object
-    that can be sent to the server as JSON.
-
-    In this way, you can do whatever weird custom shit you may need to do for formatting/extracting data,
-    but do it within the smaller/more manageable functions below.
-
-    It also does not make sense to create individual variables for all the values. Stick that stuff
-    right onto an object, if you find yourself wanting to do `var firstName = $(...)`, you're probably doing it wrong.
-
-    */
 
     function getApplicationFormJSON() {
 
