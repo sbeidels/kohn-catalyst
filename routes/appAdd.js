@@ -28,7 +28,7 @@ function init() {
             console.log('\t:: ' + inputData.name + ' = ' + inputData.value);
             data[inputData.name] = inputData.value;
 
-        });
+        }); 
 
         var json = JSON.stringify(data);
 
@@ -41,7 +41,7 @@ function init() {
 		console.log('objects as JSON: ', objects);
 		var jobjects = JSON.parse(objects);
 		console.log('objects as JSON objects', jobjects)
-        return json;
+        return objects;
     } 
 
 
