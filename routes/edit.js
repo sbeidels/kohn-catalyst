@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-//var db = require('../mongoose/index');
-//var Application = require('../models/application');
 var DocumentPackage = require('../models/documentPackage');
 
 var Promise = require('bluebird'); // Import promise engine
@@ -15,15 +13,17 @@ var helpers = require('../mongoose/read-helpers');
 //Need ObjectID to search by ObjectID
 var ObjectId = require('mongodb').ObjectID;
 
+//the default route, which will never be used
+//TODO: Report 404 instead by ultimately not including this and creating a 404 page
 router.post('/', function(req, res) {
     console.log("POST to page without ID parameter");
 });
 
 /**
- * Attempting to get Update Data
+ * Get Updated Data
  **/
 router.post('/:id', function(req, res) {
-    //Checking what's in params
+    //Checking POST Values
     console.log("Request to update _ID " + ObjectId(req.params.id));
     console.log("Value received: " + req.body.value);
     console.log("Name received: " + req.body.name);
@@ -32,6 +32,7 @@ router.post('/:id', function(req, res) {
     updateValue.$set[req.body.name] = req.body.value;
     console.log(updateValue);
 
+    //update database
     var updateStatus = DocumentPackage.update(
         {_id: ObjectId(req.params.id)},
         updateValue,
@@ -50,7 +51,7 @@ router.post('/:id', function(req, res) {
  * EDIT ADDRESS
  **/
 router.post('/address/:id', function(req, res) {
-    //Checking what's in params
+
     console.log("Updating: ");
     console.log("Line 1: " + req.body["value[line_1]"]);
     console.log("Line 2: " + req.body["value[line_2]"]);
@@ -72,7 +73,7 @@ router.post('/address/:id', function(req, res) {
         function(err)
         {
             if(err)
-            {   res.status(500).send({ status: 'error' });}
+            {   res.status(500).send({ status: 'Could not update field' });}
             else
             {   res.status(200).send({ status: 'success' });}
         }

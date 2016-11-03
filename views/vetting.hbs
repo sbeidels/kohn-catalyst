@@ -34,7 +34,7 @@
                     {{#each new}}
                     <tr>
                         <td><a href="/view/{{_id}}">{{application.name.first}} {{application.name.last}}</a></td>
-                        <td>MM/dd/yyyy</td>
+                        <td>{{updated}}</td>
                         <td class="new">{{status}}</td>
                     </tr>
                     {{/each}}
@@ -66,7 +66,7 @@
                     {{#each processing}}
                     <tr>
                         <td><a href="/view/{{_id}}">{{application.name.first}} {{application.name.last}}</a></td>
-                        <td>MM/dd/yyyy</td>
+                        <td>{{updated}}</td>
                         <td class="processing">{{status}}</td>
                     </tr>
                     {{/each}}
@@ -98,7 +98,7 @@
                     {{#each declined}}
                     <tr>
                         <td><a href="/view/{{_id}}">{{application.name.first}} {{application.name.last}}</a></td>
-                        <td>MM/dd/yyyy</td>
+                        <td>{{updated}}</td>
                         <td class="declined">{{status}}</td>
                     </tr>
                     {{/each}}
