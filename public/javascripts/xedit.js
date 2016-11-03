@@ -1,3 +1,11 @@
+/**
+ * Description -
+ *      On Document Load, the inline-editable fields are declared in this file.
+ *  Address and Full name fields require definitions.
+ *  They were created following this template: https://github.com/vitalets/x-editable/blob/master/src/inputs-ext/address/address.js
+ * @type {string}
+ */
+
 //turn to inline mode
 $.fn.editable.defaults.mode = 'inline';
 
@@ -5,10 +13,7 @@ $(document).ready(function() {
     "use strict";
 
     /**
-     * THE FOLLOWING IS TAKEN FROM THE ADDRESS EXAMPLE
-     * FOR X-EDITABLE
-     * FOUND HERE:
-     * https://github.com/vitalets/x-editable/blob/master/src/inputs-ext/address/address.js
+     * Address Definition
     **/
     var Address = function (options) {
         this.init('address', options, Address.defaults);
@@ -36,7 +41,7 @@ $(document).ready(function() {
                 $(element).empty();
                 return;
             }
-            var html = $('<div>').text(value.line_1).html() + ', ' + $('<div>').text(value.line_2).html() + ', ' + $('<div>').text(value.city).html() + ', ' + $('<div>').text(value.state).html() + ', ' +  $('<div>').text(value.zip).html();
+            var html = $('<div>').text(value.line_1).html() + '<br>' + $('<div>').text(value.line_2).html() + '<br>' + $('<div>').text(value.city).html() + ', ' + $('<div>').text(value.state).html() + ' ' +  $('<div>').text(value.zip).html();
             $(element).html(html);
         },
 
@@ -45,21 +50,10 @@ $(document).ready(function() {
 
          @method html2value(html)
          **/
-        /** KOHN TEAM - SEE SCRIPT IN  VIEW.HBS**/
+        /**
+         *  Vallues are set in view.hbs rather than here
+         * **/
         html2value: function(html) {
-            /*
-             you may write parsing method to get value by element's html
-             e.g. "Moscow, st. Lenina, bld. 15" => {city: "Moscow", street: "Lenina", building: "15"}
-             but for complex structures it's not recommended.
-             Better set value directly via javascript, e.g.
-             editable({
-             value: {
-             city: "Moscow",
-             street: "Lenina",
-             building: "15"
-             }
-             });
-             */
             return null;
         },
 
@@ -79,11 +73,11 @@ $(document).ready(function() {
             return str;
         },
 
-        /*
+        /**
          Converts string to value. Used for reading value from 'data-value' attribute.
 
          @method str2value(str)
-         */
+         **/
         str2value: function(str) {
             /*
              this is mainly for parsing value defined in data-value attribute.
@@ -204,19 +198,6 @@ $(document).ready(function() {
          **/
         /** KOHN TEAM - VALUES ARE DECLARED IN VIEW.HBS**/
         html2value: function(html) {
-            /*
-             you may write parsing method to get value by element's html
-             e.g. "Moscow, st. Lenina, bld. 15" => {city: "Moscow", street: "Lenina", building: "15"}
-             but for complex structures it's not recommended.
-             Better set value directly via javascript, e.g.
-             editable({
-             value: {
-             city: "Moscow",
-             street: "Lenina",
-             building: "15"
-             }
-             });
-             */
             return null;
         },
 
@@ -236,11 +217,11 @@ $(document).ready(function() {
             return str;
         },
 
-        /*
+        /**
          Converts string to value. Used for reading value from 'data-value' attribute.
 
          @method str2value(str)
-         */
+         **/
         str2value: function(str) {
             /*
              this is mainly for parsing value defined in data-value attribute.
@@ -316,7 +297,6 @@ $(document).ready(function() {
 
     /**
      * SET ALL OTHER ELEMENTS TO EDITABLE
-     * W/ success callback function
      **/
     $('#phone_number').editable({
             success: function(response, newValue) {
@@ -356,6 +336,10 @@ $(document).ready(function() {
             if(response.status == 'error') return response.msg;
         }
     });
+
+    $('#emergency_name').editable({});
+    $('#emergency_relation').editable({});
+    $('#emergency_phone').editable({});
 
     $('#special_circumstances').editable({
         success: function(response, newValue) {
