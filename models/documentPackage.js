@@ -44,14 +44,12 @@ var DocumentPackageSchema = new Schema({
     // project - the project has been approved and the document package will be converted to a project package
 
     advocate:       {
-        is_advocate:    Boolean,
-        individual:     Boolean,
-        npo:            Boolean,
-        gov:            Boolean,
-        name:           String,
+        individual:         Boolean,
+        npogov:             Boolean,
+        name:               String,
         organization_name:  String,
-        relationship:   String,
-        phone:          Number
+        relationship:       String,
+        phone:              Number
     },
 
     application:    {
@@ -91,8 +89,9 @@ var DocumentPackageSchema = new Schema({
         },
         other_residents:{
             count:      Number,        // other_residents.names[index], other_residents.ages[index] where index < other_residents.count
-            name:      [String],       // This is an array of strings
-            age:       [Number]        // This is an array of strings
+            name:      [String],        // This is an array of strings
+            age:       [Number],        // This is an array of numbers
+			relationship: [String]      // This is an array of strings
         },
         veteran:        Boolean,
         language:       String,
