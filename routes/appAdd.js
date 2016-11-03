@@ -61,17 +61,42 @@ function init() {
     function getApplicationFormJSON() {
 
 		var data = {};
-
-		$.extend(data, getAdvocateData());
+		
 		$.extend(data, getApplicationData());
 		$.extend(data, getFinanceData());
         $.extend(data, getPropertyData());
 		$.extend(data, getRecruitmentData());
-		//$.extend(data, getOtherResidents());
-		//$.extend(data, getLanguage());
         return JSON.stringify(data);
     }
-
+	
+	//this function figures out the Language
+	function getLanguage() {
+		var data = {};
+		if (getVal('input[name="language"]:checked') == "English") {
+			data = "English";
+		}
+		else if (getVal('input[name="language"]:checked') == "Other") {
+			data = getVal('input[name="language_other"]');
+		}
+		return data;
+	}
+	
+	
+	//this function figures out and returns the Home Type
+	function getHomeType() {
+		var data = {};
+		if (getVal('input[name="propertyType"]:checked') == "Other") {
+			data = getVal('input[name="propertyType_other"]');
+		}
+		else {
+			data = getVal('input[name="propertyType"]:checked');
+		}
+		return data;
+	}
+	
+	
+	
+	//this function figures out and returns the Advocate data
 	function getAdvocateData() {
 		var data = {};
 		
@@ -121,6 +146,7 @@ function init() {
 			spouse: getVal('input[name="spouse"]'),
 			email: getVal('input[name="emailaddy"]'),
 			veteran: getVal('input[name="military"]:checked'),
+			language: getLanguage(),
 			heard_about: jQuery("textarea#hearAboutCatalyst").val(),
 			name: {
 				first: getVal('input[name="firstName"]'),
@@ -147,6 +173,34 @@ function init() {
 			dob: {
 				date: getVal('input[name="dob"]')
 			},
+			
+			/*testData: [ 
+                {testName: 'do',testId:''}
+          ], */
+		  
+			other_residents: {
+				name: [
+						getVal('input[name="additional_1"]'),
+						getVal('input[name="additional_2"]'),
+						getVal('input[name="additional_3"]'),
+						getVal('input[name="additional_4"]'),
+						getVal('input[name="additional_5"]')
+					],
+				age: [
+						getVal('input[name="a1age"]'),
+						getVal('input[name="a2age"]'),
+						getVal('input[name="a3age"]'),
+						getVal('input[name="a4age"]'),
+						getVal('input[name="a5age"]')
+					],
+				relationship: [
+						getVal('input[name="a1relationship"]'),
+						getVal('input[name="a2relationship"]'),
+						getVal('input[name="a3relationship"]'),
+						getVal('input[name="a4relationship"]'),
+						getVal('input[name="a5relationship"]')
+					]
+			},
 			driver_license: {
 				number: getVal('input[name="driversLicense"]')
 			},
@@ -169,6 +223,22 @@ function init() {
 			},
 			income: {
 				amount: getVal('input[name="annualIncome"]')
+			},
+			assets: {
+				name: [
+					getVal('input[name="assets1"]'),
+					getVal('input[name="assets2"]'),
+					getVal('input[name="assets3"]'),
+					getVal('input[name="assets4"]'),
+					getVal('input[name="assets5"]')
+				],
+				value: [
+					getVal('input[name="assets1_value"]'),
+					getVal('input[name="assets2_value"]'),
+					getVal('input[name="assets3_value"]'),
+					getVal('input[name="assets4_value"]'),
+					getVal('input[name="assets5_value"]')
+				]
 			},
 			client_can_contribute: {
 				value: getVal('input[name="contribute"]:checked'),
@@ -193,7 +263,7 @@ function init() {
         var data = {};
 
 		data.property = {
-			
+			home_type: getHomeType(),
 			ownership_length: getVal('input[name="timePropertyOwned"]'),
 			year_constructed: getVal('input[name="yearPropertyBuilt"]'),
 			requested_repairs: jQuery("textarea#repairsNeeded").val(),
@@ -236,19 +306,7 @@ function init() {
 	
 		//TODO
 	
-	/* new function for other residents array
-	function getOtherResidents() {
-		var data = {};
-		
-		return data;
-	} */
-	
-	
-	/* New function for assets array 
-					assets: {
-				name: getVal('input[name=""]'),
-				value: getVal('input[name=""]') //count set on back end?
-			},*/
+
 			
 
 		

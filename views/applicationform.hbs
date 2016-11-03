@@ -36,7 +36,8 @@
 	</div>
 	<div class="formSection"><h4>Are you Advocating for Someone Else?</h4>
 		<div class="formLine">
-			If so, please select the type of advocate you are, and fill in the appropriate information below.
+			If so, please select the type of advocate you are, and fill in the appropriate information below.<br>
+			If not, feel free to skip this section and begin at <b>Personal Information</b>.
 		</div>
 		<div class="formLine">
 			<input type="radio" name="advocate" value="adv_individual">I am a private individual advocating for this applicant.
@@ -136,23 +137,23 @@
 		
 		<div class="formLine">If you have others residing in your home, please list them below:
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-1" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a1age" placeholder="Age" size="3">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional_1" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a1age" placeholder="Age" size="3">&nbsp;&nbsp;<input class="mediumField" type="text" name="a1relationship" placeholder="Relationship">
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-2" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a2age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a2relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional_2" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a2age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a2relationship" placeholder="Relationship">
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-3" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a3age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a3relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional_3" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a3age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a3relationship" placeholder="Relationship">
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-4" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a4age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a4relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional_4" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a4age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a4relationship" placeholder="Relationship">
 			</div>
 			
 			<div class="formLine">
-				<input class="mediumField" type="text" name="additional-5" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a5age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a5relationship" placeholder="Relationship">
+				<input class="mediumField" type="text" name="additional_5" placeholder="Name">&nbsp;&nbsp;<input class="tinyField" type="number" name="a5age" placeholder="Age">&nbsp;&nbsp;<input class="mediumField" type="text" name="a5relationship" placeholder="Relationship">
 			</div>
 		</div>
 		
@@ -166,8 +167,8 @@
 		<div class="formLine">What language do you speak?
 			<div class="formLine">
 				<input type="radio" name="language" value="English">I speak English<br>
-				<input type="radio" name="language">I only speak another language<br>
-				&nbsp;&nbsp;&nbsp;&nbsp; Please enter language here: <input type="text" name="language" placeholder="Language you speak"><br>
+				<input type="radio" name="language" value="Other">I only speak another language<br>
+				&nbsp;&nbsp;&nbsp;&nbsp; Please enter language here: <input type="text" name="language_other" placeholder="Language you speak"><br>
 			</div>
 		</div>
 		
@@ -246,8 +247,8 @@
 				<input type="radio" name="propertyType" value="Single Family Home"> Single Family Home<br>
 				<input type="radio" name="propertyType" value="Mobile Home"> Mobile Home<br>
 				<input type="radio" name="propertyType" value="Manufactured Home"> Manufactured Home<br>
-				<input type="radio" name="propertyType"> Other: 
-				<input type="text" name="propertyType" placeholder="Other type of property">
+				<input type="radio" name="propertyType" value="Other"> Other: 
+				<input type="text" name="propertyType_other" placeholder="Other type of property">
 			</div>
 		</div>
 		

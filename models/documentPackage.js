@@ -89,8 +89,9 @@ var DocumentPackageSchema = new Schema({
         },
         other_residents:{
             count:      Number,        // other_residents.names[index], other_residents.ages[index] where index < other_residents.count
-            name:      [String],       // This is an array of strings
-            age:       [Number]        // This is an array of strings
+            name:      [String],        // This is an array of strings
+            age:       [Number],        // This is an array of numbers
+			relationship: [String]      // This is an array of strings
         },
         veteran:        Boolean,
         language:       String,
