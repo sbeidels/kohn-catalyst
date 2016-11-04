@@ -2,9 +2,9 @@ $(document).ready(init)
 
 
 function init() {
-	$('#fakeSubmitButton').on('click', sendJSON);
-	$('#submitButton').on('click', sendJSON);
-    $('#testButton').on('click', getFormDataJson);
+	//$('#fakeSubmitButton').on('click', sendJSON);
+	$('#submitButton').on('submit', sendJSON);
+    //$('#testButton').on('click', getFormDataJson);
 
     /*
 
