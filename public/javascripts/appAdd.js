@@ -1,8 +1,7 @@
-/*$(document).ready(init)
+$(document).ready(init)
 
 
-function init() { */
-
+function init() {
 	$('#appForm').submit(function (event) {
 		event.preventDefault();
 		var jsonToSend = getApplicationFormJSON();  //stringified in that function
@@ -252,7 +251,7 @@ function init() { */
 		return $(selector).val();
 	}
 
-//}
+}
 
 
 
