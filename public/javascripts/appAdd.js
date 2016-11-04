@@ -2,7 +2,7 @@ $(document).ready(init)
 
 
 function init() {
-
+	$('#submitButton').on('click', sendJSON);
     $('#testButton').on('click', getFormDataJson);
 
     /*
@@ -55,6 +55,11 @@ function init() {
 		$.extend(data, getRecruitmentData());
         return JSON.stringify(data);
     }
+	
+	function sendJSON() {
+		var jsonToSend = getApplicationFormJSON();
+		$.post( "/application/add", jsonToSend );
+	}
 	
 	//this function figures out the Language
 	function getLanguage() {

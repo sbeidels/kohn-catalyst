@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var Application = require('../models/application');
+var api = require('../controllers/api');
 
 // Helper query functions
 var helpers = require('../mongoose/read-helpers');
@@ -20,7 +21,7 @@ var helpers = require('../mongoose/read-helpers');
 });
 */
 
-router.get('/form', function(req, res) {
+router.get('/application', function(req, res) {
 	var payload = {};
 	var query = Application.find({}, function(err, docs) {
 		if (err) throw err;
@@ -31,6 +32,13 @@ router.get('/form', function(req, res) {
     res.render('applicationform');
 });
 
+router.route('/add') 
+    .get(function(req, res) {
+        res.render('applicationform');
+    })
+    .post(api.postDocument, function(req, res) {
+        res.json(res.locals);
+    })
 
 
 
