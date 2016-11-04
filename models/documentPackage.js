@@ -44,8 +44,10 @@ var DocumentPackageSchema = new Schema({
     // project - the project has been approved and the document package will be converted to a project package
 
     advocate:       {
+        is_advocate:        Boolean,
         individual:         Boolean,
-        npogov:             Boolean,
+        npo:                Boolean,
+        gov:                Boolean,
         name:               String,
         organization_name:  String,
         relationship:       String,
@@ -71,8 +73,8 @@ var DocumentPackageSchema = new Schema({
         is_married:     Boolean,
         spouse:         String,
         phone:          {
-            home:       Number,         // TODO: Validate max length = 10 integers
-            cell:       Number          // TODO: Validate max length = 10 integers
+            home:       String,         // TODO: Validate max length = 10 integers
+            cell:       String          // TODO: Validate max length = 10 integers
         },
         email:          String,         // TODO: Validate in form user@host.host
         address:        {
@@ -85,7 +87,7 @@ var DocumentPackageSchema = new Schema({
         emergency_contact:  {
             name:           String,
             relationship:   String,
-            phone:          Number      // TODO: Validate max length = 10 integers
+            phone:          String      // TODO: Validate max length = 10 integers
         },
         other_residents:{
             count:      Number,        // other_residents.names[index], other_residents.ages[index] where index < other_residents.count
@@ -161,7 +163,7 @@ var DocumentPackageSchema = new Schema({
     },
 
     project:    {
-        // TODO: Complete after application, status, etc -- THIS IS LAST
+        // TODO: Complete after application, status, vetting notes, etc -- THIS IS LAST
     }
 });
 
