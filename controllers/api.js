@@ -154,14 +154,18 @@ module.exports = {
 
         // Instead we will do it in one line
         var doc = new DocumentPackage(req.body);
-        console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
 
         // Save it to the database with a callback to handle flow control
-        doc.save(function (err) {
+        doc.save(function (err, doc, numAffected) {
             if (err) {
                 console.error(err);
             }
-            res.status(200).send();
+            else if (numAffected == 1) {
+                console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
+                res.status(200);
+                console.log("[ API ] postDocument :: Status code is " + res.statusCode);
+                next();
+            }
         });
     },
 
