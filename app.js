@@ -15,7 +15,8 @@ var routes = require('./routes/index');
 var test = require('./routes/test');
 var view = require('./routes/view');
 var edit = require('./routes/edit');
-var miketest = require('./routes/miketest');
+var appform = require('./routes/miketest');
+//var miketest = require('./routes/miketest');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Start Express and view engines
@@ -52,9 +53,10 @@ app.use(function(req, res, next) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.use('/', routes);
 app.use('/test', test); // This route handles all examples in test (restaurant) DB
-app.use('/mt', miketest); // SHOULD route to mike's test miketest.js
+//app.use('/mt', miketest); // SHOULD route to mike's test miketest.js
 app.use('/view', view);
 app.use('/edit', edit);
+app.use('/application', appform);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Links to jQuery and Boots strap files
