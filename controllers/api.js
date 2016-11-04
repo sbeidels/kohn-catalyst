@@ -161,6 +161,7 @@ module.exports = {
             if (err) {
                 console.error(err);
             }
+            res.status(200).send();
         });
     },
 
