@@ -4,7 +4,7 @@
 
 	<div>
 		<button type="button" id="testButton">Trace form data as JSON (check console)</button>
-		<button type="button" id="submitButton">Simulate Send</button>
+		<button type="button" id="fakeSubmitButton">Simulate Send</button>
 		
     </div>
 	
@@ -19,13 +19,11 @@
 
 		<div class="formLine">
 			I own the home for which I am requesting work.
-			<input type="radio" name="owns_home" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="owns_home" value="false">No
+			<input type="checkbox" name="owns_home" value="true" required="true">Yes
 		</div>
 		<div class="formLine">
 			I am up to date on my mortgage payments.
-			<input type="radio" name="mortgage_up_to_date" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="mortgage_up_to_date" value="false">No
+			<input type="checkbox" name="mortgage_up_to_date" value="true" required="true">Yes 
 		</div>
 	</div>
 	<div class="formSection"><h4>Are you Advocating for Someone Else?</h4>
@@ -69,7 +67,7 @@
 		</div>
 		
 		<div class="formLine">
-			Preferred Name (if different from above): <input type="text" name="preferredName" placeholder="Nickname" required="true">
+			Preferred Name (if different from above): <input type="text" name="preferredName" placeholder="Nickname">
 		</div>
 		
 		<div class="formLine">
@@ -77,7 +75,7 @@
 		</div>
 		
 		<div class="formLine">
-			Driver's License Number: <input type="text" name="driversLicense" placeholder="Driver's License Number">
+			Driver's License Number: <input type="text" name="driversLicense" placeholder="Driver's License Number" required="true">
 		</div>
 		
 		<div class="formLine">
@@ -238,7 +236,7 @@
 		
 		<div class="formLine">Type of Property
 			<div class="formLine">
-				<input type="radio" name="propertyType" value="Single Family Home"> Single Family Home<br>
+				<input type="radio" name="propertyType" value="Single Family Home" required="true"> Single Family Home<br>
 				<input type="radio" name="propertyType" value="Mobile Home"> Mobile Home<br>
 				<input type="radio" name="propertyType" value="Manufactured Home"> Manufactured Home<br>
 				<input type="radio" name="propertyType" value="Other"> Other: 
