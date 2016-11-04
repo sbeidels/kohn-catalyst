@@ -2,6 +2,7 @@ $(document).ready(init)
 
 
 function init() {
+	$('#fakeSubmitButton').on('click', fakeSendJSON);
 	$('#submitButton').on('click', sendJSON);
     $('#testButton').on('click', getFormDataJson);
 
@@ -39,8 +40,8 @@ function init() {
 
 		var objects = getApplicationFormJSON();
 		console.log('objects as JSON: ', objects);
-		var jobjects = JSON.parse(objects);
-		console.log('objects as JSON objects', jobjects)
+		//var jobjects = JSON.parse(objects);
+		//console.log('objects as JSON objects', jobjects)
         return objects;
     } 
 
@@ -53,14 +54,21 @@ function init() {
 		$.extend(data, getFinanceData());
         $.extend(data, getPropertyData());
 		$.extend(data, getRecruitmentData());
-        return JSON.stringify(data);
+        return data;
     }
 	
-	function sendJSON() {
-		var jsonToSend = getApplicationFormJSON();
+	function fakeSendJSON() {
+		var jsonToSend = JSON.stringify(getApplicationFormJSON());
+		console.log('you are in fake send');
+		console.log(jsonToSend);
 		$.post( "/application/add", jsonToSend );
 	}
 	
+	function sendJSON() {
+		var jsonToSend = getApplicationFormJSON();
+		console.log('sending...');
+		$.post( "/application/add", jsonToSend );
+	}
 	//this function figures out the Language
 	function getLanguage() {
 		var data = {};
