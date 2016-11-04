@@ -20,7 +20,7 @@ var helpers = require('../mongoose/read-helpers');
 	res.render('formPost', payload);
 });
 */
-
+/*
 router.get('/application', function(req, res) {
 	var payload = {};
 	var query = Application.find({}, function(err, docs) {
@@ -30,7 +30,7 @@ router.get('/application', function(req, res) {
     });
 
     res.render('applicationform');
-});
+}); */
 
 router.route('/add') 
     .get(function(req, res) {
@@ -40,7 +40,16 @@ router.route('/add')
         res.json(res.locals);
     })
 
+router.get('/success', function(req, res) {
+	var payload = {};
+	var query = Application.find({}, function(err, docs) {
+		if (err) throw err;
+		console.log(docs);
+		return docs;
+    });
 
+    res.render('applicationsuccess');
+});
 
 /* GET ALL DOCUMENTS AND PRINT TO CONSOLE */
 /* BONUS HANDLEBARS TEMPLATE EXAMPLE */
