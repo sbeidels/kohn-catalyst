@@ -14,7 +14,15 @@ function init() {
 			contentType: 'application/json; charset=UTF-8',
 			data: jsonToSend
 			
-		});
+		})
+			.done(function() {
+				// Check status code for 200
+				// If code is 200 then redirect to a good page
+				// If code is not 200 forward below to .fail()
+			})
+			.fail(function() {
+				// The save failed, reload the form without losing their typed data
+			})
 	});
 
 	function getApplicationFormJSON() {
