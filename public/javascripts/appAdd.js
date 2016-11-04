@@ -1,8 +1,7 @@
-/*$(document).ready(init)
+$(document).ready(init)
 
 
-function init() { */
-
+function init() {
 	$('#appForm').submit(function (event) {
 		event.stopPropagation();
 		event.preventDefault();
@@ -253,7 +252,7 @@ function init() { */
 		return $(selector).val();
 	}
 
-//}
+}
 
 
 
