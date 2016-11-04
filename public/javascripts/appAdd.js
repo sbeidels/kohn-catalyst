@@ -4,7 +4,7 @@
 function init() { */
 
 	$('#appForm').submit(function (event) {
-		event.stopPropagation();  //not sure this is necessary, but it doesn't seem to cause problems
+		event.preventDefault();
 		var jsonToSend = getApplicationFormJSON();  //stringified in that function
 		console.log(jsonToSend);
 		//$.post("/application/add", jsonToSend, "JSON");
