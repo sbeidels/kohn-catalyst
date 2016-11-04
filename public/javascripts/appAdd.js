@@ -2,7 +2,7 @@ $(document).ready(init)
 
 
 function init() {
-	$('#fakeSubmitButton').on('click', fakeSendJSON);
+	$('#fakeSubmitButton').on('click', sendJSON);
 	$('#submitButton').on('click', sendJSON);
     $('#testButton').on('click', getFormDataJson);
 
@@ -57,18 +57,18 @@ function init() {
         return data;
     }
 	
-	function fakeSendJSON() {
-		var jsonToSend = JSON.stringify(getApplicationFormJSON());
-		console.log('you are in fake send');
-		console.log(jsonToSend);
-		$.post( "/application/add", jsonToSend );
-	}
-	
 	function sendJSON() {
 		var jsonToSend = getApplicationFormJSON();
-		console.log('sending...');
-		$.post( "/application/add", jsonToSend );
+		console.log(JSON.stringify(jsonToSend));
+		$.ajax({
+			url: "/application/add",
+			dataType: 'json',
+			contentType: 'application/json; charset=UTF-8',
+			data: JSON.stringify(jsonToSend),
+			type       : 'POST'
+		});
 	}
+
 	//this function figures out the Language
 	function getLanguage() {
 		var data = {};
