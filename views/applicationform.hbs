@@ -2,16 +2,8 @@
 <!--Begin the actual Form -->
 <form id="appForm">
 
-	<div>
-		<!--<button type="button" id="testButton">Trace form data as JSON (check console)</button>-->
-		<!--<button type="button" id="fakeSubmitButton">Simulate Send</button>-->
-		
-    </div>
-	
 	<input type="hidden" name="status" value="new">
-	
 
-	<div class="formSection"></div>
 	<div class="formSection"><h4>Welcome!</h4>
 		<p>Dear Applicant:</p>
 		<p>Catalyst Partnerships provides construction repairs, remodeling, and other services to homeowners who are elderly, disabled, and/or low-income. We also do projects for other like minded non-profit organizations. Our mission is to bring together useful resources and caring volunteers to meet the needs of under-resourced people in our community. Work is performed by skilled and unskilled volunteers, and overseen by licensed contractors. Funds and materials are provided through donations from generous individuals, businesses, and organizations in the community. Recipients are not required to pay for help, but are encouraged to contribute whatever labor and/or funds they are able to. Please complete the following application and click Submit. Please call with any questions (971) 245-6555.</p>
@@ -19,11 +11,11 @@
 
 		<div class="formLine">
 			I own the home for which I am requesting work.
-			<input type="checkbox" name="owns_home" value="true" required="true">Yes
+			<input type="checkbox" name="owns_home" value="true" required="false">Yes
 		</div>
 		<div class="formLine">
 			I am up to date on my mortgage payments.
-			<input type="checkbox" name="mortgage_up_to_date" value="true" required="true">Yes 
+			<input type="checkbox" name="mortgage_up_to_date" value="true" required="false">Yes 
 		</div>
 	</div>
 	<div class="formSection"><h4>Are you Advocating for Someone Else?</h4>
@@ -55,7 +47,7 @@
 	</div>
 	<div class="formSection"><h4>Personal Information</h4>
 		<div class="formLine">
-			First Name: <input type="text" name="firstName" placeholder="First Name" required="true">
+			First Name: <input type="text" name="firstName" placeholder="First Name" required="false">
 		</div>
 		
 		<div class="formLine">
@@ -63,7 +55,7 @@
 		</div>
 		
 		<div class="formLine">
-			Last Name: <input type="text" name="lastName" placeholder="Last Name" required="true">
+			Last Name: <input type="text" name="lastName" placeholder="Last Name" required="false">
 		</div>
 		
 		<div class="formLine">
@@ -71,11 +63,11 @@
 		</div>
 		
 		<div class="formLine">
-			Date of Birth: <input type="date" name="dob" required="true">
+			Date of Birth: <input type="date" name="dob" required="false">
 		</div>
 		
 		<div class="formLine">
-			Driver's License Number: <input type="text" name="driversLicense" placeholder="Driver's License Number" required="true">
+			Driver's License Number: <input type="text" name="driversLicense" placeholder="Driver's License Number" required="false">
 		</div>
 		
 		<div class="formLine">
@@ -99,7 +91,7 @@
 		</div>
 		
 		<div class="formLine">
-			Home Address 1: <input class="largeField" type="text" name="add1" placeholder="Address 1" required="true">
+			Home Address 1: <input class="largeField" type="text" name="add1" placeholder="Address 1" required="false">
 		</div>
 		
 		<div class="formLine">
@@ -107,24 +99,24 @@
 		</div>
 		
 		<div class="formLine">
-			City: <input type="text" name="city" placeholder="City" required="true">&nbsp;&nbsp;&nbsp;&nbsp;
-			State: <input type="text" name="state" placeholder="State" size="2"required="true">
+			City: <input type="text" name="city" placeholder="City" required="false">&nbsp;&nbsp;&nbsp;&nbsp;
+			State: <input type="text" name="state" placeholder="State" size="2"required="false">
 		</div>
 		
 		<div class="formLine">
-			Zip: <input type="number" name="zip" placeholder="Zip" maxlength="5" required="true">
+			Zip: <input type="number" name="zip" placeholder="Zip" maxlength="5" required="false">
 		</div>
 		
 		<div class="formLine">
-			Emergency Contact: <input type="text" name="eContactName" placeholder="Emergency Contact Name" required="true">
+			Emergency Contact: <input type="text" name="eContactName" placeholder="Emergency Contact Name" required="false">
 		</div>
 		
 		<div class="formLine">
-			Emergency Contact Relationship: <input type="text" name="ecRelationship" placeholder="Relationship" required="true">
+			Emergency Contact Relationship: <input type="text" name="ecRelationship" placeholder="Relationship" required="false">
 		</div>
 		
 		<div class="formLine">
-			Emergency Contact Phone: <input type="text" name="ecPhone" placeholder="Emergency Phone" required="true">
+			Emergency Contact Phone: <input type="text" name="ecPhone" placeholder="Emergency Phone" required="false">
 		</div>
 		
 		<div class="formLine">If you have others residing in your home, please list them below:
@@ -158,7 +150,7 @@
 		
 		<div class="formLine">What language do you speak?
 			<div class="formLine">
-				<input type="radio" name="language" value="English">I speak English<br>
+				<input type="radio" name="language" value="English" required="false">I speak English<br>
 				<input type="radio" name="language" value="Other">I only speak another language<br>
 				&nbsp;&nbsp;&nbsp;&nbsp; Please enter language here: <input type="text" name="language_other" placeholder="Language you speak"><br>
 			</div>
@@ -166,19 +158,19 @@
 		
 		<div class="formLine">How did you hear about Catalyst?
 			<div class="formLine">
-				<textarea rows="4" cols="60" id="hearAboutCatalyst" placeholder="How you heard about Catalyst" required="true"></textarea>
+				<textarea rows="4" cols="60" id="hearAboutCatalyst" placeholder="How you heard about Catalyst" required="false"></textarea>
 			</div>
 		</div>
 	</div>
 	
 	<div class="formSection"><h4>Financial Information</h4>
 		<div class="formLine">
-			What is your monthly mortgage payment (in dollars)? <input type="number" name="monthlyMortgage" placeholder="Monthly Mortgage" required="true">
+			What is your monthly mortgage payment (in dollars)? <input type="number" name="monthlyMortgage" placeholder="Monthly Mortgage" required="false">
 		</div>
 		
 		<div class="formLine">What is your approximate total annual household income (in dollars)?<br>(Please include all sources for all residents):
 			<div class="formLine">
-				<input class="largeField" type="number" name="annualIncome" placeholder="Approximate Annual Income" required="true">
+				<input class="largeField" type="number" name="annualIncome" placeholder="Approximate Annual Income" required="false">
 			</div>
 		</div>
 	
@@ -236,7 +228,7 @@
 		
 		<div class="formLine">Type of Property
 			<div class="formLine">
-				<input type="radio" name="propertyType" value="Single Family Home" required="true"> Single Family Home<br>
+				<input type="radio" name="propertyType" value="Single Family Home" required="false"> Single Family Home<br>
 				<input type="radio" name="propertyType" value="Mobile Home"> Mobile Home<br>
 				<input type="radio" name="propertyType" value="Manufactured Home"> Manufactured Home<br>
 				<input type="radio" name="propertyType" value="Other"> Other: 
@@ -244,12 +236,12 @@
 			</div>
 		</div>
 		
-		<div class="formLine">How long have you owned the home/property? 
-			<input class="largeField" type="text" name="timePropertyOwned" placeholder="Time you've owned property" required="true">
+		<div class="formLine">How many years have you owned the home/property? 
+			<input class="largeField" type="number" name="timePropertyOwned" placeholder="Years you've owned property" required="false">
 		</div>
 		
 		<div class="formLine">In what year was this property built?
-			<input type="number" name="yearPropertyBuilt" placeholder="Year property built" required="true">
+			<input type="number" name="yearPropertyBuilt" placeholder="Year property built" required="false">
 		</div>
 		
 		<div class="formLine">What type of repairs would you like to request?  Please include as much information as you can:
@@ -323,25 +315,21 @@
 	<div class="formSection"><h4>Digital Signature</h4>
 	
 		<div class="formLine">I have read and agree to the above terms and conditions:
-			<input type="checkbox" name="tac-yes" value="true" required="true">Yes
+			<input type="checkbox" name="tac-yes" value="true" required="false">Yes
 		</div>
 		
 		<div class="formLine">
 			Please type your full name in the box below.  This will be considered your digital signature.<br>
-			<input class="largeField" type="text" name="signature" placeholder="Type Name Here" required="true">
+			<input class="largeField" type="text" name="signature" placeholder="Type Name Here" required="false">
 		</div>
 		
-		<input type="submit" value="Submit Form" id="submitButton">
+		<input type="submit" value="Submit Form">
 	</div>
 </form>
 
 
 
-<!--<script src="addForm.js"></script>-->
-
-
-<!--<script  src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script> -->
-        <script type="text/javascript" src="/javascript/appAdd.js"></script>
+<script type="text/javascript" src="/javascript/appAdd.js"></script>
 
 
 
