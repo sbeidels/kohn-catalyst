@@ -1,5 +1,5 @@
 /*
- This file represents the doument schema for the entire DOCUMENT PACKAGE
+ This file represents the document schema for the entire DOCUMENT PACKAGE
  This is the master file for a client. Imagine it as a section in a filing
  cabinet that holds the application, financial, property, handle-it and
  project information. A 'folder' to hold a bunch of forms.
@@ -55,7 +55,7 @@ var DocumentPackageSchema = new Schema({
     },
 
     application:    {
-        owns_home:      Boolean,        // TODO: is this still asked/on the form?
+        owns_home:      Boolean,
         name:       {
             first:     String,
             middle:    String,
@@ -76,7 +76,7 @@ var DocumentPackageSchema = new Schema({
             home:       String,         // TODO: Validate max length = 10 integers
             cell:       String          // TODO: Validate max length = 10 integers
         },
-        email:          String,         // TODO: Validate in form user@host.host
+        email:          String,
         address:        {
             line_1:     String,
             line_2:     String,
@@ -90,7 +90,7 @@ var DocumentPackageSchema = new Schema({
             phone:          String      // TODO: Validate max length = 10 integers
         },
         other_residents:{
-            count:      Number,        // other_residents.names[index], other_residents.ages[index] where index < other_residents.count
+            count:      Number,         // other_residents.names[index], other_residents.ages[index] where index < other_residents.count
             name:      [String],        // This is an array of strings
             age:       [Number],        // This is an array of numbers
 			relationship: [String]      // This is an array of strings
@@ -120,12 +120,10 @@ var DocumentPackageSchema = new Schema({
             name:               [String],
             value:              [Number]
         },
-        // TODO: could combine with other client_can_contribute
         client_can_contribute:  {
             value:              Boolean,
             amount:             Number
         },
-        // TODO: could combine with other associates_can_contribute
         associates_can_contribute:  {
             value:              Boolean,
             description:        String
@@ -141,12 +139,10 @@ var DocumentPackageSchema = new Schema({
         ownership_length:       Number,
         year_constructed:       Number,     // TODO: Validate as exact length = 4
         requested_repairs:      String,
-        // TODO: could combine with other client_can_contribute
         client_can_contribute:  {
             value:              Boolean,
             description:        String
         },
-        // TODO: could combine with other associates_can_contribute
         associates_can_contribute:  {
             value:              Boolean,
             description:        String
