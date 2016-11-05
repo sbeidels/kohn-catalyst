@@ -1,3 +1,5 @@
+//This file routes our application and handles post routes to the API
+
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -7,30 +9,6 @@ var api = require('../controllers/api');
 
 // Helper query functions
 var helpers = require('../mongoose/read-helpers');
-
-/* router.post('/form', function(req, res) {
-	var formFields = [];
-	for (var p in req.body){
-		formFields.push({p : req.body[p]})
-	}
-	console.log(formFields);
-	console.log(req.body);
-	var payload = {};
-	payload.dataList = formFields;
-	res.render('formPost', payload);
-});
-*/
-/*
-router.get('/application', function(req, res) {
-	var payload = {};
-	var query = Application.find({}, function(err, docs) {
-		if (err) throw err;
-		console.log(docs);
-		return docs;
-    });
-
-    res.render('applicationform');
-}); */
 
 router.route('/add') 
     .get(function(req, res) {
