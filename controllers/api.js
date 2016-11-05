@@ -164,7 +164,8 @@ module.exports = {
                 console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
                 res.status(200);
                 console.log("[ API ] postDocument :: Status code is " + res.statusCode);
-                next();
+                res.send({status: 200});
+                //next();
             }
         });
     },
