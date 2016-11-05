@@ -15,15 +15,14 @@ function init() {
 			data: jsonToSend
 		}); 
 	
-		posting.done(function (data) {
-			// Check status code for 200
-			//console.log("raw: " + data);
-			//var sData = JSON.stringify(data);
-			//console.log("stringified: " + sData);
-			//var pData = JSON.parse(data);
-			//console.log("parsed: " + pData);
+		posting.done(function (xhr) {
 			// If code is 200 then redirect to a good page
-			window.location.replace("/application/success");
+			if(xhr.status == 200) {
+				window.location.replace("/application/success");
+			}
+			else{
+				console.log("Whoops, something went wrong");
+			}
 			// If code is not 200 forward below to .fail()
 		});
 		

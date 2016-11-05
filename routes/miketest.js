@@ -41,13 +41,7 @@ router.route('/add')
     })
 
 router.get('/success', function(req, res) {
-	var payload = {};
-	var query = Application.find({}, function(err, docs) {
-		if (err) throw err;
-		console.log(docs);
-		return docs;
-    });
-
+    //render the success page
     res.render('applicationsuccess');
 });
 
