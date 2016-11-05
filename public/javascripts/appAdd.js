@@ -3,27 +3,35 @@ $(document).ready(init)
 
 function init() {
 	$('#appForm').submit(function (event) {
-		event.stopPropagation();
 		event.preventDefault();
 		var jsonToSend = getApplicationFormJSON();  //stringified in that function
 		console.log(jsonToSend);
 		//$.post("/application/add", jsonToSend, "JSON");
-		$.ajax({
+		var posting = $.ajax({
 			type : 'POST',
 			url: "/application/add",
 			dataType: 'json',
 			contentType: 'application/json; charset=UTF-8',
 			data: jsonToSend
-			
-		})
-			.done(function() {
-				// Check status code for 200
-				// If code is 200 then redirect to a good page
-				// If code is not 200 forward below to .fail()
-			})
-			.fail(function() {
-				// The save failed, reload the form without losing their typed data
-			})
+		}); 
+	
+		posting.done(function (data) {
+			// Check status code for 200
+			//console.log("raw: " + data);
+			//var sData = JSON.stringify(data);
+			//console.log("stringified: " + sData);
+			//var pData = JSON.parse(data);
+			//console.log("parsed: " + pData);
+			// If code is 200 then redirect to a good page
+			window.location.replace("/application/success");
+			// If code is not 200 forward below to .fail()
+		});
+		
+		posting.fail(function (data) 
+		{
+			console.log("Whoops, something went wrong");
+			// The save failed, just do nothing and leave the form without losing their typed data
+		}); 
 	});
 
 	function getApplicationFormJSON() {
