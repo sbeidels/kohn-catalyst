@@ -1,5 +1,6 @@
-$(document).ready(init)
+//This is the FORM HANDLER for the application.
 
+$(document).ready(init)
 
 function init() {
 	$('#appForm').submit(function (event) {
@@ -7,6 +8,7 @@ function init() {
 		var jsonToSend = getApplicationFormJSON();  //stringified in that function
 		console.log(jsonToSend);
 		//$.post("/application/add", jsonToSend, "JSON");
+		//POST the data to the database
 		var posting = $.ajax({
 			type : 'POST',
 			url: "/application/add",
@@ -14,9 +16,8 @@ function init() {
 			contentType: 'application/json; charset=UTF-8',
 			data: jsonToSend
 		}); 
-	
+		//upon return, check for 200, then redirect so success page
 		posting.done(function (xhr) {
-			// If code is 200 then redirect to a good page
 			if(xhr.status == 200) {
 				window.location.replace("/application/success");
 			}
@@ -33,6 +34,8 @@ function init() {
 		}); 
 	});
 
+	//THIS is the function that calls all the other functions that piece together (extend)
+	//all of the JSON in proper API format.
 	function getApplicationFormJSON() {
 		var data = {};
 		
@@ -44,7 +47,7 @@ function init() {
 		return JSON.stringify(data);
 	}
 
-	//this function figures out the Language
+	//this function figures out and returns the Language
 	function getLanguage() {
 		var data;
 		if (getVal('input[name="language"]:checked') == "English") {
@@ -55,7 +58,6 @@ function init() {
 		}
 		return data;
 	}
-
 
 	//this function figures out and returns the Home Type
 	function getHomeType() {
