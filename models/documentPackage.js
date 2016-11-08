@@ -73,8 +73,8 @@ var DocumentPackageSchema = new Schema({
         is_married:     Boolean,
         spouse:         String,
         phone:          {
-            home:       String,         // TODO: Validate max length = 10 integers
-            cell:       String          // TODO: Validate max length = 10 integers
+            preferred:  String,         // TODO: Validate max length = 10 integers
+            other:      String          // TODO: Validate max length = 10 integers
         },
         email:          String,
         address:        {
