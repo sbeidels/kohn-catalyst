@@ -7,9 +7,6 @@ var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose we are using the Bluebird promise library
 Promise.promisifyAll(mongoose); // Convert mongoose API to always return promises using Bluebird's promisifyAll
 
-// Helper query functions
-var helpers = require('../mongoose/read-helpers');
-
 //Need ObjectID to search by ObjectID
 var ObjectId = require('mongodb').ObjectID;
 
