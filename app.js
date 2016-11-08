@@ -1,3 +1,7 @@
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Node Modules
+// Import and Node Modules (from package.json) that the app will use)
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var express = require('express');
 var favicon = require('serve-favicon');
 var db = require('./mongoose/connection');
@@ -9,6 +13,7 @@ var hbs = require('hbs');
 var fs = require('fs');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Route Naming and Importing
 // Define routes that will be used
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var routes = require('./routes/index');
@@ -19,28 +24,37 @@ var appform = require('./routes/miketest');
 //var miketest = require('./routes/miketest');
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Start Express and view engines
+// Init the Express App Engine
+// Start Express and serve the favicon
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var app = express();
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
-
-// Setup view engine
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// View Engine
+// Setup view engine relative path, register partials, and declare Handlebars as the
+// view engine to generate HTML for the client
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Use any middleware for the application that is needed
+// Middleware
+// Use any middleware for the application that is needed. bodyParse allows parsing to
+// and from JSON, cookieParser allows reading and writing cookies, set path to relative
+// directory on server
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// a middleware function with no mount path
-// this code is executed for every request to the router
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Middleware the will -ALWAYS- be executed
+// This method logs the HTTP Request type and the IPv6 of the user
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.use(function(req, res, next) {
     var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     console.log('[ ' + req.method + ' ] request made from ' + 'IP: ' + ip);
@@ -49,16 +63,18 @@ app.use(function(req, res, next) {
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Assign URI to Routes
 // Use routes now that app has been initiated and all middleware is defined
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.use('/', routes);
-app.use('/test', test); // This route handles all examples in test (restaurant) DB
-//app.use('/mt', miketest); // SHOULD route to mike's test miketest.js
+app.use('/test', test);
+//app.use('/mt', miketest);
 app.use('/view', view);
 app.use('/edit', edit);
 app.use('/application', appform);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Server Side Libraries
 // Links to jQuery and Boots strap files
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));

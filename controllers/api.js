@@ -1,9 +1,13 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Import node modules and node exports
+// mongoose - schemas, templates, queries
+// db       - connection to the database server
+// DocumentPackage - schema and model for DocumentPackage writes
+// bluebird - converts mongoose API calls to ES6 promises
 // Import any required modules
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
-// var Application = require('../models/application');
 var DocumentPackage = require('../models/documentPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
@@ -13,9 +17,8 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with blue
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Global database value
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// var db = 'test';
 
-
+// Template the document each API call
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Retrieve a list of all applications and their count
 // Type: GET
@@ -29,15 +32,17 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with blue
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We don't want any of this to run until we tell it to run, so we immediately export it
-// Currently these two function are MIDDLEWARE
+//
+// Currently all functions are MIDDLEWARE in the Express app
 //      Middleware Docs: https://expressjs.com/en/guide/using-middleware.html
 //      Inspiration: https://medium.com/@jeffandersen/building-a-node-js-rest-api-with-express-46b0901f29b6#.6ttj8e6rs
+//
 // Basically, these function take this:
 //      router.get('/all', function(req, res) { .. }
 // And transform it into:
 //      router.get('/all', api.getAllDocuments, function(req, res) { .. }
 //
-// They keep req, res, err, and next inact as they are passed around
+// They keep req, res, err, and next intact as they are passed around the route
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
     getAllDocuments: function (req, res, next) {
@@ -165,7 +170,6 @@ module.exports = {
                 res.status(200);
                 console.log("[ API ] postDocument :: Status code is " + res.statusCode);
                 res.send({status: 200});
-                //next();
             }
         });
     },

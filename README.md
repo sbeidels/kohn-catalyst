@@ -1,64 +1,6 @@
 # kohn-catalyst
 hello :)
 
-# UPDATE - **VERY IMPORTANT**
-```
-The file structure of our project as of 10/19/16, sans node_modules, is below. Please see after the hyphen for notes.
-.
-├── README.md
-├── app.js
-├── aws-ec2.sh
-├── bin
-│   └── www
-├── config.js
-├── controllers
-│   └── api.js
-├── models
-│   ├── application.js
-│   ├── connection.js
-│   └── residence.js
-├── mongo_shell_insert_template.json
-├── mongoose
-│   ├── connection.js
-│   └── read-helpers.js
-├── package.json
-├── public
-│   ├── images
-│   │   ├── cBlock.png
-│   │   ├── cPart.png
-│   │   ├── clear.png
-│   │   └── toolbox.jpg
-│   ├── javascripts
-│   │   └── temp.file
-│   └── stylesheets
-│       ├── style.css
-│       ├── vetting.css
-│       └── view.css
-├── routes
-│   ├── formStyle.css
-│   ├── connection.js
-│   ├── miketest.js
-│   ├── test.js
-│   ├── edit.js
-│   └── view.js
-└── views
-    ├── application-list.hbs
-    ├── application.html
-    ├── applicationform.hbs
-    ├── error.hbs
-    ├── formPost.hbs
-    ├── index.hbs
-    ├── layout.hbs
-    ├── old-app-verbiage.txt
-    ├── partials
-    │   ├── footer.html
-    │   ├── header.html
-    │   └── rests.html
-    ├── preapplication.hbs
-    ├── vetting.hbs
-    └── view.hbs
-```
-
 **Website live pages:**
 * http://54.69.62.47:8000/
 * http://54.69.62.47:8000/test/show
