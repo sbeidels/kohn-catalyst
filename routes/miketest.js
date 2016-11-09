@@ -1,5 +1,4 @@
 //This file routes our application and handles post routes to the API
-
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
@@ -44,16 +43,6 @@ router.get('/show-all', function(req, res) {
     });
 });
 
-
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
-/* THIS EXAMPLE STILL ONLY FINDS ALL DOCUMENTS IN THE COLLECTION */
-router.get('/helper-all', function(req, res) {
-    Application.findAllDocuments(function(err, docs) {
-        if (err) console.error(err);
-        res.json(docs);
-    })
-});
-
 /* USING HELP QUERY FROM /mongoose/query-helpers.js */
 /* THIS EXAMPLE SEARCHES BY LAST NAME */
 /* Last names in DB: fitzpatrick, washington, west */
@@ -63,22 +52,6 @@ router.get('/helper-last-name', function(req, res) {
         console.log(docs);
         res.json(docs);
     })
-});
-
-/* USING HELP QUERY FROM /mongoose/query-helpers.js */
-/* FINDS APPLICATIONS WITH DOB >= GIVEN DATE */
-router.get('/helper-dob-gte', function (req, res) {
-    var DOB = "2000, 1, 01";
-    Application.findDob(DOB, function(req, res) {
-        if (err) console.error(err);
-        console.log(docs);
-        res.json(docs);
-    })
-});
-
-/* NEW */
-router.get('/new', function(req, res) {
-    res.render('rest-new');
 });
 
 /* INSERT */
@@ -100,25 +73,6 @@ router.post('/insert_user', function(req, res) {
     console.log('POST VALUES: ' + '\n' + building + '\n' + coord1 + '\n' + coord2
         + '\n' + street + '\n' + zip + '\n' + borough + '\n' + cuisine + '\n' +
         name  + '\n' + restid + '\n');
-
-    var restCollection = db.get("restaurants");
-    restCollection.insert(
-        {
-            "address": {
-                "building": building,
-                "coord": [ coord1, coord2 ],
-                "street": street,
-                "zipcode": zip
-            },
-            "borough": borough,
-            "cuisine": cuisine,
-            "grades": [
-                { "date": { "$date": 1393804800000 }, "grade": "A", "score": -1 },
-            ],
-            "name": name,
-            "restaurant_id": restid
-        }
-    );
 
     res.send("Insert a new rest (C)");
 });
