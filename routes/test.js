@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
-var Application = require('../models/application');
 var DocumentPackage = require('./../models/documentPackage');
 
 // Import promise engine
@@ -13,7 +12,6 @@ mongoose.Promise = require('bluebird');
 Promise.promisifyAll(mongoose);
 
 // Helper query functions
-var helpers = require('../mongoose/read-helpers');
 var api = require("../controllers/api");
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

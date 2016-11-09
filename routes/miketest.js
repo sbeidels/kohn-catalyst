@@ -4,11 +4,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
-var Application = require('../models/application');
 var api = require('../controllers/api');
-
-// Helper query functions
-var helpers = require('../mongoose/read-helpers');
 
 router.route('/add') 
     .get(function(req, res) {

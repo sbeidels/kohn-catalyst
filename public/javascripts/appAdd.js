@@ -99,7 +99,7 @@ function init() {
 			organization_name: getVal('input[name="advocate_npo_organization"]'),
 			relationship: getVal('input[name="advocate_individual_relationship"]'),
 			phone: getVal('input[name="advocate_phone"]')
-		}
+		};
 		return data;
 	}
 
@@ -129,8 +129,8 @@ function init() {
 				preferred: getVal('input[name="preferredName"]')
 			},
 			phone: {
-				home: getVal('input[name="hPhone"]'),
-				cell: getVal('input[name="cPhone"]')
+				preferred: getVal('input[name="pPhone"]'),
+				other: getVal('input[name="oPhone"]')
 			},
 			address: {
 				line_1: getVal('input[name="add1"]'),
@@ -176,7 +176,7 @@ function init() {
 			special_circumstances: {
 				note: jQuery("textarea#otherCircumstances").val()
 			}
-		}
+		};
 		return data;
 	}
 
@@ -244,7 +244,7 @@ function init() {
 				value: getVal('input[name="othersLaborHelp"]:checked'),
 				description: jQuery("textarea#others_laborHelp").val()
 			}
-		}
+		};
 		return data;
 	}
 
@@ -260,7 +260,7 @@ function init() {
 				name: getVal('input[name="fbo_name"]'),
 				willing_to_help: getVal('input[name="fbo_help"]:checked')
 			}
-		}
+		};
 		return data;
 	}
 	   

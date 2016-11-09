@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
-var Application = require('../models/application');
 var DocumentPackage = require('../models/documentPackage');
 var api = require('../controllers/api');
 
@@ -12,7 +11,6 @@ mongoose.Promise = require('bluebird'); // Tell mongoose we are using the Bluebi
 Promise.promisifyAll(mongoose); // Convert mongoose API to always return promises using Bluebird's promisifyAll
 
 // Helper query functions
-var helpers = require('../mongoose/read-helpers');
 
 //Need ObjectID to search by ObjectID
 var ObjectId = require('mongodb').ObjectID;
