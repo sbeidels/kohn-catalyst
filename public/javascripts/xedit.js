@@ -298,54 +298,23 @@ $(document).ready(function() {
     /**
      * SET ALL OTHER ELEMENTS TO EDITABLE
      **/
-    $('#phone_number').editable({
-            success: function(response, newValue) {
-                if(response.status == 'error') return response.msg;
-            }
-        }
-    );
+    $('#phone_number').editable();
 
-    $('#cell_phone').editable({
-            success: function(response, newValue) {
-                if(response.status == 'error') return response.msg;
-            }
-        }
-    );
+    $('#cell_phone').editable();
 
-    $('#pref_name').editable({
-            success: function(response, newValue) {
-                if(response.status == 'error') return response.msg;
-            }
-        }
-    );
+    $('#pref_name').editable();
 
-    $('#spouse').editable({
-        success: function(response, newValue) {
-            if(response.status == 'error') return response.msg;
-        }
-    });
+    $('#spouse').editable();
 
-    $('#email').editable({
-        success: function(response, newValue) {
-            if(response.status == 'error') return response.msg;
-        }
-    });
+    $('#email').editable();
 
-    $('#driver_license').editable({
-        success: function(response, newValue) {
-            if(response.status == 'error') return response.msg;
-        }
-    });
+    $('#driver_license').editable();
 
     $('#emergency_name').editable({});
     $('#emergency_relation').editable({});
     $('#emergency_phone').editable({});
 
-    $('#special_circumstances').editable({
-        success: function(response, newValue) {
-            if(response.status == 'error') return response.msg;
-        }
-    });
+    $('#special_circumstances').editable();
 
     $('#dob').editable({
         format: 'yyyy-mm-dd',
