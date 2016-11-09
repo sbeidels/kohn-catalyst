@@ -40,7 +40,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'new\'');
     } else {
         res.locals.results.new.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
         });
     }
     payload.new = res.locals.results.new;
@@ -49,7 +49,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'declined\'');
     } else {
         res.locals.results.declined.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
         });
     }
     payload.declined = res.locals.results.declined;
@@ -58,7 +58,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'phone\'');
     } else {
         res.locals.results.phone.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
             payload.processing.push(element);
         });
     }
@@ -67,7 +67,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'documents\'');
     } else {
         res.locals.results.documents.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
             payload.processing.push(element);
         });
     }
@@ -76,7 +76,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'discuss\'');
     } else {
         res.locals.results.discuss.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
             payload.processing.push(element);
         });
     }
@@ -85,7 +85,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'visit\'');
     } else {
         res.locals.results.visit.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
             payload.processing.push(element);
         });
     }
@@ -94,7 +94,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'handle\'');
     } else {
         res.locals.results.handle.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
             payload.processing.push(element);
         });
     }
@@ -103,7 +103,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'project\'');
     } else {
         res.locals.results.project.forEach(function (element) {
-            element = formatDate(element);
+            element = formatElement(element);
             payload.processing.push(element);
         });
     }
@@ -138,6 +138,12 @@ router.get('/:id', function(req, res) {
 
 });
 
+function formatElement(element) {
+    formatStatus(element);
+    formatDate(element);
+    return element;
+}
+
 /**
  * Takes the VERY long date in the DB and makes it into a nicer format
  * @param element
@@ -150,6 +156,53 @@ function formatDate(element)
     var Day = ( "00" + element.updated.getDate()).slice(-2);
     var Mon = ("00" + (element.updated.getMonth()+1)).slice(-2);
     element.updated = Mon + "/" + Day + "/" + Year;
+    return element;
+}
+
+/**
+ * Takes the status string from the DB and makes it more detailed for the front end
+ * @param element
+ * @returns {The element with wordier status}
+ */
+function formatStatus(element) {
+    var status;
+
+    switch (element.status){
+        case 'new':
+            status = 'NEW';
+            break;
+        case 'phone':
+            status = 'Phone Call Needed';
+            break;
+        case 'handle':
+            status = 'Handle-It';
+            break;
+        case 'documents':
+            status = 'Awaiting Documents';
+            break;
+        case 'discuss':
+            status = 'On Hold - Pending Discussion';
+            break;
+        case 'visit':
+            status = 'Site Assessment';
+            break;
+        case 'approval':
+            status = 'Approval Process';
+            break;
+        case 'declined':
+            status = 'Declined';
+            break;
+        case 'withdrawn':
+            status = 'Withdrawn';
+            break;
+        case 'project':
+            status ='Approved Project';
+            break;
+        default:
+            status = element.status;
+    }
+
+    element.status = status;
     return element;
 }
 
