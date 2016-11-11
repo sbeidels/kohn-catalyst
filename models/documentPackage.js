@@ -150,12 +150,8 @@ var DocumentPackageSchema = new Schema({
     },
 
     recruitment:    {
-        belong_in_faith_group:  Boolean,
-        organization:   {
-            name:               String,
-            willing_to_help:    Boolean
-        }
-
+        fbo_help: Boolean,
+        fbo_name: String
     },
 
     project:    {
