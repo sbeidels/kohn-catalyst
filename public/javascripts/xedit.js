@@ -308,13 +308,32 @@ $(document).ready(function() {
 
     $('#email').editable();
 
-    $('#driver_license').editable();
+    $('#special_circumstances').editable();
 
+    $('#driver_license').editable();
     $('#emergency_name').editable({});
     $('#emergency_relation').editable({});
-    $('#emergency_phone').editable({});
 
-    $('#special_circumstances').editable();
+    $('#emergency_phone').editable({});
+    $('#home_type').editable();
+    $('#ownership_length').editable();
+    $('#year_constructed').editable();
+    $('#requested_repairs').editable();
+
+    $('#f_client_contrib').editable();
+    $('#f_associate_contrib').editable();
+
+    $('#l_client_contrib').editable();
+    $('#l_associate_contrib').editable();
+
+    $('#mortgage_payment').editable({
+            step: '0.01'
+        }
+    );
+    $('#income').editable({
+            step: '0.01'
+        }
+    );
 
     $('#dob').editable({
         format: 'yyyy-mm-dd',
