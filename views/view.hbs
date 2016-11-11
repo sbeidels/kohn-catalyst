@@ -139,7 +139,7 @@
     <!--WORK ITEMS-->
     <div id="workAccordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="workHeader">
+            <div class="panel-heading" role="tab" id="propHeader">
                 <h2 class="panel-title">
                     <a data-toggle="collapse" data-parent="#workAccordion" href="#work" aria-expanded="true" aria-controls="work">
                         Work Items
@@ -149,16 +149,146 @@
             <div id="work" class="panel-collapse collapse" role="tabpanel" aria-labelledby="workHeader">
                 <table class="table table-striped">
                     <thead>
-                        <tr>
-                            <th>Request</th>
-                            <th>Description</th>
-                        </tr>
+                    <tr>
+                        <th>Request</th>
+                        <th>Description</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Fix-it</td>
-                            <td> This is an example of a work request entered by the agent visiting the home.</td>
-                        </tr>
+                    <tr>
+                        <td>Fix-it</td>
+                        <td> This is an example of a work request entered by the agent visiting the home.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--PROPERTY ITEMS-->
+    <div id="propAccordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="propHeader">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#propAccordion" href="#prop" aria-expanded="true" aria-controls="prop">
+                        Property Information
+                    </a>
+                </h2>
+            </div>
+            <div id="prop" class="panel-collapse collapse" role="tabpanel" aria-labelledby="propHeader">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>Home Type</td>
+                        <td><a href="#" id="home_type" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.home_type" data-title="Enter Home Type">{{property.home_type}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Length of Ownership</td>
+                        <td><a href="#" id="ownership_length" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.ownership_length" data-title="Enter Ownership Length">{{property.ownership_length}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Year Constructed</td>
+                        <td><a href="#" id="year_constructed" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.year_constructed" data-title="Enter Year Constructed">{{property.year_constructed}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Requested Repairs</td>
+                        <td><a href="#" id="requested_repairs" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.requested_repairs" data-title="Enter Requested Repairs">{{property.requested_repairs}}</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--FINANCIAL INFO-->
+    <div id="financeInfoAccordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="financeInfoHeader">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#financeInfoAccordion" href="#financeInfo" aria-expanded="true" aria-controls="financeInfo">
+                        Financial Information
+                    </a>
+                </h2>
+            </div>
+            <div id="financeInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="financeInfoHeader">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>Mortgage Payment</td>
+                        <td><a href="#" id="mortgage_payment" data-type="number" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.mortgage.payment" data-title="Enter Mortgage Payment">{{finance.mortgage.payment}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Mortgage Up-to-Date</td>
+                        <td><a href="#" id="mortgage" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.mortgage.up_to_date" data-title="Is Mortgage Up-to-Date?"></a></td>
+                    </tr>
+                    <tr>
+                        <td>Income Amount</td>
+                        <td><a href="#" id="income" data-type="number" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.income.amount" data-title="Enter Income">{{finance.income.amount}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Client Can Contribute</td>
+                        <td>
+                            <a href="#" id="f_client_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.value" data-title="Can Client Contribute Financially?"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Client Contribution</td>
+                        <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{property.client_can_contribute.description}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Associates Can Contribute</td>
+                        <td>
+                            <a href="#" id="f_associate_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.value" data-title="Can Associates Contribute Financially?"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Associate Contribution</td>
+                        <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{property.associates_can_contribute.description}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Requested Other Help</td>
+                        <td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
+                    </tr>
+                    <!--TODO: Figure out Assets-->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--LABOR HELP-->
+    <div id="laborAccordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="laborHeader">
+                <h2 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#laborAccordion" href="#labor" aria-expanded="true" aria-controls="labor">
+                        Labor Assistance Information
+                    </a>
+                </h2>
+            </div>
+            <div id="labor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="laborHeader">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>Client Can Contribute</td>
+                        <td>
+                            <a href="#" id="l_client_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="property.client_can_contribute.value" data-title="Can Client Contribute Labor?"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Client Contribution</td>
+                        <td><a href="#" id="l_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.client_can_contribute.description" data-title="Enter Contribution Description">{{property.client_can_contribute.description}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Associates Can Contribute</td>
+                        <td>
+                            <a href="#" id="l_associate_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.value" data-title="Can Associates Contribute Labor?"></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Associate Contribution</td>
+                        <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -180,6 +310,7 @@
             </div>
         </div>
     </div>
+
     <a href="/view">Back</a>
 </div>
 
@@ -224,36 +355,90 @@
         $('#veteran').editable({
             value: '{{application.veteran}}',
             source:
-            [
-                {value: 'true', text: 'true'},
-                {value: 'false', text: 'false'}
-            ]
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+
+        $('#mortgage').editable({
+            value: '{{finance.mortgage.up_to_date}}',
+            source:
+                    [
+                        {value: 'true', text: 'True'},
+                        {value: 'false', text: 'False'}
+                    ]
         });
 
         $('#status').editable({
             value: '{{status}}',
             source:
-            [
-                {value: 'new', text: 'NEW'},
-                {value: 'phone', text: 'Phone Call Needed'},
-                {value: 'documents', text: 'Awaiting Documents'},
-                {value: 'discuss', text: 'On Hold - Pending Discussion'},
-                {value: 'visit', text: 'Site Assessment'}, //TODO: Change to assess
-                {value: 'handle', text: 'Handle-It'},
-                {value: 'declined', text: 'Declined'},
-                {value: 'approval', text: 'Approval Process'},
-                {value: 'withdrawn', text: 'Withdrawn'},
-                {value: 'project', text: 'Approved Project'}
-            ]
+                    [
+                        {value: 'new', text: 'NEW'},
+                        {value: 'phone', text: 'Phone Call Needed'},
+                        {value: 'documents', text: 'Awaiting Documents'},
+                        {value: 'discuss', text: 'On Hold - Pending Discussion'},
+                        {value: 'visit', text: 'Site Assessment'}, //TODO: Change to assess
+                        {value: 'handle', text: 'Handle-It'},
+                        {value: 'declined', text: 'Declined'},
+                        {value: 'approval', text: 'Approval Process'},
+                        {value: 'withdrawn', text: 'Withdrawn'},
+                        {value: 'project', text: 'Approved Project'}
+                    ]
         });
 
         $('#owns_home').editable({
             value: '{{application.owns_home}}',
             source:
-            [
-                {value: 'true', text: 'true'},
-                {value: 'false', text: 'false'}
-            ]
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+
+        $('#f_client_can_contrib').editable({
+            value: '{{application.owns_home}}',
+            source:
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+
+        $('#f_associate_can_contrib').editable({
+            value: '{{application.owns_home}}',
+            source:
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+
+        $('#l_client_can_contrib').editable({
+            value: '{{application.owns_home}}',
+            source:
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+
+        $('#l_associate_can_contrib').editable({
+            value: '{{application.owns_home}}',
+            source:
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+
+        $('#request_help').editable({
+            value: '{{application.owns_home}}',
+            source:
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
         });
     });
 
