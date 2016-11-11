@@ -1,38 +1,53 @@
 $('#showDescription').on('click', showDescriptionFunction);
+$('#showRadioDescription').on('click', showDescriptionFunction);
+$('#hideRadioDescription').on('click', hideText);
 
 function showDescriptionFunction() {
 	if (getVal('input[name="family_labor_help"]:checked')) {
 		console.log("Made It!");
-	/// now show a text area with name="newArea"
 	
-	// create the text area 
-		var x = document.createElement("TEXTAREA");
+	///first, we make sure the text area isn't already there
+		var element = document.getElementById("newArea");
+		console.log(element);
+		if(!element) {
+			/// now show a text area with name="newArea"
 	
-	// create the attributes
-		var theId = document.createAttribute("id");  
-		var thePlaceholder = document.createAttribute("placeholder");  
-		var theCols = document.createAttribute("cols");
-	
-	//set the attribute values
-		theId.value = "newArea";
-		thePlaceholder.value = "If yes, Please enter details here.";
-		theCols.value = "60";
-	
-	//put attributes into x (the new text area)
-		x.setAttributeNode(theId); 
-		x.setAttributeNode(thePlaceholder); 
-		x.setAttributeNode(theCols); 
-		document.body.appendChild(x);
-	}
-		
-	
+			// create the text area 
+				var x = document.createElement("TEXTAREA");
+			
+			// create the attributes
+				var theId = document.createAttribute("id");  
+				var thePlaceholder = document.createAttribute("placeholder");  
+				var theCols = document.createAttribute("cols");
+			
+			//set the attribute values
+				theId.value = "newArea";
+				thePlaceholder.value = "If yes, Please enter details here.";
+				theCols.value = "60";
+			
+			//put attributes into x (the new text area)
+				x.setAttributeNode(theId); 
+				x.setAttributeNode(thePlaceholder); 
+				x.setAttributeNode(theCols); 
+				console.log("x = " + x)
+				document.body.appendChild(x);
+			}
+		}
 	else {
 		console.log("Unchecked!"); 
 	// now remove the text area by the id created above (newArea)
-		
 		var element = document.getElementById("newArea");
+		console.log(element);
 		element.parentNode.removeChild(element);
-		}
+	}
+}
+
+function hideText() {
+	console.log("I'm ready to hide");
+	var element = document.getElementById("newArea");
+	console.log(element);
+	element.parentNode.removeChild(element);
+	
 }
 
 function getVal(selector) {
