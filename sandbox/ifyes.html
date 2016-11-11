@@ -3,13 +3,22 @@
 		
 	</head>
 	<body>
+	<div>
 		<form>
 			Please click yes to see an "If Yes" text area show up:
 			<input type="checkbox" id="showDescription" name="family_labor_help" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<input type="checkbox" name="family_labor_help" value="false">No 
+		</form>
+	</div>
+	
+	<div>
+		<form>
+			Please tap the yes radio button to see an "If Yes" text area show up:
+			<input type="radio" id="showRadioDescription" name="family_labor_help" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="hideRadioDescription" name="family_labor_help" value="false">No 
 
 		</form>
-		
+	</div>
 		<script  src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
 		<script src="ifyes.js"></script>
 	</body>
