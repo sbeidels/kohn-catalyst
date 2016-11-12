@@ -214,9 +214,31 @@
                 </tr>
                 </tbody>
             </table>
+
+<!--FBO INFO-->
+
+            <h3>FBO</h3>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <td>Involved with a FBO</td>
+                    <!-- TODO: Confirm this is correct for BOOL operator -->
+                    <td>
+                        <a href="#" id="fbo_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="recruitment.fbo_help" data-title="Does client belong to an FBO?"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Client Contribution</td>
+                    <td><a href="#" id="fbo_name" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="recruitment.fbo_name" data-title="Enter Name of FBO">{{recruitment.fbo_name}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
+
+<!--FBO INFO-->
 
 <script>
     /**
