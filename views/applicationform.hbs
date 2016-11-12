@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/formStyle.css">
 <center><h2>Catalyst Partnerships Recipient Application</h2></center>
 <!--Begin the actual Form -->
 <form id="appForm" method="post">
@@ -6,16 +7,21 @@
 
 	<div class="formSection"><h4>Welcome!</h4>
 		<p>Dear Applicant:</p>
-		<p>Catalyst Partnerships provides construction repairs, remodeling, and other services to homeowners who are elderly, disabled, and/or low-income. We also do projects for other like minded non-profit organizations. Our mission is to bring together useful resources and caring volunteers to meet the needs of under-resourced people in our community. Work is performed by skilled and unskilled volunteers, and overseen by licensed contractors. Funds and materials are provided through donations from generous individuals, businesses, and organizations in the community. Recipients are not required to pay for help, but are encouraged to contribute whatever labor and/or funds they are able to. Please complete the following application and click Submit. Please call with any questions (971) 245-6555.</p>
+		<p>Catalyst Partnerships provides construction repairs, remodeling, and other services to homeowners who are elderly, disabled, and/or low-income. We also do projects for other like minded non-profit organizations. Our mission is to bring together useful resources and caring volunteers to meet the needs of under-resourced people in our community. Work is performed by skilled and unskilled volunteers, and overseen by licensed contractors. Funds and materials are provided through donations from generous individuals, businesses, and organizations in the community. Recipients are not required to pay for help, but are encouraged to contribute whatever labor and/or funds they are able to. Please complete the following application and click Submit. </p>
+		
+		<p>After we receive your completed application, we will contact you by phone within 1 week of receipt. Small projects may be approved & scheduled immediately, while larger projects will take longer and require you to submit additional documentation (such as pay stub, social security benefits, housing assistance, proof of ownership, documentation of assets, previous year taxes, etc.).  Please call with any questions (971) 245-6555.</p>
+		
 		<p>Please note that Catalyst does not provide services for rental properties. Check the appropriate buttons below to indicate that you are the owner, and up to date on your mortgage payments.</p>
 
 		<div class="formLine">
 			I own the home for which I am requesting work.
-			<input type="checkbox" name="owns_home" value="true" >Yes
+			<input type="radio" name="owns_home" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="alertOwn" name="owns_home" value="false">No
 		</div>
 		<div class="formLine">
 			I am up to date on my mortgage payments.
-			<input type="checkbox" name="mortgage_up_to_date" value="true" >Yes 
+			<input type="radio" name="mortgage_up_to_date" value="true">Yes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" id="alertMortgage" name="mortgage_up_to_date" value="false">No
 		</div>
 	</div>
 	<div class="formSection"><h4>Are you Advocating for Someone Else?</h4>
@@ -71,7 +77,8 @@
 		</div>
 		
 		<div class="formLine">
-			Marital Status:<input type="radio" name="isMarried" value="false">Single&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="isMarried" value="true">Married
+			Marital Status: <input type="radio" name="mStatus" value="Single">Single&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="mStatus" value="Married">Married&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="mStatus" value="Widowed">Widowed
 		</div>
 		
 		<div class="formLine">
@@ -100,7 +107,7 @@
 		
 		<div class="formLine">
 			City: <input type="text" name="city" placeholder="City" >&nbsp;&nbsp;&nbsp;&nbsp;
-			State: <input type="text" name="state" placeholder="State" size="2">
+			State: <input class="tinyField" type="text" name="state" placeholder="State" size="2">
 		</div>
 		
 		<div class="formLine">
@@ -217,7 +224,7 @@
 		<div class="formLine">Have you already requested help from other Non-Profits, from your City, from your County, or other Organization?
 			<div class="formLine">
 				<input type="radio" name="otherHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="otherHelp" value="false">No
+				<input type="radio" name="otherHelp" value="false">No<br>
 				If yes, please describe what help they might provide:<br>
 				<textarea rows="3" cols="60" id="otherHelp_provide" placeholder="Help you have requested from other organizations"></textarea>
 			</div>
@@ -268,42 +275,36 @@
 			</div>
 		</div>
 		
-		<div class="formLine">Do you belong to a faith-based community?
+		<div class="formLine">Many of our volunteers come from faith-based organizations.  Are you connected with a faith-based community who may have volunteers willing to help?
 			<div class="formLine">
-				<input type="radio" name="fbo" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="fbo" value="false">No<br>
+				<input type="radio" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="fbo_help" value="false">No<br>
 				If yes, please give details below:
 				<div class="formLine">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input class="largeField" type="text" name="fbo_name" placeholder="Name">
 				</div>
-				<div class="formLine">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Would they be willing to provide help with implementing your requested project?
-					<input type="radio" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="fbo_help" value="false">No<br>
-				</div>
 			</div>
 		</div>
 		
-		
-		<div class="formLine">Are there any other circumstances or information we need to know about to consider your request?
+		<div class="formLine">What else would you like us to know?
 			<div class="formLine">
-				<textarea rows="2" cols="60" id="otherCircumstances" placeholder="Other information"></textarea>
+				<textarea rows="6" cols="60" id="otherCircumstances" placeholder="Feel free to share your story here, if applicable..."></textarea>
 			</div>
 		</div>
     </div>
 	
 	<div class="formSection"><h4>Approval Process</h4>
-		<p>After we receive your completed application, we will contact you by phone within 1-week of receipt. Small projects may be approved & scheduled immediately, while larger projects will take longer and require you to submit additional documentation (such as pay stub, social security benefits, housing assistance, proof of ownership, documentation of assets, previous year taxes, etc.). We will be in touch with you soon!</p>
+		<p>As stated above, after we receive your completed application, we will contact you by phone within 1 week of receipt. Small projects may be approved & scheduled immediately, while larger projects will take longer and require you to submit additional documentation (such as pay stub, social security benefits, housing assistance, proof of ownership, documentation of assets, previous year taxes, etc.).</p>
 	</div>
 	
 	<div class="formSection"><h4>Please read and sign below:</h4>
-		<p>NATURE OF NON-PROFIT CATALYST PARTNERSHIPS ACTIVITY: I understand and acknowledge that my involvement in this en- deavor with Catalyst Partnerships, its agents and contractors, and any partnering organizations, hereafter referred to as ‘Catalyst,’ is voluntary. I understand and acknowledge my willingness to allow my property to be associated with this Catalyst activity in the man- ner described in this Recipent Application, I also voluntarily submit myself to the supervision of Catalyst staff, officers, agents, employ- ees, volunteers, etc., for all activities which are part of this project. I understand that the services being provided to me may be through volunteers who freely donate their time without any compensation to themselves, and that the overall quality of service and/or craftsmanship I receive may not reflect professional standards. I also give Catalyst the irrevocable right and unrestricted permis- sion to use and/or publish photos and/or video images of/including me, for purposes of art, display, advertising, editorial use, or any other lawful purpose, and waive any right I may have to inspect and approve the finished product of any piece that may use such.</p>
+		<p>NATURE OF NON-PROFIT CATALYST PARTNERSHIPS ACTIVITY: I understand and acknowledge that my involvement in this endeavor with Catalyst Partnerships, its agents and contractors, and any partnering organizations, hereafter referred to as ‘Catalyst,’ is voluntary. I understand and acknowledge my willingness to allow my property to be associated with this Catalyst activity in the manner described in this Recipent Application, I also voluntarily submit myself to the supervision of Catalyst staff, officers, agents, employees, volunteers, etc., for all activities which are part of this project. I understand that the services being provided to me may be through volunteers who freely donate their time without any compensation to themselves, and that the overall quality of service and/or craftsmanship I receive may not reflect professional standards. I also give Catalyst the irrevocable right and unrestricted permission to use and/or publish photos and/or video images of/including me, for purposes of art, display, advertising, editorial use, or any other lawful purpose, and waive any right I may have to inspect and approve the finished product of any piece that may use such.</p>
 		
 		<p>RELEASE OF LIABILITY: I understand and acknowledge that this Activity and any related activities, by their very nature, pose the potential risk of damage to my property. I also realize that Catalyst and its personnel, agents, or volunteers, or any other person or entity associated with this Activity, may not be professionally trained for this Activity, and are not legally or financially responsible or liable for any claim arising from any damage done to my property during this Activity.</p>
 		
 		<p>I understand that Catalyst carries liability insurance for its service activities. In the event of liability claim, I hereby voluntarily agree, on behalf of myself and my heirs, executors, administrators and assigns, that I will not seek remuneration beyond that which is necessary and reasonable for any damage and/or loss which is incident to/associated with preparing for/while participating in any activity in any way connected with said Activity. In the same manner, I also voluntarily exempt and relieve Catalyst officers, agents, servants, employees, volunteers, or any other person or entity associated with this Activity, from any liability or responsibility, whether same shall arise by the negligence of any of said persons, or otherwise.</p>
 		
-		<p>MEDICAL TREATMENT AUTHORIZATION: In the event of accident or illness to me/my child, I do hereby consent to whatever x-ray examination, anesthetic, medical, surgical or dental diagnosis or treatment and hospital care considered necessary in the best judg- ment of the attending physician, surgeon, or dentist and performed under the supervision of a member of the medical staff of the hos- pital or facility furnishing medical or dental services. Further, I agree that Catalyst and its personnel, agents, or volunteers, or any other person or entity associated with these Activities, are not personally responsible or liable for any claim arising from any consent given in good faith in connection with diagnosis or advised treatment.</p>
+		<p>MEDICAL TREATMENT AUTHORIZATION: In the event of accident or illness to me/my child, I do hereby consent to whatever x-ray examination, anesthetic, medical, surgical or dental diagnosis or treatment and hospital care considered necessary in the best judgment of the attending physician, surgeon, or dentist and performed under the supervision of a member of the medical staff of the hospital or facility furnishing medical or dental services. Further, I agree that Catalyst and its personnel, agents, or volunteers, or any other person or entity associated with these Activities, are not personally responsible or liable for any claim arising from any consent given in good faith in connection with diagnosis or advised treatment.</p>
 		
 		<p>I/my child understand(s) that Catalyst DOES NOT CARRY HAZARD INSURANCE TO COVER ME/MY CHILD for any accidents/injuries to me/ my child. I understand that, in the event that I/my child am/is injured in any way, any personal medical and hospitalization insurance available to me/my family will provide sole coverage. I/my child voluntarily elect(s) to participate in this Catalyst Activity. I agree to assume any and all liability and responsibility for any and all potential risks which may be associated with participation in such Activities or any activities incidental thereto.</p>
 		
@@ -331,5 +332,6 @@
 
 
 <script type="text/javascript" src="/javascript/appAdd.js"></script>
+<script type="text/javascript" src="/javascript/noalert.js"></script>
 
 
