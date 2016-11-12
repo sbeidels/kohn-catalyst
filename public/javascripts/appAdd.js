@@ -116,8 +116,10 @@ function init() {
 		// Non-grouped application data
 		data.application = {
 			owns_home: getVal('input[name="owns_home"]:checked'),
-			is_married: getVal('input[name="isMarried"]:checked'),
-			spouse: getVal('input[name="spouse"]'),
+			marital: {
+				status: getVal('input[name="mStatus"]:checked'),
+				spouse: getVal('input[name="spouse"]')
+			},
 			email: getVal('input[name="emailaddy"]'),
 			veteran: getVal('input[name="military"]:checked'),
 			language: getLanguage(),
@@ -255,21 +257,17 @@ function init() {
 		var data = {};
 
 		data.recruitment = {
-			belong_in_faith_group: getVal('input[name="fbo"]:checked'),
-			organization: {
-				name: getVal('input[name="fbo_name"]'),
-				willing_to_help: getVal('input[name="fbo_help"]:checked')
-			}
+			fbo_help: getVal('input[name="fbo_help"]:checked'),
+			fbo_name: getVal('input[name="fbo_name"]')
 		};
 		return data;
 	}
-	   
 
 	function getVal(selector) {
 		return $(selector).val();
 	}
-
 }
+
 
 
 
