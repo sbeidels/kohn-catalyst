@@ -130,7 +130,8 @@ router.get('/:id', function(req, res) {
 
                 result.application[0].application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
             }
-            res.render('view', result.application[0]);
+            req.app.locals.layout = 'b3-layout';            // Change default from layout.hbs to b3-layout.hbs
+            res.render('b3-view', result.application[0]);   // Change view.hbs to b3-view.hbs
         })
         .catch(function(err) {
             console.error(err);

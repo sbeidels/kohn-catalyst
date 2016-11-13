@@ -38,6 +38,7 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
+app.set('view options', { layout: 'layout' });
 
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
