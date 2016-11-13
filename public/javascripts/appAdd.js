@@ -263,6 +263,8 @@ function init() {
 		return data;
 	}
 
+	
+	
 	function getVal(selector) {
 		return $(selector).val();
 	}
