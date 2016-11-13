@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var DocumentPackage = require('../models/documentPackage');
+var api = require('../controllers/api');
 
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose we are using the Bluebird promise library
@@ -18,31 +19,22 @@ router.post('/', function(req, res) {
 
 /**
  * Get Updated Data
+ * Most fields can now be updated using the API
  **/
-router.post('/:id', function(req, res) {
-    //Checking POST Values
-    console.log("Request to update _ID " + ObjectId(req.params.id));
-    console.log("Value received: " + req.body.value);
-    console.log("Name received: " + req.body.name);
+router.post('/:id', api.putUpdateDocument, function(req, res) {
 
-    var updateValue = { $set : {} };
-    updateValue.$set[req.body.name] = req.body.value;
-    console.log(updateValue);
-
-    //update database
-    var updateStatus = DocumentPackage.update(
-        {_id: ObjectId(req.params.id)},
-        updateValue,
-        function(err){
-            if(err)
-            {   res.status(500).send({ status: 'error' });}
-            else
-            {   res.status(200).send({ status: 'success' });}
-        }
-    );
-
+    if(res.locals.status != '200'){
+        res.status(500).send({ status: 'error' });
+    }
+    else{
+        res.status(200).send({ status: 'success' });
+    }
 
 });
+
+/**
+ * The Following routes don't conform to the api function to update fields
+ */
 
 /**
  * EDIT ADDRESS

@@ -177,15 +177,15 @@ module.exports = {
     putUpdateDocument: function(req, res, next) {
         // When executed this will apply updates to a doc and return the MODIFIED doc
 
-        // Log the _id, key, and value that are passed to the function
+        // Log the _id, name, and value that are passed to the function
         console.log('[ API ] putUpdateDocument :: Call invoked with _id: ' + req.params.id
-            + ' | key: ' + req.body.key + ' | value: ' + req.body.value);
-        console.log(req.body.key + ' + ' + req.body.value);
+            + ' | key: ' + req.body.name + ' | value: ' + req.body.value);
+        console.log(req.body.name + ' + ' + req.body.value);
 
-        // Build the key:value pairs to be updated
-        // Since there is only one key and one value, we can use the method below
+        // Build the name:value pairs to be updated
+        // Since there is only one name and one value, we can use the method below
         var updates = {};
-        updates[req.body.key] = req.body.value;
+        updates[req.body.name] = req.body.value;
         console.log(updates);
 
         // TODO: Debug why the document is not updating
@@ -195,7 +195,7 @@ module.exports = {
                 {_id: req.params.id},
                 // Updates
                 {
-                    // $set: {key: value}
+                    // $set: {name: value}
                     $set: updates
                 },
                 // Options
@@ -212,12 +212,14 @@ module.exports = {
             .then(function (results) {
                 // TODO: Confirm true/false is correct
                 if (results) {
-                    console.log('[ API ] putUpdateDocument :: Documents package found: FALSE');
-                }
-                else {
                     console.log('[ API ] putUpdateDocument :: Documents package found: TRUE');
                 }
+                else {
+                    console.log('[ API ] putUpdateDocument :: Documents package found: FALSE');
+                }
                 res.locals.results = results;
+                //sending a status of 200 for now
+                res.locals.status = '200';
 
                 // If we are at this line all promises have executed and returned
                 // Call next() to pass all of this glorious data to the next express router
