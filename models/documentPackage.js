@@ -70,7 +70,10 @@ var DocumentPackageSchema = new Schema({
             tags:       ["VA", "EX"],
             number:     String
         },
-        is_married:     Boolean,
+        marital:        {
+            status:     String,
+            spouse:     String,
+        },
         spouse:         String,
         phone:          {
             preferred:  String,         // TODO: Validate max length = 10 integers
