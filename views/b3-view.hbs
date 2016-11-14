@@ -8,16 +8,35 @@
 
 <div class="container">
     <div class="row">
-        <div class=col-xs-12>
+        <div class="col-xs-12">
             <!--VETTING NOTES-->
             <h3>Vetting Notes</h3>
-            <table class="table table-striped">
-                <tr>
-                    <td>11/1/2016</td>
-                    <td>This is an example of where vetting agent notes would appear.</td>
-                </tr>
-            </table>
-
+            <div class="form-group">
+                <form>
+                <table class="table table-striped" id="notes-table">
+                    <thead>
+                        <tr>
+                            <th class="col-md-2">Date</th>
+                            <th class="col-md-8">Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>11/1/2016</td>
+                        <td>This is an example of where vetting agent notes would appear.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
+                        </td>
+                        <td>
+                            <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
 <!--CONTACT INFO-->
             <h3>Contact</h3>
             <table class="table table-striped">
@@ -51,15 +70,15 @@
                     <td><a href="#" id="dob" data-type="date" data-pk="1" data-url="/edit/{{_id}}" data-name="application.dob.date" data-title="Select date">{{application.dob.date}}</a></td>
                 </tr>
                 <tr>
-                    <td>Married</td>
+                    <td>Marital Status</td>
                     <td>
-                        <a href="#" id="marital_status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="application.is_married" data-title="Select Marital Status"></a>
+                        <a href="#" id="marital_status" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.marital.status" data-title="Enter Marital Status">{{application.marital.status}}</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Spouse</td>
                     <td>
-                        <a href="#" id="spouse" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.spouse" data-title="Enter Spouse Name">{{application.spouse}}</a>
+                        <a href="#" id="spouse" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.marital.spouse" data-title="Enter Spouse Name">{{application.marital.spouse}}</a>
                     </td>
                 </tr>
                 <tr>
@@ -246,8 +265,6 @@
     </div>
 </div>
 
-<!--FBO INFO-->
-
 <script>
     /**
      * Some inline-editable fields require data from the DB to properly work
@@ -274,12 +291,7 @@
         });
 
         $('#marital_status').editable({
-            value: '{{application.is_married}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
+            value: '{{application.marital.status}}'
         });
 
         $('#veteran').editable({
