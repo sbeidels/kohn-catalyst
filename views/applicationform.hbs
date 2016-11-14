@@ -269,20 +269,20 @@
 		<div class="formLine">Do you have friends or family who may be able to help Catalyst perform the work of this project?
 			<div class="formLine">
 				<input type="radio" id="showOthersLaborHelp" name="othersLaborHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" id="hideOthersLaborHelp" name="othersLaborHelp" value="false">No<br>
+				<input type="radio" id="hideOthersLaborHelp" name="othersLaborHelp" value="false">No<!-- <br>
 				If yes, please describe:<br>
-				<textarea rows="3" cols="60" id="others_laborHelp" placeholder="Help other people could provide"></textarea>
+				<textarea rows="3" cols="60" id="others_laborHelp" placeholder="Help other people could provide"></textarea> -->
 			</div>
 		</div>
 		
 		<div class="formLine">Many of our volunteers come from faith-based organizations.  Are you connected with a faith-based community who may have volunteers willing to help?
 			<div class="formLine">
-				<input type="radio" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="fbo_help" value="false">No<br>
+				<input type="radio" id="showFboHelp" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" id="hideFboHelp" name="fbo_help" value="false">No<!-- <br>
 				If yes, please give details below:
 				<div class="formLine">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input class="largeField" type="text" name="fbo_name" placeholder="Name">
-				</div>
+				</div> -->
 			</div>
 		</div>
 		
@@ -330,7 +330,7 @@
 </form>
 
 
-<script type="text/javascript" src="/javascript/jquery.js"></script>
+
 <script type="text/javascript" src="/javascript/appAdd.js"></script>
 <script type="text/javascript" src="/javascript/noalert.js"></script>
 <script type="text/javascript" src="/javascript/ifyes.js"></script>
