@@ -70,15 +70,15 @@
                     <td><a href="#" id="dob" data-type="date" data-pk="1" data-url="/edit/{{_id}}" data-name="application.dob.date" data-title="Select date">{{application.dob.date}}</a></td>
                 </tr>
                 <tr>
-                    <td>Married</td>
+                    <td>Marital Status</td>
                     <td>
-                        <a href="#" id="marital_status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="application.is_married" data-title="Select Marital Status"></a>
+                        <a href="#" id="marital_status" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.marital.status" data-title="Enter Marital Status">{{application.marital.status}}</a>
                     </td>
                 </tr>
                 <tr>
                     <td>Spouse</td>
                     <td>
-                        <a href="#" id="spouse" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.spouse" data-title="Enter Spouse Name">{{application.spouse}}</a>
+                        <a href="#" id="spouse" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.marital.spouse" data-title="Enter Spouse Name">{{application.marital.spouse}}</a>
                     </td>
                 </tr>
                 <tr>
@@ -291,12 +291,7 @@
         });
 
         $('#marital_status').editable({
-            value: '{{application.is_married}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
+            value: '{{application.marital.status}}'
         });
 
         $('#veteran').editable({
