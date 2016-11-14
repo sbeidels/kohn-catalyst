@@ -455,7 +455,7 @@ function showOthersLaborHelpFunction() {
 		//set the attribute values
 		theId.value = textAreaName;  //this is pulled in from above
 		//CHANGE THIS
-		thePlaceholder.value = "If yes, please share what help or materials others you know might be able to provide...";  
+		thePlaceholder.value = "If yes, please share what help or materials people you know might be able to provide...";  
 		theCols.value = "60";
 		theRows.value = "3";
 		
@@ -470,7 +470,7 @@ function showOthersLaborHelpFunction() {
 	}
 }
 
-function hideLaborHelpText() {
+function hideOthersLaborHelpText() {
 	console.log("I'm ready to hide");
 /// do some setup to make the textAreaName
 	var textAreaName = "others_laborHelp";		//CHANGE this
@@ -483,6 +483,90 @@ function hideLaborHelpText() {
 		element.parentNode.removeChild(element);
 	}
 }
+
+/*
+<div class="formLine">Many of our volunteers come from faith-based organizations.  Are you connected with a faith-based community who may have volunteers willing to help?
+			<div class="formLine">
+				<input type="radio" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="fbo_help" value="false">No<br>
+				If yes, please give details below:
+				<div class="formLine">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input class="largeField" type="text" name="fbo_name" placeholder="Name">
+*/
+///The Question:
+///Many of our volunteers come from faith-based organizations.  Are you connected with a faith-based community who may have volunteers willing to help?
+
+//		CHANGE ID AND FUNCTION CALLS
+$('#showFboHelp').on('click', showFboHelpFunction);  
+$('#hideFboHelp').on('click', hideFboHelpText);
+
+function showFboHelpFunction() {
+	console.log("Made It!");
+	
+/// First we do some setup for this ifYes Instance
+	var textAreaName = "fbo_name";  		//CHANGE 
+	
+///then, we make sure the text area isn't already there
+	var element = document.getElementById(textAreaName);
+	console.log(element);  //could be null, which is okay, nothing else happens
+	
+///If NOT there - put it there
+	if(!element) {
+		//find the div we want to insert after
+		var parentElement = document.getElementById("showOthersLaborHelp").parentNode;  //CHANGE!!!!
+		var child1 = parentElement.nextSibling;  
+		console.log("parentElement = " + parentElement);
+		console.log("child1 = " + child1);  //THIS is the one we want to insert after
+
+		/// now to go through the rigorous process of creating the input
+
+		// create the text field input
+		var x = document.createElement("INPUT");
+		
+		// create the attributes
+		var theId = document.createAttribute("id");
+		var theClass = document.createAttribute("class");
+		var theType = document.createAttribute("type");
+		var theName = document.createAttribute("name");
+		var thePlaceholder = document.createAttribute("placeholder");  
+		
+		
+		//set the attribute values
+		theId.value = textAreaName;  //this is pulled in from above
+		theClass.value = "largeField";
+		theType.value = "text";
+		theName.value = textAreaName;  //even though it's a text input, just to be consistent
+		thePlaceholder.value = "Organization Name";
+		
+		//put attributes into x (the new text area)
+		x.setAttributeNode(theId); 
+		x.setAttributeNode(theClass); 
+		x.setAttributeNode(theType); 
+		x.setAttributeNode(theName); 
+		x.setAttributeNode(thePlaceholder); 
+		
+		console.log("x = " + x);  //just to see it is a HTMLtextAreaElement
+		
+		//insert the textarea just after this div
+		insertAfter(x, child1);  //uses external function insertAfter
+	}
+}
+
+function hideFboHelpText() {
+	console.log("I'm ready to hide");
+/// do some setup to make the textAreaName
+	var textAreaName = "fbo_name";		//CHANGE this
+
+//FIND it (if it's there)
+	var element = document.getElementById(textAreaName);
+	console.log(element);  //could be null - no worries, nothing else happens
+	//make sure it's there before we remove it
+	if(element) {
+		element.parentNode.removeChild(element);
+	}
+}
+
+
 
 
 
