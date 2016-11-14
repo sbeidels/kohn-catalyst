@@ -70,6 +70,10 @@ var DocumentPackageSchema = new Schema({
             tags:       ["VA", "EX"],
             number:     String
         },
+        // status can return 3 values:
+        // single - a person who has never married
+        // divorced -  a person who has a legally terminated marriage
+        // window - a person who has a deceased spouse
         marital:        {
             status:     String,
             spouse:     String,
