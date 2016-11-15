@@ -193,7 +193,7 @@
                 </tr>
                 <tr>
                     <td>Client Contribution</td>
-                    <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{property.client_can_contribute.description}}</a></td>
+                    <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{finance.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
                     <td>Associates Can Contribute</td>
@@ -203,7 +203,7 @@
                 </tr>
                 <tr>
                     <td>Associate Contribution</td>
-                    <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{property.associates_can_contribute.description}}</a></td>
+                    <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
                     <td>Requested Other Help</td>
@@ -235,7 +235,7 @@
                 </tr>
                 <tr>
                     <td>Associate Contribution</td>
-                    <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
+                    <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{property.associates_can_contribute.description}}</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -306,15 +306,6 @@
                     ]
         });
 
-        $('#mortgage').editable({
-            value: '{{finance.mortgage.up_to_date}}',
-            source:
-                    [
-                        {value: 'true', text: 'True'},
-                        {value: 'false', text: 'False'}
-                    ]
-        });
-
         $('#status').editable({
             value: '{{status}}',
             source:
@@ -342,7 +333,7 @@
         });
 
         $('#f_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{finance.client_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -351,7 +342,7 @@
         });
 
         $('#f_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{finance.associates_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -360,7 +351,7 @@
         });
 
         $('#l_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{property.client_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -369,7 +360,7 @@
         });
 
         $('#l_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{property.associates_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -378,7 +369,7 @@
         });
 
         $('#request_help').editable({
-            value: '{{application.owns_home}}',
+            value: '{{finance.requested_other_help.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -386,50 +377,6 @@
                     ]
         });
 
-        $('#f_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#f_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#l_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#l_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#request_help').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
     });
 
 </script>
