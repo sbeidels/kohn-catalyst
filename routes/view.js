@@ -63,6 +63,15 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         });
     }
 
+    if (res.locals.results.handle[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'handle\'');
+    } else {
+        res.locals.results.handle.forEach(function (element) {
+            element = formatElement(element);
+            payload.processing.push(element);
+        });
+    }
+
     if (res.locals.results.documents[0] == null) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'documents\'');
     } else {
@@ -85,15 +94,6 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'visit\'');
     } else {
         res.locals.results.visit.forEach(function (element) {
-            element = formatElement(element);
-            payload.processing.push(element);
-        });
-    }
-
-    if (res.locals.results.handle[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'handle\'');
-    } else {
-        res.locals.results.handle.forEach(function (element) {
             element = formatElement(element);
             payload.processing.push(element);
         });

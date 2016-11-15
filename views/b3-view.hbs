@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" onclick="goBack()">Back to Application List</button>
+<a href="/view" class="btn btn-primary">Back to Application List</a>
 
 <script>
     function goBack() {
@@ -9,6 +9,10 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <h1>{{application.name.first}} {{application.name.last}}</h1>
+
+            <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h3>
+
             <!--VETTING NOTES-->
             <h3>Vetting Notes</h3>
             <div class="form-group">
@@ -198,7 +202,7 @@
                 </tr>
                 <tr>
                     <td>Client Contribution</td>
-                    <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{property.client_can_contribute.description}}</a></td>
+                    <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{finance.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
                     <td>Associates Can Contribute</td>
@@ -208,7 +212,7 @@
                 </tr>
                 <tr>
                     <td>Associate Contribution</td>
-                    <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{property.associates_can_contribute.description}}</a></td>
+                    <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
                     <td>Requested Other Help</td>
@@ -240,7 +244,7 @@
                 </tr>
                 <tr>
                     <td>Associate Contribution</td>
-                    <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
+                    <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{property.associates_can_contribute.description}}</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -293,10 +297,6 @@
             }
         });
 
-        $('#marital_status').editable({
-            value: '{{application.marital.status}}'
-        });
-
         $('#veteran').editable({
             value: '{{application.veteran}}',
             source:
@@ -315,27 +315,18 @@
                     ]
         });
 
-        $('#mortgage').editable({
-            value: '{{finance.mortgage.up_to_date}}',
-            source:
-                    [
-                        {value: 'true', text: 'True'},
-                        {value: 'false', text: 'False'}
-                    ]
-        });
-
         $('#status').editable({
             value: '{{status}}',
             source:
                     [
+                        {value: 'discuss', text: 'On Hold - Pending Discussion'},
                         {value: 'new', text: 'NEW'},
                         {value: 'phone', text: 'Phone Call Needed'},
-                        {value: 'documents', text: 'Awaiting Documents'},
-                        {value: 'discuss', text: 'On Hold - Pending Discussion'},
-                        {value: 'visit', text: 'Site Assessment'}, //TODO: Change to assess
                         {value: 'handle', text: 'Handle-It'},
-                        {value: 'declined', text: 'Declined'},
+                        {value: 'documents', text: 'Awaiting Documents'},
+                        {value: 'visit', text: 'Site Assessment'}, //TODO: Change to assess
                         {value: 'approval', text: 'Approval Process'},
+                        {value: 'declined', text: 'Declined'},
                         {value: 'withdrawn', text: 'Withdrawn'},
                         {value: 'project', text: 'Approved Project'}
                     ]
@@ -351,7 +342,7 @@
         });
 
         $('#f_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{finance.client_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -360,7 +351,7 @@
         });
 
         $('#f_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{finance.associates_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -369,7 +360,7 @@
         });
 
         $('#l_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{property.client_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -378,7 +369,7 @@
         });
 
         $('#l_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
+            value: '{{property.associates_can_contribute.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -387,7 +378,7 @@
         });
 
         $('#request_help').editable({
-            value: '{{application.owns_home}}',
+            value: '{{finance.requested_other_help.value}}',
             source:
                     [
                         {value: 'true', text: 'true'},
@@ -395,50 +386,6 @@
                     ]
         });
 
-        $('#f_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#f_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#l_client_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#l_associate_can_contrib').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
-
-        $('#request_help').editable({
-            value: '{{application.owns_home}}',
-            source:
-                    [
-                        {value: 'true', text: 'true'},
-                        {value: 'false', text: 'false'}
-                    ]
-        });
     });
 
 </script>
