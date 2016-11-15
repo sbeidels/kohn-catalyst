@@ -1,7 +1,14 @@
-$('#addResidentFields').on('click', addResidentFieldsFunction);
+$(document).ready(init)
 
-function addResidentFieldsFunction() {
-	if (getVal('input[name="living"]:checked')) {
+
+function init() {
+	$('#addNextFieldset').on('click', addResidentFieldsFunction);
+	$('#addResidentField').on('click', addResidentFieldsFunction);
+	
+
+
+	function addResidentFieldsFunction() {
+	//if (getVal('input[name="living"]:checked')) {
 		console.log("made it!");
 		
 		/// COUNT the number of fields we have???
@@ -91,21 +98,22 @@ function addResidentFieldsFunction() {
 			//append a button to add another row of fields
 				var btn = document.createElement("BUTTON");        // Create a <button> element
 				var theBtnID = document.createAttribute("id");
-				theBtnID.value = "addResidentFields";
+				theBtnID.value = "addNextFieldset";
 				btn.setAttributeNode(theBtnID);
 				var t = document.createTextNode("Add Another");       // Create a text node
 				btn.appendChild(t);                                // Append the text to <button>
 				document.body.appendChild(btn);                    // Append <button> to <body>
 				document.body.appendChild(lineBreak);
 			}
-		}
+		//}
 
 
 
-function getVal(selector) {
+	function getVal(selector) {
 		return $(selector).val();
-}
+	}
 
+}
 /*
 
 <div class="formLine">
