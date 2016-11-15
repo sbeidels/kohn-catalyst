@@ -159,6 +159,10 @@ module.exports = {
                 // Call next() to pass all of this glorious data to the next express router
                 next();
             })
+            .catch(function(err) {
+                console.error(err);
+            })
+            .catch(next);
     },
 
     postDocument: function(req, res, next) {
