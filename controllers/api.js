@@ -86,8 +86,7 @@ module.exports = {
             document: DocumentPackage.findById(req.params.id).lean().execAsync()
         })
             .then(function(results) {
-                // TODO: Confirm true/false is correct
-                if (results) {
+                if (!results) {
                     console.log('[ API ] getDocumentById :: Documents package found: FALSE');
                 }
                 else {
@@ -123,8 +122,7 @@ module.exports = {
             project: DocumentPackage.find({status: "project"}).lean().execAsync()
         })
             .then(function (results) {
-                // TODO: Confirm true/false is correct
-                if (results) {
+                if (!results) {
                     console.log('[ API ] getDocumentByStatus :: Documents package found: FALSE');
                 }
                 else {
@@ -140,6 +138,10 @@ module.exports = {
                 console.error(err);
             })
             .catch(next);
+    },
+
+    getHighlights: function(req, res, next) {
+        console.log('[ API ] getHighlights :: Call invoked');
     },
 
     postDocument: function(req, res, next) {
