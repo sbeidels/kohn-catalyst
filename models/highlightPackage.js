@@ -26,7 +26,7 @@ ObjectId = Schema.ObjectId;
 
 var HighlightPackageSchema = new Schema({
     reference:      { type: ObjectId },
-    created:        Date,
+    created:        { type: Date, default: Date.now},
     updated:        { type: Date, default: Date.now},
 
     advocate:       {
