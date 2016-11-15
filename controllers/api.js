@@ -9,6 +9,7 @@
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
+var HighlightPackage = require('../models/highlightPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
@@ -159,15 +160,26 @@ module.exports = {
 
         // Instead we will do it in one line
         var doc = new DocumentPackage(req.body);
+        var mark = new HighlightPackage;
 
-        // Save it to the database with a callback to handle flow control
+        // Save the document package to the database with a callback to handle flow control
         doc.save(function (err, doc, numAffected) {
             if (err) {
                 console.error(err);
             }
             else if (numAffected == 1) {
                 console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
-                res.status(200);
+            }
+        });
+
+        // Save the highlight package to the database with a callback to handle flow control
+        mark.save(function (err, mark, numAffected) {
+            if (err) {
+                console.error(err);
+            }
+            else if (numAffected == 1) {
+                mark.reference = ObjectId(doc._id);
+                console.log('[ API ] postDocument :: highlightPackage created with _id: ' + doc._id);
                 console.log("[ API ] postDocument :: Status code is " + res.statusCode);
                 res.send({status: 200});
             }
