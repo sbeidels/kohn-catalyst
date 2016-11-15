@@ -3,6 +3,10 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <h1>{{application.name.first}} {{application.name.last}}</h1>
+
+            <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h3>
+
             <!--VETTING NOTES-->
             <h3>Vetting Notes</h3>
             <div class="form-group">
@@ -284,10 +288,6 @@
             }
         });
 
-        $('#marital_status').editable({
-            value: '{{application.marital.status}}'
-        });
-
         $('#veteran').editable({
             value: '{{application.veteran}}',
             source:
@@ -319,14 +319,14 @@
             value: '{{status}}',
             source:
                     [
+                        {value: 'discuss', text: 'On Hold - Pending Discussion'},
                         {value: 'new', text: 'NEW'},
                         {value: 'phone', text: 'Phone Call Needed'},
-                        {value: 'documents', text: 'Awaiting Documents'},
-                        {value: 'discuss', text: 'On Hold - Pending Discussion'},
-                        {value: 'visit', text: 'Site Assessment'}, //TODO: Change to assess
                         {value: 'handle', text: 'Handle-It'},
-                        {value: 'declined', text: 'Declined'},
+                        {value: 'documents', text: 'Awaiting Documents'},
+                        {value: 'visit', text: 'Site Assessment'}, //TODO: Change to assess
                         {value: 'approval', text: 'Approval Process'},
+                        {value: 'declined', text: 'Declined'},
                         {value: 'withdrawn', text: 'Withdrawn'},
                         {value: 'project', text: 'Approved Project'}
                     ]
