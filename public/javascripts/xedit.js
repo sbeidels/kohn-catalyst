@@ -304,6 +304,7 @@ $(document).ready(function() {
 
     $('#pref_name').editable();
 
+    $('#marital_status').editable();
     $('#spouse').editable();
 
     $('#email').editable();

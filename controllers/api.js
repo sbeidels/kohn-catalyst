@@ -112,13 +112,13 @@ module.exports = {
         // Access the returned items as results.<status code>[array index].<what you need>
         // Example: results.visit[3].address.line_1 = a string
         Promise.props({
-            new: DocumentPackage.find({status: "new"}).lean().execAsync(),
+            new: DocumentPackage.find({status: "new"}).sort({'updated':-1}).lean().execAsync(),
             phone: DocumentPackage.find({status: "phone"}).lean().execAsync(),
             documents: DocumentPackage.find({status: "documents"}).lean().execAsync(),
             discuss: DocumentPackage.find({status: "discuss"}).lean().execAsync(),
             visit: DocumentPackage.find({status: "visit"}).lean().execAsync(),
             handle: DocumentPackage.find({status: "handle"}).lean().execAsync(),
-            declined: DocumentPackage.find({status: "declined"}).lean().execAsync(),
+            declined: DocumentPackage.find({status: "declined"}).sort({'updated':-1}).lean().execAsync(),
             project: DocumentPackage.find({status: "project"}).lean().execAsync()
         })
             .then(function (results) {
@@ -186,6 +186,8 @@ module.exports = {
         // Since there is only one name and one value, we can use the method below
         var updates = {};
         updates[req.body.name] = req.body.value;
+        // Record Update time
+        updates['updated'] = Date.now();
         console.log(updates);
 
         // TODO: Debug why the document is not updating
