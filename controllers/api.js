@@ -140,8 +140,25 @@ module.exports = {
             .catch(next);
     },
 
-    getHighlights: function(req, res, next) {
-        console.log('[ API ] getHighlights :: Call invoked');
+    getHighlightsById: function(req, res, next) {
+        console.log('[ API ] getHighlights :: Call invoked with highlight package _id: ' + req.params.id);
+        Promise.props({
+            highlight: HighlightPackage.findById(req.params.id).lean().execAsync()
+        })
+            .then(function(results) {
+                if (!results) {
+                    console.log('[ API ] getHighlightsById :: Documents package found: FALSE');
+                }
+                else {
+                    console.log('[ API ] getHighlightsById :: Documents package found: TRUE');
+                }
+
+                res.locals.results = results;
+
+                // If we are at this line all promises have executed and returned
+                // Call next() to pass all of this glorious data to the next express router
+                next();
+            })
     },
 
     postDocument: function(req, res, next) {
