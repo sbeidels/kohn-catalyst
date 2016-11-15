@@ -147,7 +147,7 @@ module.exports = {
         console.log('[ API ] postDocument :: Call invoked');
 
         // For debugging
-        var debug = 1;
+        var debug = 0;
         if (debug == 1) {
             console.log(req.body);
         }
@@ -160,10 +160,9 @@ module.exports = {
 
         // Instead we will do it in one line
         var doc = new DocumentPackage(req.body);
-        var mark = new HighlightPackage;
 
         // Save the document package to the database with a callback to handle flow control
-        doc.save(function (err, doc, numAffected) {
+        doc.saveAsync(function (err, doc, numAffected) {
             if (err) {
                 console.error(err);
             }
@@ -172,16 +171,21 @@ module.exports = {
             }
         });
 
+        // Create a corresponding highlight package
+        var mark = new HighlightPackage();
+
+        // Save the ObjectId of the new document package
+        mark.reference = doc._id;
+
         // Save the highlight package to the database with a callback to handle flow control
-        mark.save(function (err, mark, numAffected) {
+        mark.saveAsync(function (err, mark, numAffected) {
             if (err) {
                 console.error(err);
             }
             else if (numAffected == 1) {
-                mark.reference = ObjectId(doc._id);
-                console.log('[ API ] postDocument :: highlightPackage created with _id: ' + doc._id);
-                console.log("[ API ] postDocument :: Status code is " + res.statusCode);
-                res.send({status: 200});
+                console.log('[ API ] postDocument :: highlightPackage created with _id: ' + mark._id);
+                console.log('[ API ] postDocument :: highlightPackage references document package _id: ' + mark.reference);
+                res.send( { status : 200 } );
             }
         });
     },
