@@ -172,19 +172,19 @@ module.exports = {
         });
 
         // Create a corresponding highlight package
-        var mark = new HighlightPackage();
+        var highlight = new HighlightPackage();
 
         // Save the ObjectId of the new document package
-        mark.reference = doc._id;
+        highlight.reference = doc._id;
 
         // Save the highlight package to the database with a callback to handle flow control
-        mark.saveAsync(function (err, mark, numAffected) {
+        highlight.saveAsync(function (err, highlight, numAffected) {
             if (err) {
                 console.error(err);
             }
             else if (numAffected == 1) {
-                console.log('[ API ] postDocument :: highlightPackage created with _id: ' + mark._id);
-                console.log('[ API ] postDocument :: highlightPackage references document package _id: ' + mark.reference);
+                console.log('[ API ] postDocument :: highlightPackage created with _id: ' + highlight._id);
+                console.log('[ API ] postDocument :: highlightPackage references document package _id: ' + highlight.reference);
                 res.send( { status : 200 } );
             }
         });
