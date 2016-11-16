@@ -155,21 +155,30 @@ function init() {
 						getVal('input[name="additional_2"]'),
 						getVal('input[name="additional_3"]'),
 						getVal('input[name="additional_4"]'),
-						getVal('input[name="additional_5"]')
+						getVal('input[name="additional_5"]'),
+						getVal('input[name="additional_6"]'),
+						getVal('input[name="additional_7"]'),
+						getVal('input[name="additional_8"]')
 					],
 				age: [
 						getVal('input[name="a1age"]'),
 						getVal('input[name="a2age"]'),
 						getVal('input[name="a3age"]'),
 						getVal('input[name="a4age"]'),
-						getVal('input[name="a5age"]')
+						getVal('input[name="a5age"]'),
+						getVal('input[name="a6age"]'),
+						getVal('input[name="a7age"]'),
+						getVal('input[name="a8age"]')
 					],
 				relationship: [
 						getVal('input[name="a1relationship"]'),
 						getVal('input[name="a2relationship"]'),
 						getVal('input[name="a3relationship"]'),
 						getVal('input[name="a4relationship"]'),
-						getVal('input[name="a5relationship"]')
+						getVal('input[name="a5relationship"]'),
+						getVal('input[name="a6relationship"]'),
+						getVal('input[name="a7relationship"]'),
+						getVal('input[name="a8relationship"]')
 					]
 			},
 			driver_license: {
