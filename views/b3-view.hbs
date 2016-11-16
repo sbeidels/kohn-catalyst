@@ -7,7 +7,7 @@
 
             <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h3>
 
-            <!--VETTING NOTES-->
+<!--VETTING NOTES-->
             <h3>Vetting Notes</h3>
             <div class="form-group">
                 <form>
@@ -149,20 +149,31 @@
 <!--PROPERTY ITEMS-->
             <h3>Property</h3>
             <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td class="col-xs-1"></td>
+                    <td class="col-xs-3"></td>
+                    <td class="col-xs-8"></td>
+                </tr>
+                </thead>
                 <tbody>
                 <tr>
+                    <td>Flag!</td>
                     <td>Home Type</td>
                     <td><a href="#" id="home_type" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.home_type" data-title="Enter Home Type">{{property.home_type}}</a></td>
                 </tr>
                 <tr>
+                    <td>Flag!</td>
                     <td>Length of Ownership</td>
                     <td><a href="#" id="ownership_length" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.ownership_length" data-title="Enter Ownership Length">{{property.ownership_length}}</a></td>
                 </tr>
                 <tr>
+                    <td>Flag!</td>
                     <td>Year Constructed</td>
                     <td><a href="#" id="year_constructed" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.year_constructed" data-title="Enter Year Constructed">{{property.year_constructed}}</a></td>
                 </tr>
                 <tr>
+                    <td>Flag!</td>
                     <td>Requested Repairs</td>
                     <td><a href="#" id="requested_repairs" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.requested_repairs" data-title="Enter Requested Repairs">{{property.requested_repairs}}</a></td>
                 </tr>
@@ -263,6 +274,7 @@
     </div>
 </div>
 
+<script type="text/javascript" src="/javascript/setFlags.js"></script>
 <script>
     /**
      * Some inline-editable fields require data from the DB to properly work
