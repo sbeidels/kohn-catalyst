@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
+var HighlightPackage = require('../models/highlightPackage');
 var api = require('../controllers/api');
 
 
@@ -118,7 +119,8 @@ router.get('/:id', function(req, res) {
 
     /* search by _id. */
     Promise.props({
-        application: DocumentPackage.find({_id: ObjectId(req.params.id)}).lean().execAsync()
+        application: DocumentPackage.find({_id: ObjectId(req.params.id)}).lean().execAsync(),
+        highlight: HighlightPackage.find({ 'reference' : ObjectId(req.params.id)}).lean().execAsync()
     })
         .then(function(result) {
             //format birth date for display
@@ -131,6 +133,8 @@ router.get('/:id', function(req, res) {
                 result.application[0].application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
             }
             res.locals.layout = 'b3-layout';                // Change default from layout.hbs to b3-layout.hbs
+            res.locals.highlight = result.highlight;
+            console.log(res.locals.highlight);
             res.render('b3-view', result.application[0]);   // Change view.hbs to b3-view.hbs
         })
         .catch(function(err) {
