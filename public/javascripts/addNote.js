@@ -3,9 +3,10 @@
 **/
 $(document).ready(function() {
 
-    $("#addNote").click(function (e) {
+    $("#addNote").submit(function (e) {
+        e.preventDefault();
         //submit to DB
-        var note = $('#note').val();
+        //var note = $('#note').val();
         console.log("Adding note: " + note);
     });
 });
