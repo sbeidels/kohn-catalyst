@@ -32,6 +32,17 @@ router.post('/:id', api.putUpdateDocument, function(req, res) {
 
 });
 
+router.post('/array/:id', api.putUpdateArray, function(req, res) {
+
+    if(res.locals.status != '200'){
+        res.status(500).send({ status: 'error' });
+    }
+    else{
+        res.status(200).send({ status: 'success' });
+    }
+
+});
+
 /**
  * The Following routes don't conform to the api function to update fields
  */

@@ -297,6 +297,7 @@ $(document).ready(function() {
 
     /**
      * SET ALL OTHER ELEMENTS TO EDITABLE
+     * TODO: Organize these by how they appear in veiw.hbs
      **/
     $('#phone_number').editable();
 
@@ -326,11 +327,15 @@ $(document).ready(function() {
 
     $('#l_client_contrib').editable();
     $('#l_associate_contrib').editable();
+    $('#fbo_name').editable();
+
+    $('#f_asset_name').editable();
 
     $('#mortgage_payment').editable({
             step: '0.01'
         }
     );
+
     $('#income').editable({
             step: '0.01'
         }

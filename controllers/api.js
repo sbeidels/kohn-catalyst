@@ -190,7 +190,6 @@ module.exports = {
         updates['updated'] = Date.now();
         console.log(updates);
 
-        // TODO: Debug why the document is not updating
         Promise.props({
             doc: DocumentPackage.findOneAndUpdate(
                 // Condition
@@ -231,5 +230,64 @@ module.exports = {
                 console.error(err);
             })
             .catch(next);
-    }
+    },
+
+    /**
+     * This will handle updates for elements in arrays
+     */
+    putUpdateArray: function(req, res, next) {
+        // Log the _id, name, and value that are passed to the function
+        console.log('[ API ] putUpdateArray :: Call invoked with _id: ' + req.params.id
+            + ' | key: ' + req.body.name + ' | value: ' + req.body.value + ' | current value: ' + req.body.pk);
+        //the $ holds the index of the element
+        var updateField = req.body.name + ".$";
+        var updates = {};
+        updates[updateField] = req.body.value;
+        // Record Update time
+        updates['updated'] = Date.now();
+        console.log(updates);
+
+        // TODO: Debug why the document is not updating
+        Promise.props({
+            doc: DocumentPackage.findOneAndUpdate(
+                // Condition
+                {_id: req.params.id,
+                    'finance.assets.name': req.body.pk}, //here's an issue. I can't figure out how to make the key dynamic
+                // Updates
+                {
+                    // $set: {name: value}
+                    $set: updates
+                },
+                // Options
+                {
+                    // new - defaults to false, returns the modified document when true, or the original when false
+                    new: true,
+                    // runValidators - defaults to false, make sure the data fits the model before applying the update
+                    runValidators: true
+                }
+                // Callback if needed
+                // { }
+            ).execAsync()
+        })
+            .then(function (results) {
+                // TODO: Confirm true/false is correct
+                if (results) {
+                    console.log('[ API ] putUpdateDocument :: Documents package found: TRUE');
+                }
+                else {
+                    console.log('[ API ] putUpdateDocument :: Documents package found: FALSE');
+                }
+                res.locals.results = results;
+                //sending a status of 200 for now
+                res.locals.status = '200';
+
+                // If we are at this line all promises have executed and returned
+                // Call next() to pass all of this glorious data to the next express router
+                next();
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+            .catch(next);
+    },
 };

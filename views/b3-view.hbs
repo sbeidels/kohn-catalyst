@@ -50,9 +50,6 @@
                     <td>
                         <a id="name" href="#" data-type="name" data-pk="1" data-url="/edit/name/{{_id}}" data-title="Enter Name"></a>
                     </td>
-					<td>
-						Highlight: <a href="#">Yes No dropdown Here</a>
-					</td>
                 </tr>
                 <tr>
                     <td>Preferred Name</td>
@@ -175,6 +172,29 @@
                     <td>Requested Repairs</td>
                     <td><a href="#" id="requested_repairs" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.requested_repairs" data-title="Enter Requested Repairs">{{property.requested_repairs}}</a></td>
                 </tr>
+                <tr>
+                    <td>Other Residents</td>
+                    <td>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Relationship</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each application.other_residents.name}}
+                        <tr>
+                            <td>{{this}}</td>
+                            <td>{{lookup ../application.other_residents.age @index}}</td>
+                            <td>{{lookup ../application.other_residents.relationship @index}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                    </td>
+                </tr>
                 </tbody>
             </table>
 
@@ -195,30 +215,45 @@
                     <td><a href="#" id="income" data-type="number" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.income.amount" data-title="Enter Income">{{finance.income.amount}}</a></td>
                 </tr>
                 <tr>
-                    <td>Client Can Contribute</td>
+                    <td>Client Can Contribute Financially</td>
                     <td>
                         <a href="#" id="f_client_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.value" data-title="Can Client Contribute Financially?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Client Contribution</td>
+                    <td>Client Financial Contribution</td>
                     <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{finance.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
-                    <td>Associates Can Contribute</td>
+                    <td>Associates Can Contribute Financially</td>
                     <td>
                         <a href="#" id="f_associate_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.value" data-title="Can Associates Contribute Financially?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Associate Contribution</td>
+                    <td>Associate Financial Contribution</td>
                     <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
-                    <td>Requested Other Help</td>
-                    <td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
+                    <td>Assets</td>
+                    <td>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Asset</th>
+                                <th>Amount</th>
+                            </tr>
+                            </thead>
+                            <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
+                        {{#each finance.assets.name}}
+                           <tr>
+                               <td><a href="#" id="f_asset_name" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
+                               <td>{{lookup ../finance.assets.value @index}}</td>
+                           </tr>
+                        {{/each}}
+                        </table>
+                    </td>
                 </tr>
-                <!--TODO: Figure out Assets-->
                 </tbody>
             </table>
 
@@ -227,36 +262,27 @@
             <table class="table table-striped">
                 <tbody>
                 <tr>
-                    <td>Client Can Contribute</td>
+                    <td>Client Can Contribute Labor</td>
                     <td>
                         <a href="#" id="l_client_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="property.client_can_contribute.value" data-title="Can Client Contribute Labor?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Client Contribution</td>
+                    <td>Client Labor Contribution</td>
                     <td><a href="#" id="l_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.client_can_contribute.description" data-title="Enter Contribution Description">{{property.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
-                    <td>Associates Can Contribute</td>
+                    <td>Associates Can Contribute Labor</td>
                     <td>
                         <a href="#" id="l_associate_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.value" data-title="Can Associates Contribute Labor?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Associate Contribution</td>
+                    <td>Associate Labor Contribution</td>
                     <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{property.associates_can_contribute.description}}</a></td>
                 </tr>
-                </tbody>
-            </table>
-
-<!--FBO INFO-->
-
-            <h3>FBO</h3>
-            <table class="table table-striped">
-                <tbody>
                 <tr>
-                    <td>Involved with a FBO</td>
-                    <!-- TODO: Confirm this is correct for BOOL operator -->
+                    <td>Involved with a Faith-Based Organization</td>
                     <td>
                         <a href="#" id="fbo_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="recruitment.fbo_help" data-title="Does client belong to an FBO?"></a>
                     </td>
@@ -264,6 +290,10 @@
                 <tr>
                     <td>Client Contribution</td>
                     <td><a href="#" id="fbo_name" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="recruitment.fbo_name" data-title="Enter Name of FBO">{{recruitment.fbo_name}}</a></td>
+                </tr>
+                <tr>
+                    <td>Requested Other Help</td>
+                    <td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -379,6 +409,15 @@
 
         $('#request_help').editable({
             value: '{{finance.requested_other_help.value}}',
+            source:
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+
+        $('#fbo_help').editable({
+            value: '{{recruitment.fbo_help}}',
             source:
                     [
                         {value: 'true', text: 'true'},
