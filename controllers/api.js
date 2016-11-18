@@ -245,14 +245,19 @@ module.exports = {
         updates[updateField] = req.body.value;
         // Record Update time
         updates['updated'] = Date.now();
+        //filters
+        var conditions = {};
+        conditions['_id'] = req.params.id;
+        conditions[req.body.name] = req.body.pk;
+        console.log("Search Filter:");
+        console.log(conditions);
+        console.log("Update:");
         console.log(updates);
 
-        // TODO: Debug why the document is not updating
         Promise.props({
             doc: DocumentPackage.findOneAndUpdate(
                 // Condition
-                {_id: req.params.id,
-                    'finance.assets.name': req.body.pk}, //here's an issue. I can't figure out how to make the key dynamic
+                conditions,
                 // Updates
                 {
                     // $set: {name: value}
