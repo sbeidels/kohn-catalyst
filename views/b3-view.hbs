@@ -247,7 +247,7 @@
                             <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
                         {{#each finance.assets.name}}
                            <tr>
-                               <td><a href="#" id="f_asset_name" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
+                               <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
                                <td>{{lookup ../finance.assets.value @index}}</td>
                            </tr>
                         {{/each}}
@@ -424,6 +424,15 @@
                         {value: 'false', text: 'false'}
                     ]
         });
+
+        /**
+         * iterate through all asset names to make them editable
+        **/
+        $('.asset_name').each(function () {
+            var id = $(this).attr("id");
+            $('#'+id).editable();
+        })
+
 
     });
 

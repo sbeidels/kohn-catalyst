@@ -329,8 +329,6 @@ $(document).ready(function() {
     $('#l_associate_contrib').editable();
     $('#fbo_name').editable();
 
-    $('#f_asset_name').editable();
-
     $('#mortgage_payment').editable({
             step: '0.01'
         }
