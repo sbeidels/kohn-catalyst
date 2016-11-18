@@ -141,16 +141,16 @@ module.exports = {
     },
 
     getHighlightsById: function(req, res, next) {
-        console.log('[ API ] getHighlights :: Call invoked with highlight package _id: ' + req.params.id);
+        console.log('[ API ] getHighlightsById :: Call invoked with highlight package _id: ' + req.params.id);
         Promise.props({
             highlight: HighlightPackage.findById(req.params.id).lean().execAsync()
         })
             .then(function(results) {
                 if (!results) {
-                    console.log('[ API ] getHighlightsById :: Documents package found: FALSE');
+                    console.log('[ API ] getHighlightsById :: Highlight package found: FALSE');
                 }
                 else {
-                    console.log('[ API ] getHighlightsById :: Documents package found: TRUE');
+                    console.log('[ API ] getHighlightsById :: Highlight package found: TRUE');
                 }
 
                 res.locals.results = results;
@@ -163,6 +163,86 @@ module.exports = {
                 console.error(err);
             })
             .catch(next);
+    },
+
+    toggleHighlight: function(req, res, next) {
+        console.log('[ API ] toggleHighlight :: Call invoked with highlightPackage _id: %s | name: %s | value: %s',
+            req.params.id, req.body.name, req.body.value);
+        // Confirm a JSON {key:value} pair was sent
+        if (req.accepts('application/json')) {
+            var fetchDocument = Promise.props({
+                highlight: HighlightPackage.findById(req.params.id).lean().execAsync()
+            })
+                .then(function (results) {
+                    if (!results) {
+                        console.log('[ API ] toggleHighlight :: Highlight package found: FALSE');
+                    }
+                    else {
+                        console.log('[ API ] toggleHighlight :: Highlight package found: TRUE');
+                    }
+
+                    // Build the name:value pairs to be updated
+                    // Since there is only one name and one value, we can use the method below
+                    var updates = {};
+                    updates[req.body.name] = req.body.value;
+
+                    // Record Update time
+                    updates['updated'] = Date.now();
+                    console.log(updates);
+
+                    // Build variables and attach to the returned query results
+                    results.id = req.params.id;
+                    results.name = req.body.name;
+                    results.value = req.body.value;
+                    results.updates = updates;
+
+                    return results;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                })
+                .catch(next);
+
+            fetchDocument.then(function(results) {
+                Promise.props({
+                    highlight: HighlightPackage.findOneAndUpdate(
+                        // Condition
+                        {_id: results.id},
+                        // Updates
+                        {
+                            // $set: {name: value}
+                            $set: results.updates
+                        },
+                        // Options
+                        {
+                            // new - defaults to false, returns the modified document when true, or the original when false
+                            new: true,
+                            // runValidators - defaults to false, make sure the data fits the model before applying the update
+                            runValidators: true
+                        }
+                        // Callback if needed
+                        // { }
+                    ).execAsync()
+
+                })
+                    .then(function(results){
+                        if (!results) {
+                            console.log('[ API ] toggleHighlight :: Highlight package updated: FALSE');
+
+                        }
+                        else {
+                            console.log('[ API ] toggleHighlight :: Highlight package updated: TRUE');
+                            res.locals.results = results;
+                            //sending a status of 200 for now
+                            res.locals.status = '200';
+                        }
+                    })
+                    .catch(function (err) {
+                        console.error(err);
+                    })
+                    .catch(next);
+            })
+        }
     },
 
     postDocument: function(req, res, next) {
