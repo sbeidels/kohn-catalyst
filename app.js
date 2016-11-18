@@ -40,8 +40,6 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 app.set('view options', { layout: 'layout' });
 
-
-
 hbs.registerHelper("debug", function(optionalValue) {
     console.log("Current Context");
     console.log("====================");
@@ -53,7 +51,6 @@ hbs.registerHelper("debug", function(optionalValue) {
         console.log(optionalValue);
     }
 });
-
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Middleware
