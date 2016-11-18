@@ -276,15 +276,16 @@ module.exports = {
         })
             .then(function (results) {
                 // TODO: Confirm true/false is correct
-                if (results) {
+                console.log(results);
+                if (results.doc != null) {
                     console.log('[ API ] putUpdateDocument :: Documents package found: TRUE');
+                    res.locals.status = '200';
                 }
                 else {
                     console.log('[ API ] putUpdateDocument :: Documents package found: FALSE');
+                    res.locals.status = '500';
                 }
                 res.locals.results = results;
-                //sending a status of 200 for now
-                res.locals.status = '200';
 
                 // If we are at this line all promises have executed and returned
                 // Call next() to pass all of this glorious data to the next express router
