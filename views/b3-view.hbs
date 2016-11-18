@@ -1,5 +1,6 @@
-<a href="/view" class="btn btn-primary">Back to Application List</a>
-
+<a href="/view" class="btn btn-primary">Back to Vetting Home</a> 
+<!-- Set this next link to the proper route for Vetting View -->
+<a href="#" class="btn btn-primary">Vetting Information View</a>
 <script>
     function goBack() {
         window.history.back();
@@ -127,18 +128,17 @@
                 </tbody>
             </table>
 
-<!--WORK ITEMS-->
+<!--WORK ITEMS -  PROBABLY NOT NECESSARY TO BE HERE, because it isn't part of the original application.  This section will be necessary in the Single-App-Vetting-View (phone script)
             <h3>Work Items</h3>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Request</th>
-                    <th>Description</th>
+                    <th>Requested Repairs</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Fix-it</td>
+                    <td>Toilet Repair</td>
                     <td>This is an example of a work request entered by the agent visiting the home.</td>
                 </tr>
                 <tr>
@@ -151,6 +151,7 @@
                 </tr>
                 </tbody>
             </table>
+--END WORK ITEMS -->
 
 <!--PROPERTY ITEMS-->
             <h3>Property</h3>
@@ -234,6 +235,10 @@
                     <td>Associate Financial Contribution</td>
                     <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
                 </tr>
+				</tbody>
+			</table>
+			<table class="table table-striped">
+                <tbody>
                 <tr>
                     <td>Assets</td>
                     <td>
