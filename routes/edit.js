@@ -24,7 +24,18 @@ router.post('/', function(req, res) {
 router.post('/:id', api.putUpdateDocument, function(req, res) {
 
     if(res.locals.status != '200'){
-        res.status(500).send({ status: 'error' });
+        res.status(500).send("Could not update field");
+    }
+    else{
+        res.status(200).send({ status: 'success' });
+    }
+
+});
+
+router.post('/array/:id', api.putUpdateArray, function(req, res) {
+
+    if(res.locals.status != '200'){
+        res.status(500).send("Could not update field");
     }
     else{
         res.status(200).send({ status: 'success' });
@@ -82,11 +93,11 @@ router.post('/name/:id', function(req, res) {
     DocumentPackage.update(
         {_id: ObjectId(req.params.id)},
         { $set:
-        {
-            "application.name.first": req.body["value[first]"],
-            "application.name.middle": req.body["value[middle]"],
-            "application.name.last": req.body["value[last]"]
-        }
+            {
+                "application.name.first": req.body["value[first]"],
+                "application.name.middle": req.body["value[middle]"],
+                "application.name.last": req.body["value[last]"]
+            }
         },
         function(err)
         {
