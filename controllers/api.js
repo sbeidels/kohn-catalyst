@@ -128,7 +128,7 @@ module.exports = {
                 else {
                     console.log('[ API ] getDocumentByStatus :: Documents package found: TRUE');
                 }
-                res.locals.results = results;
+                res.locals.results = results.application[0];
 
                 // If we are at this line all promises have executed and returned
                 // Call next() to pass all of this glorious data to the next express router
@@ -306,6 +306,13 @@ module.exports = {
         var updates = {};
         updates[req.body.name] = req.body.value;
         // Record Update time
+        //filters
+        var conditions = {};
+        conditions['_id'] = req.params.id;
+        conditions[req.body.name] = req.body.pk;
+        console.log("Search Filter:");
+        console.log(conditions);
+        console.log("Update:");
         updates['updated'] = Date.now();
         console.log(updates);
 
@@ -313,7 +320,7 @@ module.exports = {
         Promise.props({
             doc: DocumentPackage.findOneAndUpdate(
                 // Condition
-                {_id: req.params.id},
+                conditions,
                 // Updates
                 {
                     // $set: {name: value}

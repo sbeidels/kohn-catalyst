@@ -1,8 +1,31 @@
-<a href="/view" class="btn btn-primary">Back to Application List</a>
+<a href="/view" class="btn btn-primary">Back to Vetting Home</a>
+<!-- Set this next link to the proper route for Vetting View -->
+<a href="#" class="btn btn-primary">Vetting Information View</a>
 
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
+            <h1>h1 first name {{doc.application.name.first}}</h1>
+            <h1>h1 last  name {{doc.application.name.last}}</h1>
+            {{debug application.name.first}}
+            {{#if highlight.recruitment}}
+                <h1>highlight.recruitment is true</h1>
+            {{else}}
+                <h1>highlight.recruitment is false</h1>
+            {{/if}}
+
+            <h1>highlight.property.home_type {{highlight.property.home_type}}</h1>
+
+
+
+
+
+
+
+
+
+
+
             <h1>{{application.name.first}} {{application.name.last}}</h1>
 
             <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h3>
@@ -11,28 +34,28 @@
             <h3>Vetting Notes</h3>
             <div class="form-group">
                 <form>
-                <table class="table table-striped" id="notes-table">
-                    <thead>
+                    <table class="table table-striped" id="notes-table">
+                        <thead>
                         <tr>
                             <th class="col-md-2">Date</th>
-                            <th class="col-md-8">Note</th>
+                            <th class="col-md-10">Note</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>11/1/2016</td>
-                        <td>This is an example of where vetting agent notes would appear.</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
-                        </td>
-                        <td>
-                            <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>11/1/2016</td>
+                            <td>This is an example of where vetting agent notes would appear.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
+                            </td>
+                            <td>
+                                <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </form>
             </div>
 <!--CONTACT INFO-->
@@ -40,54 +63,65 @@
             <table class="table table-striped">
                 <tbody>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Name</td>
                     <td>
                         <a id="name" href="#" data-type="name" data-pk="1" data-url="/edit/name/{{_id}}" data-title="Enter Name"></a>
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Preferred Name</td>
                     <td><a href="#" id="pref_name" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.name.preferred" data-title="Enter Preferred Name">{{application.name.preferred}}</a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Preferred Phone</td>
                     <td><a href="#" id="phone_number" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.phone.preferred" data-title="Enter Preferred Phone Number">{{application.phone.preferred}}</a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Other Phone</td>
                     <td><a href="#" id="cell_phone" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.phone.other" data-title="Enter Other Phone Number">{{application.phone.other}}</a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Address</td>
                     <td>
                         <a id="address" href="#" data-type="address" data-pk="1" data-url="/edit/address/{{_id}}" data-title="Enter Address"></a>
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Date Of Birth</td>
                     <td><a href="#" id="dob" data-type="date" data-pk="1" data-url="/edit/{{_id}}" data-name="application.dob.date" data-title="Select date">{{application.dob.date}}</a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Marital Status</td>
                     <td>
                         <a href="#" id="marital_status" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.marital.status" data-title="Enter Marital Status">{{application.marital.status}}</a>
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Spouse</td>
                     <td>
                         <a href="#" id="spouse" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.marital.spouse" data-title="Enter Spouse Name">{{application.marital.spouse}}</a>
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Email</td>
                     <td><a href="#" id="email" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.email" data-title="Enter Email">{{application.email}}</a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Driver's License</td>
                     <td><a href="#" id="driver_license" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.driver_license.number" data-title="Enter Driver's License Number">{{application.driver_license.number}}</a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Emergency Contact</td>
                     <td>Name: <a href="#" id="emergency_name" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="application.emergency_contact.name" data-title="Enter Emergency Contact Name">{{application.emergency_contact.name}}</a>
                         <br>
@@ -97,22 +131,26 @@
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Language</td>
                     <td>{{application.language}}</td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Veteran</td>
                     <td>
                         <a href="#" id="veteran" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="application.veteran" data-title="Select Veteran Status"></a>
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Owns Home</td>
                     <td>
                         <a href="#" id="owns_home" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="application.owns_home" data-title="Select Home Ownership Status"></a>
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Special Circumstances</td>
                     <td>
                         <a href="#" id="special_circumstances" data-type="textarea" data-pk="1" data-url="/edit/{{_id}}" data-name="application.special_circumstances.note" data-title="Enter Special Circumstances">{{application.special_circumstances.note}}</a>
@@ -121,61 +159,80 @@
                 </tbody>
             </table>
 
-<!--WORK ITEMS-->
-            <h3>Work Items</h3>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Request</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Fix-it</td>
-                    <td>This is an example of a work request entered by the agent visiting the home.</td>
-                </tr>
-                <tr>
-                    <td>Cannot complete</td>
-                    <td>This is an example of an item that is too costly to do; it must be rejected.</td>
-                </tr>
-                <tr>
-                    <td>Mulling it over</td>
-                    <td>This is an example of an item that might be completed!</td>
-                </tr>
-                </tbody>
-            </table>
+<!--WORK ITEMS --->
+            <!--PROBABLY NOT NECESSARY TO BE HERE, because it isn't part of the original application.  This section will be necessary in the Single-App-Vetting-View (phone script)
+                        <h3>Work Items</h3>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Kitchen Sink</td>
+                                <td>Sink repair request description.</td>
+                            </tr>
+                            <tr>
+                                <td>Family Room Floor</td>
+                                <td>Floor repair request description.</td>
+                            </tr>
+                            <tr>
+                                <td>Roof</td>
+                                <td>Roof must be patched up.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+            --END WORK ITEMS -->
 
 <!--PROPERTY ITEMS-->
             <h3>Property</h3>
             <table class="table table-striped">
-                <thead>
-                <tr>
-                    <td class="col-xs-1"></td>
-                    <td class="col-xs-3"></td>
-                    <td class="col-xs-8"></td>
-                </tr>
-                </thead>
                 <tbody>
                 <tr>
-                    <td>Flag!</td>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Home Type</td>
                     <td><a href="#" id="home_type" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.home_type" data-title="Enter Home Type">{{property.home_type}}</a></td>
                 </tr>
                 <tr>
-                    <td>Flag!</td>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Length of Ownership</td>
                     <td><a href="#" id="ownership_length" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.ownership_length" data-title="Enter Ownership Length">{{property.ownership_length}}</a></td>
                 </tr>
                 <tr>
-                    <td>Flag!</td>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Year Constructed</td>
                     <td><a href="#" id="year_constructed" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.year_constructed" data-title="Enter Year Constructed">{{property.year_constructed}}</a></td>
                 </tr>
                 <tr>
-                    <td>Flag!</td>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Requested Repairs</td>
                     <td><a href="#" id="requested_repairs" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.requested_repairs" data-title="Enter Requested Repairs">{{property.requested_repairs}}</a></td>
+                </tr>
+                <tr>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Other Residents</td>
+                    <td>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Relationship</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each doc.application.other_residents.name}}
+                                <tr>
+                                    <td><a href="#" class="residents_name" id="residents_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.name">{{this}}</a></td>
+                                    <td><a href="#" class="residents_age" id="residents_age_{{@index}}" data-type="text" data-pk="{{lookup ../doc.application.other_residents.age @index}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.age">{{lookup ../doc.application.other_residents.age @index}}</a></td>
+                                    <td><a href="#" class="residents_relationship" id="residents_relationship_{{@index}}" data-type="text" data-pk="{{lookup ../doc.application.other_residents.relationship @index}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.relationship">{{lookup ../doc.application.other_residents.relationship @index}}</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -185,42 +242,69 @@
             <table class="table table-striped">
                 <tbody>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Mortgage Payment</td>
                     <td><a href="#" id="mortgage_payment" data-type="number" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.mortgage.payment" data-title="Enter Mortgage Payment">{{finance.mortgage.payment}}</a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Mortgage Up-to-Date</td>
                     <td><a href="#" id="mortgage" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.mortgage.up_to_date" data-title="Is Mortgage Up-to-Date?"></a></td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Income Amount</td>
                     <td><a href="#" id="income" data-type="number" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.income.amount" data-title="Enter Income">{{finance.income.amount}}</a></td>
                 </tr>
                 <tr>
-                    <td>Client Can Contribute</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Client Can Contribute Financially</td>
                     <td>
                         <a href="#" id="f_client_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.value" data-title="Can Client Contribute Financially?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Client Contribution</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Client Financial Contribution</td>
                     <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{finance.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
-                    <td>Associates Can Contribute</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Associates Can Contribute Financially</td>
                     <td>
                         <a href="#" id="f_associate_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.value" data-title="Can Associates Contribute Financially?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Associate Contribution</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Associate Financial Contribution</td>
                     <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{finance.associates_can_contribute.description}}</a></td>
                 </tr>
+                </tbody>
+            </table>
+            <table class="table table-striped">
+                <tbody>
                 <tr>
-                    <td>Requested Other Help</td>
-                    <td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Assets</td>
+                    <td>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Asset</th>
+                                <th>Amount</th>
+                            </tr>
+                            </thead>
+                            <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
+                            {{#each finance.assets.name}}
+                                <tr>
+                                    <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
+                                    <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../finance.assets.value @index}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.value">{{lookup ../finance.assets.value @index}}</a></td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                    </td>
                 </tr>
-                <!--TODO: Figure out Assets-->
                 </tbody>
             </table>
 
@@ -229,43 +313,45 @@
             <table class="table table-striped">
                 <tbody>
                 <tr>
-                    <td>Client Can Contribute</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Client Can Contribute Labor</td>
                     <td>
                         <a href="#" id="l_client_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="property.client_can_contribute.value" data-title="Can Client Contribute Labor?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Client Contribution</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Client Labor Contribution</td>
                     <td><a href="#" id="l_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.client_can_contribute.description" data-title="Enter Contribution Description">{{property.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
-                    <td>Associates Can Contribute</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Associates Can Contribute Labor</td>
                     <td>
                         <a href="#" id="l_associate_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.value" data-title="Can Associates Contribute Labor?"></a>
                     </td>
                 </tr>
                 <tr>
-                    <td>Associate Contribution</td>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Associate Labor Contribution</td>
                     <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{property.associates_can_contribute.description}}</a></td>
                 </tr>
-                </tbody>
-            </table>
-
-<!--FBO INFO-->
-
-            <h3>FBO</h3>
-            <table class="table table-striped">
-                <tbody>
                 <tr>
-                    <td>Involved with a FBO</td>
-                    <!-- TODO: Confirm this is correct for BOOL operator -->
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Involved with a Faith-Based Organization</td>
                     <td>
                         <a href="#" id="fbo_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="recruitment.fbo_help" data-title="Does client belong to an FBO?"></a>
                     </td>
                 </tr>
                 <tr>
+                    <td><a class="highlight">&#9734;</a></td>
                     <td>Client Contribution</td>
                     <td><a href="#" id="fbo_name" data-type="text" data-pk="1" data-url="/edit/{{_id}}" data-name="recruitment.fbo_name" data-title="Enter Name of FBO">{{recruitment.fbo_name}}</a></td>
+                </tr>
+                <tr>
+                    <td><a class="highlight">&#9734;</a></td>
+                    <td>Requested Other Help</td>
+                    <td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -291,7 +377,6 @@
                 zip: '{{application.address.zip}}'
             }
         });
-
         $('#name').editable({
             value: {
                 first: '{{application.name.first}}',
@@ -299,7 +384,6 @@
                 last: '{{application.name.last}}'
             }
         });
-
         $('#veteran').editable({
             value: '{{application.veteran}}',
             source:
@@ -308,7 +392,6 @@
                         {value: 'false', text: 'false'}
                     ]
         });
-
         $('#mortgage').editable({
             value: '{{finance.mortgage.up_to_date}}',
             source:
@@ -317,7 +400,6 @@
                         {value: 'false', text: 'False'}
                     ]
         });
-
         $('#status').editable({
             value: '{{status}}',
             source:
@@ -334,7 +416,6 @@
                         {value: 'project', text: 'Approved Project'}
                     ]
         });
-
         $('#owns_home').editable({
             value: '{{application.owns_home}}',
             source:
@@ -343,7 +424,6 @@
                         {value: 'false', text: 'false'}
                     ]
         });
-
         $('#f_client_can_contrib').editable({
             value: '{{finance.client_can_contribute.value}}',
             source:
@@ -352,7 +432,6 @@
                         {value: 'false', text: 'false'}
                     ]
         });
-
         $('#f_associate_can_contrib').editable({
             value: '{{finance.associates_can_contribute.value}}',
             source:
@@ -361,7 +440,6 @@
                         {value: 'false', text: 'false'}
                     ]
         });
-
         $('#l_client_can_contrib').editable({
             value: '{{property.client_can_contribute.value}}',
             source:
@@ -370,7 +448,6 @@
                         {value: 'false', text: 'false'}
                     ]
         });
-
         $('#l_associate_can_contrib').editable({
             value: '{{property.associates_can_contribute.value}}',
             source:
@@ -379,7 +456,6 @@
                         {value: 'false', text: 'false'}
                     ]
         });
-
         $('#request_help').editable({
             value: '{{finance.requested_other_help.value}}',
             source:
@@ -388,7 +464,36 @@
                         {value: 'false', text: 'false'}
                     ]
         });
-
+        $('#fbo_help').editable({
+            value: '{{recruitment.fbo_help}}',
+            source:
+                    [
+                        {value: 'true', text: 'true'},
+                        {value: 'false', text: 'false'}
+                    ]
+        });
+        /**
+         * iterate through all dynamic array fields to make them editable
+         **/
+        $('.asset_name').each(function () {
+            var id = $(this).attr("id");
+            $('#'+id).editable();
+        });
+        $('.asset_value').each(function () {
+            var id = $(this).attr("id");
+            $('#'+id).editable();
+        });
+        $('.residents_name').each(function () {
+            var id = $(this).attr("id");
+            $('#'+id).editable();
+        });
+        $('.residents_age').each(function () {
+            var id = $(this).attr("id");
+            $('#'+id).editable();
+        });
+        $('.residents_relationship').each(function () {
+            var id = $(this).attr("id");
+            $('#'+id).editable();
+        });
     });
-
 </script>

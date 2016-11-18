@@ -41,6 +41,20 @@ app.set('view engine', 'hbs');
 app.set('view options', { layout: 'layout' });
 
 
+
+hbs.registerHelper("debug", function(optionalValue) {
+    console.log("Current Context");
+    console.log("====================");
+    console.log(this);
+
+    if (optionalValue) {
+        console.log("Value");
+        console.log("====================");
+        console.log(optionalValue);
+    }
+});
+
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Middleware
 // Use any middleware for the application that is needed. bodyParse allows parsing to
