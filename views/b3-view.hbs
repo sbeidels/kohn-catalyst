@@ -435,28 +435,48 @@
          * iterate through all dynamic array fields to make them editable
         **/
         $('.asset_name').each(function () {
-            var id = $(this).attr("id");
-            $('#'+id).editable();
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
         });
 
         $('.asset_value').each(function () {
-            var id = $(this).attr("id");
-            $('#'+id).editable();
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
         });
 
         $('.residents_name').each(function () {
-            var id = $(this).attr("id");
-            $('#'+id).editable();
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            });
         });
 
         $('.residents_age').each(function () {
-            var id = $(this).attr("id");
-            $('#'+id).editable();
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
         });
 
         $('.residents_relationship').each(function () {
-            var id = $(this).attr("id");
-            $('#'+id).editable();
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
         });
 
     });
