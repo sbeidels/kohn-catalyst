@@ -24,7 +24,7 @@ router.post('/', function(req, res) {
 router.post('/:id', api.putUpdateDocument, function(req, res) {
 
     if(res.locals.status != '200'){
-        res.status(500).send({ status: 'error' });
+        res.status(500).send("Could not update field");
     }
     else{
         res.status(200).send({ status: 'success' });
@@ -35,7 +35,7 @@ router.post('/:id', api.putUpdateDocument, function(req, res) {
 router.post('/array/:id', api.putUpdateArray, function(req, res) {
 
     if(res.locals.status != '200'){
-        res.status(500).send({ status: 'error' });
+        res.status(500).send("Could not update field");
     }
     else{
         res.status(200).send({ status: 'success' });

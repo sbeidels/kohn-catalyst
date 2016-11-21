@@ -1,4 +1,4 @@
-<a href="/view" class="btn btn-primary">Back to Vetting Home</a> 
+<a href="/view" class="btn btn-primary">Back to Vetting Home</a>
 <!-- Set this next link to the proper route for Vetting View -->
 <a href="/vettingworksheet/{{_id}}" class="btn btn-primary">Vetting Worksheet View</a>
 <script>
@@ -133,21 +133,22 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Requested Repairs</th>
+                    <th>Title</th>
+                    <th>Description</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Toilet Repair</td>
-                    <td>This is an example of a work request entered by the agent visiting the home.</td>
+                    <td>Kitchen Sink</td>
+                    <td>Sink repair request description.</td>
                 </tr>
                 <tr>
-                    <td>Cannot complete</td>
-                    <td>This is an example of an item that is too costly to do; it must be rejected.</td>
+                    <td>Family Room Floor</td>
+                    <td>Floor repair request description.</td>
                 </tr>
                 <tr>
-                    <td>Mulling it over</td>
-                    <td>This is an example of an item that might be completed!</td>
+                    <td>Roof</td>
+                    <td>Roof must be patched up.</td>
                 </tr>
                 </tbody>
             </table>
@@ -187,9 +188,9 @@
                         <tbody>
                         {{#each application.other_residents.name}}
                         <tr>
-                            <td>{{this}}</td>
-                            <td>{{lookup ../application.other_residents.age @index}}</td>
-                            <td>{{lookup ../application.other_residents.relationship @index}}</td>
+                            <td><a href="#" class="residents_name" id="residents_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.name">{{this}}</a></td>
+                            <td><a href="#" class="residents_age" id="residents_age_{{@index}}" data-type="text" data-pk="{{lookup ../application.other_residents.age @index}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.age">{{lookup ../application.other_residents.age @index}}</a></td>
+                            <td><a href="#" class="residents_relationship" id="residents_relationship_{{@index}}" data-type="text" data-pk="{{lookup ../application.other_residents.relationship @index}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.relationship">{{lookup ../application.other_residents.relationship @index}}</a></td>
                         </tr>
                         {{/each}}
                         </tbody>
@@ -252,8 +253,8 @@
                             <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
                         {{#each finance.assets.name}}
                            <tr>
-                               <td><a href="#" id="f_asset_name" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
-                               <td>{{lookup ../finance.assets.value @index}}</td>
+                               <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
+                               <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../finance.assets.value @index}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.value">{{lookup ../finance.assets.value @index}}</a></td>
                            </tr>
                         {{/each}}
                         </table>
@@ -428,6 +429,54 @@
                         {value: 'true', text: 'true'},
                         {value: 'false', text: 'false'}
                     ]
+        });
+
+        /**
+         * iterate through all dynamic array fields to make them editable
+        **/
+        $('.asset_name').each(function () {
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
+        });
+
+        $('.asset_value').each(function () {
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
+        });
+
+        $('.residents_name').each(function () {
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            });
+        });
+
+        $('.residents_age').each(function () {
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
+        });
+
+        $('.residents_relationship').each(function () {
+            var id = '#' + $(this).attr("id");
+            $(id).editable();
+            $(id).click(function () {
+                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
+                $(id).editable("option", "pk", pk);
+            })
         });
 
     });

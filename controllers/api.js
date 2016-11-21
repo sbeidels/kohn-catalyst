@@ -245,14 +245,19 @@ module.exports = {
         updates[updateField] = req.body.value;
         // Record Update time
         updates['updated'] = Date.now();
+        //filters
+        var conditions = {};
+        conditions['_id'] = req.params.id;
+        conditions[req.body.name] = req.body.pk;
+        console.log("Search Filter:");
+        console.log(conditions);
+        console.log("Update:");
         console.log(updates);
 
-        // TODO: Debug why the document is not updating
         Promise.props({
             doc: DocumentPackage.findOneAndUpdate(
                 // Condition
-                {_id: req.params.id,
-                    'finance.assets.name': req.body.pk}, //here's an issue. I can't figure out how to make the key dynamic
+                conditions,
                 // Updates
                 {
                     // $set: {name: value}
@@ -271,15 +276,16 @@ module.exports = {
         })
             .then(function (results) {
                 // TODO: Confirm true/false is correct
-                if (results) {
+                console.log(results);
+                if (results.doc != null) {
                     console.log('[ API ] putUpdateDocument :: Documents package found: TRUE');
+                    res.locals.status = '200';
                 }
                 else {
                     console.log('[ API ] putUpdateDocument :: Documents package found: FALSE');
+                    res.locals.status = '500';
                 }
                 res.locals.results = results;
-                //sending a status of 200 for now
-                res.locals.status = '200';
 
                 // If we are at this line all promises have executed and returned
                 // Call next() to pass all of this glorious data to the next express router
