@@ -1,20 +1,18 @@
-<form class="navbar-form navbar-fixed-top">
-  <div class="form-group">
-    <input type="text" id="note" class="form-control" placeholder="Enter Note Here...">
-  </div>
-  <button type="submit" id="addNote" class="btn btn-primary">Add Note</button>
-</form>
+<nav class="navbar navbar-fixed-top" style="padding-top: 0; padding-bottom: 200;">
+	 <div class="input-group">
+		<input type="text" id="note" class="form-control" placeholder="Enter Note Here...">
+		<span class="input-group-btn">
+			<button class="btn btn-primary" id="addNote" type="button">Add Note</button>
+		</span>
+	</div>
+</nav>
 
 
-
+<br><br>
 <a href="/view" class="btn btn-primary">Back to Vetting Home</a> 
 <!-- Set this next link to the proper route for Vetting View -->
 <a href="/view/{{_id}}" class="btn btn-primary">Back to Application View</a>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
+
 
 
 
@@ -67,10 +65,21 @@
                 
             </div>
 <!--CONTACT INFO-->
-            <h3>Contact</h3>
+            
             <table class="table table-striped">
                 <tbody>
                 <tr>
+					<td>
+						<h3>Address</h3>
+					</td>
+                    <td>
+                        <a id="address" href="#" data-type="address" data-pk="1" data-url="/edit/address/{{_id}}" data-title="Enter Address"></a>
+                    </td>
+					<td>
+						<a href="http://maps.google.com/?q={{application.address.line_1}} {{application.address.city}} {{application.address.state}} {{application.address.zip}}" target="_blank">Map it!</a>
+					</td>
+                </tr>
+				<tr>
                     <td>Name</td>
                     <td>
                         <a id="name" href="#" data-type="name" data-pk="1" data-url="/edit/name/{{_id}}" data-title="Enter Name"></a>
@@ -331,6 +340,12 @@
     </div>
 </div>
 
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 
 <script>
