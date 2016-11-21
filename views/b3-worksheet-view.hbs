@@ -1,6 +1,6 @@
 <nav class="navbar navbar-fixed-top" style="padding-top: 0; padding-bottom: 200;">
 	 <div class="input-group">
-		<input type="text" id="note" class="form-control" placeholder="Enter Note Here...">
+		<input type="text" id="note" class="form-control" placeholder="Enter Vetting Note Here...">
 		<span class="input-group-btn">
 			<button class="btn btn-primary" id="addNote" type="button">Add Note</button>
 		</span>
@@ -61,24 +61,37 @@
                     </tr>
 					</tbody>
 				</table>
-
-                
             </div>
-<!--CONTACT INFO-->
-            
-            <table class="table table-striped">
-                <tbody>
-                <tr>
-					<td>
-						<h3>Address</h3>
-					</td>
-                    <td>
-                        <a id="address" href="#" data-type="address" data-pk="1" data-url="/edit/address/{{_id}}" data-title="Enter Address"></a>
-                    </td>
-					<td>
-						<a href="http://maps.google.com/?q={{application.address.line_1}} {{application.address.city}} {{application.address.state}} {{application.address.zip}}" target="_blank">Map it!</a>
-					</td>
-                </tr>
+
+            <h4>Address</h4>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-5">
+						<a id="address" href="#" data-type="address" data-pk="1" data-url="/edit/address/{{_id}}" data-title="Enter Address"></a>
+					</div>
+					<div class="col-sm-7">
+						<a href="http://maps.google.com/?q={{application.address.line_1}} {{application.address.city}} {{application.address.state}} {{application.address.zip}}" target="_blank"><b>Map it!</b></a>
+					</div>
+				</div>
+			</div>
+			
+			<br><h4>Is this Property within our Service Area?</h4>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-3">
+						<input type="radio" id="sa_yes" name="service_area" value="true"> Yes<br>
+						<input type="radio" id="sa_no" name="service_area" value="false"> No
+					</div>
+					<div class="col-sm-9">
+						[Vetting Agent Note: If no, change Application Status to "On Hold - Pending Discussion" and enter an applicable Vetting Note.]
+					</div>
+				</div>
+			</div>
+
+			<i><br><br>[Here is where the new stuff leaves off and the old stuff remains (mostly for reference...]<br><br></i>
+			
+			<table class="table table-striped">
+                    <tbody>
 				<tr>
                     <td>Name</td>
                     <td>
