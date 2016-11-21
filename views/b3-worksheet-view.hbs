@@ -1,23 +1,54 @@
-<a href="/view" class="btn btn-primary">Back to Vetting Home</a>
+<form class="navbar-form navbar-fixed-top">
+  <div class="form-group">
+    <input type="text" id="note" class="form-control" placeholder="Enter Note Here...">
+  </div>
+  <button type="submit" id="addNote" class="btn btn-primary">Add Note</button>
+</form>
+
+
+
+<a href="/view" class="btn btn-primary">Back to Vetting Home</a> 
 <!-- Set this next link to the proper route for Vetting View -->
-<a href="/vettingworksheet/{{_id}}" class="btn btn-primary">Vetting Worksheet View</a>
+<a href="/view/{{_id}}" class="btn btn-primary">Back to Application View</a>
 <script>
     function goBack() {
         window.history.back();
     }
 </script>
 
+
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>{{application.name.first}} {{application.name.last}}</h1>
+            <h1>Vetting Worksheet for {{application.name.first}} {{application.name.last}}</h1>
 
-            <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h3>
+			
+			<!-- move vetting input and status selector to top (persistent div) -->
+			<div>
+				<table>
+                    <tr>
+					<form>
+                        <td>
+                            <input type="text" id="note" class="form-control" placeholder="Enter Note Here...">
+                        </td>
+                        <td>
+                            <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
+                        </td>
+					</form>
+						<td>
+							<h4>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h4>
+						</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <!--VETTING NOTES-->
             <h3>Vetting Notes</h3>
-            <div class="form-group">
-                <form>
+            <div class="col-xs-12">
                 <table class="table table-striped" id="notes-table">
                     <thead>
                         <tr>
@@ -30,17 +61,10 @@
                         <td>11/1/2016</td>
                         <td>This is an example of where vetting agent notes would appear.</td>
                     </tr>
-                    <tr>
-                        <td>
-                            <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
-                        </td>
-                        <td>
-                            <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                </form>
+					</tbody>
+				</table>
+
+                
             </div>
 <!--CONTACT INFO-->
             <h3>Contact</h3>
@@ -133,22 +157,21 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Requested Repairs</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Kitchen Sink</td>
-                    <td>Sink repair request description.</td>
+                    <td>Toilet Repair</td>
+                    <td>This is an example of a work request entered by the agent visiting the home.</td>
                 </tr>
                 <tr>
-                    <td>Family Room Floor</td>
-                    <td>Floor repair request description.</td>
+                    <td>Cannot complete</td>
+                    <td>This is an example of an item that is too costly to do; it must be rejected.</td>
                 </tr>
                 <tr>
-                    <td>Roof</td>
-                    <td>Roof must be patched up.</td>
+                    <td>Mulling it over</td>
+                    <td>This is an example of an item that might be completed!</td>
                 </tr>
                 </tbody>
             </table>
@@ -188,9 +211,9 @@
                         <tbody>
                         {{#each application.other_residents.name}}
                         <tr>
-                            <td><a href="#" class="residents_name" id="residents_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.name">{{this}}</a></td>
-                            <td><a href="#" class="residents_age" id="residents_age_{{@index}}" data-type="text" data-pk="{{lookup ../application.other_residents.age @index}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.age">{{lookup ../application.other_residents.age @index}}</a></td>
-                            <td><a href="#" class="residents_relationship" id="residents_relationship_{{@index}}" data-type="text" data-pk="{{lookup ../application.other_residents.relationship @index}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.relationship">{{lookup ../application.other_residents.relationship @index}}</a></td>
+                            <td>{{this}}</td>
+                            <td>{{lookup ../application.other_residents.age @index}}</td>
+                            <td>{{lookup ../application.other_residents.relationship @index}}</td>
                         </tr>
                         {{/each}}
                         </tbody>
@@ -253,8 +276,8 @@
                             <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
                         {{#each finance.assets.name}}
                            <tr>
-                               <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
-                               <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../finance.assets.value @index}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.value">{{lookup ../finance.assets.value @index}}</a></td>
+                               <td><a href="#" id="f_asset_name" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
+                               <td>{{lookup ../finance.assets.value @index}}</td>
                            </tr>
                         {{/each}}
                         </table>
@@ -307,6 +330,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
     /**
@@ -429,54 +454,6 @@
                         {value: 'true', text: 'true'},
                         {value: 'false', text: 'false'}
                     ]
-        });
-
-        /**
-         * iterate through all dynamic array fields to make them editable
-        **/
-        $('.asset_name').each(function () {
-            var id = '#' + $(this).attr("id");
-            $(id).editable();
-            $(id).click(function () {
-                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
-                $(id).editable("option", "pk", pk);
-            })
-        });
-
-        $('.asset_value').each(function () {
-            var id = '#' + $(this).attr("id");
-            $(id).editable();
-            $(id).click(function () {
-                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
-                $(id).editable("option", "pk", pk);
-            })
-        });
-
-        $('.residents_name').each(function () {
-            var id = '#' + $(this).attr("id");
-            $(id).editable();
-            $(id).click(function () {
-                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
-                $(id).editable("option", "pk", pk);
-            });
-        });
-
-        $('.residents_age').each(function () {
-            var id = '#' + $(this).attr("id");
-            $(id).editable();
-            $(id).click(function () {
-                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
-                $(id).editable("option", "pk", pk);
-            })
-        });
-
-        $('.residents_relationship').each(function () {
-            var id = '#' + $(this).attr("id");
-            $(id).editable();
-            $(id).click(function () {
-                var pk = $(id).text() == 'Empty' ? '' : $(id).text();
-                $(id).editable("option", "pk", pk);
-            })
         });
 
     });
