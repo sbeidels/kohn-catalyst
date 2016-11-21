@@ -1,23 +1,54 @@
+<form class="navbar-form navbar-fixed-top">
+  <div class="form-group">
+    <input type="text" id="note" class="form-control" placeholder="Enter Note Here...">
+  </div>
+  <button type="submit" id="addNote" class="btn btn-primary">Add Note</button>
+</form>
+
+
+
 <a href="/view" class="btn btn-primary">Back to Vetting Home</a> 
 <!-- Set this next link to the proper route for Vetting View -->
-<a href="/vettingworksheet/{{_id}}" class="btn btn-primary">Vetting Worksheet View</a>
+<a href="/view/{{_id}}" class="btn btn-primary">Back to Application View</a>
 <script>
     function goBack() {
         window.history.back();
     }
 </script>
 
+
+
+
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>{{application.name.first}} {{application.name.last}}</h1>
+            <h1>Vetting Worksheet for {{application.name.first}} {{application.name.last}}</h1>
 
-            <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h3>
+			
+			<!-- move vetting input and status selector to top (persistent div) -->
+			<div>
+				<table>
+                    <tr>
+					<form>
+                        <td>
+                            <input type="text" id="note" class="form-control" placeholder="Enter Note Here...">
+                        </td>
+                        <td>
+                            <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
+                        </td>
+					</form>
+						<td>
+							<h4>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{_id}}" data-name="status" data-title="Select status"></a></h4>
+						</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <!--VETTING NOTES-->
             <h3>Vetting Notes</h3>
-            <div class="form-group">
-                <form>
+            <div class="col-xs-12">
                 <table class="table table-striped" id="notes-table">
                     <thead>
                         <tr>
@@ -30,17 +61,10 @@
                         <td>11/1/2016</td>
                         <td>This is an example of where vetting agent notes would appear.</td>
                     </tr>
-                    <tr>
-                        <td>
-                            <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
-                        </td>
-                        <td>
-                            <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                </form>
+					</tbody>
+				</table>
+
+                
             </div>
 <!--CONTACT INFO-->
             <h3>Contact</h3>
@@ -306,6 +330,8 @@
         </div>
     </div>
 </div>
+
+
 
 <script>
     /**
