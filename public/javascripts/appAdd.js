@@ -59,7 +59,7 @@ function init() {
 		return data;
 	}
 
-	//this function figures out and returns the Home Type
+	//this function figures out and returns the Home Type {} object
 	function getHomeType() {
 		var data = {};
 		if (getVal('input[name="propertyType"]:checked') == "Other") {
@@ -71,6 +71,17 @@ function init() {
 		return data;
 	}
 
+		//this function gets only the other_residents entered in the form
+	function getResidents() {
+		var data = {};
+		if (getVal('input[name="propertyType"]:checked') == "Other") {
+			data = getVal('input[name="propertyType_other"]');
+		}
+		else {
+			data = getVal('input[name="propertyType"]:checked');
+		}
+		return data;
+	}
 
 	//this function figures out and returns the Advocate data
 	function getAdvocateData() {

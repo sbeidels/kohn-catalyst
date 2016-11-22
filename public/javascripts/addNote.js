@@ -1,12 +1,14 @@
-/**
- * Description
-**/
-$(document).ready(function() {
+$(document).ready(init)
 
-    $("#addNote").submit(function (e) {
-        e.preventDefault();
-        //submit to DB
-        //var note = $('#note').val();
+function init() {
+
+    $('#addNote').on('click', addTheNote);
+	function addTheNote() {
+		//addTheNote.preventDefault();
+        var note = $('#note').val();
         console.log("Adding note: " + note);
-    });
-});
+		//TODO: submit to DB once DB is up and running
+	}
+}
+	    
+
