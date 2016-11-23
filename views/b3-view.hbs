@@ -1,11 +1,7 @@
+
 <a href="/view" class="btn btn-primary">Back to Vetting Home</a>
 <!-- Set this next link to the proper route for Vetting View -->
 <a href="/vettingworksheet/{{_id}}" class="btn btn-primary">Vetting Worksheet View</a>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
 
 <div class="container">
     <div class="row">
@@ -18,17 +14,21 @@
             <h3>Vetting Notes</h3>
             <div class="form-group">
                 <form>
-                <table class="table table-striped" id="notes-table">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th class="col-md-2">Date</th>
-                            <th class="col-md-8">Note</th>
+                            <th class="col-md-6">Note</th>
+                            <th class="col-md-6"></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="notes-body">
                     <tr>
                         <td>11/1/2016</td>
                         <td>This is an example of where vetting agent notes would appear.</td>
+                        <td>
+                            <button type="submit" class="delete-button btn btn-danger">Delete Note</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -37,6 +37,7 @@
                         <td>
                             <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
                         </td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -250,7 +251,6 @@
                                 <th>Amount</th>
                             </tr>
                             </thead>
-                            <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
                         {{#each finance.assets.name}}
                            <tr>
                                <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
@@ -310,8 +310,15 @@
 
 <script>
     /**
+     * Handles the back button located at the top of the page
+     */
+    function goBack() {
+        window.history.back();
+    }
+
+    /**
      * Some inline-editable fields require data from the DB to properly work
-     *  They are defined here instead of a seperate file since it needs access
+     *  They are defined here instead of a separate file since it needs access
      *  to the handlebars template system
      */
     $(document).ready(function() {
@@ -433,6 +440,8 @@
 
         /**
          * iterate through all dynamic array fields to make them editable
+         * data-pk is set to the current value of the element
+         * An event listener for each link updates data-pk with the edited value
         **/
         $('.asset_name').each(function () {
             var id = '#' + $(this).attr("id");
