@@ -128,7 +128,7 @@ module.exports = {
                 else {
                     console.log('[ API ] getDocumentByStatus :: Documents package found: TRUE');
                 }
-                res.locals.results = results.application[0];
+                res.locals.results = results;
 
                 // If we are at this line all promises have executed and returned
                 // Call next() to pass all of this glorious data to the next express router

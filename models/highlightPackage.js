@@ -55,7 +55,7 @@ var HighlightPackageSchema = new Schema({
         veteran:            { type: Boolean, default: false },
         language:           { type: Boolean, default: false },
         heard_about:        { type: Boolean, default: false },
-        special_circumstances:  { type: Boolean, default: false },
+        special_circumstances:  { type: Boolean, default: false }
     },
 
     finance:    {
@@ -64,7 +64,7 @@ var HighlightPackageSchema = new Schema({
         assets:     { type: Boolean, default: false },
         client_can_contribute:      { type: Boolean, default: false },
         associates_can_contribute:  { type: Boolean, default: false },
-        requested_other_help:       { type: Boolean, default: false },
+        requested_other_help:       { type: Boolean, default: false }
     },
 
     property:   {
