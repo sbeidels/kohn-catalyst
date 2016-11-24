@@ -13,6 +13,8 @@ $(document).ready(function(context) {
     function makeClickable() {
         console.log('in makeClickable');
 
+        // Get each data-name (for x-edit)
+        // Append data-name as an attribute
         $("a[data-name]").each(function(index) {
             // Save the text in the value
             var dataName = $(this).attr("data-name");
@@ -22,16 +24,20 @@ $(document).ready(function(context) {
             if (dataName.indexOf('.', dataName.indexOf('.') + 1) > 0) {
                 dataName = dataName.slice(0, cutAfter);
             }
+            console.log(dataName)
+            $(this).attr("data-type", dataName)
         });
 
 
-        // TODO: put/remove flag based on a database entry
+        // TODO: populate current flags based on a database entry
 
         // Select the <a id=highlight> in each highlight <td> cell
         // append an href to invert the current selection in the database
-        $("a[id='highlight']").each(function() {
+        $(".highlight").each(function() {
             $(this).attr("href", "http://www.google.com");
         });
+
+        // TODO:
 
         // TODO: Log the invert for debugging
     }
