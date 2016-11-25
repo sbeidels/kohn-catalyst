@@ -292,29 +292,12 @@
                             </tr>
                             </thead>
                             <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
-                            {{#each finance.assets.name}}
+                            {{#each doc.finance.assets.name}}
                                 <tr>
-                                    <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
-                                    <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../finance.assets.value @index}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.value">{{lookup ../finance.assets.value @index}}</a></td>
+                                    <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../doc._id}}" data-name="finance.assets.name">{{this}}</a></td>
+                                    <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../doc.finance.assets.value @index}}" data-url="/edit/array/{{../doc._id}}" data-name="finance.assets.value">{{lookup ../doc.finance.assets.value @index}}</a></td>
                                 </tr>
                             {{/each}}
-                        </table>
-                    </td>
-                    <td>Assets</td>
-                    <td>
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <th>Asset</th>
-                                <th>Amount</th>
-                            </tr>
-                            </thead>
-                        {{#each finance.assets.name}}
-                           <tr>
-                               <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.name">{{this}}</a></td>
-                               <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../finance.assets.value @index}}" data-url="/edit/array/{{../_id}}" data-name="finance.assets.value">{{lookup ../finance.assets.value @index}}</a></td>
-                           </tr>
-                        {{/each}}
                         </table>
                     </td>
                 </tr>
