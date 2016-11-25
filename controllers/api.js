@@ -204,7 +204,6 @@ module.exports = {
         //filters
         var conditions = {};
         conditions['_id'] = mongoose.Types.ObjectId(req.params.id);
-        // conditions[req.body.name] = req.body.pk; TODO: Commented out, please look at this Marco
         console.log("Search Filter:");
         console.log(conditions);
         console.log("Update:");
@@ -389,7 +388,6 @@ module.exports = {
                         {_id: results.id},
                         // Updates
                         {
-                            // $set: {name: value}
                             $set: results.updates
                         },
                         // Options
@@ -399,8 +397,6 @@ module.exports = {
                             // runValidators - defaults to false, make sure the data fits the model before applying the update
                             runValidators: true
                         }
-                        // Callback if needed
-                        // { }
                     ).execAsync()
 
                 })
