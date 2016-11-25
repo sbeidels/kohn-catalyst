@@ -420,7 +420,6 @@ module.exports = {
             })
         }
     },
-    },
 
     /**
      * This will handle updates for elements in arrays
