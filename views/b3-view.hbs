@@ -19,8 +19,6 @@
             <div class="form-group">
                 <form>
                     <table class="table table-striped" id="notes-table">
-                        <thead>
-                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th class="col-md-2">Date</th>
@@ -294,8 +292,8 @@
                             <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
                             {{#each doc.finance.assets.name}}
                                 <tr>
-                                    <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../doc._id}}" data-name="finance.assets.name">{{this}}</a></td>
-                                    <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../doc.finance.assets.value @index}}" data-url="/edit/array/{{../doc._id}}" data-name="finance.assets.value">{{lookup ../doc.finance.assets.value @index}}</a></td>
+                                    <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../doc._id}}" data-name="doc.finance.assets.name">{{this}}</a></td>
+                                    <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../doc.finance.assets.value @index}}" data-url="/edit/array/{{../doc._id}}" data-name="doc.finance.assets.value">{{lookup ../doc.finance.assets.value @index}}</a></td>
                                 </tr>
                             {{/each}}
                         </table>
