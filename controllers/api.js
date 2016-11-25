@@ -159,6 +159,14 @@ module.exports = {
         // Instead we will do it in one line
         var doc = new DocumentPackage(req.body);
 
+        // Create a corresponding highlight package
+        var highlight = new HighlightPackage();
+
+        // Make each reference the others ObectId
+        // TODO: Add support for work items and site assessment
+        doc.highlightPackage = highlight._id;
+        highlight.documentPackage = doc._id;
+
         // Save the document package to the database with a callback to handle flow control
         doc.saveAsync(function (err, doc, numAffected) {
             if (err) {
@@ -168,12 +176,6 @@ module.exports = {
                 console.log('[ API ] postDocument :: Document created with _id: ' + doc._id);
             }
         });
-
-        // Create a corresponding highlight package
-        var highlight = new HighlightPackage();
-
-        // Save the ObjectId of the new document package
-        highlight.reference = doc._id;
 
         // Save the highlight package to the database with a callback to handle flow control
         highlight.saveAsync(function (err, highlight, numAffected) {
