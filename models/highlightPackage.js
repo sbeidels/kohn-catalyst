@@ -79,15 +79,5 @@ var HighlightPackageSchema = new Schema({
     recruitment:    { type: Boolean, default: false },
 });
 
-// HighlightPackageSchema.statics.findByIdAndToggleHighlight = function(id, section) {
-//     // Your code to find, then update here.
-//     var promise = HighlightPackage.findById(id).execAsync();
-//     promise.then(function(doc) {
-//         // Build the key:value pair
-//         var updates = {};
-//         updates
-//     })
-// }
-
 var HighlightPackage = mongoose.model('HighlightPackage', HighlightPackageSchema);
 module.exports = HighlightPackage;
