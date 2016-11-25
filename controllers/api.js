@@ -203,8 +203,8 @@ module.exports = {
         // Record Update time
         //filters
         var conditions = {};
-        conditions['_id'] = req.params.id;
-        conditions[req.body.name] = req.body.pk;
+        conditions['_id'] = mongoose.Types.ObjectId(req.params.id);
+        // conditions[req.body.name] = req.body.pk; TODO: Commented out, please look at this Marco
         console.log("Search Filter:");
         console.log(conditions);
         console.log("Update:");
