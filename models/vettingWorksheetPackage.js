@@ -1,13 +1,4 @@
 /*
-Fields Needed:
-
-vetting note 	[string]  //array of strings
-vetting note 	date [date] //array of dates
-service_area 	bool  
-*/
-
-
-/*
     //TODO: write a new description
  Highlighters are nice.
 
@@ -33,15 +24,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;
 
-var VettingWorksheetPackageSchema = new Schema({
-    created: 		Date,
-    updated: 		{ type: Date, default: Date.now},
-    vetting_note:		{
-        description:	[String],
-        date:			{ type: [Date], default: Date.now}
-    }
-	
+var VettingNote = new Schema({
+    date:   { type: Date, default: Date.now},
+    description: String
 });
 
-var DocumentPackage = mongoose.model('DocumentPackage', DocumentPackageSchema);
-module.exports = DocumentPackage;
+var VettingNotesSchema = new Schema({
+    notes:  [{type: ObjectId, ref: 'Note'}],
+    applicationId: {type: ObjectId, ref: 'DocumentPackage'}
+});
+
+var Note = mongoose.model('Note', VettingNote);
+var VettingNotes = mongoose.model('VettingNotes', VettingNotesSchema);
+
+module.exports = {
+    Note: Note,
+    VettingNotes: VettingNotes
+};

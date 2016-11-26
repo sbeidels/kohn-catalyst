@@ -17,10 +17,39 @@ function addNote(e) {
     //TODO: submit to DB once DB is up and running
     //append new row with delete button
     if($('#note').val() != "") {
-        var newRow = '<tr><td>' + getDate() + '</td>' + '<td>' + $('#note').val() + '</td><td><button type="submit" class="delete-button btn btn-danger">Delete Note</button></td></tr>';
-        $('#notes-body tr:last').before(newRow);
-        //clear value
-        $('#note').val("");
+
+        var payload = {};
+        payload.description= $('#note').val();
+        // TODO: Pass in application ObjectId somehow...
+        //POST the data to the database
+        var posting = $.ajax({
+            type : 'POST',
+            url: "/view/test",
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            data: JSON.stringify(payload)
+        });
+        //upon return, check for 200, then redirect so success page
+        posting.done(function (xhr) {
+            if(xhr.status == 200) {
+                var newRow = '<tr><td>' + getDate() + '</td>' + '<td>' + $('#note').val() + '</td><td><button type="submit" class="delete-button btn btn-danger">Delete Note</button></td></tr>';
+                //add new row before the very last row in the table (input form row)
+                $('#notes-body tr:last').before(newRow);
+                //clear value
+                $('#note').val("");
+            }
+            else{
+                console.log("Whoops, something went wrong");
+            }
+            // If code is not 200 forward below to .fail()
+        });
+
+        posting.fail(function (data)
+        {
+            console.log("Whoops, something went wrong");
+            // The save failed, just do nothing and leave the form without losing their typed data
+        });
+
     }
 }
 

@@ -10,6 +10,7 @@ var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
 var HighlightPackage = require('../models/highlightPackage');
+var VettingNotesModels = require('../models/vettingWorksheetPackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
@@ -138,6 +139,23 @@ module.exports = {
                 console.error(err);
             })
             .catch(next);
+    },
+    postVettingNote: function(req, res, next) {
+        console.log('[ API ] postVettingNote :: Call invoked');
+
+        var note = new VettingNotesModels.Note(req.body);
+        console.log(note);
+        // Save the document package to the database with a callback to handle flow control
+        note.saveAsync(function (err, note, numAffected) {
+            if (err) {
+                console.error(err);
+            }
+            else if (numAffected == 1) {
+                console.log('[ API ] postVettingNote :: Note created with _id: ' + note._id);
+                res.send( { status : 200 } );
+            }
+        });
+
     },
 
     postDocument: function(req, res, next) {
@@ -300,11 +318,11 @@ module.exports = {
                 // TODO: Confirm true/false is correct
                 console.log(results);
                 if (results.doc != null) {
-                    console.log('[ API ] putUpdateDocument :: Documents package found: TRUE');
+                    console.log('[ API ] putUpdateArray :: Documents package found: TRUE');
                     res.locals.status = '200';
                 }
                 else {
-                    console.log('[ API ] putUpdateDocument :: Documents package found: FALSE');
+                    console.log('[ API ] putUpdateArray :: Documents package found: FALSE');
                     res.locals.status = '500';
                 }
                 res.locals.results = results;

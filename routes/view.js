@@ -112,6 +112,10 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     res.render('vetting', payload);
 });
 
+router.post('/test', api.postVettingNote, function(req, res, next) {
+
+});
+
 /* Route to specific application by Object ID */
 router.get('/:id', function(req, res, next) {
     //Checking what's in params
