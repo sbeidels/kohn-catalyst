@@ -119,7 +119,7 @@ router.get('/:id', function(req, res, next) {
 
     /* search by _id. */
     Promise.props({
-        highlight: HighlightPackage.findOne({ 'reference' : ObjectId(req.params.id)}).lean().execAsync(),
+        highlight: HighlightPackage.findOne({ 'documentPackage' : ObjectId(req.params.id)}).lean().execAsync(),
         doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync()
     })
         .then(function(results) {
@@ -134,6 +134,7 @@ router.get('/:id', function(req, res, next) {
 
             res.locals.layout = 'b3-layout';        // Change default from layout.hbs to b3-layout.hbs
 
+            console.log(results.highlight);
             res.render('b3-view', results);
         })
         .catch(function(err) {
