@@ -123,26 +123,17 @@ router.get('/:id', function(req, res, next) {
         doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync()
     })
         .then(function(results) {
-            // console.log(results);
-            //format birth date for display
-            // if(results.application.application.dob.date != null) {
-            //     console.log('IN IF OMFG!!!!!!!!!!!!!!!!');
-            //     var dobYear = results.application.application.dob.date.getFullYear();
-            //     //get month and day with padding since they are 0 indexed
-            //     var dobDay = ( "00" + results.application.application.dob.date.getDate()).slice(-2);
-            //     var dobMon = ("00" + (results.application.application.dob.date.getMonth()+1)).slice(-2);
-            //
-            //     results.application.application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
-            // }
-            // results['doc'] = results.application;
-            // results['highlight'] = results.highlight;
-
-
+            // format birth date for display
+            if (results.doc.application.dob.date != null) {
+                var dobYear = results.doc.application.dob.date.getFullYear();
+                //get month and day with padding since they are 0 indexed
+                var dobDay = ( "00" + results.doc.application.dob.date.getDate()).slice(-2);
+                var dobMon = ("00" + (results.doc.application.dob.date.getMonth()+1)).slice(-2);
+                results.doc.application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
+            }
 
             res.locals.layout = 'b3-layout';        // Change default from layout.hbs to b3-layout.hbs
-            // res.locals.results = results.application[0];
-            // res.locals.results = results.highlight[0];
-            console.log(results);
+
             res.render('b3-view', results);
         })
         .catch(function(err) {
