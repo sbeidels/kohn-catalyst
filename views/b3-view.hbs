@@ -1,11 +1,6 @@
 <a href="/view" class="btn btn-primary">Back to Vetting Home</a>
 <!-- Set this next link to the proper route for Vetting View -->
-<a href="#" class="btn btn-primary">Vetting Information View</a>
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
+<a href="/vettingworksheet/{{doc._id}}" class="btn btn-primary">Vetting Worksheet View</a>
 
 <div class="container">
     <div class="row">
@@ -18,8 +13,8 @@
             <h3>Vetting Notes</h3>
             <div class="form-group">
                 <form>
-                    <table class="table table-striped" id="notes-table">
-                    <thead>
+                    <table class="table table-striped">
+                        <thead>
                         <tr>
                             <th class="col-md-2">Date</th>
                             <th class="col-md-6">Note</th>
@@ -30,10 +25,10 @@
                         <tr>
                             <td>11/1/2016</td>
                             <td>This is an example of where vetting agent notes would appear.</td>
-                        <td>
-                            <button type="submit" class="delete-button btn btn-danger">Delete Note</button>
-                        </td>
-                    </tr>
+                            <td>
+                                <button type="submit" class="delete-button btn btn-danger">Delete Note</button>
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
@@ -41,7 +36,7 @@
                             <td>
                                 <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
                             </td>
-                        <td></td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -52,7 +47,6 @@
             <table class="table table-striped">
                 <tbody>
                 <tr>
-                    <td><a id="highlight_" class="highlight" >star</a></td>
                     <td>Name</td>
                     <td>
                         <a id="name" href="#" data-type="name" data-pk="1" data-url="/edit/name/{{doc._id}}" data-title="Enter Name"></a>
@@ -159,31 +153,6 @@
                             </tbody>
                         </table>
             --END WORK ITEMS -->
-<!--WORK ITEMS -  PROBABLY NOT NECESSARY TO BE HERE, because it isn't part of the original application.  This section will be necessary in the Single-App-Vetting-View (phone script)
-            <h3>Work Items</h3>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Kitchen Sink</td>
-                    <td>Sink repair request description.</td>
-                </tr>
-                <tr>
-                    <td>Family Room Floor</td>
-                    <td>Floor repair request description.</td>
-                </tr>
-                <tr>
-                    <td>Roof</td>
-                    <td>Roof must be patched up.</td>
-                </tr>
-                </tbody>
-            </table>
---END WORK ITEMS -->
 
             <!--PROPERTY ITEMS-->
             <h3>Property</h3>
@@ -208,24 +177,24 @@
                 <tr>
                     <td>Other Residents</td>
                     <td>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Relationship</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {{#each doc.application.other_residents.name}}
-                        <tr>
-                            <td><a href="#" class="residents_name" id="residents_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../doc._id}}" data-name="application.other_residents.name">{{this}}</a></td>
-                            <td><a href="#" class="residents_age" id="residents_age_{{@index}}" data-type="text" data-pk="{{lookup ../doc.application.other_residents.age @index}}" data-url="/edit/array/{{../doc._id}}" data-name="application.other_residents.age">{{lookup ../doc.application.other_residents.age @index}}</a></td>
-                            <td><a href="#" class="residents_relationship" id="residents_relationship_{{@index}}" data-type="text" data-pk="{{lookup ../doc.application.other_residents.relationship @index}}" data-url="/edit/array/{{../_id}}" data-name="application.other_residents.relationship">{{lookup ../doc.application.other_residents.relationship @index}}</a></td>
-                        </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Relationship</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {{#each doc.application.other_residents.name}}
+                                <tr>
+                                    <td><a href="#" class="residents_name" id="residents_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../doc._id}}" data-name="application.other_residents.name">{{this}}</a></td>
+                                    <td><a href="#" class="residents_age" id="residents_age_{{@index}}" data-type="text" data-pk="{{lookup ../doc.application.other_residents.age @index}}" data-url="/edit/array/{{../doc._id}}" data-name="application.other_residents.age">{{lookup ../doc.application.other_residents.age @index}}</a></td>
+                                    <td><a href="#" class="residents_relationship" id="residents_relationship_{{@index}}" data-type="text" data-pk="{{lookup ../doc.application.other_residents.relationship @index}}" data-url="/edit/array/{{../doc._id}}" data-name="application.other_residents.relationship">{{lookup ../doc.application.other_residents.relationship @index}}</a></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
                     </td>
                 </tr>
                 </tbody>
@@ -256,8 +225,6 @@
                 <tr>
                     <td>Client Financial Contribution</td>
                     <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{doc.finance.client_can_contribute.description}}</a></td>
-                    <td>Client Financial Contribution</td>
-                    <td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{doc.finance.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
                     <td>Associates Can Contribute Financially</td>
@@ -268,16 +235,10 @@
                 <tr>
                     <td>Associate Financial Contribution</td>
                     <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{doc.finance.associates_can_contribute.description}}</a></td>
-                    <td>Associate Financial Contribution</td>
-                    <td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{doc.finance.associates_can_contribute.description}}</a></td>
                 </tr>
                 </tbody>
             </table>
             <table class="table table-striped">
-                <tbody>
-				</tbody>
-			</table>
-			<table class="table table-striped">
                 <tbody>
                 <tr>
                     <td>Assets</td>
@@ -289,11 +250,10 @@
                                 <th>Amount</th>
                             </tr>
                             </thead>
-                            <!--This will iterate over all assets but does not have unique ids, which means only 1st is editable-->
                             {{#each doc.finance.assets.name}}
                                 <tr>
-                                    <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../doc._id}}" data-name="doc.finance.assets.name">{{this}}</a></td>
-                                    <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../doc.finance.assets.value @index}}" data-url="/edit/array/{{../doc._id}}" data-name="doc.finance.assets.value">{{lookup ../doc.finance.assets.value @index}}</a></td>
+                                    <td><a href="#" class="asset_name" id="f_asset_name_{{@index}}" data-type="text" data-pk="{{this}}" data-url="/edit/array/{{../doc._id}}" data-name="finance.assets.name">{{this}}</a></td>
+                                    <td><a href="#" class="asset_value" id="f_asset_value_{{@index}}" data-type="text" data-pk="{{lookup ../doc.finance.assets.value @index}}" data-url="/edit/array/{{../doc._id}}" data-name="finance.assets.value">{{lookup ../doc.finance.assets.value @index}}</a></td>
                                 </tr>
                             {{/each}}
                         </table>
@@ -315,8 +275,6 @@
                 <tr>
                     <td>Client Labor Contribution</td>
                     <td><a href="#" id="l_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.client_can_contribute.description" data-title="Enter Contribution Description">{{doc.property.client_can_contribute.description}}</a></td>
-                    <td>Client Labor Contribution</td>
-                    <td><a href="#" id="l_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.client_can_contribute.description" data-title="Enter Contribution Description">{{doc.property.client_can_contribute.description}}</a></td>
                 </tr>
                 <tr>
                     <td>Associates Can Contribute Labor</td>
@@ -325,8 +283,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Associate Labor Contribution</td>
-                    <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{doc.property.associates_can_contribute.description}}</a></td>
                     <td>Associate Labor Contribution</td>
                     <td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{doc.property.associates_can_contribute.description}}</a></td>
                 </tr>
@@ -344,10 +300,6 @@
                     <td>Requested Other Help</td>
                     <td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
                 </tr>
-                <tr>
-                    <td>Requested Other Help</td>
-                    <td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
-                </tr>
                 </tbody>
             </table>
 
@@ -355,7 +307,6 @@
     </div>
 </div>
 
-<script type="text/javascript" src="/javascript/setFlags.js"></script>
 <script>
     /**
      * Handles the back button located at the top of the page
@@ -363,20 +314,12 @@
     function goBack() {
         window.history.back();
     }
-
     /**
      * Some inline-editable fields require data from the DB to properly work
      *  They are defined here instead of a separate file since it needs access
      *  to the handlebars template system
      */
     $(document).ready(function() {
-        $('.highlight').editable({
-            source:
-                    [
-                        {value: 'true', text: 'True'},
-                        {value: 'false', text: 'False'}
-                    ]
-        })
         $('#address').editable({
             value: {
                 line_1: '{{doc.application.address.line_1}}',
@@ -481,12 +424,11 @@
                         {value: 'false', text: 'False'}
                     ]
         });
-
         /**
          * iterate through all dynamic array fields to make them editable
          * data-pk is set to the current value of the element
          * An event listener for each link updates data-pk with the edited value
-        **/
+         **/
         $('.asset_name').each(function () {
             var id = '#' + $(this).attr("id");
             $(id).editable();
@@ -495,7 +437,6 @@
                 $(id).editable("option", "pk", pk);
             })
         });
-
         $('.asset_value').each(function () {
             var id = '#' + $(this).attr("id");
             $(id).editable();
@@ -504,7 +445,6 @@
                 $(id).editable("option", "pk", pk);
             })
         });
-
         $('.residents_name').each(function () {
             var id = '#' + $(this).attr("id");
             $(id).editable();
@@ -513,7 +453,6 @@
                 $(id).editable("option", "pk", pk);
             });
         });
-
         $('.residents_age').each(function () {
             var id = '#' + $(this).attr("id");
             $(id).editable();
@@ -522,7 +461,6 @@
                 $(id).editable("option", "pk", pk);
             })
         });
-
         $('.residents_relationship').each(function () {
             var id = '#' + $(this).attr("id");
             $(id).editable();
@@ -531,6 +469,5 @@
                 $(id).editable("option", "pk", pk);
             })
         });
-
     });
 </script>
