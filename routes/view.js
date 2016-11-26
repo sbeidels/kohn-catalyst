@@ -134,7 +134,6 @@ router.get('/:id', function(req, res, next) {
 
             res.locals.layout = 'b3-layout';        // Change default from layout.hbs to b3-layout.hbs
 
-            console.log(results.highlight);
             res.render('b3-view', results);
         })
         .catch(function(err) {
