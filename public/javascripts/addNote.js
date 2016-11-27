@@ -25,12 +25,11 @@ function addNote(e) {
         //POST the data to the database
         var posting = $.ajax({
             type : 'POST',
-            url: "/view/test",
+            url: "/view/addNote",
             dataType: 'json',
             contentType: 'application/json; charset=UTF-8',
             data: JSON.stringify(payload)
         });
-        //upon return, check for 200, then redirect so success page
         posting.done(function (xhr) {
             if(xhr.status == 200) {
                 //build the new row
@@ -58,10 +57,32 @@ function addNote(e) {
 function deleteNote(e) {
     e.preventDefault();
     //TODO: submit to DB once DB is up and running
-    //var test = $(this).closest("form").find("input[name='noteId']").val();
+    var noteId = $(this).closest("form").find("input[name='noteId']").val();
+    var noteSelected = $(this);
+    var payload = {};
+    payload.noteId = noteId;
 
-    //remove row
-    $(this).closest('tr').remove();
+    var posting = $.ajax({
+        type : 'POST',
+        url: "/view/delNote",
+        dataType: 'json',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify(payload)
+    });
+    posting.done(function (xhr) {
+        if(xhr.status == 200) {
+            //remove row
+            noteSelected.closest('tr').remove();
+        }
+        else{
+            console.log("Did not receive 200 status for deleting note");
+        }
+    });
+    posting.fail(function (data)
+    {
+        console.log("Whoops, something went wrong");
+    });
+
 }
 
 //get date in a nice format

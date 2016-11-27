@@ -112,8 +112,28 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     res.render('vetting', payload);
 });
 
-router.post('/test', api.postVettingNote, function(req, res, next) {
+/**
+ * Route for adding notes
+**/
+router.post('/addNote', api.postVettingNote, function(req, res, next) {
+    if(res.locals.status != '200'){
+        res.status(500).send("Could not add note");
+    }
+    else{
+        res.status(200).send({ status: 'success' });
+    }
+});
 
+/**
+ * Route for deleting notes
+ **/
+router.post('/delNote', api.removeVettingNote, function(req, res, next) {
+    if(res.locals.status != '200'){
+        res.status(500).send("Could not delete note");
+    }
+    else{
+        res.status(200).send({ status: '200' });
+    }
 });
 
 /* Route to specific application by Object ID */

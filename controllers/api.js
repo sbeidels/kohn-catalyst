@@ -158,6 +158,32 @@ module.exports = {
 
     },
 
+    removeVettingNote: function(req, res, next) {
+        console.log('[ API ] removeVettingNote :: Call invoked');
+        Promise.props({
+            note: VettingNotesModels.Note.remove(
+                {
+                    _id: req.body.noteId
+                }
+            ).execAsync()
+        })
+        .then(function (results) {
+            if (results) {
+                console.log('[ API ] removeVettingNote :: Note found: TRUE');
+                res.locals.results = results;
+                //sending a status of 200 for now
+                res.locals.status = '200';
+            }
+            else {
+                console.log('[ API ] removeVettingNote :: Note found: FALSE');
+            }
+            next();
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
+    },
+
     postDocument: function(req, res, next) {
         // Data will be submitted using req.body
         console.log('[ API ] postDocument :: Call invoked');
