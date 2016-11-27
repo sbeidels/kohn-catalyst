@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
 var HighlightPackage = require('../models/highlightPackage');
-var VettingNotesModels = require('../models/vettingWorksheetPackage');
+var VettingNotePackage = require('../models/vettingNotePackage');
 var bluebird = require('bluebird');
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
@@ -143,16 +143,16 @@ module.exports = {
     postVettingNote: function(req, res, next) {
         console.log('[ API ] postVettingNote :: Call invoked');
 
-        var note = new VettingNotesModels.Note(req.body);
-        console.log(note);
-        // Save the document package to the database with a callback to handle flow control
+        var note = new VettingNotePackage(req.body);
+
         note.saveAsync(function (err, note, numAffected) {
             if (err) {
                 console.error(err);
             }
             else if (numAffected == 1) {
                 console.log('[ API ] postVettingNote :: Note created with _id: ' + note._id);
-                res.send( { status : 200 } );
+                //send note ID so it can be referenced without page refresh
+                res.send( { status : 200, noteId: note._id } );
             }
         });
 
@@ -161,7 +161,7 @@ module.exports = {
     removeVettingNote: function(req, res, next) {
         console.log('[ API ] removeVettingNote :: Call invoked');
         Promise.props({
-            note: VettingNotesModels.Note.remove(
+            note: VettingNotePackage.remove(
                 {
                     _id: req.body.noteId
                 }

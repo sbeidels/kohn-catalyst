@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
 var HighlightPackage = require('../models/highlightPackage');
-var VettingNotesModels = require('../models/vettingWorksheetPackage');
+var VettingNotePackage = require('../models/vettingNotePackage');
 var api = require('../controllers/api');
 
 var Promise = require('bluebird'); // Import promise engine
@@ -132,7 +132,7 @@ router.post('/delNote', api.removeVettingNote, function(req, res, next) {
         res.status(500).send("Could not delete note");
     }
     else{
-        res.status(200).send({ status: '200' });
+        res.status(200).send({ status: '200'});
     }
 });
 
@@ -145,7 +145,7 @@ router.get('/:id', function(req, res, next) {
     Promise.props({
         highlight: HighlightPackage.findOne({ 'documentPackage' : ObjectId(req.params.id)}).lean().execAsync(),
         doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync(),
-        vettingNotes: VettingNotesModels.Note.find({applicationId: ObjectId(req.params.id)}).lean().execAsync()
+        vettingNotes: VettingNotePackage.find({applicationId: ObjectId(req.params.id)}).lean().execAsync()
     })
     .then(function(results) {
         // format birth date for display

@@ -30,15 +30,15 @@ var VettingNote = new Schema({
     applicationId: {type: ObjectId, ref: 'DocumentPackage'}
 });
 
-var VettingNotesSchema = new Schema({
-    notes:  [{type: ObjectId, ref: 'Note'}],
-    applicationId: {type: ObjectId, ref: 'DocumentPackage'}
-});
+/**
+ * This doesn't seem necessary for the way I did the vettingNote
+ */
+// var VettingNotesSchema = new Schema({
+//     notes:  [{type: ObjectId, ref: 'Note'}],
+//     applicationId: {type: ObjectId, ref: 'DocumentPackage'}
+// });
 
 var Note = mongoose.model('Note', VettingNote);
-var VettingNotes = mongoose.model('VettingNotes', VettingNotesSchema);
+//var VettingNotes = mongoose.model('VettingNotes', VettingNotesSchema);
 
-module.exports = {
-    Note: Note,
-    VettingNotes: VettingNotes
-};
+module.exports = Note;

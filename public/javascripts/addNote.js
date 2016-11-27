@@ -14,14 +14,14 @@ function init() {
 
 function addNote(e) {
     e.preventDefault();
-    //TODO: submit to DB once DB is up and running
+
     //append new row with delete button
     if($('#note').val() != "") {
 
         var payload = {};
         payload.description = $('#note').val();
         payload.applicationId = $('#appId').val();
-        // TODO: Pass in application ObjectId somehow...
+
         //POST the data to the database
         var posting = $.ajax({
             type : 'POST',
@@ -32,8 +32,19 @@ function addNote(e) {
         });
         posting.done(function (xhr) {
             if(xhr.status == 200) {
+                //check if the empty notes row exists and delete if so
+                var emptyNotes = $('#empty-notes');
+                if(emptyNotes != null)
+                {
+                    emptyNotes.closest('tr').remove();
+                }
+
                 //build the new row
-                var newRow = '<tr class="success"><td>' + getDate() + '</td>' + '<td>' + $('#note').val() + '</td><td><button type="submit" class="delete-button btn btn-danger">Delete Note</button></td></tr>';
+                var date = '<td>' + getDate() + '</td>';
+                var newNote = '<td>' + $('#note').val() + '</td>';
+                var hiddenNoteId = '<input type="hidden" value="' + xhr.noteId + '" name="noteId" />';
+                var deleteButton = '<button type="submit" class="delete-button btn btn-danger">Delete Note</button>';
+                var newRow = '<tr class="success">' + date + newNote + '<td><form>' + hiddenNoteId + deleteButton + '</form></td></tr>';
                 //add new row before the very last row in the table (input form row)
                 $('#notes-body tr:last').before(newRow);
                 //clear value
