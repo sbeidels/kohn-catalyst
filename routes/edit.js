@@ -81,7 +81,8 @@ router.post('/address/:id', function(req, res) {
                 "application.address.line_2": req.body["value[line_2]"],
                 "application.address.city": req.body["value[city]"],
                 "application.address.state": req.body["value[state]"],
-                "application.address.zip": req.body["value[zip]"]
+                "application.address.zip": req.body["value[zip]"],
+                "updated": Date.now()
             }
         },
         function(err)
@@ -110,7 +111,8 @@ router.post('/name/:id', function(req, res) {
             {
                 "application.name.first": req.body["value[first]"],
                 "application.name.middle": req.body["value[middle]"],
-                "application.name.last": req.body["value[last]"]
+                "application.name.last": req.body["value[last]"],
+                "updated": Date.now()
             }
         },
         function(err)

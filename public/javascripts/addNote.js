@@ -19,7 +19,8 @@ function addNote(e) {
     if($('#note').val() != "") {
 
         var payload = {};
-        payload.description= $('#note').val();
+        payload.description = $('#note').val();
+        payload.applicationId = $('#appId').val();
         // TODO: Pass in application ObjectId somehow...
         //POST the data to the database
         var posting = $.ajax({
@@ -32,7 +33,8 @@ function addNote(e) {
         //upon return, check for 200, then redirect so success page
         posting.done(function (xhr) {
             if(xhr.status == 200) {
-                var newRow = '<tr><td>' + getDate() + '</td>' + '<td>' + $('#note').val() + '</td><td><button type="submit" class="delete-button btn btn-danger">Delete Note</button></td></tr>';
+                //build the new row
+                var newRow = '<tr class="success"><td>' + getDate() + '</td>' + '<td>' + $('#note').val() + '</td><td><button type="submit" class="delete-button btn btn-danger">Delete Note</button></td></tr>';
                 //add new row before the very last row in the table (input form row)
                 $('#notes-body tr:last').before(newRow);
                 //clear value
@@ -56,6 +58,8 @@ function addNote(e) {
 function deleteNote(e) {
     e.preventDefault();
     //TODO: submit to DB once DB is up and running
+    //var test = $(this).closest("form").find("input[name='noteId']").val();
+
     //remove row
     $(this).closest('tr').remove();
 }

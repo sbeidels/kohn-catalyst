@@ -26,7 +26,8 @@ ObjectId = Schema.ObjectId;
 
 var VettingNote = new Schema({
     date:   { type: Date, default: Date.now},
-    description: String
+    description: String,
+    applicationId: {type: ObjectId, ref: 'DocumentPackage'}
 });
 
 var VettingNotesSchema = new Schema({

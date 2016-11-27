@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
 var HighlightPackage = require('../models/highlightPackage');
+var VettingNotesModels = require('../models/vettingWorksheetPackage');
 var api = require('../controllers/api');
-
 
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose we are using the Bluebird promise library
@@ -124,25 +124,37 @@ router.get('/:id', function(req, res, next) {
     /* search by _id. */
     Promise.props({
         highlight: HighlightPackage.findOne({ 'documentPackage' : ObjectId(req.params.id)}).lean().execAsync(),
-        doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync()
+        doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync(),
+        vettingNotes: VettingNotesModels.Note.find({applicationId: ObjectId(req.params.id)}).lean().execAsync()
     })
-        .then(function(results) {
-            // format birth date for display
-            if (results.doc.application.dob.date != null) {
-                var dobYear = results.doc.application.dob.date.getFullYear();
+    .then(function(results) {
+        // format birth date for display
+        if (results.doc.application.dob.date != null) {
+            var dobYear = results.doc.application.dob.date.getFullYear();
+            //get month and day with padding since they are 0 indexed
+            var dobDay = ( "00" + results.doc.application.dob.date.getDate()).slice(-2);
+            var dobMon = ("00" + (results.doc.application.dob.date.getMonth()+1)).slice(-2);
+            results.doc.application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
+        }
+        // format vetting notes dates
+        if(results.vettingNotes.length != 0)
+        {
+            results.vettingNotes.forEach(function(note, index){
+                var Year = note.date.getFullYear();
                 //get month and day with padding since they are 0 indexed
-                var dobDay = ( "00" + results.doc.application.dob.date.getDate()).slice(-2);
-                var dobMon = ("00" + (results.doc.application.dob.date.getMonth()+1)).slice(-2);
-                results.doc.application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
-            }
+                var Day = ( "00" + note.date.getDate()).slice(-2);
+                var Mon = ("00" + (note.date.getMonth()+1)).slice(-2);
+                results.vettingNotes[index].date = Mon + "/" + Day + "/" + Year;
+            });
+        }
 
-            res.locals.layout = 'b3-layout';        // Change default from layout.hbs to b3-layout.hbs
+        res.locals.layout = 'b3-layout';        // Change default from layout.hbs to b3-layout.hbs
 
-            res.render('b3-view', results);
-        })
-        .catch(function(err) {
-            console.error(err);
-        });
+        res.render('b3-view', results);
+    })
+    .catch(function(err) {
+        console.error(err);
+    });
 
 });
 

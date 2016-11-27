@@ -18,6 +18,7 @@
             <h3>Vetting Notes</h3>
             <div class="form-group">
                 <form method="post">
+                    <input type="hidden" value="{{doc._id}}" id="appId"/>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -27,21 +28,33 @@
                         </tr>
                         </thead>
                         <tbody id="notes-body">
-                        <tr>
-                            <td>11/1/2016</td>
-                            <td>This is an example of where vetting agent notes would appear.</td>
-                            <td>
-                                <button type="submit" class="delete-button btn btn-danger">Delete Note</button>
-                            </td>
-                        </tr>
+                        {{#if vettingNotes}}
+                            {{#each vettingNotes}}
+                                <tr>
+                                    <td>{{this.date}}</td>
+                                    <td>{{this.description}}</td>
+                                    <td>
+                                        <form>
+                                            <input type="hidden" value="{{this._id}}" name="noteId" />
+                                            <input type="submit" class="delete-button btn btn-danger" value="Delete Note"/>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {{/each}}
+                        {{else}}
+                            <tr>
+                                <td id="empty-notes" class="alert-danger danger" colspan="3">
+                                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> No Notes To Display
+                                </td>
+                            </tr>
+                        {{/if}}
                         <tr>
                             <td>
                                 <button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
                             </td>
-                            <td>
+                            <td colspan="2">
                                 <textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
                             </td>
-                            <td></td>
                         </tr>
                         </tbody>
                     </table>
