@@ -136,6 +136,18 @@ router.post('/delNote', api.removeVettingNote, function(req, res, next) {
     }
 });
 
+/**
+ * Route for updating notes
+ **/
+router.post('/updateNote', api.updateVettingNote, function(req, res, next) {
+    if(res.locals.status != '200'){
+        res.status(500).send("Could not update note");
+    }
+    else{
+        res.status(200).send({ status: '200'});
+    }
+});
+
 /* Route to specific application by Object ID */
 router.get('/:id', function(req, res, next) {
     //Checking what's in params

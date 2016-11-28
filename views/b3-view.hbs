@@ -32,10 +32,11 @@
                             {{#each vettingNotes}}
                                 <tr>
                                     <td>{{this.date}}</td>
-                                    <td>{{this.description}}</td>
+                                    <td class="note-descrip">{{this.description}}</td>
                                     <td>
                                         <form>
                                             <input type="hidden" value="{{this._id}}" name="noteId" />
+                                            <input type="submit" class="update-button btn btn-info" value="Update Note"/>
                                             <input type="submit" class="delete-button btn btn-danger" value="Delete Note"/>
                                         </form>
                                     </td>

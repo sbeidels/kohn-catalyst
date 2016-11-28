@@ -363,6 +363,68 @@ module.exports = {
             .catch(next);
     },
 
+    /**
+     * This will handle updates for vetting notes
+     */
+    updateVettingNote: function(req, res, next) {
+        // Log the _id, name, and value that are passed to the function
+        console.log('[ API ] updateVettingNote :: Call invoked with note _id: ' + req.body.id
+            + ' | description: ' + req.body.description);
+
+        var updates = {};
+        updates.description = req.body.description;
+
+        //filters
+        var conditions = {};
+        conditions['_id'] = req.body.id;
+        console.log("Search Filter:");
+        console.log(conditions);
+        console.log("Update:");
+        console.log(updates);
+
+        Promise.props({
+            note: VettingNotePackage.findOneAndUpdate(
+                // Condition
+                conditions,
+                // Updates
+                {
+                    // $set: {name: value}
+                    $set: updates
+                },
+                // Options
+                {
+                    // new - defaults to false, returns the modified document when true, or the original when false
+                    new: true,
+                    // runValidators - defaults to false, make sure the data fits the model before applying the update
+                    runValidators: true
+                }
+                // Callback if needed
+                // { }
+            ).execAsync()
+        })
+            .then(function (results) {
+                // TODO: Confirm true/false is correct
+                console.log(results);
+                if (results.note != null) {
+                    console.log('[ API ] updateVettingNote :: Note found: TRUE');
+                    res.locals.status = '200';
+                }
+                else {
+                    console.log('[ API ] updateVettingNote :: Note found: FALSE');
+                    res.locals.status = '500';
+                }
+                res.locals.results = results;
+
+                // If we are at this line all promises have executed and returned
+                // Call next() to pass all of this glorious data to the next express router
+                next();
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+            .catch(next);
+    },
+
     getHighlightsById: function(req, res, next) {
         console.log('[ API ] getHighlightsById :: Call invoked with highlight package _id: ' + req.params.id);
         Promise.props({
