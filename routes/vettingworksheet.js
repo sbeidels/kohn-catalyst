@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
+var VettingNotePackage = require('../models/vettingNotePackage');
 var api = require('../controllers/api');
 
 
@@ -22,20 +23,33 @@ router.get('/:id', function(req, res) {
 
     /* search by _id. */
     Promise.props({
-        application: DocumentPackage.find({_id: ObjectId(req.params.id)}).lean().execAsync()
+        doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync(),
+        vettingNotes: VettingNotePackage.find({applicationId: ObjectId(req.params.id)}).lean().execAsync()
     })
         .then(function(result) {
             //format birth date for display
-            if(result.application[0].application.dob.date != null) {
-                var dobYear = result.application[0].application.dob.date.getFullYear();
+            if(result.doc.application.dob.date != null) {
+                var dobYear = result.doc.application.dob.date.getFullYear();
                 //get month and day with padding since they are 0 indexed
-                var dobDay = ( "00" + result.application[0].application.dob.date.getDate()).slice(-2);
-                var dobMon = ("00" + (result.application[0].application.dob.date.getMonth()+1)).slice(-2);
+                var dobDay = ( "00" + result.doc.application.dob.date.getDate()).slice(-2);
+                var dobMon = ("00" + (result.doc.application.dob.date.getMonth()+1)).slice(-2);
 
-                result.application[0].application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
+                result.doc.application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
+            }
+
+            // format vetting notes dates
+            if(result.vettingNotes.length != 0)
+            {
+                result.vettingNotes.forEach(function(note, index){
+                    var Year = note.date.getFullYear();
+                    //get month and day with padding since they are 0 indexed
+                    var Day = ( "00" + note.date.getDate()).slice(-2);
+                    var Mon = ("00" + (note.date.getMonth()+1)).slice(-2);
+                    result.vettingNotes[index].date = Mon + "/" + Day + "/" + Year;
+                });
             }
             res.locals.layout = 'b3-layout';         
-            res.render('b3-worksheet-view', result.application[0]);
+            res.render('b3-worksheet-view', result);
         })
         .catch(function(err) {
             console.error(err);

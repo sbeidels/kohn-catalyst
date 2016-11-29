@@ -19,20 +19,26 @@
  ObjectId is similar to a primary key in a relationship based database.
  */
 
+ 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 ObjectId = Schema.ObjectId;
 
-var HighlightPackageSchema = new Schema({
-    created:        Date,
-    updated:        { type: Date, default: Date.now},
-    application:    {
-        name:   { type: Boolean, default: false },
-        phone:  {
-            preferred: { type: Boolean, default: false }
-        }
-    }
+var VettingNote = new Schema({
+    date:   { type: Date, default: Date.now},
+    description: String,
+    applicationId: {type: ObjectId, ref: 'DocumentPackage'}
 });
 
-var DocumentPackage = mongoose.model('DocumentPackage', DocumentPackageSchema);
-module.exports = DocumentPackage;
+/**
+ * This doesn't seem necessary for the way I did the vettingNote
+ */
+// var VettingNotesSchema = new Schema({
+//     notes:  [{type: ObjectId, ref: 'Note'}],
+//     applicationId: {type: ObjectId, ref: 'DocumentPackage'}
+// });
+
+var Note = mongoose.model('Note', VettingNote);
+//var VettingNotes = mongoose.model('VettingNotes', VettingNotesSchema);
+
+module.exports = Note;

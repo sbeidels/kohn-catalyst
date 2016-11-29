@@ -3,8 +3,9 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
+var HighlightPackage = require('../models/highlightPackage');
+var VettingNotePackage = require('../models/vettingNotePackage');
 var api = require('../controllers/api');
-
 
 var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose we are using the Bluebird promise library
@@ -111,31 +112,81 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     res.render('vetting', payload);
 });
 
+/**
+ * Route for adding notes
+**/
+router.post('/addNote', api.postVettingNote, function(req, res, next) {
+    if(res.locals.status != '200'){
+        res.status(500).send("Could not add note");
+    }
+    else{
+        res.status(200).send({ status: 'success' });
+    }
+});
+
+/**
+ * Route for deleting notes
+ **/
+router.post('/delNote', api.removeVettingNote, function(req, res, next) {
+    if(res.locals.status != '200'){
+        res.status(500).send("Could not delete note");
+    }
+    else{
+        res.status(200).send({ status: '200'});
+    }
+});
+
+/**
+ * Route for updating notes
+ **/
+router.post('/updateNote', api.updateVettingNote, function(req, res, next) {
+    if(res.locals.status != '200'){
+        res.status(500).send("Could not update note");
+    }
+    else{
+        res.status(200).send({ status: '200'});
+    }
+});
+
 /* Route to specific application by Object ID */
-router.get('/:id', function(req, res) {
+router.get('/:id', function(req, res, next) {
     //Checking what's in params
     console.log("Rendering application " + ObjectId(req.params.id));
 
     /* search by _id. */
     Promise.props({
-        application: DocumentPackage.find({_id: ObjectId(req.params.id)}).lean().execAsync()
+        highlight: HighlightPackage.findOne({ 'documentPackage' : ObjectId(req.params.id)}).lean().execAsync(),
+        doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync(),
+        vettingNotes: VettingNotePackage.find({applicationId: ObjectId(req.params.id)}).lean().execAsync()
     })
-        .then(function(result) {
-            //format birth date for display
-            if(result.application[0].application.dob.date != null) {
-                var dobYear = result.application[0].application.dob.date.getFullYear();
+    .then(function(results) {
+        // format birth date for display
+        if (results.doc.application.dob.date != null) {
+            var dobYear = results.doc.application.dob.date.getFullYear();
+            //get month and day with padding since they are 0 indexed
+            var dobDay = ( "00" + results.doc.application.dob.date.getDate()).slice(-2);
+            var dobMon = ("00" + (results.doc.application.dob.date.getMonth()+1)).slice(-2);
+            results.doc.application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
+        }
+        // format vetting notes dates
+        if(results.vettingNotes.length != 0)
+        {
+            results.vettingNotes.forEach(function(note, index){
+                var Year = note.date.getFullYear();
                 //get month and day with padding since they are 0 indexed
-                var dobDay = ( "00" + result.application[0].application.dob.date.getDate()).slice(-2);
-                var dobMon = ("00" + (result.application[0].application.dob.date.getMonth()+1)).slice(-2);
+                var Day = ( "00" + note.date.getDate()).slice(-2);
+                var Mon = ("00" + (note.date.getMonth()+1)).slice(-2);
+                results.vettingNotes[index].date = Mon + "/" + Day + "/" + Year;
+            });
+        }
 
-                result.application[0].application.dob.date = dobYear + "-" + dobMon + "-" + dobDay;
-            }
-            res.locals.layout = 'b3-layout';                // Change default from layout.hbs to b3-layout.hbs
-            res.render('b3-view', result.application[0]);   // Change view.hbs to b3-view.hbs
-        })
-        .catch(function(err) {
-            console.error(err);
-        });
+        res.locals.layout = 'b3-layout';        // Change default from layout.hbs to b3-layout.hbs
+
+        res.render('b3-view', results);
+    })
+    .catch(function(err) {
+        console.error(err);
+    });
 
 });
 
