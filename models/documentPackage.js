@@ -45,14 +45,13 @@ var DocumentPackageSchema = new Schema({
     // project - the project has been approved and the document package will be converted to a project package
 
     advocate:       {
-        is_advocate:        Boolean,
-        individual:         Boolean,
-        npo:                Boolean,
-        gov:                Boolean,
+        is_individual:      Boolean,
+        is_npo:             Boolean,
+        is_gov:             Boolean,
         name:               String,
-        organization_name:  String,
+        phone:              String,
         relationship:       String,
-        phone:              Number
+        organization_name:  String
     },
 
     application:    {
