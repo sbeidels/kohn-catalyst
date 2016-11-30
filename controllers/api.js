@@ -469,16 +469,45 @@ module.exports = {
                     // Build the name:value pairs to be updated
                     // Since there is only one name and one value, we can use the method below
                     var updates = {};
-                    updates[req.body.name] = req.body.value;
+                    // updates[req.body.name] = req.body.value;
+
+                    var str = req.body.name;
+                    var str_split = str.split('.');
+                    var length = str_split.length;
+
+                    if (length == 1) {
+                        console.log("\t[ API ] toggleHighlight :: Length is 1");
+                        console.log(results.highlight[ str_split[0] ]);
+                        if (results.highlight[str_split[0]] === true) {
+                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as TRUE", req.body.name);
+                            updates[req.body.name] = false;
+                        }
+                        if (results.highlight[str_split[0]] === false) {
+                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as FALSE", req.body.name);
+                            updates[req.body.name] = true;
+                        }
+                    }
+                    if (length == 2) {
+                        console.log("\t[ API ] toggleHighlight :: Length is 2");
+                        console.log(results.highlight[ str_split[0] ][ str_split[1] ]);
+                        if (results.highlight[ str_split[0] ][ str_split[1] ] === true) {
+                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as TRUE", req.body.name);
+                            updates[req.body.name] = false;
+                        }
+                        if (results.highlight[ str_split[0] ][ str_split[1] ] === false) {
+                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as FALSE", req.body.name);
+                            updates[req.body.name] = true;
+                        }
+                    }
 
                     // Record Update time
                     updates['updated'] = Date.now();
-                    console.log(updates);
+                    console.log("\t[ API ] toggleHighlight :: Items to update:\n\t\t", updates);
 
                     // Build variables and attach to the returned query results
                     results.id = req.params.id;
                     results.name = req.body.name;
-                    results.value = req.body.value;
+                    // results.value = req.body.value;
                     results.updates = updates;
 
                     return results;
