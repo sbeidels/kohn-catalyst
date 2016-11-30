@@ -39,6 +39,7 @@ function init() {
 	function getApplicationFormJSON() {
 		var data = {};
 		
+		$.extend(data, getAdvocateData());
 		$.extend(data, getApplicationData());
 		$.extend(data, getFinanceData());
 		$.extend(data, getPropertyData());
@@ -103,13 +104,13 @@ function init() {
 		}
 		
 		data.advocate = {
-			individual: ind_bool,
-			npo: npo_bool,
-			gov: gov_bool,
+			is_individual: ind_bool,
+			is_npo: npo_bool,
+			is_gov: gov_bool,
 			name: getVal('input[name="advocate_name"]'),
-			organization_name: getVal('input[name="advocate_npo_organization"]'),
+			phone: getVal('input[name="advocate_phone"]'),
 			relationship: getVal('input[name="advocate_individual_relationship"]'),
-			phone: getVal('input[name="advocate_phone"]')
+			organization_name: getVal('input[name="advocate_npo_organization"]')
 		};
 		return data;
 	}
