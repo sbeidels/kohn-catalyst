@@ -59,9 +59,10 @@ var HighlightPackageSchema = new Schema({
     },
 
     finance:    {
-        mortgage:   { type: Boolean, default: false },
-        income:     { type: Boolean, default: false },
-        assets:     { type: Boolean, default: false },
+        mortgage:        { type: Boolean, default: false },
+		mort_up_to_date: { type: Boolean, default: false },
+        income:          { type: Boolean, default: false },
+        assets:          { type: Boolean, default: false },
         client_can_contribute:      { type: Boolean, default: false },
         associates_can_contribute:  { type: Boolean, default: false },
         requested_other_help:       { type: Boolean, default: false }

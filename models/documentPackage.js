@@ -143,7 +143,7 @@ var DocumentPackageSchema = new Schema({
     },
 
     property:   {
-        home_type:                   String,
+        home_type:              String,
         ownership_length:       Number,
         year_constructed:       Number,     // TODO: Validate as exact length = 4
         requested_repairs:      String,

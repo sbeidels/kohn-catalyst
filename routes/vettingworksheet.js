@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
+var highlightPackage = require('../models/highlightPackage');
 var VettingNotePackage = require('../models/vettingNotePackage');
 var api = require('../controllers/api');
 
@@ -24,7 +25,8 @@ router.get('/:id', function(req, res) {
     /* search by _id. */
     Promise.props({
         doc: DocumentPackage.findOne({_id: ObjectId(req.params.id)}).lean().execAsync(),
-        vettingNotes: VettingNotePackage.find({applicationId: ObjectId(req.params.id)}).lean().execAsync()
+        vettingNotes: VettingNotePackage.find({applicationId: ObjectId(req.params.id)}).lean().execAsync(),
+		highlight: highlightPackage.findOne({"documentPackage": ObjectId(req.params.id)}).lean().execAsync()
     })
         .then(function(result) {
             //format birth date for display
