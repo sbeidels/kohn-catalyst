@@ -26,7 +26,7 @@ router.post('/highlight/:id', api.toggleHighlight, function(req, res) {
         res.status(500).send("Could not update field");
     }
     else{
-        res.status(200).send({ status: 'success' });
+        res.status(200).send({ status: '200' });
     }
 
 })

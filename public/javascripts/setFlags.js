@@ -41,7 +41,7 @@ function toggleHlGlyph(span) {
 }
 
 function toggleHL() {
-
+    var flag = $(this);
     var field = $(this).attr('id');
     console.log("Value to update: " + field);
     console.log("Highlight Package ID: " + $("#hl_Id").val());
@@ -61,7 +61,7 @@ function toggleHL() {
     posting.done(function (xhr) {
         if(xhr.status == 200) {
             //on success, toggle the glyph
-            $(this)[0].firstChild.outerHTML = toggleHlGlyph($(this)[0].firstChild.outerHTML);
+            flag[0].firstChild.outerHTML = toggleHlGlyph(flag[0].firstChild.outerHTML);
         }
         else{
             console.log("Failed to update");
