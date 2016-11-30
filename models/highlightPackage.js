@@ -76,7 +76,10 @@ var HighlightPackageSchema = new Schema({
         associates_can_contribute:  { type: Boolean, default: false },
     },
 
-    recruitment:    { type: Boolean, default: false },
+    recruitment:    {
+        fbo_help:   { type: Boolean, default: false },
+        fbo_name:   { type: Boolean, default: false }
+    },
 });
 
 var HighlightPackage = mongoose.model('HighlightPackage', HighlightPackageSchema);
