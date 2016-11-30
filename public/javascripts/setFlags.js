@@ -1,74 +1,77 @@
 /**
- * Created by fitz on 11/16/16.
+ * Handles the Front end for 'highlighting' fields
  */
+
+//global glyph values
+var star = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+var empty_star = '<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>'
+
 
 $(document).ready(init);
 
 function init() {
-    //find highlight class
-    $(".highlight").each(function (index, obj) {
-       if(obj.innerText == "true"){
-            obj.innerHTML = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-       }
-       else
-       {
-           obj.innerHTML = '<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>';
-       }
-    });
-    //set glyph depending on true or false
+
+    setupHlFlags();
 
     $('.container').on('click', '.highlight', toggleHL);
+}
+
+//find all fields that can be highlighted and initialize the pretty pictures
+function setupHlFlags() {
+    $(".highlight").each(function (index, obj) {
+        if(obj.innerText == "true"){
+            obj.innerHTML = star;
+        }
+        else
+        {
+            obj.innerHTML = empty_star;
+        }
+    });
+}
+
+//Checks the html for the span tag passed in and returns the opposite
+function toggleHlGlyph(span) {
+    if(span == star){
+        span = empty_star;
+    }
+    else{
+        span = star;
+    }
+    return span;
 }
 
 function toggleHL() {
 
     var field = $(this).attr('id');
-    console.log(field);
+    console.log("Value to update: " + field);
+    console.log("Highlight Package ID: " + $("#hl_Id").val());
+
+    //POST field to api route
+    var payload = {};
+    payload.name = field;
+
+    //POST the data to the database
+    var posting = $.ajax({
+        type : 'POST',
+        url: "/edit/highlight/" + $("#hl_Id").val(),
+        dataType: 'json',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify(payload)
+    });
+    posting.done(function (xhr) {
+        if(xhr.status == 200) {
+            //on success, toggle the glyph
+            $(this)[0].firstChild.outerHTML = toggleHlGlyph($(this)[0].firstChild.outerHTML);
+        }
+        else{
+            console.log("Failed to update");
+        }
+        // If code is not 200 forward below to .fail()
+    });
+
+    posting.fail(function (data)
+    {
+        console.log("Failed to POST");
+        // The save failed, just do nothing and leave the form without losing their typed data
+    });
 }
-
-
-/**
-$(document).ready(function(context) {
-
-
-    var cutAfter = 0;
-    makeClickable();
-    console.log('&#9733 = filled star, &#9734 = empty star. terminate w/ \';\'');
-    console.log(context);
-    console.log('hi');
-
-    function makeClickable() {
-        console.log('in makeClickable');
-
-        // Get each data-name (for x-edit)
-        // Append data-name as an attribute
-        $("a[data-name]").each(function(index) {
-            // Save the text in the value
-            var dataName = $(this).attr("data-name");
-
-            // Reduce it to a max depth of two levels
-            cutAfter = dataName.indexOf('.', dataName.indexOf('.') + 1);
-            if (dataName.indexOf('.', dataName.indexOf('.') + 1) > 0) {
-                dataName = dataName.slice(0, cutAfter);
-            }
-            console.log(dataName)
-            $(this).attr("data-type", dataName)
-        });
-
-
-        // TODO: populate current flags based on a database entry
-
-        // Select the <a id=highlight> in each highlight <td> cell
-        // append an href to invert the current selection in the database
-        $(".highlight").each(function() {
-            $(this).attr("href", "http://www.google.com");
-        });
-
-        // TODO:
-
-        // TODO: Log the invert for debugging
-    }
-
-
-});
-     **/
