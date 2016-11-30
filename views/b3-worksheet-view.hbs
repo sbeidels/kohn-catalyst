@@ -442,7 +442,7 @@
 						</tr>
 					{{/if}}
 					
-					<tr><td colspan="3"><b>Financial Clarification:</b></td></tr>
+				<tr><td colspan="3"><b>Financial Clarification:</b></td></tr>
 					
 					{{#if highlight.finance.mortgage}}
 					<tr>
@@ -513,23 +513,114 @@
 						</td>
 					</tr>
 					
-
-
-
-
-
-
-
-
-
-
+				<tr><td colspan="3"><b>Assistance Clarification:</b></td></tr>
 					
-					
-					{{#if highlight.application.phone}}
-					
+					{{#if highlight.property.client_can_contribute}}
+						<tr>
+							<td><a id="property.client_can_contribute" class="highlight">{{highlight.property.client_can_contribute}}</a></td>
+							<td>Client Can Contribute Labor</td>
+							<td>
+								<a href="#" id="l_client_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.client_can_contribute.value" data-title="Can Client Contribute Labor?"></a>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>Client Labor Contribution</td>
+							<td><a href="#" id="l_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.client_can_contribute.description" data-title="Enter Contribution Description">{{doc.property.client_can_contribute.description}}</a></td>
+						</tr>
 					{{/if}}
 					
+					{{#if highlight.property.associates_can_contribute}}
+						<tr>
+							<td><a id="property.associates_can_contribute" class="highlight">{{highlight.property.associates_can_contribute}}</a></td>
+							<td>Associates Can Contribute Labor</td>
+							<td>
+								<a href="#" id="l_associate_can_contrib" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.associates_can_contribute.value" data-title="Can Associates Contribute Labor?"></a>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>Associate Labor Contribution</td>
+							<td><a href="#" id="l_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="property.associates_can_contribute.description" data-title="Enter Contribution Description">{{doc.property.associates_can_contribute.description}}</a></td>
+						</tr>
+					{{/if}}
 					
+					{{#if highlight.recruitment.fbo_help}}
+						<tr>
+							<td><a id="recruitment.fbo_help"class="highlight">{{highlight.recruitment.fbo_help}}</a></td>
+							<td>Involved with a Faith-Based Organization</td>
+							<td>
+								<a href="#" id="fbo_help" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="recruitment.fbo_help" data-title="Does client belong to an FBO?"></a>
+							</td>
+						</tr>
+					{{/if}}
+					
+					{{#if highlight.recruitment.fbo_name}}
+						<tr>
+							<td><a id="recruitment.fbo_name"class="highlight">{{highlight.recruitment.fbo_name}}</a></td>
+							<td>Faith-Based Organization Name</td>
+							<td><a href="#" id="fbo_name" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="recruitment.fbo_name" data-title="Enter Name of FBO">{{doc.recruitment.fbo_name}}</a></td>
+						</tr>
+					{{/if}}
+					
+					{{#if highlight.finance.requested_other_help}}
+						<tr>
+							<td><a id="finance.requested_other_help"class="highlight">{{highlight.finance.requested_other_help}}</a></td>
+							<td>Requested Other Help</td>
+							<td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
+						</tr>
+					{{/if}}
+					
+				<tr><td colspan="3"><b>Advocate Clarification:</b></td></tr>
+
+					{{#if highlight.advocate.is_advocate}}
+						<tr>
+							<td><a id="advocate.is_advocate" class="highlight">{{highlight.advocate.is_advocate}}</a></td>
+							<td>Does the Client have an Advocate?</td>
+							<td>
+								Is Advocate: <a href="#" id="is_advocate" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.is_advocate" data-title="Is Client an Advocate?"></a></br>
+								Is Individual: <a href="#" id="individual" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.individual" data-title="Is Client an Individual?"></a></br>
+								Is Non-profit Org: <a href="#" id="npo" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.npo" data-title="Is Client from a Non-Profit?"></a></br>
+								Is Government Agency: <a href="#" id="gov" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.gov" data-title="Is Client from a Government Agency?"></a>
+							</td>
+						</tr>
+					{{/if}}
+
+					{{#if highlight.advocate.name}}
+						<tr>
+							<td><a id="advocate.name" class="highlight">{{highlight.advocate.name}}</a></td>
+							<td>Advocate Name</td>
+							<td><a href="#" id="advocate_name" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.name" data-title="Enter Advocate Name">{{doc.advocate.name}}</a></td>
+						</tr>
+					{{/if}}
+
+					{{#if highlight.advocate.organization_name}}
+						<tr>
+							<td><a id="advocate.organization_name" class="highlight">{{highlight.advocate.organization_name}}</a></td>
+							<td>Advocate Organization Name</td>
+							<td>
+								<a href="#" id="advocate_org_name" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.organization_name" data-title="Enter Advocate Organization">{{doc.advocate.organization_name}}</a>
+							</td>
+						</tr>
+					{{/if}}
+
+					{{#if highlight.advocate.relationship}}
+						<tr>
+							<td><a id="advocate.relationship" class="highlight">{{highlight.advocate.relationship}}</a></td>
+							<td>Advocate Relationship</td>
+							<td><a href="#" id="advocate_relationship" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.relationship" data-title="Enter Advocate Relationship">{{doc.advocate.relationship}}</a></td>
+						</tr>
+					{{/if}}
+
+					{{#if highlight.advocate.phone}}
+						<tr>
+							<td><a id="advocate.phone" class="highlight">{{highlight.advocate.phone}}</a></td>
+							<td>Advocate Phone Number</td>
+							<td>
+								<a href="#" id="advocate_phone" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.phone" data-title="Enter Advocate Phone Number">{{doc.advocate.phone}}</a>
+							</td>
+						</tr>
+					{{/if}}
 				</table>
 	</div> 
 	
