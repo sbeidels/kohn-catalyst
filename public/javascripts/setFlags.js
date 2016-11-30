@@ -2,7 +2,22 @@
  * Created by fitz on 11/16/16.
  */
 
+$(document).ready(init);
+
+function init() {
+    $('.container').on('click', '.highlight', toggleHL);
+}
+
+function toggleHL() {
+
+    var field = $(this).attr('id');
+    console.log(field);
+}
+
+
+/**
 $(document).ready(function(context) {
+
 
     var cutAfter = 0;
     makeClickable();
@@ -41,4 +56,7 @@ $(document).ready(function(context) {
 
         // TODO: Log the invert for debugging
     }
+
+
 });
+     **/
