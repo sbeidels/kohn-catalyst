@@ -5,6 +5,18 @@
 $(document).ready(init);
 
 function init() {
+    //find highlight class
+    $(".highlight").each(function (index, obj) {
+       if(obj.innerText == "true"){
+            obj.innerHTML = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+       }
+       else
+       {
+           obj.innerHTML = '<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>';
+       }
+    });
+    //set glyph depending on true or false
+
     $('.container').on('click', '.highlight', toggleHL);
 }
 
