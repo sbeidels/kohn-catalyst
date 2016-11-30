@@ -518,6 +518,7 @@ module.exports = {
                             //sending a status of 200 for now
                             res.locals.status = '200';
                         }
+                        next();
                     })
                     .catch(function (err) {
                         console.error(err);

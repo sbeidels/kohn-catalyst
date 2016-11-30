@@ -2,7 +2,34 @@
  * Created by fitz on 11/16/16.
  */
 
+$(document).ready(init);
+
+function init() {
+    //find highlight class
+    $(".highlight").each(function (index, obj) {
+       if(obj.innerText == "true"){
+            obj.innerHTML = '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+       }
+       else
+       {
+           obj.innerHTML = '<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>';
+       }
+    });
+    //set glyph depending on true or false
+
+    $('.container').on('click', '.highlight', toggleHL);
+}
+
+function toggleHL() {
+
+    var field = $(this).attr('id');
+    console.log(field);
+}
+
+
+/**
 $(document).ready(function(context) {
+
 
     var cutAfter = 0;
     makeClickable();
@@ -41,4 +68,7 @@ $(document).ready(function(context) {
 
         // TODO: Log the invert for debugging
     }
+
+
 });
+     **/
