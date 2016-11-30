@@ -313,6 +313,11 @@ $(document).ready(function() {
     $('#l_associate_contrib').editable();
     $('#fbo_name').editable();
 
+    $('#advocate_name').editable();
+    $('#advocate_org_name').editable();
+    $('#advocate_relationship').editable();
+    $('#advocate_phone').editable();
+
     $('#mortgage_payment').editable({
             step: '0.01'
         }

@@ -357,6 +357,47 @@
                 </tbody>
             </table>
 
+            <!--Advocate Info-->
+            <h3>Advocate Info</h3>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <td><a class="highlight">Flag</a></td>
+                    <td>Is Client An Advocate?</td>
+                    <td>
+                        Is Advocate: <a href="#" id="is_advocate" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.is_advocate" data-title="Is Client an Advocate?"></a></br>
+                        Is Individual: <a href="#" id="individual" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.individual" data-title="Is Client an Individual?"></a></br>
+                        Is Non-profit Org: <a href="#" id="npo" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.npo" data-title="Is Client from a Non-Profit?"></a></br>
+                        Is Non-profit Org: <a href="#" id="gov" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.gov" data-title="Is Client from a Government Agency?"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="highlight">Flag</a></td>
+                    <td>Advocate Name</td>
+                    <td><a href="#" id="advocate_name" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.name" data-title="Enter Advocate Name">{{doc.advocate.name}}</a></td>
+                </tr>
+                <tr>
+                    <td><a class="highlight">Flag</a></td>
+                    <td>Advocate Organization Name</td>
+                    <td>
+                        <a href="#" id="advocate_org_name" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.organization_name" data-title="Enter Advocate Organization"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a class="highlight">Flag</a></td>
+                    <td>Advocate Relationship</td>
+                    <td><a href="#" id="advocate_relationship" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.relationship" data-title="Enter Advocate Relationship">{{doc.advocate.relationship}}</a></td>
+                </tr>
+                <tr>
+                    <td><a class="highlight">Flag</a></td>
+                    <td>Advocate Phone Number</td>
+                    <td>
+                        <a href="#" id="advocate_phone" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="advocate.phone" data-title="Enter Advocate Phone Number"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
@@ -478,6 +519,39 @@
                         {value: 'false', text: 'False'}
                     ]
         });
+        $('#is_advocate').editable({
+            value: '{{doc.advocate.is_advocate}}',
+            source:
+                    [
+                        {value: 'true', text: 'True'},
+                        {value: 'false', text: 'False'}
+                    ]
+        });
+        $('#individual').editable({
+            value: '{{doc.advocate.individual}}',
+            source:
+                    [
+                        {value: 'true', text: 'True'},
+                        {value: 'false', text: 'False'}
+                    ]
+        });
+        $('#npo').editable({
+            value: '{{doc.advocate.npo}}',
+            source:
+                    [
+                        {value: 'true', text: 'True'},
+                        {value: 'false', text: 'False'}
+                    ]
+        });
+        $('#gov').editable({
+            value: '{{doc.advocate.gov}}',
+            source:
+                    [
+                        {value: 'true', text: 'True'},
+                        {value: 'false', text: 'False'}
+                    ]
+        });
+
         /**
          * iterate through all dynamic array fields to make them editable
          * data-pk is set to the current value of the element
