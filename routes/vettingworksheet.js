@@ -50,7 +50,10 @@ router.get('/:id', function(req, res) {
                     result.vettingNotes[index].date = Mon + "/" + Day + "/" + Year;
                 });
             }
-            res.locals.layout = 'b3-layout';         
+            res.locals.layout = 'b3-layout';
+
+            result.title = "Vetting Worksheet";
+
             res.render('b3-worksheet-view', result);
         })
         .catch(function(err) {
