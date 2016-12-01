@@ -293,6 +293,7 @@ $(document).ready(function() {
     $('#spouse').editable();
 
     $('#email').editable();
+    $('#language').editable();
 
     $('#special_circumstances').editable();
 
