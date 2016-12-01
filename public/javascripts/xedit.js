@@ -1,9 +1,9 @@
 /**
  * Description -
  *      On Document Load, the inline-editable fields are declared in this file.
- *  Address and Full name fields require definitions.
- *  They were created following this template: https://github.com/vitalets/x-editable/blob/master/src/inputs-ext/address/address.js
- * @type {string}
+ *      Only fields that do not use booleans are declared here. The rest, including Names and Addess Lines are declared in the HBS file
+ *      Address and Full name fields require the below definitions since they consist of more than one line to update.
+ *      They were created following this template: https://github.com/vitalets/x-editable/blob/master/src/inputs-ext/address/address.js
  */
 
 //turn to inline mode
@@ -49,7 +49,7 @@ $(document).ready(function() {
          @method html2value(html)
          **/
         /**
-         *  Vallues are set in view.hbs rather than here
+         *  Values are set in hbs file rather than here
          * **/
         html2value: function(html) {
             return null;
@@ -186,7 +186,7 @@ $(document).ready(function() {
          Gets value from element's html
          @method html2value(html)
          **/
-        /** KOHN TEAM - VALUES ARE DECLARED IN VIEW.HBS**/
+        /** VALUES ARE DECLARED IN HBS FILE**/
         html2value: function(html) {
             return null;
         },
@@ -281,7 +281,6 @@ $(document).ready(function() {
 
     /**
      * SET ALL OTHER ELEMENTS TO EDITABLE
-     * TODO: Organize these by how they appear in veiw.hbs
      **/
     $('#phone_number').editable();
 
@@ -319,6 +318,10 @@ $(document).ready(function() {
     $('#advocate_relationship').editable();
     $('#advocate_phone').editable();
 
+    /**
+     * The following fields require some extra options to make them more user friendly
+     */
+
     $('#mortgage_payment').editable({
             step: '0.01'
         }
@@ -331,6 +334,7 @@ $(document).ready(function() {
 
     $('#dob').editable({
         format: 'yyyy-mm-dd',
+        //date picker does not play well in 'inline' mode
         mode: 'popup'
     });
 

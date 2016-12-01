@@ -17,28 +17,30 @@ Promise.promisifyAll(mongoose); // Convert mongoose API to always return promise
 var ObjectId = require('mongodb').ObjectID;
 
 
-/** Status codes from models/DocumentPackage.js
- Codes needed are:
- Code - description
- new - new document package, has yet to be reviewed
- phone - document package has been seen, internal agent needs to contact client and verify document package information
- documents - additional documents are needed from the client before document package can proceed
- discuss - internal discussion needs to take place to determine if the document package is approved, denied, handle-it, or other
- visit - a member of catalyst must visit the property to determine the extent of repairs needed
- handle - the document package is forwarded to the handle-it team to be completed
- declined - the document package was declined for various reasons
- project - the project has been approved and the document package will be converted to a project package
+/**
+ * This Router handles GET Requests for viewing the vetting home page and specific application pages
+ *
+ * It also handles the POST requests for adding/updating vetting notes
+ *
+ * Status codes from models/DocumentPackage.js
+     Codes needed are:
+     Code - description
+     new - new document package, has yet to be reviewed
+     phone - document package has been seen, internal agent needs to contact client and verify document package information
+     documents - additional documents are needed from the client before document package can proceed
+     discuss - internal discussion needs to take place to determine if the document package is approved, denied, handle-it, or other
+     visit - a member of catalyst must visit the property to determine the extent of repairs needed
+     handle - the document package is forwarded to the handle-it team to be completed
+     declined - the document package was declined for various reasons
+     project - the project has been approved and the document package will be converted to a project package
  **/
 
 router.get('/', api.getDocumentByStatus, function(req, res, next) {
 
     var payload = {};
 
-    //add all other existing statuses to processing array
-    payload.processing = [];
-
     if (res.locals.results.new[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'new\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'new\'');
     } else {
         res.locals.results.new.forEach(function (element) {
             element = formatElement(element);
@@ -47,7 +49,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     payload.new = res.locals.results.new;
 
     if (res.locals.results.declined[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'declined\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'declined\'');
     } else {
         res.locals.results.declined.forEach(function (element) {
             element = formatElement(element);
@@ -55,9 +57,13 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
     payload.declined = res.locals.results.declined;
 
+    //add all other existing statuses to processing array
+    payload.processing = [];
+
     if (res.locals.results.phone[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'phone\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'phone\'');
     } else {
+        //need to grab each element and push into the 'processing' array
         res.locals.results.phone.forEach(function (element) {
             element = formatElement(element);
             payload.processing.push(element);
@@ -65,7 +71,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
 
     if (res.locals.results.handle[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'handle\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'handle\'');
     } else {
         res.locals.results.handle.forEach(function (element) {
             element = formatElement(element);
@@ -74,7 +80,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
 
     if (res.locals.results.documents[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'documents\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'documents\'');
     } else {
         res.locals.results.documents.forEach(function (element) {
             element = formatElement(element);
@@ -83,7 +89,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
 
     if (res.locals.results.discuss[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'discuss\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'discuss\'');
     } else {
         res.locals.results.discuss.forEach(function (element) {
             element = formatElement(element);
@@ -92,7 +98,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
 
     if (res.locals.results.visit[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'visit\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'visit\'');
     } else {
         res.locals.results.visit.forEach(function (element) {
             element = formatElement(element);
@@ -101,7 +107,7 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
 
     if (res.locals.results.project[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Package with status: \'project\'');
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'project\'');
     } else {
         res.locals.results.project.forEach(function (element) {
             element = formatElement(element);
@@ -148,7 +154,7 @@ router.post('/updateNote', api.updateVettingNote, function(req, res, next) {
     }
 });
 
-/* Route to specific application by Object ID */
+/* Route to specific application by DocumentPackage Object ID */
 router.get('/:id', function(req, res, next) {
     //Checking what's in params
     console.log("Rendering application " + ObjectId(req.params.id));
@@ -182,7 +188,7 @@ router.get('/:id', function(req, res, next) {
 
         res.locals.layout = 'b3-layout';        // Change default from layout.hbs to b3-layout.hbs
 
-        results.title = "Application View";
+        results.title = "Application View";     //Page <title> in header
 
         res.render('b3-view', results);
     })
@@ -200,8 +206,8 @@ function formatElement(element) {
 
 /**
  * Takes the VERY long date in the DB and makes it into a nicer format
- * @param element
- * @returns {The element with formatted date}
+ * @param element (the document package)
+ * @returns: The document package with formatted date
  */
 function formatDate(element)
 {
@@ -215,8 +221,8 @@ function formatDate(element)
 
 /**
  * Takes the status string from the DB and makes it more detailed for the front end
- * @param element
- * @returns {The element with wordier status}
+ * @param element (the document package)
+ * @returns: The document package with wordier status
  */
 function formatStatus(element) {
     var status;
