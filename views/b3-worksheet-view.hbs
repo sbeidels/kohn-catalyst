@@ -100,7 +100,7 @@
 
 <hr>
 
-{{#if advocate.is_advocate}}
+{{#if doc.advocate.is_advocate}}
 <div class="col-xs-12">
 	<table>
 		<tr>
@@ -582,7 +582,8 @@
 							<td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
 						</tr>
 					{{/if}}
-				{{#if advocate.is_advocate}}
+					
+				{{#if doc.advocate.is_advocate}}
 				<tr><td colspan="3"><b>Advocate Clarification:</b></td></tr>
 
 					{{#if highlight.advocate.is_advocate}}
