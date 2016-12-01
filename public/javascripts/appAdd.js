@@ -91,22 +91,27 @@ function init() {
 		var ind_bool = false;
 		var npo_bool = false;
 		var gov_bool = false;
+		var advocate_bool = false;
 		
 		if (getVal('input[name="advocate"]:checked') == "adv_npo") {
 			npo_bool = true;
+			advocate_bool = true;
 		}
 			
 		if (getVal('input[name="advocate"]:checked') == "adv_gov") {
 			gov_bool = true;
+			advocate_bool = true;
 		}
 		if (getVal('input[name="advocate"]:checked') == "adv_individual") {
 			ind_bool = true;
+			advocate_bool = true;
 		}
 		
 		data.advocate = {
-			is_individual: ind_bool,
-			is_npo: npo_bool,
-			is_gov: gov_bool,
+			is_advocate: advocate_bool,
+			individual: ind_bool,
+			npo: npo_bool,
+			gov: gov_bool,
 			name: getVal('input[name="advocate_name"]'),
 			phone: getVal('input[name="advocate_phone"]'),
 			relationship: getVal('input[name="advocate_individual_relationship"]'),
@@ -117,7 +122,9 @@ function init() {
 
 
 	//This function handles MOST of the data that goes into "application:"
-	//section of the documentPackage.js (as well as status, which will send "new")
+	//section of the documentPackage.js (as well as status, which will 
+	//send "new" from a hidden field)
+	
 	function getApplicationData() {
 		var data = {};
 
@@ -204,7 +211,7 @@ function init() {
 	}
 
 
-	//This function handles MOST of the data that goes into "finance:"
+	//This function handles the data that goes into "finance:"
 	//section of the documentPackage.js
 	function getFinanceData() {
 		var data = {};
@@ -249,7 +256,7 @@ function init() {
 	}
 
 
-	//This function handles MOST of the data that goes into "property:"
+	//This function handles the data that goes into "property:"
 	//section of the documentPackage.js
 	function getPropertyData() {
 		var data = {};
@@ -272,7 +279,7 @@ function init() {
 	}
 
 
-	//This function handles MOST of the data that goes into "recruitment:"
+	//This function handles the data that goes into "recruitment:"
 	//section of the documentPackage.js
 	function getRecruitmentData() {
 		var data = {};
@@ -285,7 +292,7 @@ function init() {
 	}
 
 	
-	
+	//This is a helper function so you can getVal on an input from the form
 	function getVal(selector) {
 		return $(selector).val();
 	}
@@ -294,7 +301,10 @@ function init() {
 
 
 
-//JSON EXTRACTION WORK PARTS	
+//DATA EXTRACTION WORK PARTS	
+// for most inputs... (change name to id when necessary)
 //: getVal('input[name=""]'),
+
+//for text areas
 //jQuery("textarea#otherCircumstances").val()
 
