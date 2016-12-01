@@ -11,6 +11,11 @@ Promise.promisifyAll(mongoose); // Convert mongoose API to always return promise
 //Need ObjectID to search by ObjectID
 var ObjectId = require('mongodb').ObjectID;
 
+/**
+ * This router handles all edits made to application fields and vetting notes
+ * It only handles POST request and no GET requests
+ */
+
 //the default route, which will never be used
 //TODO: Report 404 instead by ultimately not including this and creating a 404 page
 router.post('/', function(req, res) {
@@ -18,7 +23,8 @@ router.post('/', function(req, res) {
 });
 
 /**
-    edit highlight features
+    editing highlight features
+    Requires the highlightPackage ID
  **/
 router.post('/highlight/:id', api.toggleHighlight, function(req, res) {
 
@@ -32,8 +38,8 @@ router.post('/highlight/:id', api.toggleHighlight, function(req, res) {
 })
 
 /**
- * Get Updated Data
- * Most fields can now be updated using the API
+ * POST Updated Field data
+ * Only handles single line updates (e.g., phone number, Date of birth)
  **/
 router.post('/:id', api.putUpdateDocument, function(req, res) {
 
@@ -46,6 +52,10 @@ router.post('/:id', api.putUpdateDocument, function(req, res) {
 
 });
 
+/**
+ * Handles Updates of elements in arrays
+ * It requires special handling in the API
+ */
 router.post('/array/:id', api.putUpdateArray, function(req, res) {
 
     if(res.locals.status != '200'){
@@ -58,11 +68,11 @@ router.post('/array/:id', api.putUpdateArray, function(req, res) {
 });
 
 /**
- * The Following routes don't conform to the api function to update fields
+ * The Following routes don't conform to the api.putUpdateDocument function to update a field since they contain several fields
  */
 
 /**
- * EDIT ADDRESS
+ * EDITING ADDRESS
  **/
 router.post('/address/:id', function(req, res) {
 
@@ -88,7 +98,7 @@ router.post('/address/:id', function(req, res) {
         function(err)
         {
             if(err)
-            {   res.status(500).send({ status: 'Could not update field' });}
+            {   res.status(500).send({ status: 'Could not update address' });}
             else
             {   res.status(200).send({ status: 'success' });}
         }
@@ -96,7 +106,7 @@ router.post('/address/:id', function(req, res) {
 });
 
 /**
- * EDIT FULL NAME
+ * EDITING FULL NAME
  **/
 router.post('/name/:id', function(req, res) {
     //Checking what's in params
