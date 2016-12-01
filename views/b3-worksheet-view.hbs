@@ -100,6 +100,7 @@
 
 <hr>
 
+{{#if advocate.is_advocate}}
 <div class="col-xs-12">
 	<table>
 		<tr>
@@ -124,6 +125,7 @@
 		</table>
 	</div>
 </div>
+{{/if}}
 
 <div class="col-xs-12">
 	<h3>Applicant Contact Information</h3>
@@ -149,6 +151,7 @@
 <hr>
 
 <div class="col-xs-12">
+{{#if advocate.is_advocate}}
 	<h3>Advocate Conversation Script</h3>
 	<p class="scriptText">Hello. My name is ______________ and  I’m calling from Catalyst Partnerships. You are listed as an advocate on {{doc.application.name.first}} {{doc.application.name.last}}'s application for our help with repairs on their home. I have some questions for you. Is this a good time to talk?</p>
 	
@@ -167,6 +170,7 @@
 	</i></p>
 
 	<hr>
+{{/if}}
 	
 	<b>[1]</b>
 	<h3>Applicant Conversation Script:</h3>
@@ -459,11 +463,16 @@
 						<td><a href="#" id="mortgage" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.mortgage.up_to_date" data-title="Is Mortgage Up-to-Date?"></a></td>
 					</tr>
 					{{/if}}
+										
+					{{#if highlight.finance.income}}
 					<tr>
 						<td><a id="finance.income" class="highlight">{{highlight.finance.income}}</a></td>
 						<td>Income Amount</td>
 						<td><a href="#" id="income" data-type="number" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.income.amount" data-title="Enter Income">{{doc.finance.income.amount}}</a></td>
 					</tr>
+					{{/if}}
+										
+					{{#if highlight.finance.client_can_contribute}}
 					<tr>
 						<td><a id="finance.client_can_contribute" class="highlight">{{highlight.finance.client_can_contribute}}</a></td>
 						<td>Client Can Contribute Financially</td>
@@ -476,6 +485,9 @@
 						<td>Client Financial Contribution</td>
 						<td><a href="#" id="f_client_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.client_can_contribute.description" data-title="Enter Contribution Description">{{doc.finance.client_can_contribute.description}}</a></td>
 					</tr>
+					{{/if}}
+										
+					{{#if highlight.finance.associates_can_contribute}}
 					<tr>
 						<td><a id="finance.associates_can_contribute" class="highlight">{{highlight.finance.associates_can_contribute}}</a></td>
 						<td>Associates Can Contribute Financially</td>
@@ -488,10 +500,9 @@
 						<td>Associate Financial Contribution</td>
 						<td><a href="#" id="f_associate_contrib" data-type="text" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.associates_can_contribute.description" data-title="Enter Contribution Description">{{doc.finance.associates_can_contribute.description}}</a></td>
 					</tr>
-					</tbody>
-				</table>
-				<table class="table table-striped">
-					<tbody>
+					{{/if}}
+										
+					{{#if highlight.finance.assets}}
 					<tr>
 						<td><a id="finance.assets" class="highlight">{{highlight.finance.assets}}</a></td>
 						<td>Assets</td>
@@ -512,6 +523,7 @@
 							</table>
 						</td>
 					</tr>
+					{{/if}}
 					
 				<tr><td colspan="3"><b>Assistance Clarification:</b></td></tr>
 					
@@ -570,7 +582,7 @@
 							<td><a href="#" id="request_help" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="finance.requested_other_help.value" data-title="Client Requested Other Help?"></a></td>
 						</tr>
 					{{/if}}
-					
+				{{#if advocate.is_advocate}}
 				<tr><td colspan="3"><b>Advocate Clarification:</b></td></tr>
 
 					{{#if highlight.advocate.is_advocate}}
@@ -621,6 +633,7 @@
 							</td>
 						</tr>
 					{{/if}}
+				{{/if}}
 				</table>
 	</div> 
 	
