@@ -2,18 +2,23 @@
 ** This javascript file handles the application form 
 ** wherever there is an "if yes, please describe..."
 ** It renders the "Please describe" fields if Yes is selected.
+** Each function begins with a comment regarding the question
+** the application form asks.
+** Any "// CHANGE" comments are there merely to remind the original
+** programmer to make the necessary changes after cutting and pasting.
 *****************************************************/
-$(document).ready(init)
+
+$(document).ready(init)  //we do this so the script loads after the page is ready.
 
 function init() {
 
-
-	///The Question:
+///The Question:
 	///Are you able to contribute financially to implement the project you are requesting? 
 
 	//		CHANGE ID AND FUNCTION CALLS
 	$('#showContribute').on('click', showTheContributeFunction);  
 	$('#hideContribute').on('click', hideTheContributeText);
+
 
 	function showTheContributeFunction() {
 		console.log("Made It!");
@@ -88,12 +93,7 @@ function init() {
 	}
 
 
-	/*<input type="radio" name="relativeContribute" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="relativeContribute" value="false">No<br>
-		<!-- If yes, please describe what financial help they might provide:<br>
-		<textarea rows="3" cols="60" id="relativeContribute_provide" placeholder="Help others can provide"></textarea> --> */
-
-	///The Question:
+///The Question:
 	///Do you have adult children and/or other relatives who may be able to help financially?
 
 	//		CHANGE ID AND FUNCTION CALLS
@@ -169,19 +169,7 @@ function init() {
 	}
 
 
-
-	/*
-	<div class="formLine">Have you already requested help from other Non-Profits, from your City, from your County, or other Organization?
-		<div class="formLine">
-			<input type="radio" name="otherHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="otherHelp" value="false">No<br>
-			If yes, please describe what help they might provide:<br>
-			<textarea rows="3" cols="60" id="otherHelp_provide" placeholder="Help you have requested from other organizations"></textarea>
-		</div>
-	</div>
-	*/
-
-	///The Question:
+///The Question:
 	///Have you already requested help from other Non-Profits, from your City, from your County, or other Organization?
 
 	//		CHANGE ID AND FUNCTION CALLS
@@ -255,17 +243,7 @@ function init() {
 		}
 	}
 
-	/*
-	<div class="formLine">Are you able to provide any help (labor/materials) for these repairs?
-		<div class="formLine">
-			<input type="radio" name="laborHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="laborHelp" value="false">No<br>
-			If yes, please describe:<br>
-			<textarea rows="3" cols="60" id="laborHelp_personal" placeholder="Help you can provide"></textarea>
-	*/
-
-
-	///The Question:
+///The Question:
 	///Are you able to provide any help (labor/materials) for these repairs?
 
 	//		CHANGE ID AND FUNCTION CALLS
@@ -340,17 +318,7 @@ function init() {
 	}
 
 
-
-	/*
-	Do you have friends or family who may be able to help Catalyst perform the work of this project?
-		<div class="formLine">
-			<input type="radio" name="othersLaborHelp" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="othersLaborHelp" value="false">No<br>
-			If yes, please describe:<br>
-			<textarea rows="3" cols="60" id="others_laborHelp" placeholder="Help other people could provide"></textarea>
-	*/
-
-	///The Question:
+///The Question:
 	///Do you have friends or family who may be able to help Catalyst perform the work of this project?
 
 	//		CHANGE ID AND FUNCTION CALLS
@@ -419,16 +387,8 @@ function init() {
 		}
 	}
 
-	/*
-	<div class="formLine">Many of our volunteers come from faith-based organizations.  Are you connected with a faith-based community who may have volunteers willing to help?
-		<div class="formLine">
-			<input type="radio" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="fbo_help" value="false">No<br>
-			If yes, please give details below:
-			<div class="formLine">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Organization Name: <input class="largeField" type="text" name="fbo_name" placeholder="Name">
-	*/
-	///The Question:
+
+///The Question:
 	///Many of our volunteers come from faith-based organizations.  Are you connected with a faith-based community who may have volunteers willing to help?
 
 	//		CHANGE ID AND FUNCTION CALLS
@@ -509,6 +469,7 @@ function init() {
 	**  This next function is from 
 	** http://stackoverflow.com/questions/4793604/how-to-do-insert-after-in-javascript-without-using-a-library
 	** Karim is a genius, apparently.
+	** This allows you to position the textareas properly.
 	*/
 	function insertAfter(newNode, referenceNode) {
 		referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);

@@ -1,3 +1,8 @@
+<!-- This view handles the Vetting Worksheet. -->
+
+<!-- This part is the fixed Vetting Notes INPUT area so Vetting Agents
+  -- can make notes whenever they need to without having to scroll around
+  -->
 <nav class="navbar navbar-fixed-top">
 	 <div class="input-group">
 		<input type="text" id="note" class="form-control" placeholder="Enter Vetting Note Here...">
@@ -6,15 +11,10 @@
 		</span>
 	</div>
 </nav>
-<!--
-<button id="addNote" type="submit" class="btn btn-primary">Add Note</button>
-<textarea id="note" class="form-control" placeholder="Enter Note Here..."></textarea>
--->
-<br><br>
+
+<br><br> <!-- spacer gets past the Vetting Notes Input -->
 <a href="/view" class="btn btn-primary">Back to Vetting Home</a> 
 <a href="/view/{{doc._id}}" class="btn btn-primary">Back to Application View</a>
-
-
 
 <div class="container col-xs-12">
 	<div class="col-sm-8">
@@ -24,6 +24,8 @@
 		<h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="status" data-title="Select status"></a></h3>
 	</div>
 </div>
+
+
 <div class="container col-xs-12">
 		<!--VETTING NOTES-->
 		<h3>Vetting Notes</h3>
