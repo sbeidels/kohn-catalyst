@@ -1,4 +1,7 @@
-//This is the FORM HANDLER for the application.
+//This is the FORM HANDLER for the application form called appForm.
+//This form, upon submit, creates jsonToSend by calling getApplicationFormJSON,
+//which is a function that appends (extends) a JSON object by calling
+//the get*****Data() functions below...
 
 $(document).ready(init)
 
@@ -7,7 +10,7 @@ function init() {
 		event.preventDefault();
 		var jsonToSend = getApplicationFormJSON();  //stringified in that function
 		console.log(jsonToSend);
-		//$.post("/application/add", jsonToSend, "JSON");
+		
 		//POST the data to the database
 		var posting = $.ajax({
 			type : 'POST',
@@ -16,6 +19,7 @@ function init() {
 			contentType: 'application/json; charset=UTF-8',
 			data: jsonToSend
 		}); 
+		
 		//upon return, check for 200, then redirect so success page
 		posting.done(function (xhr) {
 			if(xhr.status == 200) {
@@ -39,7 +43,7 @@ function init() {
 	function getApplicationFormJSON() {
 		var data = {};
 		
-		$.extend(data, getAdvocateData());
+		$.extend(data, getAdvocateData());   //these should be self-explanetory
 		$.extend(data, getApplicationData());
 		$.extend(data, getFinanceData());
 		$.extend(data, getPropertyData());
@@ -47,6 +51,10 @@ function init() {
 		
 		return JSON.stringify(data);
 	}
+
+/// FIRST, we need to make some Helper Functions in order to
+/// grab some specific items and turn them into 
+/// data variables we can use in the above function calls.
 
 	//this function figures out and returns the Language
 	function getLanguage() {
@@ -72,27 +80,20 @@ function init() {
 		return data;
 	}
 
-		//this function gets only the other_residents entered in the form
-	function getResidents() {
-		var data = {};
-		if (getVal('input[name="propertyType"]:checked') == "Other") {
-			data = getVal('input[name="propertyType_other"]');
-		}
-		else {
-			data = getVal('input[name="propertyType"]:checked');
-		}
-		return data;
-	}
-
-	//this function figures out and returns the Advocate data
+///Okay, so NOW we can call the rest of the functions listed in getApplicationFormJSON().
+	
+	//This function handles the data that goes into "advocate:"
+	//section of the documentPackage.js
 	function getAdvocateData() {
 		var data = {};
 		
+		//start by setting variables to false
 		var ind_bool = false;
 		var npo_bool = false;
 		var gov_bool = false;
 		var advocate_bool = false;
 		
+		//check for different advocate types, set proper variables to true
 		if (getVal('input[name="advocate"]:checked') == "adv_npo") {
 			npo_bool = true;
 			advocate_bool = true;
@@ -107,6 +108,7 @@ function init() {
 			advocate_bool = true;
 		}
 		
+		// create the JSON data object
 		data.advocate = {
 			is_advocate: advocate_bool,
 			individual: ind_bool,
@@ -120,7 +122,7 @@ function init() {
 		return data;
 	}
 
-
+	
 	//This function handles MOST of the data that goes into "application:"
 	//section of the documentPackage.js (as well as status, which will 
 	//send "new" from a hidden field)
@@ -132,7 +134,6 @@ function init() {
 		//data.created is created on the back end
 		//data.updated is created on the back end
 
-		// Non-grouped application data
 		data.application = {
 			owns_home: getVal('input[name="owns_home"]:checked'),
 			marital: {
@@ -141,7 +142,7 @@ function init() {
 			},
 			email: getVal('input[name="emailaddy"]'),
 			veteran: getVal('input[name="military"]:checked'),
-			language: getLanguage(),
+			language: getLanguage(),  //from helper function above
 			heard_about: jQuery("textarea#hearAboutCatalyst").val(),
 			name: {
 				first: getVal('input[name="firstName"]'),
@@ -262,7 +263,7 @@ function init() {
 		var data = {};
 
 		data.property = {
-			home_type: getHomeType(),
+			home_type: getHomeType(),   //from helper function above
 			ownership_length: getVal('input[name="timePropertyOwned"]'),
 			year_constructed: getVal('input[name="yearPropertyBuilt"]'),
 			requested_repairs: jQuery("textarea#repairsNeeded").val(),

@@ -1,3 +1,9 @@
+/************************************************
+** This file handles the alert boxes that pop up 
+** If someone clicks NO on the mortgage up to date
+** or own their home checkboxes at the top of the 
+** application form.
+**************************************************/
 $(document).ready(init)
 
 function init() {
