@@ -79,7 +79,7 @@
 			<div class="col-xs-12">
 				<div class="row">
 					<div class="col-sm-5">
-						<a id="address" href="#" data-type="address" data-pk="1" data-url="/edit/address/{{doc._id}}" data-title="Enter Address"></a>
+						<a id="VWaddress" href="#" data-type="address" data-pk="1" data-url="/edit/address/{{doc._id}}" data-title="Enter Address"></a>
 					</div>
 					<div class="col-sm-7">
 						<a href="http://maps.google.com/?q={{doc.application.address.line_1}} {{doc.application.address.city}} {{doc.application.address.state}} {{doc.application.address.zip}}" target="_blank"><b>Map it!</b></a>
@@ -90,7 +90,7 @@
 			<br><h4>Is this Property within our Service Area?</h4>
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-sm-3">
+					<div class="col-sm-1">
 					
 			<!-- THESE RADIO BUTTONS ARE NOT IMPLEMENTED
 			  -- No DB Model holds anything about "service_area"
@@ -101,7 +101,7 @@
 						<input type="radio" id="sa_no" name="service_area" value="false"> No
 					</div>
 					<div class="col-sm-9">
-						[Vetting Agent Note: If no, change Application Status to "On Hold - Pending Discussion" and enter an applicable Vetting Note.]
+						<br><i>If no, change Application Status to "On Hold - Pending Discussion" and enter an applicable Vetting Note.</i>
 					</div>
 				</div>
 			</div>
@@ -688,8 +688,8 @@
 		<tr>
 			<td colspan=5> 
 			<!-- change 5 to {{doc.application.other_residents.count}} + 2 (if possible) -->
-				<span class="scriptText">Q: Do you receive food stamp benefits?</span></b></span><br>
-				<i>If Yes, request the benefit letters as documentation, and <a href="#targetClosing"><b>Move to Closing Comments</b></a></i>
+				<p class="scriptText">Q: Do you receive food stamp benefits?</p>
+				&nbsp;&nbsp;&nbsp;&nbsp; <i>If Yes, request the benefit letters as documentation, and <a href="#targetClosing"><b>Move to Closing Comments</b></a></i>
 			</td>
 		</tr>
 		<tr>
@@ -702,8 +702,8 @@
 		<tr>
 			<td class="scriptText" colspan=5> 
 				<p class="scriptText">Q: Did you or anyone else in your home file a federal income tax form last year?</p>
-				<i>If yes, request copies of their main tax form(s) (1040 or 1040EZ), and skip the next question.<br>
-				If no proceed to next question.</i>
+				&nbsp;&nbsp;&nbsp;&nbsp; <i>If yes, request copies of their main tax form(s) (1040 or 1040EZ), and skip the next question.<br>
+				&nbsp;&nbsp;&nbsp;&nbsp; If no proceed to next question.</i>
 			</td>
 		</tr>
 		<tr>
