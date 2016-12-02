@@ -49,14 +49,26 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
     payload.new = res.locals.results.new;
 
+    //put declined and withdrawn in the same bucket
+    payload.unapproved = [];
+
     if (res.locals.results.declined[0] == null) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'declined\'');
     } else {
         res.locals.results.declined.forEach(function (element) {
             element = formatElement(element);
+            payload.unapproved.push(element);
         });
     }
-    payload.declined = res.locals.results.declined;
+
+    if (res.locals.results.withdrawn[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'withdrawn\'');
+    } else {
+        res.locals.results.withdrawn.forEach(function (element) {
+            element = formatElement(element);
+            payload.unapproved.push(element);
+        });
+    }
 
     //add all other existing statuses to processing array
     payload.processing = [];
