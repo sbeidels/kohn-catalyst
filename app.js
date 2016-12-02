@@ -68,7 +68,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // This method logs the HTTP Request type and the IPv6 of the user
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 app.use(function(req, res, next) {
-    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    // var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    var ip = req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress;
     console.log('[ ' + req.method + ' ] request made from ' + 'IP: ' + ip);
     next();
 });
