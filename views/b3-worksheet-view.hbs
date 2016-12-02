@@ -15,11 +15,10 @@
 <br><br> <!-- spacer gets past the Vetting Notes Input -->
 <a href="/view" class="btn btn-primary">Back to Vetting Home</a> 
 <a href="/view/{{doc._id}}" class="btn btn-primary">Back to Application View</a>
-<span class="btn btn-danger">{{doc.application.name.first}} {{doc.application.name.last}}'s Vetting Worksheet</span>
 
 <div class="container col-xs-12">
 	<div class="col-sm-8">
-		<h1>Vetting Worksheet for {{doc.application.name.first}} {{doc.application.name.last}}</h1>
+		<h1>{{doc.application.name.first}} {{doc.application.name.last}} - Vetting Worksheet</h1>
 	</div>
 	<div class="col-sm-4">
 		<h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="status" data-title="Select status"></a></h3>
@@ -658,7 +657,7 @@
 	
 <div class="container col-xs-12">
 	<h3>A Decision to Make</h3>
-	<i><p>Can this be referred to Handle-It? (less than $500, 2-3 volunteers, one day)</p>
+	<p><i>Can this be referred to Handle-It? (less than $500, 2-3 volunteers, one day)</i></p>
 
 	<p><i>
 	&nbsp;&nbsp;&nbsp;&nbsp; <b>IF YES:</b><br>

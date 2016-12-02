@@ -1,13 +1,11 @@
 <a href="/view" class="btn btn-primary">Back to Vetting Home</a>
-<!-- Set this next link to the proper route for Vetting View -->
-<span class="btn btn-danger">{{doc.application.name.first}} {{doc.application.name.last}}'s Application View</span>
-<a href="/vettingworksheet/{{doc._id}}" class="btn btn-primary">Vetting Worksheet View</a>
+<a href="/vettingworksheet/{{doc._id}}" class="btn btn-primary">Vetting Worksheet</a>
 
 
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <h1>{{doc.application.name.first}} {{doc.application.name.last}}</h1>
+            <h1>{{doc.application.name.first}} {{doc.application.name.last}} - Application View</h1>
 
             <h3>Status: <a href="#" id="status" data-type="select" data-pk="1" data-url="/edit/{{doc._id}}" data-name="status" data-title="Select status"></a></h3>
 
