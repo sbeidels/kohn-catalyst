@@ -1,11 +1,24 @@
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Import node modules and node exports
-// mongoose - schemas, templates, queries
-// db       - connection to the database server
-// DocumentPackage - schema and model for DocumentPackage writes
-// bluebird - converts mongoose API calls to ES6 promises
-// Import any required modules
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+/**
+ * Most important note on this page. Currently this API function as middleware for an Express router.
+ * A more normal express function might look like this:
+ *      router.get('/index', function(req, res) { ...do the magic }
+ *
+ * To use this API as middleware simply tacj the function between the route ('/index') and the function().
+ *      router.get('/status', api.getDocumentByStatus, function(req, res) { ...do the magic }
+ * In this example. getDocumentByStatus returns JSON
+ */
+
+/**
+ * Import node modules and node exports
+ * mongoose             - schemas, templates, queries
+ * db                   - connection to the database server
+ * DocumentPackage      - schema and model for DocumentPackage CRUD
+ * HighlightPackage     - schema and model for HighlightPackage CRUD
+ * VettingNotePackage   - schema and model for VettingNotePackage CRUD
+ * bluebird             - converts mongoose API calls to ES6 promises
+ *
+ * Import any other required modules
+ */
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
@@ -16,23 +29,18 @@ var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
 Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bluebird
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Global database value
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 // Template the document each API call
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Retrieve a list of all applications and their count
-// Type: GET
-// Address: /api/find/allapplications
-// Returns: list[application]
-// Response:
-//      200 - OK
-//      400 - Bad Request
-//      500 - Internal server error
-//      503 - Service unavailable
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
+/**
+ * Description:  a list of all applications and their count
+ * Type: GET
+ * Address: /api/find/allapplications
+ * Returns: list[application]
+ * Response:
+ *      200 - OK
+ *      400 - Bad Request
+ *      500 - Internal server error
+ *      503 - Service unavailable
+ */
 // We don't want any of this to run until we tell it to run, so we immediately export it
 //
 // Currently all functions are MIDDLEWARE in the Express app
@@ -47,6 +55,17 @@ Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with blue
 // They keep req, res, err, and next intact as they are passed around the route
 // It is best practice to store new variable in res.local.<your variable>
 module.exports = {
+    /**
+     * Description: retrieve all DocumentPackages from the database
+     * Type: GET
+     * Address: api.getAllDocuments
+     * Returns: list[application]
+     * Response:
+     *      200 - OK
+     *      400 - Bad Request
+     *      500 - Internal server error
+     *      503 - Service unavailable
+     */
     getAllDocuments: function (req, res, next) {
         // Log what we are calling to the console
         console.log('[ API ] getAllDocuments :: Call invoked');
