@@ -137,6 +137,7 @@ module.exports = {
             documents: DocumentPackage.find({status: "documents"}).lean().execAsync(),
             discuss: DocumentPackage.find({status: "discuss"}).lean().execAsync(),
             visit: DocumentPackage.find({status: "visit"}).lean().execAsync(),
+            approval: DocumentPackage.find({status: "approval"}).lean().execAsync(),
             handle: DocumentPackage.find({status: "handle"}).lean().execAsync(),
             declined: DocumentPackage.find({status: "declined"}).sort({'updated':-1}).lean().execAsync(),
             project: DocumentPackage.find({status: "project"}).lean().execAsync()
