@@ -98,10 +98,10 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         });
     }
 
-    if (res.locals.results.visit[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'visit\'');
+    if (res.locals.results.assess[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'assess\'');
     } else {
-        res.locals.results.visit.forEach(function (element) {
+        res.locals.results.assess.forEach(function (element) {
             element = formatElement(element);
             payload.processing.push(element);
         });
@@ -254,7 +254,7 @@ function formatStatus(element) {
         case 'discuss':
             status = 'On Hold - Pending Discussion';
             break;
-        case 'visit':
+        case 'assess':
             status = 'Site Assessment';
             break;
         case 'approval':
