@@ -117,7 +117,7 @@ module.exports = {
             phone: DocumentPackage.find({status: "phone"}).lean().execAsync(),
             documents: DocumentPackage.find({status: "documents"}).lean().execAsync(),
             discuss: DocumentPackage.find({status: "discuss"}).lean().execAsync(),
-            visit: DocumentPackage.find({status: "visit"}).lean().execAsync(),
+            assess: DocumentPackage.find({status: "assess"}).lean().execAsync(),
             approval: DocumentPackage.find({status: "approval"}).lean().execAsync(),
             handle: DocumentPackage.find({status: "handle"}).lean().execAsync(),
             declined: DocumentPackage.find({status: "declined"}).sort({'updated':-1}).lean().execAsync(),
