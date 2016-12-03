@@ -1,11 +1,20 @@
 /**
  * Most important note on this page. Currently this API function as middleware for an Express router.
+ * Currently all functions are MIDDLEWARE in the Express app
+ *      Middleware Docs:  https://expressjs.com/en/guide/using-middleware.html
+ *      Inspiration:      https://medium.com/@jeffandersen/building-a-node-js-rest-api-with-express-46b0901f29b6#.6ttj8e6rs
+ *                        https://medium.com/@jeffandersen/building-a-node-js-rest-api-with-express-part-two-9152661bf47#.4ofcnx1fv
+ *
  * A more normal express function might look like this:
  *      router.get('/index', function(req, res) { ...do the magic }
  *
  * To use this API as middleware simply tacj the function between the route ('/index') and the function().
  *      router.get('/status', api.getDocumentByStatus, function(req, res) { ...do the magic }
- * In this example. getDocumentByStatus returns JSON
+ *
+ * In this example getDocumentByStatus returns a JSON object
+ *
+ * They keep req, res, err, and next intact as they are passed around the route
+ * It is best practice to store new variable in res.local.<your variable>
  */
 
 /**
@@ -19,6 +28,8 @@
  *
  * Import any other required modules
  */
+
+
 var mongoose = require('mongoose');
 var db = require('../mongoose/connection');
 var DocumentPackage = require('../models/documentPackage');
@@ -29,42 +40,13 @@ var Promise = require('bluebird'); // Import promise engine
 mongoose.Promise = require('bluebird'); // Tell mongoose to use bluebird
 Promise.promisifyAll(mongoose); // Convert all of mongoose to promises with bluebird
 
-// Template the document each API call
-/**
- * Description:  a list of all applications and their count
- * Type: GET
- * Address: /api/find/allapplications
- * Returns: list[application]
- * Response:
- *      200 - OK
- *      400 - Bad Request
- *      500 - Internal server error
- *      503 - Service unavailable
- */
-// We don't want any of this to run until we tell it to run, so we immediately export it
-//
-// Currently all functions are MIDDLEWARE in the Express app
-//      Middleware Docs: https://expressjs.com/en/guide/using-middleware.html
-//      Inspiration: https://medium.com/@jeffandersen/building-a-node-js-rest-api-with-express-46b0901f29b6#.6ttj8e6rs
-//
-// Basically, these function take this:
-//      router.get('/all', function(req, res) { .. }
-// And transform it into:
-//      router.get('/all', api.getAllDocuments, function(req, res) { .. }
-//
-// They keep req, res, err, and next intact as they are passed around the route
-// It is best practice to store new variable in res.local.<your variable>
 module.exports = {
     /**
-     * Description: retrieve all DocumentPackages from the database
+     * Description: retrieve all Document Packages from the database
      * Type: GET
+     * Params: none
      * Address: api.getAllDocuments
-     * Returns: list[application]
-     * Response:
-     *      200 - OK
-     *      400 - Bad Request
-     *      500 - Internal server error
-     *      503 - Service unavailable
+     * Returns: results[array of Document Packages]
      */
     getAllDocuments: function (req, res, next) {
         // Log what we are calling to the console
@@ -97,6 +79,13 @@ module.exports = {
             .catch(next);
     },
 
+    /**
+     * Description: retrieve a DocumentPackage from the database by _id
+     * Type: GET
+     * Params: _id of Document Package
+     * Address: api.getDocumentById
+     * Returns: results object (mimics documentPackage.js)
+     */
     getDocumentById: function (req, res, next) {
         // Log the api call we make along with the _id used by it
         console.log('[ API ] getDocumentById :: Call invoked with id: ' + req.params.id);
@@ -125,6 +114,14 @@ module.exports = {
             .catch(next);
     },
 
+    /**
+     * Description: retrieve all Document Packages from the database and group by status code
+     * Type: GET
+     * Params: none
+     * Address: api.getDocumentByStatus
+     * Returns: results.statuscode[array of Document Packages]
+     * Notes: statuscode is defined as any property of Promise.props (ex: new, phone, assess)
+     */
     getDocumentByStatus: function(req, res, next) {
         // Log the api call made to the console
         console.log('[ API ] getDocumentByStatus :: Call invoked');
@@ -161,6 +158,14 @@ module.exports = {
             })
             .catch(next);
     },
+
+    /**
+     * Description: add a vetting note to the database
+     * Type: POST
+     * Params: none
+     * Address: api.postVettingNote
+     * Returns: _id of newly created Vetting Note
+     */
     postVettingNote: function(req, res, next) {
         console.log('[ API ] postVettingNote :: Call invoked');
 
@@ -179,6 +184,13 @@ module.exports = {
 
     },
 
+    /**
+     * Description: remove a vetting note from the database
+     * Type: POST
+     * Params: _id of Vetting Note
+     * Address: api.removeVettingNote
+     * Returns: confirmation of delete
+     */
     removeVettingNote: function(req, res, next) {
         console.log('[ API ] removeVettingNote :: Call invoked');
         Promise.props({
@@ -205,6 +217,13 @@ module.exports = {
         });
     },
 
+    /**
+     * Description: add a Document Package to the database
+     * Type: POST
+     * Params: none
+     * Address: api.postDocument
+     * Returns: HTML 200 status code
+     */
     postDocument: function(req, res, next) {
         // Data will be submitted using req.body
         console.log('[ API ] postDocument :: Call invoked');
@@ -255,6 +274,13 @@ module.exports = {
         });
     },
 
+    /**
+     * Description: update a name:value pair in a Document Package
+     * Type: PUT
+     * Params: _id, name, value
+     * Address: api.putUpdateDocument
+     * Returns: results as modified Document Package
+     */
     putUpdateDocument: function(req, res, next) {
         // When executed this will apply updates to a doc and return the MODIFIED doc
 
@@ -320,7 +346,11 @@ module.exports = {
     },
 
     /**
-     * This will handle updates for elements in arrays
+     * Description: update a name:value pair in an array in a Document Package
+     * Type: PUT
+     * Params: _id, name, value, index
+     * Address: api.putUpdateArray
+     * Returns: results as modified Document Package
      */
     putUpdateArray: function(req, res, next) {
         // Log the _id, name, and value that are passed to the function
@@ -384,7 +414,11 @@ module.exports = {
     },
 
     /**
-     * This will handle updates for vetting notes
+     * Description: update or edit a Vetting Note
+     * Type: POST
+     * Params: _id, name, value
+     * Address: api.updateVettingNote
+     * Returns: results as an updated Vetting Note
      */
     updateVettingNote: function(req, res, next) {
         // Log the _id, name, and value that are passed to the function
@@ -423,7 +457,6 @@ module.exports = {
             ).execAsync()
         })
             .then(function (results) {
-                // TODO: Confirm true/false is correct
                 console.log(results);
                 if (results.note != null) {
                     console.log('[ API ] updateVettingNote :: Note found: TRUE');
@@ -445,6 +478,13 @@ module.exports = {
             .catch(next);
     },
 
+    /**
+     * Description: retrieve a Highlight Package from the database by id
+     * Type: GET
+     * Params: _id
+     * Address: api.getHighlightsById
+     * Returns: results as a Highlight Package
+     */
     getHighlightsById: function(req, res, next) {
         console.log('[ API ] getHighlightsById :: Call invoked with highlight package _id: ' + req.params.id);
         Promise.props({
@@ -470,6 +510,13 @@ module.exports = {
             .catch(next);
     },
 
+    /**
+     * Description: invert a boolean value in a Highlight Package
+     * Type: GET
+     * Params: _id
+     * Address: api.toggleHighlight
+     * Returns: results as updated Highlight Package
+     */
     toggleHighlight: function(req, res, next) {
         console.log('[ API ] toggleHighlight :: Call invoked with highlightPackage _id: %s | name: %s | value: %s',
             req.params.id, req.body.name, req.body.value);
