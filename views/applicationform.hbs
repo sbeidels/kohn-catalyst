@@ -2,6 +2,31 @@
   -- It uses appAdd.js as its back-end form handler, as well as ifyes.js and 
   -- noalert.js for some front end goodies, all stored in public/javascripts -->
 
+  <!-- NOTE: REQUIRED FIELDS have been deleted from this form,
+    -- other than the final checkbox and digital signature.
+	-- The required fields include (by name or textarea id):
+	-- owns_home
+	-- mortgage_up_to_date
+	-- firstName
+	-- lastName
+	-- dob
+	-- add1
+	-- city
+	-- state
+	-- zip
+	-- eContactName
+	-- ecRelationship
+	-- ecPhone
+	-- language
+	-- hearAboutCatalyst
+	-- monthlyMortgage
+	-- annualIncome
+	-- propertyType
+	-- timePropertyOwned
+	-- yearPropertyBuilt
+	-- tac-yes (already required)
+	-- signature (already required)
+	-->
 <link rel="stylesheet" type="text/css" href="/stylesheets/formStyle.css">
 <center><h2>Catalyst Partnerships Recipient Application</h2></center>
 <!--Begin the actual Form -->
@@ -66,7 +91,8 @@
             </div><!-- /.modal -->
 		</div>
 	</div>
-	
+
+<!-- BEGIN ADVOCATE INFORMATION PORTION -->
 	<div class="formSection"><h4>Are you Advocating for Someone Else?</h4>
 		<div class="formLine">
 			If so, please select the type of advocate you are, and fill in the appropriate information below.<br>
@@ -94,7 +120,9 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name of Organization/Agency (if applicable): <input class="largeField" type="text" name="advocate_npo_organization" placeholder="Organization Name">
 		</div>
 	</div>
-	
+
+<!-- BEGIN PERSONAL CONTACT INFORMATION PORTION -->
+
 	<div class="formSection"><h4>Personal Information</h4>
 		<div class="formLine">
 			First Name: <input type="text" name="firstName" placeholder="First Name" >
@@ -222,7 +250,8 @@
 			</div>
 		</div>
 	</div>
-	
+
+<!-- BEGIN FINANCIAL INFORMATION PORTION -->
 	
 	<div class="formSection"><h4>Financial Information</h4>
 		<div class="formLine">
@@ -285,6 +314,7 @@
 		</div>
 	</div>
 
+<!-- BEGIN PROPERTY INFORMATION PORTION -->
 
 	<div class="formSection"><h4>Property Information</h4>
 		
@@ -329,7 +359,9 @@
 				<textarea rows="3" cols="60" id="others_laborHelp" placeholder="Help other people could provide"></textarea> -->
 			</div>
 		</div>
-		
+
+<!-- BEGIN MISCELLANEOUS INFORMATION PORTION -->
+
 		<div class="formLine">Many of our volunteers come from faith-based organizations.  Are you connected with a faith-based community who may have volunteers willing to help?
 			<div class="formLine">
 				<input type="radio" id="showFboHelp" name="fbo_help" value="true">Yes&nbsp;&nbsp;&nbsp;&nbsp;
@@ -369,6 +401,9 @@
 		<p>CERTIFICATION: By submitting this form, I certify that all information provided in this application is true and complete. I give Catalyst the right to verify and request additional information when necessary. I also give Catalyst permission to check personal & criminal background, using the information I’ve provided in this application. I understand that the background check process, or any false or misleading information I have given, may disqualify me from involvement. I understand that information will be held confidential.
 
 	</div>
+
+<!-- BEGIN SIGNATURE PORTION -->
+
 	<div class="formSection"><h4>Digital Signature</h4>
 	
 		<div class="formLine">I have read and agree to the above terms and conditions:
