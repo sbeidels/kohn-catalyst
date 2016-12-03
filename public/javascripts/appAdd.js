@@ -1,4 +1,4 @@
-//This is the FORM HANDLER for the application form called appForm.
+//This is the FORM HANDLER for the application form called appForm in the applicationform.hbs view.
 //This form, upon submit, creates jsonToSend by calling getApplicationFormJSON,
 //which is a function that appends (extends) a JSON object by calling
 //the get*****Data() functions below...
