@@ -189,7 +189,7 @@ function updateNote(e) {
 function cancelUpdate(e){
     e.preventDefault();
     var note = $(this).closest("tr").find(".note-descrip");
-    var notedDescrip = $(this).closest("tr").find(".note-textarea")[0].value;
+    var notedDescrip = $(this).closest("tr").find(".note-textarea")[0].innerHTML;
     var cancelButton = $(this);
     var updateButton = $(this).closest("td").find(".submit-update-button");
 

@@ -117,7 +117,9 @@ module.exports = {
             phone: DocumentPackage.find({status: "phone"}).lean().execAsync(),
             documents: DocumentPackage.find({status: "documents"}).lean().execAsync(),
             discuss: DocumentPackage.find({status: "discuss"}).lean().execAsync(),
-            visit: DocumentPackage.find({status: "visit"}).lean().execAsync(),
+            assess: DocumentPackage.find({status: "assess"}).lean().execAsync(),
+            withdrawn: DocumentPackage.find({status: "withdrawn"}).lean().execAsync(),
+            approval: DocumentPackage.find({status: "approval"}).lean().execAsync(),
             handle: DocumentPackage.find({status: "handle"}).lean().execAsync(),
             declined: DocumentPackage.find({status: "declined"}).sort({'updated':-1}).lean().execAsync(),
             project: DocumentPackage.find({status: "project"}).lean().execAsync()
@@ -341,7 +343,6 @@ module.exports = {
             ).execAsync()
         })
             .then(function (results) {
-                // TODO: Confirm true/false is correct
                 console.log(results);
                 if (results.doc != null) {
                     console.log('[ API ] putUpdateArray :: Documents package found: TRUE');

@@ -1,101 +1,18 @@
-<head>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-</head>
-
-<style>
-    /*div {*/
-        /*padding: 3px;*/
-    /*}*/
-    #b1 {
-        border: 4px solid orange;
-    }
-    #b2 {
-        border: 3px solid darkblue;
-    }
-    #b3 {
-        border: 2px solid lightcoral;
-    }
-    #b4-1 {
-        border: 2px solid darkolivegreen;
-    }
-    #b4-2 {
-        border: 2px solid darkturquoise;
-    }
-    #b4-3 {
-        border: 2px solid crimson;
-    }
-</style>
-
 <body>
 <!-- Begin homepage -->
-    <div class="container">
-        <div class="row">
-            <h1>{{title}}</h1>
-            <h4><a href="/application/add">Fill out a document package</a></h4>
-            <h4><a href="/view">View all Document Packages by status</a></h4>
-            <h4><a href="/view/581140ab450b120e5139f9b6">View profile of Rick Grimes</a></h4>
-            <p>I am a HBS variable surrounded by double { } brackets. My content: {{body}}</p>
-            <p>I have added some CSS styles to pad the colored border to show off the grid system.</p>
-        </div>
-    </div>
-
-    <div class="container-fluid" id="b1" style="margin: 2px">
-        <div class="row" id="b2">
-            <div class="col" id="b3">
-                <p>I am a child of container. There are is only one row and one col here.</p>
-            </div>
-        </div>
+<div class="container">
+    <div class="row">
         <br>
-        <div class="row" id="b2">
-            <div class="col" id="b3">
-                <p>We are duplicates if the first row-col</p>
-            </div>
-        </div>
+        <h1><b>{{title}}</b></h1>
         <br>
-        <div class="row" id="b2">
-            <div class="col" id="b3">
-                <p>We are duplicates if the first row-col</p>
-            </div>
-        </div>
+        <h4>Fill out an <a href="/application/add">application</a>, also known internally as a Document Package</h4>
+        <br>
+        <h4>View all <a href="/view">Document Packages</a></h4>
+        <br>
+        <h4>Sample <a href="/view/583f96201df29e28583456f2">Vetting View</a>
+            or <a href="/vettingworksheet/583f96201df29e28583456f2">Vetting Worksheet</a> for Perry Mason</h4>
+        <h4>Sample <a href="/view/583f9071c7579c1590ac5d69">Vetting View</a>
+            or <a href="/vettingworksheet/583f9071c7579c1590ac5d69"> Vetting Worksheet</a> for Homer Simpson</h4>
     </div>
-    <br>
-    <div class="container-fluid" id="b1" style="margin: 2px">
-        <div class="row" id="b2">
-            <div class="col" id="b3">
-                <p>I am a <code>&lt;p&gt;</code> child of container.row.col spanning the entire row</p>
-            </div>
-            <div class="col-sm-4" id="b4-1">
-                <p>1 of 3 class="col-sm-4"</p>
-            </div>
-            <div class="col-sm-4" id="b4-2">
-                <p>2 of 3 class="col-sm-4"</p>
-            </div>
-            <div class="col-sm-4" id="b4-3">
-                <p>3 of 3class="col-sm-4"</p>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="container-fluid" id="b1" style="margin: 2px">
-        <div class="row" id="b2">
-            <div class="col" id="b3">
-                <p>I am a <code>&lt;p&gt;</code> child of container.row.col spanning the entire row</p>
-                <p>Each of my col buddys below me is in the same row and container as me!</p>
-                <p>Try resizing the window and see how the layout shuffles itself around!</p>
-            </div>
-            <div class="col-xs-6 col-md-4" id="b4-1">
-                <p>I take one half of the screen width both on phones and big monitors! col-xs-6 lets me take 1/2 of a small screen.</p>
-            </div>
-            <div class="col-xs-3 col-md-4" id="b4-2">
-                <p>I take one quarter of the screen width of monitors, but make a new row on small screens.</p>
-            </div>
-            <div class="col-xs-3 col-md-4" id="b4-3">
-                <p>Just like the other guy, col-md-4 makes me take 1/4 of a monitor but none of a phone.</p>
-            </div>
-        </div>
-    </div>
+</div>
 </body>

@@ -30,6 +30,7 @@ var ObjectId = require('mongodb').ObjectID;
      documents - additional documents are needed from the client before document package can proceed
      discuss - internal discussion needs to take place to determine if the document package is approved, denied, handle-it, or other
      visit - a member of catalyst must visit the property to determine the extent of repairs needed
+     approval - awaiting the green light to go ahead as a project
      handle - the document package is forwarded to the handle-it team to be completed
      declined - the document package was declined for various reasons
      project - the project has been approved and the document package will be converted to a project package
@@ -48,14 +49,26 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
     }
     payload.new = res.locals.results.new;
 
+    //put declined and withdrawn in the same bucket
+    payload.unapproved = [];
+
     if (res.locals.results.declined[0] == null) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'declined\'');
     } else {
         res.locals.results.declined.forEach(function (element) {
             element = formatElement(element);
+            payload.unapproved.push(element);
         });
     }
-    payload.declined = res.locals.results.declined;
+
+    if (res.locals.results.withdrawn[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'withdrawn\'');
+    } else {
+        res.locals.results.withdrawn.forEach(function (element) {
+            element = formatElement(element);
+            payload.unapproved.push(element);
+        });
+    }
 
     //add all other existing statuses to processing array
     payload.processing = [];
@@ -97,14 +110,24 @@ router.get('/', api.getDocumentByStatus, function(req, res, next) {
         });
     }
 
-    if (res.locals.results.visit[0] == null) {
-        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'visit\'');
+    if (res.locals.results.assess[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'assess\'');
     } else {
-        res.locals.results.visit.forEach(function (element) {
+        res.locals.results.assess.forEach(function (element) {
             element = formatElement(element);
             payload.processing.push(element);
         });
     }
+
+    if (res.locals.results.approval[0] == null) {
+        console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'approval\'');
+    } else {
+        res.locals.results.approval.forEach(function (element) {
+            element = formatElement(element);
+            payload.processing.push(element);
+        });
+    }
+
 
     if (res.locals.results.project[0] == null) {
         console.log('[ ROUTER ] /view/status :: Unable to find Document Packages with status: \'project\'');
@@ -243,7 +266,7 @@ function formatStatus(element) {
         case 'discuss':
             status = 'On Hold - Pending Discussion';
             break;
-        case 'visit':
+        case 'assess':
             status = 'Site Assessment';
             break;
         case 'approval':
