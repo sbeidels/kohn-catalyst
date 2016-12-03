@@ -160,64 +160,6 @@ module.exports = {
     },
 
     /**
-     * Description: add a vetting note to the database
-     * Type: POST
-     * Params: none
-     * Address: api.postVettingNote
-     * Returns: _id of newly created Vetting Note
-     */
-    postVettingNote: function(req, res, next) {
-        console.log('[ API ] postVettingNote :: Call invoked');
-
-        var note = new VettingNotePackage(req.body);
-
-        note.saveAsync(function (err, note, numAffected) {
-            if (err) {
-                console.error(err);
-            }
-            else if (numAffected == 1) {
-                console.log('[ API ] postVettingNote :: Note created with _id: ' + note._id);
-                //send note ID so it can be referenced without page refresh
-                res.send( { status : 200, noteId: note._id } );
-            }
-        });
-
-    },
-
-    /**
-     * Description: remove a vetting note from the database
-     * Type: POST
-     * Params: _id of Vetting Note
-     * Address: api.removeVettingNote
-     * Returns: confirmation of delete
-     */
-    removeVettingNote: function(req, res, next) {
-        console.log('[ API ] removeVettingNote :: Call invoked');
-        Promise.props({
-            note: VettingNotePackage.remove(
-                {
-                    _id: req.body.noteId
-                }
-            ).execAsync()
-        })
-        .then(function (results) {
-            if (results) {
-                console.log('[ API ] removeVettingNote :: Note found: TRUE');
-                res.locals.results = results;
-                //sending a status of 200 for now
-                res.locals.status = '200';
-            }
-            else {
-                console.log('[ API ] removeVettingNote :: Note found: FALSE');
-            }
-            next();
-        })
-        .catch(function (err) {
-            console.error(err);
-        });
-    },
-
-    /**
      * Description: add a Document Package to the database
      * Type: POST
      * Params: none
@@ -346,71 +288,61 @@ module.exports = {
     },
 
     /**
-     * Description: update a name:value pair in an array in a Document Package
-     * Type: PUT
-     * Params: _id, name, value, index
-     * Address: api.putUpdateArray
-     * Returns: results as modified Document Package
+     * Description: add a vetting note to the database
+     * Type: POST
+     * Params: none
+     * Address: api.postVettingNote
+     * Returns: _id of newly created Vetting Note
      */
-    putUpdateArray: function(req, res, next) {
-        // Log the _id, name, and value that are passed to the function
-        console.log('[ API ] putUpdateArray :: Call invoked with _id: ' + req.params.id
-            + ' | key: ' + req.body.name + ' | value: ' + req.body.value + ' | current value: ' + req.body.pk);
-        //the $ holds the index of the element
-        var updateField = req.body.name + ".$";
-        var updates = {};
-        updates[updateField] = req.body.value;
-        // Record Update time
-        updates['updated'] = Date.now();
-        //filters
-        var conditions = {};
-        conditions['_id'] = req.params.id;
-        conditions[req.body.name] = req.body.pk;
-        console.log("Search Filter:");
-        console.log(conditions);
-        console.log("Update:");
-        console.log(updates);
+    postVettingNote: function(req, res, next) {
+        console.log('[ API ] postVettingNote :: Call invoked');
 
+        var note = new VettingNotePackage(req.body);
+
+        note.saveAsync(function (err, note, numAffected) {
+            if (err) {
+                console.error(err);
+            }
+            else if (numAffected == 1) {
+                console.log('[ API ] postVettingNote :: Note created with _id: ' + note._id);
+                //send note ID so it can be referenced without page refresh
+                res.send( { status : 200, noteId: note._id } );
+            }
+        });
+
+    },
+
+    /**
+     * Description: remove a vetting note from the database
+     * Type: POST
+     * Params: _id of Vetting Note
+     * Address: api.removeVettingNote
+     * Returns: confirmation of delete
+     */
+    removeVettingNote: function(req, res, next) {
+        console.log('[ API ] removeVettingNote :: Call invoked');
         Promise.props({
-            doc: DocumentPackage.findOneAndUpdate(
-                // Condition
-                conditions,
-                // Updates
+            note: VettingNotePackage.remove(
                 {
-                    // $set: {name: value}
-                    $set: updates
-                },
-                // Options
-                {
-                    // new - defaults to false, returns the modified document when true, or the original when false
-                    new: true,
-                    // runValidators - defaults to false, make sure the data fits the model before applying the update
-                    runValidators: true
+                    _id: req.body.noteId
                 }
-                // Callback if needed
-                // { }
             ).execAsync()
         })
-            .then(function (results) {
-                console.log(results);
-                if (results.doc != null) {
-                    console.log('[ API ] putUpdateArray :: Documents package found: TRUE');
-                    res.locals.status = '200';
-                }
-                else {
-                    console.log('[ API ] putUpdateArray :: Documents package found: FALSE');
-                    res.locals.status = '500';
-                }
+        .then(function (results) {
+            if (results) {
+                console.log('[ API ] removeVettingNote :: Note found: TRUE');
                 res.locals.results = results;
-
-                // If we are at this line all promises have executed and returned
-                // Call next() to pass all of this glorious data to the next express router
-                next();
-            })
-            .catch(function (err) {
-                console.error(err);
-            })
-            .catch(next);
+                //sending a status of 200 for now
+                res.locals.status = '200';
+            }
+            else {
+                console.log('[ API ] removeVettingNote :: Note found: FALSE');
+            }
+            next();
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
     },
 
     /**
@@ -543,33 +475,26 @@ module.exports = {
                     var length = str_split.length;
 
                     if (length == 1) {
-                        console.log("\t[ API ] toggleHighlight :: Length is 1");
                         console.log(results.highlight[ str_split[0] ]);
                         if (results.highlight[str_split[0]] === true) {
-                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as TRUE", req.body.name);
                             updates[req.body.name] = false;
                         }
                         if (results.highlight[str_split[0]] === false) {
-                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as FALSE", req.body.name);
                             updates[req.body.name] = true;
                         }
                     }
                     if (length == 2) {
-                        console.log("\t[ API ] toggleHighlight :: Length is 2");
-                        console.log(results.highlight[ str_split[0] ][ str_split[1] ]);
                         if (results.highlight[ str_split[0] ][ str_split[1] ] === true) {
-                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as TRUE", req.body.name);
                             updates[req.body.name] = false;
                         }
                         if (results.highlight[ str_split[0] ][ str_split[1] ] === false) {
-                            console.log("\t[ API ] toggleHighlight :: Item \"%s\" in highlightPackage was queried as FALSE", req.body.name);
                             updates[req.body.name] = true;
                         }
                     }
 
                     // Record Update time
                     updates['updated'] = Date.now();
-                    console.log("\t[ API ] toggleHighlight :: Items to update:\n\t\t", updates);
+                    console.log("[ API ] toggleHighlight :: Items to update: ", updates);
 
                     // Build variables and attach to the returned query results
                     results.id = req.params.id;
@@ -622,5 +547,73 @@ module.exports = {
                     .catch(next);
             })
         }
+    },
+
+    /**
+     * Description: update a name:value pair in an array in a Document Package
+     * Type: PUT
+     * Params: _id, name, value, index
+     * Address: api.putUpdateArray
+     * Returns: results as modified Document Package
+     */
+    putUpdateArray: function(req, res, next) {
+        // Log the _id, name, and value that are passed to the function
+        console.log('[ API ] putUpdateArray :: Call invoked with _id: ' + req.params.id
+            + ' | key: ' + req.body.name + ' | value: ' + req.body.value + ' | current value: ' + req.body.pk);
+        //the $ holds the index of the element
+        var updateField = req.body.name + ".$";
+        var updates = {};
+        updates[updateField] = req.body.value;
+        // Record Update time
+        updates['updated'] = Date.now();
+        //filters
+        var conditions = {};
+        conditions['_id'] = req.params.id;
+        conditions[req.body.name] = req.body.pk;
+        console.log("Search Filter:");
+        console.log(conditions);
+        console.log("Update:");
+        console.log(updates);
+
+        Promise.props({
+            doc: DocumentPackage.findOneAndUpdate(
+                // Condition
+                conditions,
+                // Updates
+                {
+                    // $set: {name: value}
+                    $set: updates
+                },
+                // Options
+                {
+                    // new - defaults to false, returns the modified document when true, or the original when false
+                    new: true,
+                    // runValidators - defaults to false, make sure the data fits the model before applying the update
+                    runValidators: true
+                }
+                // Callback if needed
+                // { }
+            ).execAsync()
+        })
+            .then(function (results) {
+                console.log(results);
+                if (results.doc != null) {
+                    console.log('[ API ] putUpdateArray :: Documents package found: TRUE');
+                    res.locals.status = '200';
+                }
+                else {
+                    console.log('[ API ] putUpdateArray :: Documents package found: FALSE');
+                    res.locals.status = '500';
+                }
+                res.locals.results = results;
+
+                // If we are at this line all promises have executed and returned
+                // Call next() to pass all of this glorious data to the next express router
+                next();
+            })
+            .catch(function (err) {
+                console.error(err);
+            })
+            .catch(next);
     },
 };
