@@ -7,8 +7,8 @@ var local_url = 'mongodb://127.0.0.1:27017/test';   // Local URL, connects EC2 i
 var remote_url = config.ec2.public_ip;              // Connects to the public IP of the server hosting the database
 
 var options = {
-    user:   config.mongo.username,      // Username and password of a user that has read and write permissions
-    pass:   config.mongo.password
+    username:   config.mongo.username,      // Username and password of a user that has read and write permissions
+    password:   config.mongo.password
 };
 var uri = 'mongodb://' + remote_url + '/' + config.mongo.db;
 
